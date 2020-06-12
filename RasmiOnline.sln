@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasmiOnline.SharedPreference", "RasmiOnline.SharedPreference\RasmiOnline.SharedPreference.csproj", "{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasmiOnline.Domain", "RasmiOnline.Domain\RasmiOnline.Domain.csproj", "{FB6CCBF6-0CCB-4A8F-BFEF-44A6D480C653}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasmiOnline.DependencyResolver", "RasmiOnline.DependencyResolver\RasmiOnline.DependencyResolver.csproj", "{A1D22858-ED19-4B4F-B0FC-8FE5AE7F38E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasmiOnline.Data", "RasmiOnline.Data\RasmiOnline.Data.csproj", "{261D2408-3F55-46D2-A404-3D2F560FC6D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasmiOnline.Console", "RasmiOnline.Console\RasmiOnline.Console.csproj", "{27DC0A03-0D99-4B25-AADC-48D33FDFF272}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RasmiOnline.Business", "RasmiOnline.Business\RasmiOnline.Business.csproj", "{99E097BB-A9ED-4775-8265-1C817022B0C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndPoint", "EndPoint", "{065ACC00-5D0A-4CB5-B84F-7425F32A95B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB6CCBF6-0CCB-4A8F-BFEF-44A6D480C653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB6CCBF6-0CCB-4A8F-BFEF-44A6D480C653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB6CCBF6-0CCB-4A8F-BFEF-44A6D480C653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB6CCBF6-0CCB-4A8F-BFEF-44A6D480C653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1D22858-ED19-4B4F-B0FC-8FE5AE7F38E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1D22858-ED19-4B4F-B0FC-8FE5AE7F38E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1D22858-ED19-4B4F-B0FC-8FE5AE7F38E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1D22858-ED19-4B4F-B0FC-8FE5AE7F38E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{261D2408-3F55-46D2-A404-3D2F560FC6D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{261D2408-3F55-46D2-A404-3D2F560FC6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{261D2408-3F55-46D2-A404-3D2F560FC6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{261D2408-3F55-46D2-A404-3D2F560FC6D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27DC0A03-0D99-4B25-AADC-48D33FDFF272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27DC0A03-0D99-4B25-AADC-48D33FDFF272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27DC0A03-0D99-4B25-AADC-48D33FDFF272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27DC0A03-0D99-4B25-AADC-48D33FDFF272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E097BB-A9ED-4775-8265-1C817022B0C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E097BB-A9ED-4775-8265-1C817022B0C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E097BB-A9ED-4775-8265-1C817022B0C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E097BB-A9ED-4775-8265-1C817022B0C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27DC0A03-0D99-4B25-AADC-48D33FDFF272} = {065ACC00-5D0A-4CB5-B84F-7425F32A95B3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A347A92-EE07-400B-9366-61610508C05A}
+	EndGlobalSection
+EndGlobal
