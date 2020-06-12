@@ -111,10 +111,6 @@
       <Project>{FB6CCBF6-0CCB-4A8F-BFEF-44A6D480C653}</Project>
       <Name>RasmiOnline.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RasmiOnline.SharedPreference\RasmiOnline.SharedPreference.csproj">
-      <Project>{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}</Project>
-      <Name>RasmiOnline.SharedPreference</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

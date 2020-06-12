@@ -7,8 +7,6 @@
     using Gnu.Framework.Core;
     using System.Data.Entity;
     using System.Configuration;
-    using Gnu.Framework.Core.Log;
-    using RasmiOnline.SharedPreference;
     using RasmiOnline.Business.Properties;
     using Gnu.Framework.EntityFramework.DataAccess;
 

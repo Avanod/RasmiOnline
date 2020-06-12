@@ -4,7 +4,6 @@
     using System.Web;
     using Domain.Entity;
     using System.Web.Mvc;
-    using SharedPreference;
     using Gnu.Framework.Core;
     using System.Web.Security;
     using RasmiOnline.Domain.Enum;

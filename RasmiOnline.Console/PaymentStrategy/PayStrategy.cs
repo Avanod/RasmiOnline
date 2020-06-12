@@ -15,7 +15,6 @@
     using DependencyResolver.Ioc;
     using Gnu.Framework.Core.Log;
     using Gnu.Framework.Core.Authentication;
-    using SharedPreference;
 
     public class PayStrategy : IPaymentStrategy
     {

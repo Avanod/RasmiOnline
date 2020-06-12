@@ -1,6 +1,5 @@
 ﻿namespace RasmiOnline.Business.Observers
 {
-    using SharedPreference;
     using Domain.Dto;
     using Gnu.Framework.EntityFramework.DataAccess;
     using Newtonsoft.Json;

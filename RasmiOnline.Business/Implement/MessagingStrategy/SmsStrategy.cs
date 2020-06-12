@@ -4,7 +4,6 @@
     using Domain.Enum;
     using Domain.Entity;
     using TrezSmsProvider;
-    using SharedPreference;
     using System.Data.Entity;
     using Gnu.Framework.Core;
     using Gnu.Framework.Core.Log;

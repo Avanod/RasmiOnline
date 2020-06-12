@@ -10,9 +10,6 @@
     using Gnu.Framework.Core;
     using RasmiOnline.Business.Protocol;
     using System.Collections.Generic;
-    using SharedPreference;
-    using Gnu.Framework.Core.Log;
-    using Newtonsoft.Json;
     using Gnu.Framework.Core.Authentication;
 
     public partial class TransactionController : Controller

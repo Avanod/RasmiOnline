@@ -12,7 +12,6 @@
     using Business.Properties;
     using Gnu.Framework.EntityFramework;
     using Gnu.Framework.EntityFramework.DataAccess;
-    using SharedPreference;
     using Observers;
     using System.Text.RegularExpressions;
     using Gnu.Framework.Core.Security;
@@ -411,7 +410,7 @@
             var newOrderStatus = order.GetNextStatus();
             if ((order.OrderStatus == OrderStatus.WaitForPayment) && order.DeliverFiles_DateMi == null)
             {
-                order.DeliverFiles_DateMi = GlobalMethod.GetWorkDate(order.DayToDelivery);
+                order.DeliverFiles_DateMi = GetWorkDate(order.DayToDelivery);
                 order.DeliverFiles_DateSh = PersianDateTime.Parse((DateTime)order.DeliverFiles_DateMi).ToString(PersianDateTimeFormat.Date);
             }
             order.OrderStatus = newOrderStatus;
@@ -438,7 +437,7 @@
             if (order == null) return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
             if (order.DeliverFiles_DateMi == null)
             {
-                order.DeliverFiles_DateMi = GlobalMethod.GetWorkDate(order.DayToDelivery);
+                order.DeliverFiles_DateMi = GetWorkDate(order.DayToDelivery);
                 order.DeliverFiles_DateSh = PersianDateTime.Parse((DateTime)order.DeliverFiles_DateMi).ToString(PersianDateTimeFormat.Date);
             }
             _uow.Entry(order).State = EntityState.Modified;
@@ -774,5 +773,19 @@
             return q.OrderByDescending(x => x.InsertDateMi).ToList();
         }
 
+
+        private DateTime GetWorkDate(int dayCount)
+        {
+            if (dayCount <= 0)
+                return DateTime.Now;
+
+            for (int i = 1; i <= dayCount; i++)
+            {
+                var day = DateTime.Now.AddDays(i);
+                if (day.DayOfWeek == DayOfWeek.Friday || day.DayOfWeek == DayOfWeek.Thursday)
+                    dayCount++;
+            }
+            return DateTime.Now.AddDays(dayCount);
+        }
     }
 }

@@ -4,7 +4,6 @@
     using Domain.Entity;
     using Domain.Enum;
     using Gnu.Framework.EntityFramework.DataAccess;
-    using SharedPreference;
     using System;
     using Gnu.Framework.Core;
     using Protocol;

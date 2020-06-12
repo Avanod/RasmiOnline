@@ -412,6 +412,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalVariable.cs" />
     <Compile Include="T4\AddressController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -457,7 +458,6 @@
     <Compile Include="T4\ExportController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helper\ExportToExcelFactory.cs" />
     <Compile Include="T4\MessageController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -755,10 +755,6 @@
     <ProjectReference Include="..\RasmiOnline.Domain\RasmiOnline.Domain.csproj">
       <Project>{fb6ccbf6-0ccb-4a8f-bfef-44a6d480c653}</Project>
       <Name>RasmiOnline.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RasmiOnline.SharedPreference\RasmiOnline.SharedPreference.csproj">
-      <Project>{c5c3f3f4-3d29-4a4c-b7b3-a53620c3abb0}</Project>
-      <Name>RasmiOnline.SharedPreference</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

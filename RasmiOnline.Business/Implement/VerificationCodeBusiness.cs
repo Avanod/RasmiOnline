@@ -5,7 +5,6 @@
     using Properties;
     using System.Linq;
     using Domain.Entity;
-    using SharedPreference;
     using System.Data.Entity;
     using Gnu.Framework.Core;
     using Gnu.Framework.Core.Log;

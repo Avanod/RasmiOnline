@@ -3,7 +3,6 @@
     using Gnu.Framework.Core.Log;
     using Business.Protocol;
     using DependencyResolver.Ioc;
-    using SharedPreference;
     using System;
     using System.Linq;
     using System.Web;

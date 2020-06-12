@@ -188,12 +188,6 @@
       <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RasmiOnline.SharedPreference\RasmiOnline.SharedPreference.csproj">
-      <Project>{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}</Project>
-      <Name>RasmiOnline.SharedPreference</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

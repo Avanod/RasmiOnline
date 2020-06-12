@@ -105,6 +105,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="GlobalVariable.cs" />
     <Compile Include="Implement\BankCardBusiness.cs" />
     <Compile Include="Implement\ChannelBusiness.cs" />
     <Compile Include="Implement\DiscountBusiness.cs" />
@@ -175,10 +176,6 @@
     <ProjectReference Include="..\RasmiOnline.Domain\RasmiOnline.Domain.csproj">
       <Project>{FB6CCBF6-0CCB-4A8F-BFEF-44A6D480C653}</Project>
       <Name>RasmiOnline.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RasmiOnline.SharedPreference\RasmiOnline.SharedPreference.csproj">
-      <Project>{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}</Project>
-      <Name>RasmiOnline.SharedPreference</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

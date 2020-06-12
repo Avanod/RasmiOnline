@@ -18,7 +18,6 @@ namespace RasmiOnline.Console.PaymentStrategy
     using Business.Protocol;
     using Gnu.Framework.Core.Log;
     using Newtonsoft.Json;
-    using SharedPreference;
     using Gnu.Framework.Core.Authentication;
     using Domain.Enum;
 
