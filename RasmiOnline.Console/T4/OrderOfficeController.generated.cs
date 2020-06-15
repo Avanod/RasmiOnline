@@ -23,11 +23,135 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVC
+namespace RasmiOnline.Console.Controllers
 {
-    public class OrderOfficeController
+    public partial class OrderOfficeController
     {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected OrderOfficeController(Dummy d) { }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ViewResult Edit()
+        {
+            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Edit);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult Update()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Update);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public OrderOfficeController Actions { get { return MVC.OrderOffice; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "OrderOffice";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "OrderOffice";
+        [GeneratedCode("T4MVC", "2.0")]
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string Manage = "Manage";
+            public readonly string Add = "Add";
+            public readonly string Edit = "Edit";
+            public readonly string Update = "Update";
+            public readonly string GetAllTodayOrderList = "GetAllTodayOrderList";
+            public readonly string GetAllOlderOrderList = "GetAllOlderOrderList";
+            public readonly string GetOrderList = "GetOrderList";
+            public readonly string GetOrderListMobile = "GetOrderListMobile";
+            public readonly string GetMobileOrderType = "GetMobileOrderType";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string Manage = "Manage";
+            public const string Add = "Add";
+            public const string Edit = "Edit";
+            public const string Update = "Update";
+            public const string GetAllTodayOrderList = "GetAllTodayOrderList";
+            public const string GetAllOlderOrderList = "GetAllOlderOrderList";
+            public const string GetOrderList = "GetOrderList";
+            public const string GetOrderListMobile = "GetOrderListMobile";
+            public const string GetMobileOrderType = "GetMobileOrderType";
+        }
+
+
+        static readonly ActionParamsClass_Add s_params_Add = new ActionParamsClass_Add();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Add AddParams { get { return s_params_Add; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Add
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Edit
+        {
+            public readonly string orderId = "orderId";
+            public readonly string langType = "langType";
+            public readonly string items = "items";
+        }
+        static readonly ActionParamsClass_Update s_params_Update = new ActionParamsClass_Update();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Update UpdateParams { get { return s_params_Update; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Update
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_GetOrderList s_params_GetOrderList = new ActionParamsClass_GetOrderList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetOrderList GetOrderListParams { get { return s_params_GetOrderList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetOrderList
+        {
+            public readonly string orderStatus = "orderStatus";
+        }
+        static readonly ActionParamsClass_GetOrderListMobile s_params_GetOrderListMobile = new ActionParamsClass_GetOrderListMobile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetOrderListMobile GetOrderListMobileParams { get { return s_params_GetOrderListMobile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetOrderListMobile
+        {
+            public readonly string orderStatus = "orderStatus";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -75,6 +199,141 @@ namespace T4MVC
         }
     }
 
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_OrderOfficeController : RasmiOnline.Console.Controllers.OrderOfficeController
+    {
+        public T4MVC_OrderOfficeController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void ManageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Manage()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
+            ManageOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Add()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Add);
+            AddOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Entity.Order model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Add(RasmiOnline.Domain.Entity.Order model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Add);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            AddOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, int orderId);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Edit(int orderId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            EditOverride(callInfo, orderId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void EditOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int orderId, RasmiOnline.Domain.Enum.LangType langType, System.Collections.Generic.List<RasmiOnline.Domain.Entity.OrderItem> items);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Edit(int orderId, RasmiOnline.Domain.Enum.LangType langType, System.Collections.Generic.List<RasmiOnline.Domain.Entity.OrderItem> items)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "langType", langType);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "items", items);
+            EditOverride(callInfo, orderId, langType, items);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Entity.Order model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Update(RasmiOnline.Domain.Entity.Order model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Update);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            UpdateOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetAllTodayOrderListOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GetAllTodayOrderList()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetAllTodayOrderList);
+            GetAllTodayOrderListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetAllOlderOrderListOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GetAllOlderOrderList()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetAllOlderOrderList);
+            GetAllOlderOrderListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetOrderListOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, RasmiOnline.Domain.Enum.OrderStatus? orderStatus);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GetOrderList(RasmiOnline.Domain.Enum.OrderStatus? orderStatus)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetOrderList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderStatus", orderStatus);
+            GetOrderListOverride(callInfo, orderStatus);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetOrderListMobileOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, RasmiOnline.Domain.Enum.OrderStatus? orderStatus);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GetOrderListMobile(RasmiOnline.Domain.Enum.OrderStatus? orderStatus)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetOrderListMobile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderStatus", orderStatus);
+            GetOrderListMobileOverride(callInfo, orderStatus);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetMobileOrderTypeOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GetMobileOrderType()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetMobileOrderType);
+            GetMobileOrderTypeOverride(callInfo);
+            return callInfo;
+        }
+
+    }
 }
 
 #endregion T4MVC

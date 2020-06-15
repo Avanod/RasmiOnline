@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="jCbxJ7ogwtie3s2TrKtT0TaTGAQ=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="smCARU8fJ1aNlO91f9zjTB6lo3IJIR/IIBuNKzDMpFk=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="PaymentGatewayImplementationServiceBinding">
       <properties>

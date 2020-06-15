@@ -23,11 +23,232 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVC
+namespace RasmiOnline.Console.Controllers
 {
-    public class OrderController
+    public partial class OrderController
     {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected OrderController(Dummy d) { }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DetailedAdd()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DetailedAdd);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CompleteOrder()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompleteOrder);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult SubmitCompleteOrder()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitCompleteOrder);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Search()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Detail()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.PartialViewResult ShowList()
+        {
+            return new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.ShowList);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ConfirmDraft()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmDraft);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ViewResult Pay()
+        {
+            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Pay);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult PayAllFactor()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PayAllFactor);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult SubmitPayAllFactor()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitPayAllFactor);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public OrderController Actions { get { return MVC.Order; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "Order";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "Order";
+        [GeneratedCode("T4MVC", "2.0")]
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string DetailedAdd = "DetailedAdd";
+            public readonly string CompleteOrder = "CompleteOrder";
+            public readonly string SubmitCompleteOrder = "SubmitCompleteOrder";
+            public readonly string Search = "Search";
+            public readonly string History = "History";
+            public readonly string Detail = "Detail";
+            public readonly string ShowList = "ShowList";
+            public readonly string ConfirmDraft = "ConfirmDraft";
+            public readonly string Pay = "Pay";
+            public readonly string PayAllFactor = "PayAllFactor";
+            public readonly string SubmitPayAllFactor = "SubmitPayAllFactor";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string DetailedAdd = "DetailedAdd";
+            public const string CompleteOrder = "CompleteOrder";
+            public const string SubmitCompleteOrder = "SubmitCompleteOrder";
+            public const string Search = "Search";
+            public const string History = "History";
+            public const string Detail = "Detail";
+            public const string ShowList = "ShowList";
+            public const string ConfirmDraft = "ConfirmDraft";
+            public const string Pay = "Pay";
+            public const string PayAllFactor = "PayAllFactor";
+            public const string SubmitPayAllFactor = "SubmitPayAllFactor";
+        }
+
+
+        static readonly ActionParamsClass_DetailedAdd s_params_DetailedAdd = new ActionParamsClass_DetailedAdd();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DetailedAdd DetailedAddParams { get { return s_params_DetailedAdd; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DetailedAdd
+        {
+            public readonly string client = "client";
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_CompleteOrder s_params_CompleteOrder = new ActionParamsClass_CompleteOrder();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CompleteOrder CompleteOrderParams { get { return s_params_CompleteOrder; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CompleteOrder
+        {
+            public readonly string orderId = "orderId";
+            public readonly string block = "block";
+        }
+        static readonly ActionParamsClass_SubmitCompleteOrder s_params_SubmitCompleteOrder = new ActionParamsClass_SubmitCompleteOrder();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SubmitCompleteOrder SubmitCompleteOrderParams { get { return s_params_SubmitCompleteOrder; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SubmitCompleteOrder
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Search s_params_Search = new ActionParamsClass_Search();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Search SearchParams { get { return s_params_Search; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Search
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Detail DetailParams { get { return s_params_Detail; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Detail
+        {
+            public readonly string orderId = "orderId";
+        }
+        static readonly ActionParamsClass_ShowList s_params_ShowList = new ActionParamsClass_ShowList();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ShowList ShowListParams { get { return s_params_ShowList; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ShowList
+        {
+            public readonly string userId = "userId";
+        }
+        static readonly ActionParamsClass_ConfirmDraft s_params_ConfirmDraft = new ActionParamsClass_ConfirmDraft();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ConfirmDraft ConfirmDraftParams { get { return s_params_ConfirmDraft; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ConfirmDraft
+        {
+            public readonly string orderId = "orderId";
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Pay s_params_Pay = new ActionParamsClass_Pay();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Pay PayParams { get { return s_params_Pay; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Pay
+        {
+            public readonly string code = "code";
+            public readonly string orderId = "orderId";
+            public readonly string paymentGatewayId = "paymentGatewayId";
+        }
+        static readonly ActionParamsClass_PayAllFactor s_params_PayAllFactor = new ActionParamsClass_PayAllFactor();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_PayAllFactor PayAllFactorParams { get { return s_params_PayAllFactor; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_PayAllFactor
+        {
+            public readonly string orderId = "orderId";
+        }
+        static readonly ActionParamsClass_SubmitPayAllFactor s_params_SubmitPayAllFactor = new ActionParamsClass_SubmitPayAllFactor();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SubmitPayAllFactor SubmitPayAllFactorParams { get { return s_params_SubmitPayAllFactor; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SubmitPayAllFactor
+        {
+            public readonly string orderId = "orderId";
+            public readonly string paymentType = "paymentType";
+            public readonly string paymentGatewayId = "paymentGatewayId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -109,6 +330,184 @@ namespace T4MVC
         }
     }
 
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_OrderController : RasmiOnline.Console.Controllers.OrderController
+    {
+        public T4MVC_OrderController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void DetailedAddOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string client);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DetailedAdd(string client)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DetailedAdd);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "client", client);
+            DetailedAddOverride(callInfo, client);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailedAddOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Entity.Order model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult DetailedAdd(RasmiOnline.Domain.Entity.Order model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DetailedAdd);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            DetailedAddOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CompleteOrderOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId, string block);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CompleteOrder(int orderId, string block)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CompleteOrder);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "block", block);
+            CompleteOrderOverride(callInfo, orderId, block);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SubmitCompleteOrderOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.CompleteOrderModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult SubmitCompleteOrder(RasmiOnline.Domain.Dto.CompleteOrderModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitCompleteOrder);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            SubmitCompleteOrderOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, RasmiOnline.Domain.Dto.FilterOrderModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Search(RasmiOnline.Domain.Dto.FilterOrderModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            SearchOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void HistoryOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult History()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.History);
+            HistoryOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Detail(int orderId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            DetailOverride(callInfo, orderId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ShowListOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, System.Guid userId);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult ShowList(System.Guid userId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.ShowList);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userId", userId);
+            ShowListOverride(callInfo, userId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ConfirmDraftOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ConfirmDraft(int orderId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmDraft);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ConfirmDraftOverride(callInfo, orderId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ConfirmDraftOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Entity.Order model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ConfirmDraft(RasmiOnline.Domain.Entity.Order model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ConfirmDraft);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ConfirmDraftOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PayOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, string code);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Pay(string code)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Pay);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "code", code);
+            PayOverride(callInfo, code);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PayOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int orderId, int paymentGatewayId, string code);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Pay(int orderId, int paymentGatewayId, string code)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Pay);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "paymentGatewayId", paymentGatewayId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "code", code);
+            PayOverride(callInfo, orderId, paymentGatewayId, code);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PayAllFactorOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult PayAllFactor(int orderId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PayAllFactor);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            PayAllFactorOverride(callInfo, orderId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SubmitPayAllFactorOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int orderId, RasmiOnline.Domain.Enum.PaymentType paymentType, int paymentGatewayId);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult SubmitPayAllFactor(int orderId, RasmiOnline.Domain.Enum.PaymentType paymentType, int paymentGatewayId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitPayAllFactor);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "paymentType", paymentType);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "paymentGatewayId", paymentGatewayId);
+            SubmitPayAllFactorOverride(callInfo, orderId, paymentType, paymentGatewayId);
+            return callInfo;
+        }
+
+    }
 }
 
 #endregion T4MVC

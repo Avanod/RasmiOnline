@@ -23,11 +23,192 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVC
+namespace RasmiOnline.Console.Controllers
 {
-    public class UserController
+    public partial class UserController
     {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected UserController(Dummy d) { }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Search()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UserProfile()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserProfile);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult UpdateInfo()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateInfo);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult ChangePassword()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ChangePassword);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult ChangeUserPassword()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ChangeUserPassword);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult FindUser()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.FindUser);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult FormSubmited()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.FormSubmited);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public UserController Actions { get { return MVC.User; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "User";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "User";
+        [GeneratedCode("T4MVC", "2.0")]
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string Search = "Search";
+            public readonly string GetMenu = "GetMenu";
+            public readonly string Profile = "Profile";
+            public readonly string UserProfile = "UserProfile";
+            public readonly string UpdateInfo = "UpdateInfo";
+            public readonly string ChangePassword = "ChangePassword";
+            public readonly string ChangeUserPassword = "ChangeUserPassword";
+            public readonly string Add = "Add";
+            public readonly string FindUser = "FindUser";
+            public readonly string FormSubmited = "FormSubmited";
+            public readonly string Referral = "Referral";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string Search = "Search";
+            public const string GetMenu = "GetMenu";
+            public const string Profile = "Profile";
+            public const string UserProfile = "UserProfile";
+            public const string UpdateInfo = "UpdateInfo";
+            public const string ChangePassword = "ChangePassword";
+            public const string ChangeUserPassword = "ChangeUserPassword";
+            public const string Add = "Add";
+            public const string FindUser = "FindUser";
+            public const string FormSubmited = "FormSubmited";
+            public const string Referral = "Referral";
+        }
+
+
+        static readonly ActionParamsClass_Search s_params_Search = new ActionParamsClass_Search();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Search SearchParams { get { return s_params_Search; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Search
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_Profile s_params_Profile = new ActionParamsClass_Profile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Profile ProfileParams { get { return s_params_Profile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Profile
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_UserProfile s_params_UserProfile = new ActionParamsClass_UserProfile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UserProfile UserProfileParams { get { return s_params_UserProfile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UserProfile
+        {
+            public readonly string userId = "userId";
+            public readonly string opRes = "opRes";
+        }
+        static readonly ActionParamsClass_UpdateInfo s_params_UpdateInfo = new ActionParamsClass_UpdateInfo();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateInfo UpdateInfoParams { get { return s_params_UpdateInfo; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateInfo
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_ChangePassword s_params_ChangePassword = new ActionParamsClass_ChangePassword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangePassword ChangePasswordParams { get { return s_params_ChangePassword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangePassword
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_ChangeUserPassword s_params_ChangeUserPassword = new ActionParamsClass_ChangeUserPassword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangeUserPassword ChangeUserPasswordParams { get { return s_params_ChangeUserPassword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangeUserPassword
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_FindUser s_params_FindUser = new ActionParamsClass_FindUser();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_FindUser FindUserParams { get { return s_params_FindUser; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_FindUser
+        {
+            public readonly string username = "username";
+        }
+        static readonly ActionParamsClass_FormSubmited s_params_FormSubmited = new ActionParamsClass_FormSubmited();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_FormSubmited FormSubmitedParams { get { return s_params_FormSubmited; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_FormSubmited
+        {
+            public readonly string model = "model";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -77,6 +258,153 @@ namespace T4MVC
         }
     }
 
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_UserController : RasmiOnline.Console.Controllers.UserController
+    {
+        public T4MVC_UserController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, RasmiOnline.Domain.Dto.FilterUserModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Search(RasmiOnline.Domain.Dto.FilterUserModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            SearchOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetMenuOverride(T4MVC_System_Web_Mvc_ContentResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ContentResult GetMenu()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ContentResult(Area, Name, ActionNames.GetMenu);
+            GetMenuOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Profile()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Profile);
+            ProfileOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ProfileOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Console.ProfileModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Profile(RasmiOnline.Console.ProfileModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Profile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ProfileOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UserProfileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Guid userId, string opRes);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UserProfile(System.Guid userId, string opRes)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UserProfile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userId", userId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "opRes", opRes);
+            UserProfileOverride(callInfo, userId, opRes);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UpdateInfoOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.PersonalInfo model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult UpdateInfo(RasmiOnline.Domain.Dto.PersonalInfo model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            UpdateInfoOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangePasswordOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.ChangeCurrentPassword model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ChangePassword(RasmiOnline.Domain.Dto.ChangeCurrentPassword model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ChangePassword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ChangePasswordOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangeUserPasswordOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.ChangeUserPassword model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ChangeUserPassword(RasmiOnline.Domain.Dto.ChangeUserPassword model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ChangeUserPassword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            ChangeUserPasswordOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Add()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Add);
+            AddOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FindUserOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string username);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult FindUser(string username)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.FindUser);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "username", username);
+            FindUserOverride(callInfo, username);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FormSubmitedOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.AddUserModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult FormSubmited(RasmiOnline.Domain.Dto.AddUserModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.FormSubmited);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            FormSubmitedOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ReferralOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Referral()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Referral);
+            ReferralOverride(callInfo);
+            return callInfo;
+        }
+
+    }
 }
 
 #endregion T4MVC

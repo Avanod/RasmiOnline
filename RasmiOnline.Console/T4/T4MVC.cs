@@ -27,32 +27,32 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static partial class MVC
 {
-    public static T4MVC.AddressController Address = new T4MVC.AddressController();
-    public static T4MVC.AttachmentController Attachment = new T4MVC.AttachmentController();
-    public static T4MVC.BankCardController BankCard = new T4MVC.BankCardController();
-    public static T4MVC.ChannelController Channel = new T4MVC.ChannelController();
-    public static T4MVC.DashboardController Dashboard = new T4MVC.DashboardController();
-    public static T4MVC.DiscountController Discount = new T4MVC.DiscountController();
-    public static T4MVC.ExportController Export = new T4MVC.ExportController();
-    public static T4MVC.MessageController Message = new T4MVC.MessageController();
-    public static T4MVC.OAuthController OAuth = new T4MVC.OAuthController();
-    public static T4MVC.OfficeAddressController OfficeAddress = new T4MVC.OfficeAddressController();
-    public static T4MVC.OrderController Order = new T4MVC.OrderController();
-    public static T4MVC.OrderAdminController OrderAdmin = new T4MVC.OrderAdminController();
-    public static T4MVC.OrderCommentController OrderComment = new T4MVC.OrderCommentController();
-    public static T4MVC.OrderDetailController OrderDetail = new T4MVC.OrderDetailController();
-    public static T4MVC.OrderItemController OrderItem = new T4MVC.OrderItemController();
-    public static T4MVC.OrderNameController OrderName = new T4MVC.OrderNameController();
-    public static T4MVC.OrderOfficeController OrderOffice = new T4MVC.OrderOfficeController();
-    public static T4MVC.PaymentGatewayController PaymentGateway = new T4MVC.PaymentGatewayController();
-    public static T4MVC.PricingItemController PricingItem = new T4MVC.PricingItemController();
-    public static T4MVC.ReportController Report = new T4MVC.ReportController();
-    public static T4MVC.RoleController Role = new T4MVC.RoleController();
-    public static T4MVC.SettingController Setting = new T4MVC.SettingController();
+    public static RasmiOnline.Console.Controllers.AddressController Address = new RasmiOnline.Console.Controllers.T4MVC_AddressController();
+    public static RasmiOnline.Console.Controllers.AttachmentController Attachment = new RasmiOnline.Console.Controllers.T4MVC_AttachmentController();
+    public static RasmiOnline.Dashboard.Controllers.BankCardController BankCard = new RasmiOnline.Dashboard.Controllers.T4MVC_BankCardController();
+    public static RasmiOnline.Console.Controllers.ChannelController Channel = new RasmiOnline.Console.Controllers.T4MVC_ChannelController();
+    public static RasmiOnline.Console.Controllers.DashboardController Dashboard = new RasmiOnline.Console.Controllers.T4MVC_DashboardController();
+    public static RasmiOnline.Console.Controllers.DiscountController Discount = new RasmiOnline.Console.Controllers.T4MVC_DiscountController();
+    public static RasmiOnline.Console.Controllers.ExportController Export = new RasmiOnline.Console.Controllers.T4MVC_ExportController();
+    public static RasmiOnline.Console.Controllers.MessageController Message = new RasmiOnline.Console.Controllers.T4MVC_MessageController();
+    public static RasmiOnline.Console.Controllers.OAuthController OAuth = new RasmiOnline.Console.Controllers.T4MVC_OAuthController();
+    public static RasmiOnline.Console.Controllers.OfficeAddressController OfficeAddress = new RasmiOnline.Console.Controllers.T4MVC_OfficeAddressController();
+    public static RasmiOnline.Console.Controllers.OrderAdminController OrderAdmin = new RasmiOnline.Console.Controllers.T4MVC_OrderAdminController();
+    public static RasmiOnline.Console.Controllers.OrderCommentController OrderComment = new RasmiOnline.Console.Controllers.T4MVC_OrderCommentController();
+    public static RasmiOnline.Console.Controllers.OrderController Order = new RasmiOnline.Console.Controllers.T4MVC_OrderController();
+    public static RasmiOnline.Console.Controllers.OrderDetailController OrderDetail = new RasmiOnline.Console.Controllers.T4MVC_OrderDetailController();
+    public static RasmiOnline.Console.Controllers.OrderItemController OrderItem = new RasmiOnline.Console.Controllers.T4MVC_OrderItemController();
+    public static RasmiOnline.Console.Controllers.OrderNameController OrderName = new RasmiOnline.Console.Controllers.T4MVC_OrderNameController();
+    public static RasmiOnline.Console.Controllers.OrderOfficeController OrderOffice = new RasmiOnline.Console.Controllers.T4MVC_OrderOfficeController();
+    public static RasmiOnline.Console.Controllers.PaymentGatewayController PaymentGateway = new RasmiOnline.Console.Controllers.T4MVC_PaymentGatewayController();
+    public static RasmiOnline.Console.Controllers.PricingItemController PricingItem = new RasmiOnline.Console.Controllers.T4MVC_PricingItemController();
+    public static RasmiOnline.Console.Controllers.ReportController Report = new RasmiOnline.Console.Controllers.T4MVC_ReportController();
+    public static RasmiOnline.Console.Controllers.RoleController Role = new RasmiOnline.Console.Controllers.T4MVC_RoleController();
+    public static RasmiOnline.Console.Controllers.SettingController Setting = new RasmiOnline.Console.Controllers.T4MVC_SettingController();
+    public static RasmiOnline.Console.Controllers.TransactionController Transaction = new RasmiOnline.Console.Controllers.T4MVC_TransactionController();
+    public static RasmiOnline.Console.Controllers.UserController User = new RasmiOnline.Console.Controllers.T4MVC_UserController();
+    public static RasmiOnline.Console.Controllers.ViewController View = new RasmiOnline.Console.Controllers.T4MVC_ViewController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
-    public static T4MVC.TransactionController Transaction = new T4MVC.TransactionController();
-    public static T4MVC.UserController User = new T4MVC.UserController();
-    public static T4MVC.ViewController View = new T4MVC.ViewController();
 }
 
 namespace T4MVC
@@ -71,6 +71,88 @@ namespace T4MVC
 }
 #pragma warning restore 0436
 
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_PartialViewResult : System.Web.Mvc.PartialViewResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_PartialViewResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_JsonResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.ActionResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_ActionResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+     
+    public override void ExecuteResult(System.Web.Mvc.ControllerContext context) { }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_FileResult : System.Web.Mvc.FileResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_FileResult(string area, string controller, string action, string protocol = null): base(" ")
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+     
+    protected override void WriteFile(System.Web.HttpResponseBase response) { }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_ViewResult : System.Web.Mvc.ViewResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_ViewResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_ContentResult : System.Web.Mvc.ContentResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_ContentResult(string area, string controller, string action, string protocol = null): base()
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
 
 
 

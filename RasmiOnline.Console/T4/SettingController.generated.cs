@@ -23,11 +23,101 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVC
+namespace RasmiOnline.Console.Controllers
 {
-    public class SettingController
+    public partial class SettingController
     {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected SettingController(Dummy d) { }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult SubmitChange()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitChange);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult SendAddressTo()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SendAddressTo);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public SettingController Actions { get { return MVC.Setting; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "Setting";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "Setting";
+        [GeneratedCode("T4MVC", "2.0")]
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string Manage = "Manage";
+            public readonly string SubmitChange = "SubmitChange";
+            public readonly string GetSupportNumber = "GetSupportNumber";
+            public readonly string SendAddressTo = "SendAddressTo";
+            public readonly string GetNotification = "GetNotification";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string Manage = "Manage";
+            public const string SubmitChange = "SubmitChange";
+            public const string GetSupportNumber = "GetSupportNumber";
+            public const string SendAddressTo = "SendAddressTo";
+            public const string GetNotification = "GetNotification";
+        }
+
+
+        static readonly ActionParamsClass_SubmitChange s_params_SubmitChange = new ActionParamsClass_SubmitChange();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SubmitChange SubmitChangeParams { get { return s_params_SubmitChange; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SubmitChange
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_SendAddressTo s_params_SendAddressTo = new ActionParamsClass_SendAddressTo();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SendAddressTo SendAddressToParams { get { return s_params_SendAddressTo; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SendAddressTo
+        {
+            public readonly string fullAddress = "fullAddress";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -59,6 +149,69 @@ namespace T4MVC
         }
     }
 
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_SettingController : RasmiOnline.Console.Controllers.SettingController
+    {
+        public T4MVC_SettingController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void ManageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Manage()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
+            ManageOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SubmitChangeOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Entity.Setting model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult SubmitChange(RasmiOnline.Domain.Entity.Setting model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitChange);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            SubmitChangeOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetSupportNumberOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GetSupportNumber()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetSupportNumber);
+            GetSupportNumberOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SendAddressToOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string fullAddress);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult SendAddressTo(string fullAddress)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SendAddressTo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fullAddress", fullAddress);
+            SendAddressToOverride(callInfo, fullAddress);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetNotificationOverride(T4MVC_System_Web_Mvc_ContentResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ContentResult GetNotification()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ContentResult(Area, Name, ActionNames.GetNotification);
+            GetNotificationOverride(callInfo);
+            return callInfo;
+        }
+
+    }
 }
 
 #endregion T4MVC

@@ -23,11 +23,116 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace T4MVC
+namespace RasmiOnline.Console.Controllers
 {
-    public class DiscountController
+    public partial class DiscountController
     {
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected DiscountController(Dummy d) { }
 
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoute(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
+        {
+            return RedirectToAction(taskResult.Result);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
+        {
+            var callInfo = result.GetT4MVCResult();
+            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
+        {
+            return RedirectToActionPermanent(taskResult.Result);
+        }
+
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult SubmitChange()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitChange);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult SendToMobile()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SendToMobile);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult Check()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Check);
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public DiscountController Actions { get { return MVC.Discount; } }
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Area = "";
+        [GeneratedCode("T4MVC", "2.0")]
+        public readonly string Name = "Discount";
+        [GeneratedCode("T4MVC", "2.0")]
+        public const string NameConst = "Discount";
+        [GeneratedCode("T4MVC", "2.0")]
+        static readonly ActionNamesClass s_actions = new ActionNamesClass();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionNamesClass ActionNames { get { return s_actions; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNamesClass
+        {
+            public readonly string GenerateCode = "GenerateCode";
+            public readonly string SubmitChange = "SubmitChange";
+            public readonly string GetList = "GetList";
+            public readonly string SendToMobile = "SendToMobile";
+            public readonly string Check = "Check";
+        }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionNameConstants
+        {
+            public const string GenerateCode = "GenerateCode";
+            public const string SubmitChange = "SubmitChange";
+            public const string GetList = "GetList";
+            public const string SendToMobile = "SendToMobile";
+            public const string Check = "Check";
+        }
+
+
+        static readonly ActionParamsClass_SubmitChange s_params_SubmitChange = new ActionParamsClass_SubmitChange();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SubmitChange SubmitChangeParams { get { return s_params_SubmitChange; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SubmitChange
+        {
+            public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_SendToMobile s_params_SendToMobile = new ActionParamsClass_SendToMobile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SendToMobile SendToMobileParams { get { return s_params_SendToMobile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SendToMobile
+        {
+            public readonly string id = "id";
+            public readonly string mobile = "mobile";
+        }
+        static readonly ActionParamsClass_Check s_params_Check = new ActionParamsClass_Check();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Check CheckParams { get { return s_params_Check; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Check
+        {
+            public readonly string model = "model";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -61,6 +166,71 @@ namespace T4MVC
         }
     }
 
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public partial class T4MVC_DiscountController : RasmiOnline.Console.Controllers.DiscountController
+    {
+        public T4MVC_DiscountController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void GenerateCodeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult GenerateCode()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GenerateCode);
+            GenerateCodeOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SubmitChangeOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.AddDiscountModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult SubmitChange(RasmiOnline.Domain.Dto.AddDiscountModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitChange);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            SubmitChangeOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetListOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult GetList()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetList);
+            GetListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SendToMobileOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id, long mobile);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult SendToMobile(int id, long mobile)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SendToMobile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "mobile", mobile);
+            SendToMobileOverride(callInfo, id, mobile);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.DiscountCheckModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Check(RasmiOnline.Domain.Dto.DiscountCheckModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Check);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            CheckOverride(callInfo, model);
+            return callInfo;
+        }
+
+    }
 }
 
 #endregion T4MVC
