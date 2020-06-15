@@ -23,83 +23,11 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace RasmiOnline.Console.Controllers
+namespace T4MVC
 {
-    public partial class MessageController
+    public class MessageController
     {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected MessageController(Dummy d) { }
 
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoute(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
-        {
-            return RedirectToAction(taskResult.Result);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
-        {
-            return RedirectToActionPermanent(taskResult.Result);
-        }
-
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult Submit()
-        {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Submit);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public MessageController Actions { get { return MVC.Message; } }
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Message";
-        [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Message";
-        [GeneratedCode("T4MVC", "2.0")]
-        static readonly ActionNamesClass s_actions = new ActionNamesClass();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionNamesClass ActionNames { get { return s_actions; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNamesClass
-        {
-            public readonly string Send = "Send";
-            public readonly string Submit = "Submit";
-            public readonly string GetList = "GetList";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string Send = "Send";
-            public const string Submit = "Submit";
-            public const string GetList = "GetList";
-        }
-
-
-        static readonly ActionParamsClass_Submit s_params_Submit = new ActionParamsClass_Submit();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Submit SubmitParams { get { return s_params_Submit; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Submit
-        {
-            public readonly string model = "model";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -131,46 +59,6 @@ namespace RasmiOnline.Console.Controllers
         }
     }
 
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_MessageController : RasmiOnline.Console.Controllers.MessageController
-    {
-        public T4MVC_MessageController() : base(Dummy.Instance) { }
-
-        [NonAction]
-        partial void SendOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Send()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Send);
-            SendOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void SubmitOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.SendMessageModel model);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult Submit(RasmiOnline.Domain.Dto.SendMessageModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Submit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            SubmitOverride(callInfo, model);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void GetListOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.PartialViewResult GetList()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetList);
-            GetListOverride(callInfo);
-            return callInfo;
-        }
-
-    }
 }
 
 #endregion T4MVC

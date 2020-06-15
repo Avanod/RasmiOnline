@@ -23,96 +23,11 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace RasmiOnline.Console.Controllers
+namespace T4MVC
 {
-    public partial class OrderDetailController
+    public class OrderDetailController
     {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected OrderDetailController(Dummy d) { }
 
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoute(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
-        {
-            return RedirectToAction(taskResult.Result);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
-        {
-            return RedirectToActionPermanent(taskResult.Result);
-        }
-
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult AddOrUpdate()
-        {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.AddOrUpdate);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult Delete()
-        {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Delete);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public OrderDetailController Actions { get { return MVC.OrderDetail; } }
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "OrderDetail";
-        [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "OrderDetail";
-        [GeneratedCode("T4MVC", "2.0")]
-        static readonly ActionNamesClass s_actions = new ActionNamesClass();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionNamesClass ActionNames { get { return s_actions; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNamesClass
-        {
-            public readonly string AddOrUpdate = "AddOrUpdate";
-            public readonly string Delete = "Delete";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string AddOrUpdate = "AddOrUpdate";
-            public const string Delete = "Delete";
-        }
-
-
-        static readonly ActionParamsClass_AddOrUpdate s_params_AddOrUpdate = new ActionParamsClass_AddOrUpdate();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_AddOrUpdate AddOrUpdateParams { get { return s_params_AddOrUpdate; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_AddOrUpdate
-        {
-            public readonly string orderId = "orderId";
-            public readonly string orderDetails = "orderDetails";
-        }
-        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Delete
-        {
-            public readonly string id = "id";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -142,37 +57,6 @@ namespace RasmiOnline.Console.Controllers
         }
     }
 
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_OrderDetailController : RasmiOnline.Console.Controllers.OrderDetailController
-    {
-        public T4MVC_OrderDetailController() : base(Dummy.Instance) { }
-
-        [NonAction]
-        partial void AddOrUpdateOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int orderId, System.Collections.Generic.IEnumerable<RasmiOnline.Domain.Entity.OrderDetail> orderDetails);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult AddOrUpdate(int orderId, System.Collections.Generic.IEnumerable<RasmiOnline.Domain.Entity.OrderDetail> orderDetails)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.AddOrUpdate);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderDetails", orderDetails);
-            AddOrUpdateOverride(callInfo, orderId, orderDetails);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult Delete(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Delete);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DeleteOverride(callInfo, id);
-            return callInfo;
-        }
-
-    }
 }
 
 #endregion T4MVC

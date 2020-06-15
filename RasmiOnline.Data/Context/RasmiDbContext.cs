@@ -5,7 +5,6 @@
     using Gnu.Framework.Core;
     using System.Data.Entity;
     using Gnu.Framework.Core.Log;
-    using RasmiOnline.SharedPreference;
     using System.Data.Entity.Validation;
     using System.Data.Entity.Infrastructure;
     using Gnu.Framework.EntityFramework.DataAccess;

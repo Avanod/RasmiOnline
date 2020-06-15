@@ -23,115 +23,11 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace RasmiOnline.Console.Controllers
+namespace T4MVC
 {
-    public partial class ViewController
+    public class ViewController
     {
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ViewController(Dummy d) { }
 
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoute(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToAction(Task<ActionResult> taskResult)
-        {
-            return RedirectToAction(taskResult.Result);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(ActionResult result)
-        {
-            var callInfo = result.GetT4MVCResult();
-            return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected RedirectToRouteResult RedirectToActionPermanent(Task<ActionResult> taskResult)
-        {
-            return RedirectToActionPermanent(taskResult.Result);
-        }
-
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Search()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.JsonResult FormSubmited()
-        {
-            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.FormSubmited);
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ViewController Actions { get { return MVC.View; } }
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
-        [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "View";
-        [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "View";
-        [GeneratedCode("T4MVC", "2.0")]
-        static readonly ActionNamesClass s_actions = new ActionNamesClass();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionNamesClass ActionNames { get { return s_actions; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNamesClass
-        {
-            public readonly string Search = "Search";
-            public readonly string GetForm = "GetForm";
-            public readonly string FormSubmited = "FormSubmited";
-            public readonly string Delete = "Delete";
-        }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionNameConstants
-        {
-            public const string Search = "Search";
-            public const string GetForm = "GetForm";
-            public const string FormSubmited = "FormSubmited";
-            public const string Delete = "Delete";
-        }
-
-
-        static readonly ActionParamsClass_Search s_params_Search = new ActionParamsClass_Search();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Search SearchParams { get { return s_params_Search; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Search
-        {
-            public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_GetForm s_params_GetForm = new ActionParamsClass_GetForm();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_GetForm GetFormParams { get { return s_params_GetForm; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_GetForm
-        {
-            public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_FormSubmited s_params_FormSubmited = new ActionParamsClass_FormSubmited();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_FormSubmited FormSubmitedParams { get { return s_params_FormSubmited; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_FormSubmited
-        {
-            public readonly string model = "model";
-        }
-        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Delete
-        {
-            public readonly string id = "id";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -165,60 +61,6 @@ namespace RasmiOnline.Console.Controllers
         }
     }
 
-    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_ViewController : RasmiOnline.Console.Controllers.ViewController
-    {
-        public T4MVC_ViewController() : base(Dummy.Instance) { }
-
-        [NonAction]
-        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, RasmiOnline.Domain.Dto.FilterViewModel model);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Search(RasmiOnline.Domain.Dto.FilterViewModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            SearchOverride(callInfo, model);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void GetFormOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.PartialViewResult GetForm(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetForm);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            GetFormOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void FormSubmitedOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Entity.View model);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult FormSubmited(RasmiOnline.Domain.Entity.View model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.FormSubmited);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            FormSubmitedOverride(callInfo, model);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.JsonResult Delete(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Delete);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            DeleteOverride(callInfo, id);
-            return callInfo;
-        }
-
-    }
 }
 
 #endregion T4MVC
