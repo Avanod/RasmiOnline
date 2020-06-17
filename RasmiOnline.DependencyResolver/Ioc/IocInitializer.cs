@@ -21,7 +21,8 @@
             {
                 x.For<ICacheProvider>().Use<HttpRuntimeCache>();
                 x.For<Lazy<ICacheProvider>>().Use(c => new Lazy<ICacheProvider>(c.GetInstance<ICacheProvider>));
-                x.For<IUnitOfWork>().Use(() => new RasmiDbContext());
+                //x.For<IUnitOfWork>().Use(() => new RasmiDbContext());
+                x.For<IUnitOfWork>().Use<RasmiDbContext>();
                 x.For<ICurrentUserPrincipal>().Use<CurrentUserPrincipal>();
                 x.For<IMessagingQueue>().Use<MSMQ>();
                 x.For<IObserverManager>().Use<ObserverManager>();
