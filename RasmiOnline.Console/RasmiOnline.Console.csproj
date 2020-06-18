@@ -385,6 +385,7 @@
     <Content Include="Scripts\waves.min.js" />
     <Content Include="ObserverConfig.json" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Mehran.pubxml" />
     <None Include="Service References\ZarinPal\PaymentGatewayImplementationService.wsdl" />
     <None Include="Service References\ZarinPal\configuration91.svcinfo" />
     <None Include="Service References\ZarinPal\configuration.svcinfo" />
