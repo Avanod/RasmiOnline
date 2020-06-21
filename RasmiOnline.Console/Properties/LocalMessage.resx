@@ -818,4 +818,7 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
   <data name="LastName" xml:space="preserve">
     <value>نام خانوادگی</value>
   </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>آپلود تصویر</value>
+  </data>
 </root>

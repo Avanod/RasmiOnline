@@ -1105,6 +1105,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تصویر گذرنامه ضمیمه گردید.
+        /// </summary>
+        public static string PassportIsAttached {
+            get {
+                return ResourceManager.GetString("PassportIsAttached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to گذرواژه.
         /// </summary>
         public static string Password {

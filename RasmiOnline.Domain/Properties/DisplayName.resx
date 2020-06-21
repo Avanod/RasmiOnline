@@ -636,4 +636,7 @@
   <data name="TotalPrice" xml:space="preserve">
     <value>قیمت نهایی</value>
   </data>
+  <data name="PassportIsAttached" xml:space="preserve">
+    <value>تصویر گذرنامه ضمیمه گردید</value>
+  </data>
 </root>

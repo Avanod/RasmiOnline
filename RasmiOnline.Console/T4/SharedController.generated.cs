@@ -40,18 +40,18 @@ namespace T4MVC
             {
                 public readonly string _Layout = "_Layout";
                 public readonly string _Navbar = "_Navbar";
-                public readonly string _PortalLayout = "_PortalLayout";
                 public readonly string _SharedSearch = "_SharedSearch";
                 public readonly string _SharedStateType_Ribbon = "_SharedStateType_Ribbon";
                 public readonly string _Sidebar = "_Sidebar";
+                public readonly string _WebsiteLayout = "_WebsiteLayout";
                 public readonly string Error = "Error";
             }
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _Navbar = "~/Views/Shared/_Navbar.cshtml";
-            public readonly string _PortalLayout = "~/Views/Shared/_PortalLayout.cshtml";
             public readonly string _SharedSearch = "~/Views/Shared/_SharedSearch.cshtml";
             public readonly string _SharedStateType_Ribbon = "~/Views/Shared/_SharedStateType_Ribbon.cshtml";
             public readonly string _Sidebar = "~/Views/Shared/_Sidebar.cshtml";
+            public readonly string _WebsiteLayout = "~/Views/Shared/_WebsiteLayout.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
             static readonly _PartialsClass s_Partials = new _PartialsClass();
             public _PartialsClass Partials { get { return s_Partials; } }

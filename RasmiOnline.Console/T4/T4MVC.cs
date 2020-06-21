@@ -34,6 +34,7 @@ public static partial class MVC
     public static RasmiOnline.Console.Controllers.DashboardController Dashboard = new RasmiOnline.Console.Controllers.T4MVC_DashboardController();
     public static RasmiOnline.Console.Controllers.DiscountController Discount = new RasmiOnline.Console.Controllers.T4MVC_DiscountController();
     public static RasmiOnline.Console.Controllers.ExportController Export = new RasmiOnline.Console.Controllers.T4MVC_ExportController();
+    public static RasmiOnline.Console.Controllers.HomeController Home = new RasmiOnline.Console.Controllers.T4MVC_HomeController();
     public static RasmiOnline.Console.Controllers.MessageController Message = new RasmiOnline.Console.Controllers.T4MVC_MessageController();
     public static RasmiOnline.Console.Controllers.OAuthController OAuth = new RasmiOnline.Console.Controllers.T4MVC_OAuthController();
     public static RasmiOnline.Console.Controllers.OfficeAddressController OfficeAddress = new RasmiOnline.Console.Controllers.T4MVC_OfficeAddressController();
@@ -170,6 +171,21 @@ namespace Links
             public const string UrlPath = "~/Scripts/Console";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class _03_EndUser {
+                public const string UrlPath = "~/Scripts/Console/03-EndUser";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Home {
+                    public const string UrlPath = "~/Scripts/Console/03-EndUser/Home";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string add_order_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/add-order.min.js") ? Url("add-order.min.js") : Url("add-order.js");
+                }
+            
+            }
+        
             public static readonly string address_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/address.min.js") ? Url("address.min.js") : Url("address.js");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class Attachment {
@@ -177,6 +193,7 @@ namespace Links
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                 public static readonly string upload_after_transaction_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/upload-after-transaction.min.js") ? Url("upload-after-transaction.min.js") : Url("upload-after-transaction.js");
+                public static readonly string uploader_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/uploader.min.js") ? Url("uploader.min.js") : Url("uploader.js");
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -496,6 +513,18 @@ namespace Links
             }
         
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class FileTypes {
+                public const string UrlPath = "~/Content/Images/FileTypes";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string archive_png = Url("archive.png");
+                public static readonly string audio_png = Url("audio.png");
+                public static readonly string document_png = Url("document.png");
+                public static readonly string unknown_png = Url("unknown.png");
+                public static readonly string video_png = Url("video.png");
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class Icon {
                 public const string UrlPath = "~/Content/Images/Icon";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
@@ -572,6 +601,23 @@ namespace Links
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class _03_EndUser {
+                    public const string UrlPath = "~/Content/Styles/Console/03-EndUser";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class Home {
+                        public const string UrlPath = "~/Content/Styles/Console/03-EndUser/Home";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                        public static readonly string add_order_scss = Url("add-order.scss");
+                        public static readonly string add_order_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/add-order.min.css") ? Url("add-order.min.css") : Url("add-order.css");
+                        public static readonly string add_order_min_css = Url("add-order.min.css");
+                    }
+                
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class Address {
                     public const string UrlPath = "~/Content/Styles/Console/Address";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
@@ -586,6 +632,9 @@ namespace Links
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                     public static readonly string common_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/common.min.css") ? Url("common.min.css") : Url("common.css");
                     public static readonly string upload_after_transaction_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/upload-after-transaction.min.css") ? Url("upload-after-transaction.min.css") : Url("upload-after-transaction.css");
+                    public static readonly string uploader_scss = Url("uploader.scss");
+                    public static readonly string uploader_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/uploader.min.css") ? Url("uploader.min.css") : Url("uploader.css");
+                    public static readonly string uploader_min_css = Url("uploader.min.css");
                 }
             
                 public static readonly string common_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/common.min.css") ? Url("common.min.css") : Url("common.css");
@@ -708,11 +757,25 @@ namespace Links
         {
             public static partial class Console 
             {
+                public static partial class _03_EndUser 
+                {
+                    public static partial class Home 
+                    {
+                        public static class Assets
+                        {
+                            public static readonly string add_order_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/03-EndUser/Home/add-order.js"); 
+                        }
+                    }
+                    public static class Assets
+                    {
+                    }
+                }
                 public static partial class Attachment 
                 {
                     public static class Assets
                     {
                         public static readonly string upload_after_transaction_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/Attachment/upload-after-transaction.js"); 
+                        public static readonly string uploader_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/Attachment/uploader.js"); 
                     }
                 }
                 public static partial class BankCard 
@@ -940,6 +1003,12 @@ namespace Links
                     {
                     }
                 }
+                public static partial class FileTypes 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
                 public static partial class Icon 
                 {
                     public static class Assets
@@ -978,6 +1047,18 @@ namespace Links
             {
                 public static partial class Console 
                 {
+                    public static partial class _03_EndUser 
+                    {
+                        public static partial class Home 
+                        {
+                            public static class Assets
+                            {
+                            }
+                        }
+                        public static class Assets
+                        {
+                        }
+                    }
                     public static partial class Address 
                     {
                         public static class Assets

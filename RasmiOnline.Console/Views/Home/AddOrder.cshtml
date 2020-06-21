@@ -1,0 +1,64 @@
+﻿@model AddOrderModel
+@using RasmiOnline.Console.Enum
+@{
+    ViewBag.Title = LocalMessage.AddOrder;
+    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+}
+@section Head{
+    @*<link href="@Url.Content(Links.Content.Styles.Shared.timeline_css)" rel="stylesheet" />*@
+    <link href="@Url.Content(Links.Content.Styles.Console.Order.common_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console._03_EndUser.Home.add_order_min_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console.order_item_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console.Attachment.uploader_min_css)" rel="stylesheet" />
+}
+<div id="add-order-page">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(x => x.FirstName)
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.FirstName)
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(x => x.LastName)
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.LastName)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control ltr-elm" })
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(x => x.MobileNumber)
+                @Html.TextBoxFor(x => x.MobileNumber, new { @Value = "9", @class = "form-control ltr-elm" })
+                @Html.ValidationMessageFor(x => x.MobileNumber)
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <p class="alert alert-info">
+                لطفا مدارک خود را جهت ترجمه آپلود نمایید
+            </p>
+        </div>
+    </div>
+    @{ Html.RenderPartial(MVC.Attachment.Views.Partials._Uploader, new List<Attachment>());}
+</div>
+
+
+@section footer{
+    <script src="@Url.Content(Links.Scripts.Console.Order.common_js)"></script>
+    <script src="@Url.Content(Links.Scripts.Console._03_EndUser.Home.add_order_js)"></script>
+    <script src="@Url.Content(Links.Scripts.Console.Attachment.uploader_js)"></script>
+    <script src="@Url.Content(Links.Scripts.Console.order_item_js)"></script>
+}

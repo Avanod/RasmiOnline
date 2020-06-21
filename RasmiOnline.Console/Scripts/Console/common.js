@@ -370,3 +370,86 @@ $(document).on('click', '.setting .send-sms, .setting .send-email', function () 
         notify(true, rep.Message);
     });
 });
+
+var customSerialize = function ($wrapper, checkNumbers) {
+    let model = {};
+    $wrapper.find('input:not([type="checkbox"]):not([type="radio"]),select,textarea').each(function () {
+
+        if (checkNumbers && !isNaN($(this).val()) && $(this).val() !== '') {
+            model[$(this).attr('name')] = parseInt($(this).val());
+
+        }
+        else
+            model[$(this).attr('name')] = $(this).val();
+    });
+
+    $wrapper.find('input[type="checkbox"],input[type="radio"]').each(function () {
+        let name = $(this).attr('name');
+        let val = $(this).attr('value').toLowerCase();
+        if (!val || val === 'true' || val === 'false') val = $(this).prop('checked');
+        if (!model[name]) {
+            model[name] = val;
+        }
+        else {
+            if (Array.isArray(model[name])) model[name].push(val);
+            else model[name] = [model[name], val];
+        }
+    });
+    return model;
+};
+
+
+const fileTypes = {
+    Unknown: { id: 0, type: 'application/octet-stream' },
+    Image: { id: 1, type: 'image/png' },
+    Document: { id: 2, type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' },
+    Archive: { id: 3, type: 'application/zip' },
+    Audio: { id: 4, type: 'audio/mpeg' },
+    Video: { id: 5, type: 'video/mp4' }
+};
+
+var getFileType = function (fileName) {
+    let ext = fileName.toLowerCase().split('.').reverse()[0];
+    switch (ext) {
+        case "png":
+        case "jpg":
+        case "jpeg":
+        case "gif":
+        case "tiff":
+            return fileTypes.Image;
+        case "mp3":
+        case "wav":
+        case "flm":
+        case "fsm":
+        case "ogg":
+        case "m4a":
+        case "m4b":
+        case "m4p":
+        case "m4r":
+            return fileTypes.Audio;
+        case "mp4":
+        case "mkv":
+        case "avi":
+        case "ts":
+        case "m4v":
+        case "flv":
+            return fileTypes.Video;
+        case "zip":
+        case "rar":
+        case "iso":
+        case "tar":
+        case "jar":
+            return fileTypes.Archive;
+        case "pdf":
+        case "doc":
+        case "docx":
+        case "txt":
+        case "xls":
+        case "xlsx":
+        case "josn":
+        case "pptx":
+            return fileTypes.Document;
+        default:
+            return fileTypes.Unknown;
+    }
+};

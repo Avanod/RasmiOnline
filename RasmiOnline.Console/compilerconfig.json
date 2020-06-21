@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Home/add-order.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Home/add-order.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/Attachment/uploader.css",
+    "inputFile": "Content/Styles/Console/Attachment/uploader.scss"
+  }
+]

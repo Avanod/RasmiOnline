@@ -1,6 +1,9 @@
 ﻿/*-----------------------------------
               utils
 ------------------------------------*/
+.d-none{
+    display:none!important;
+}
 .border-control {
     border: 1px solid #e6e4e4;
     padding: 7px;

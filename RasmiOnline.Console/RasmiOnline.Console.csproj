@@ -221,6 +221,11 @@
     <Content Include="Content\Images\Ext\pptx.png" />
     <Content Include="Content\Images\Ext\rar.png" />
     <Content Include="Content\Images\Ext\xlsx.png" />
+    <Content Include="Content\Images\FileTypes\archive.png" />
+    <Content Include="Content\Images\FileTypes\audio.png" />
+    <Content Include="Content\Images\FileTypes\document.png" />
+    <Content Include="Content\Images\FileTypes\unknown.png" />
+    <Content Include="Content\Images\FileTypes\video.png" />
     <Content Include="Content\Images\Icon\MyLocationMarkerIcon.png" />
     <Content Include="Content\Images\Landing\btn-register.png" />
     <Content Include="Content\Images\Landing\detail-active.png" />
@@ -250,6 +255,18 @@
     <Content Include="Content\Images\PricingItems\tick-services.png" />
     <Content Include="Content\Images\PricingItems\tourist.png" />
     <Content Include="Content\Images\stamp.png" />
+    <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.css">
+      <DependentUpon>add-order.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.min.css">
+      <DependentUpon>add-order.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\Attachment\uploader.css">
+      <DependentUpon>uploader.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\Attachment\uploader.min.css">
+      <DependentUpon>uploader.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Console\common.css" />
     <Content Include="Content\Styles\Console\Address\common.css" />
     <Content Include="Content\Styles\Console\Attachment\common.css" />
@@ -313,8 +330,10 @@
     <Content Include="Content\Fonts\fontawasome\fa-solid-900.woff2" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Console\03-EndUser\Home\add-order.js" />
     <Content Include="Scripts\Console\address.js" />
     <Content Include="Scripts\Console\Attachment\upload-after-transaction.js" />
+    <Content Include="Scripts\Console\Attachment\uploader.js" />
     <Content Include="Scripts\Console\BankCard\manage.js" />
     <Content Include="Scripts\Console\common.js" />
     <Content Include="Scripts\Console\OAuth\index.js" />
@@ -384,6 +403,12 @@
     <Content Include="Scripts\validation.js" />
     <Content Include="Scripts\waves.min.js" />
     <Content Include="ObserverConfig.json" />
+    <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\Styles\Console\Attachment\uploader.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\Mehran.pubxml" />
     <None Include="Service References\ZarinPal\PaymentGatewayImplementationService.wsdl" />
@@ -425,6 +450,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="GlobalMethod.cs" />
     <Compile Include="GlobalVariable.cs" />
     <Compile Include="T4\AddressController.generated.cs">
@@ -473,6 +499,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Helper\ExportToExcelFactory.cs" />
+    <Compile Include="T4\HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4\MessageController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -583,7 +612,6 @@
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_PortalLayout.cshtml" />
     <Content Include="Views\Shared\Partials\_PortalHeader.cshtml" />
     <Content Include="Views\Shared\Partials\_PortalFooter.cshtml" />
     <Content Include="Views\Address\Partial\_ListAddress.cshtml" />
@@ -731,6 +759,9 @@
     <Content Include="Views\OrderAdmin\Partials\_Factor.cshtml" />
     <Content Include="Views\Report\Partials\_Orders.cshtml" />
     <None Include="T4\T4MVC.tt.hooks.t4" />
+    <Content Include="Views\Shared\_WebsiteLayout.cshtml" />
+    <Content Include="Views\Home\AddOrder.cshtml" />
+    <Content Include="Views\Attachment\Partials\_Uploader.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

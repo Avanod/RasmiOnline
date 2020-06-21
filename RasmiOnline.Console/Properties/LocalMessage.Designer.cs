@@ -1950,6 +1950,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آپلود تصویر.
+        /// </summary>
+        public static string UploadImage {
+            get {
+                return ResourceManager.GetString("UploadImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to `کاربر گرامی، لطفا جهت تسریع فرآیند ترجمه سفارش خود، از اسکن یا تصویر با کیفیت برای آپلود استفاده نمایید.
         /// </summary>
         public static string UploadOrderFilesText {

@@ -186,8 +186,10 @@ namespace RasmiOnline.Console.Controllers
                 public class _ViewNamesClass
                 {
                     public readonly string _List = "_List";
+                    public readonly string _Uploader = "_Uploader";
                 }
                 public readonly string _List = "~/Views/Attachment/Partials/_List.cshtml";
+                public readonly string _Uploader = "~/Views/Attachment/Partials/_Uploader.cshtml";
             }
         }
     }

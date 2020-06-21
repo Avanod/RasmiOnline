@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Dto\AddButtonModel.cs" />
     <Compile Include="Dto\AddDiscountModel.cs" />
+    <Compile Include="Dto\AddOrderModel.cs" />
     <Compile Include="Dto\AddTransactionModel.cs" />
     <Compile Include="Dto\CustomUserAction.cs" />
     <Compile Include="Dto\DiscountCheckModel.cs" />

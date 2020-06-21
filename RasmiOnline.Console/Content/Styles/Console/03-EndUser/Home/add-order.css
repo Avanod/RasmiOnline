@@ -1,0 +1,9 @@
+﻿#add-order-page {
+  margin-top: 50px;
+  padding: 15px; }
+  #add-order-page div[class^='col'] {
+    float: right; }
+  #add-order-page .form-group label {
+    width: 100%; }
+  #add-order-page .form-group input {
+    width: 100%; }
