@@ -378,6 +378,7 @@
     <Content Include="Scripts\Own\UserController.js" />
     <Content Include="Scripts\Own\UserSearchController.js" />
     <Content Include="Scripts\Own\ViewController.js" />
+    <Content Include="Scripts\pace.min.js" />
     <Content Include="Scripts\Plugins\bootstrap-notify.min.js" />
     <Content Include="Scripts\Plugins\dropzone\dropzone.css" />
     <Content Include="Scripts\Plugins\dropzone\dropzone.js" />

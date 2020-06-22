@@ -11,20 +11,27 @@
     <link href="@Url.Content(Links.Content.Styles.Console.order_item_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.Attachment.uploader_min_css)" rel="stylesheet" />
 }
-<div id="add-order-page">
+<form id="add-order-page" action="@Url.Action(MVC.Home.ActionNames.AddOrder,MVC.Home.Name)">
     <div class="row">
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="form-group">
                 @Html.LabelFor(x => x.FirstName)
                 @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(x => x.FirstName)
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="form-group">
                 @Html.LabelFor(x => x.LastName)
                 @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(x => x.LastName)
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(x => x.TranslateType)
+                @Html.DropDownListFor(x => x.TranslateType,(IEnumerable<SelectListItem>)ViewBag.TranslateTypes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.TranslateType)
             </div>
         </div>
     </div>
@@ -39,21 +46,49 @@
         <div class="col-xs-12 col-sm-6">
             <div class="form-group">
                 @Html.LabelFor(x => x.MobileNumber)
-                @Html.TextBoxFor(x => x.MobileNumber, new { @Value = "9", @class = "form-control ltr-elm" })
+                @Html.TextBoxFor(x => x.MobileNumber, new { @class = "form-control ltr-elm" })
                 @Html.ValidationMessageFor(x => x.MobileNumber)
             </div>
         </div>
     </div>
-    <hr />
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Description)
+                @Html.TextAreaFor(x => x.Description, new { @class = "form-control",@rows="4" })
+                @Html.ValidationMessageFor(x => x.Description)
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12">
-            <p class="alert alert-info">
+            <p class="alert alert-success text-center">
                 لطفا مدارک خود را جهت ترجمه آپلود نمایید
             </p>
         </div>
     </div>
     @{ Html.RenderPartial(MVC.Attachment.Views.Partials._Uploader, new List<Attachment>());}
-</div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="contact100-form-checkbox">
+                <input class="input-checkbox100" id="@nameof(Model.WithPassport)" type="checkbox" name="@nameof(Model.WithPassport)" @(Model.WithPassport ? "checked" : "") value="@Model.WithPassport.ToString()" />
+                <label class="label-checkbox100" for="@nameof(Model.WithPassport)">
+                    @Html.DisplayNameFor(x => x.WithPassport)
+                </label>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <button class="btn-action rtl waves-effect" id="btn-submit" type="button">
+                <div class="text">
+                    @LocalMessage.Send
+                </div>
+                <div class="icon">
+                    <i class="fa fa-save"></i>
+                </div>
+            </button>
+        </div>
+    </div>
+</form>
 
 
 @section footer{

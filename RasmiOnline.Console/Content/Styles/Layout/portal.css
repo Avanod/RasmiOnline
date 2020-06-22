@@ -2568,7 +2568,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
     }
 
 input[type="text"].input-validation-error, input[type="password"].input-validation-error {
-    border-bottom-color: red;
+    border:solid 1px red;
 }
 
 .line-seperator {

@@ -392,6 +392,15 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کاربر گرامی {0} برای شما با نام کاربری {1} و رمز عبور {2} در وب سایت ترجمه رسمی حساب کاربری ایجاد گردید.
+        /// </summary>
+        public static string UserRegisterMessage {
+            get {
+                return ResourceManager.GetString("UserRegisterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} قیمت گذاری گردید. لطفا برای مشاهده فاکتور بر روی لینک زیر کلیک کنید:
         ///http://panel.rasmiOnline.com.
         /// </summary>

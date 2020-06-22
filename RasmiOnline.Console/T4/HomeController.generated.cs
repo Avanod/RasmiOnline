@@ -94,6 +94,7 @@ namespace RasmiOnline.Console.Controllers
         public class ActionParamsClass_AddOrder
         {
             public readonly string model = "model";
+            public readonly string attachments = "attachments";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -139,14 +140,15 @@ namespace RasmiOnline.Console.Controllers
         }
 
         [NonAction]
-        partial void AddOrderOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.AddOrderModel model);
+        partial void AddOrderOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, RasmiOnline.Domain.Dto.AddOrderModel model, System.Collections.Generic.List<System.Web.HttpPostedFileBase> attachments);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult AddOrder(RasmiOnline.Domain.Dto.AddOrderModel model)
+        public override System.Web.Mvc.JsonResult AddOrder(RasmiOnline.Domain.Dto.AddOrderModel model, System.Collections.Generic.List<System.Web.HttpPostedFileBase> attachments)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.AddOrder);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            AddOrderOverride(callInfo, model);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "attachments", attachments);
+            AddOrderOverride(callInfo, model, attachments);
             return callInfo;
         }
 

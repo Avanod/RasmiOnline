@@ -1,4 +1,6 @@
-﻿using RasmiOnline.Domain.Properties;
+﻿using RasmiOnline.Domain.Enum;
+using RasmiOnline.Domain.Properties;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace RasmiOnline.Domain.Dto
@@ -17,10 +19,13 @@ namespace RasmiOnline.Domain.Dto
         [StringLength(30, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         public string LastName { get; set; }
 
+        [RegularExpression(@"^0?9\d{9}$", ErrorMessageResourceName = nameof(ErrorMessage.InvalidMobileNumber), ErrorMessageResourceType = typeof(ErrorMessage))]
         [Display(Name = nameof(DisplayName.MobileNumber), ResourceType = typeof(DisplayName))]
         [Required(ErrorMessageResourceName = nameof(ErrorMessage.Required), ErrorMessageResourceType = typeof(ErrorMessage))]
-        public long MobileNumber { get; set; }
 
+        public string MobileNumber { get; set; }
+
+        [Required(ErrorMessageResourceName = nameof(ErrorMessage.Required), ErrorMessageResourceType = typeof(ErrorMessage))]
         [Display(Name = nameof(DisplayName.Email), ResourceType = typeof(DisplayName))]
         [EmailAddress(ErrorMessageResourceName = nameof(ErrorMessage.Email), ErrorMessageResourceType = typeof(ErrorMessage))]
         [MaxLength(50, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
@@ -34,5 +39,9 @@ namespace RasmiOnline.Domain.Dto
 
         [Display(Name = nameof(DisplayName.PassportIsAttached), ResourceType = typeof(DisplayName))]
         public bool WithPassport { get; set; }
+
+        public Guid UserId { get; set; }
+
+        public TranslateType TranslateType { get; set; }
     }
 }

@@ -254,4 +254,7 @@ www.RasmiOnline.com</value>
   <data name="OfficialCost" xml:space="preserve">
     <value>هزینه ثبت دفتری</value>
   </data>
+  <data name="UserRegisterMessage" xml:space="preserve">
+    <value>کاربر گرامی {0} برای شما با نام کاربری {1} و رمز عبور {2} در وب سایت ترجمه رسمی حساب کاربری ایجاد گردید</value>
+  </data>
 </root>

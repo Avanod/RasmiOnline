@@ -18,6 +18,7 @@
         IActionResponse<IEnumerable<Order>> GetAllOrder(Guid? userId = null, Guid? officeUserId = null, OrderStatus? orderStatus = null, int count = 100);
         IActionResponse<Order> Insert(Order model);
         IActionResponse<int> InsertBehalfOfUser(Order model, int roleId);
+        IActionResponse<Order> QuickInsert(AddOrderModel model);
         Order Find(int orderId, string relatedEntities = "none");
         Order Find(int orderId, Guid officeUserId, string relatedEntities = "none");
         IActionResponse<List<OrderDetailsModel>> Search(FilterOrderModel filterModel);

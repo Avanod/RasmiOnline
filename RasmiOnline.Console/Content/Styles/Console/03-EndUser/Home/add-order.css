@@ -7,3 +7,11 @@
     width: 100%; }
   #add-order-page .form-group input {
     width: 100%; }
+  #add-order-page button:focus {
+    outline: none !important; }
+
+.alert--notify .alert--notify__close {
+  background: no-repeat;
+  border: none; }
+  .alert--notify .alert--notify__close:focus {
+    outline: none; }

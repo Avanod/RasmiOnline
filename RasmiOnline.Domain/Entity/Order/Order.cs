@@ -85,6 +85,11 @@
         [StringLength(500, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         public string OrderDescription { get; set; }
 
+        [Display(Name = nameof(DisplayName.PassportIsAttached), ResourceType = typeof(DisplayName))]
+        public bool WithPassport { get; set; }
+
+        public TranslateType TranslateType { get; set; }
+
         [NotMapped]
         public int PayedValue { get { return Transactions.IsNull() ? 0 : Transactions.Where(x => x.IsSuccess).Sum(x => x.Price); } set { this.PayedValue = value; } }
 

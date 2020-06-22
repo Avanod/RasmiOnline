@@ -152,6 +152,7 @@
     <Compile Include="Enum\CalculatorTemplate.cs" />
     <Compile Include="Enum\PricingItemUnit.cs" />
     <Compile Include="Enum\StateType.cs" />
+    <Compile Include="Enum\TrnanslateType.cs" />
     <Compile Include="VisibleAttribute.cs" />
     <Compile Include="Properties\DisplayName.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -15,4 +15,18 @@
             width: 100%;
         }
     }
+
+    button:focus {
+        outline: none !important;
+    }
+}
+
+.alert--notify {
+    .alert--notify__close {
+        background: no-repeat;
+        border: none;
+        &:focus{
+            outline:none;
+        }
+    }
 }

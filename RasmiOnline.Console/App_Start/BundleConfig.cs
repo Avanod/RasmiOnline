@@ -16,6 +16,7 @@
                 "~" + Links.Content.Styles.Shared.PersianCalendar_css,
                 "~" + Links.Content.Styles.Shared.Zebra_css,
                 "~" + Links.Content.Styles.Layout.portal_css,
+                "~" + Links.Content.Styles.Shared.material_design_iconic_font_min_css,
                 "~" + Links.Content.Styles.Console.common_css
             };
             bundles.Add(new StyleBundleOrderer(Links.Bundles.Styles.MainCss, new CssMinify()).Include(mainCss));
