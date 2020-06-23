@@ -19,9 +19,10 @@ $(document).on('ready', function () {
         let model = customSerialize($frm);
         console.log(model);
         let keys = Object.keys(model);
-        for (var i = 0; i < keys.length; i++)
+        let i = 0;
+        for (i = 0; i < keys.length; i++)
             data.append(keys[i], model[keys[i]]);
-        for (var i = 0; i < assets.length; i++) 
+        for (i = 0; i < assets.length; i++) 
             data.append('attachments', assets[i]);
         ajaxBtn.inProgress($btn);
         $.ajax({
@@ -29,14 +30,24 @@ $(document).on('ready', function () {
             url: $frm.attr('action'),
             data: data,
             contentType: false,
-            processData:false,
+            processData: false,
             success: function (rep) {
-                ajaxBtn.normal();
+                console.log(rep);
+                if (rep.IsSuccessful) {
+                    ajaxBtn.normal();
+                    notify(true, 'ثبت سفارش با موفقیت انجام شد');
+                    setTimeout(function () { window.location.reload(); }, 3000);
+                }
+                else {
+                    notify(false, rep.Message);
+                }
+
             },
             error: function (e) {
                 ajaxBtn.normal();
+                notify(false, 'خطایی رخ داده است، لطفا دوباره تلاش نمایید');
             }
-        })
+        });
     });
 
 });

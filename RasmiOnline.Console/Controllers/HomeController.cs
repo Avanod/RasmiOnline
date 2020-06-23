@@ -50,7 +50,7 @@ namespace RasmiOnline.Console.Controllers
             var addOrder = _orderSrv.QuickInsert(model);
             if (!addOrder.IsSuccessful) return Json(addUser);
             var addFiles = _attachmentSrv.Insert(addOrder.Result, AttachmentType.OrderFiles, attachments);
-            return Json(addFiles);
+            return Json(new { addFiles.IsSuccessful, addFiles.Message });
         }
     }
 }

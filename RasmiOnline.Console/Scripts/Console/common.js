@@ -194,8 +194,8 @@ var notify = function (successful, message) {
         },
         spacing: 10,
         z_index: 1031,
-        delay: 25000,
-        timer: 10000,
+        delay: 2500,
+        timer: 1000,
         url_target: '_blank',
         mouse_over: false,
         animate: {

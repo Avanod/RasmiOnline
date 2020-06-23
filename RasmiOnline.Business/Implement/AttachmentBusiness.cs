@@ -96,9 +96,10 @@
                 _observerManager.Value.Notify(ConcreteKey.Attachment_Add, new ObserverMessage
                 {
                     BotContent = string.Format(BusinessMessage.Attachment_Add, order.OrderId, order.OrderStatus.GetLocalizeDescription(), type.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                    SmsContent = string.Format(BusinessMessage.Attachment_Add, order.OrderId, order.OrderStatus.GetLocalizeDescription(), type.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                     Key = ConcreteKey.Change_OrderState.ToString(),
                     RecordId = order.OrderId,
-                    UserId = (HttpContext.Current.User as ICurrentUserPrincipal).UserId,
+                    UserId = order.UserId == Guid.Empty ? (HttpContext.Current.User as ICurrentUserPrincipal).UserId : order.UserId,
                 });
             }
             result.Result = saveResult;

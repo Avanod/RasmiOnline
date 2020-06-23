@@ -442,10 +442,10 @@
             var cdt = DateTime.Now;
             user = new User
             {
-                Email = user.Email,
-                MobileNumber = user.MobileNumber,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
+                Email = model.Email,
+                MobileNumber = long.Parse(model.MobileNumber),
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 IsActive = true,
                 LastLoginDateMi = cdt,
                 LastLoginDateSh = PersianDateTime.Parse(cdt).ToString(PersianDateTimeFormat.Date),
