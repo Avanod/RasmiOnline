@@ -40,6 +40,11 @@
         public DbSet<ShortLink> ShortLink { get; set; }
         public DbSet<BankCard> BankCard { get; set; }
 
+        public DbSet<OfflineStatistics> OfflineStatistics { get; set; }
+        public DbSet<Survey> Survey { get; set; }
+        public DbSet<SurveyOption> SurveyOption { get; set; }
+
+
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {
             return base.Set<TEntity>();
