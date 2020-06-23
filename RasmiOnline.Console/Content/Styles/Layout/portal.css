@@ -1745,14 +1745,14 @@ select {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label {
+/*input:focus ~ label, input:valid ~ label {
     top: -10px;
     font-size: 13px;
     color: #999;
-}
+}*/
 
 /* BOTTOM BARS ================================= */
-.bar {
+/*.bar {
     position: relative;
     display: block;
     width: 100%;
@@ -1776,12 +1776,12 @@ input:focus ~ label, input:valid ~ label {
 
     .bar:after {
         right: 50%;
-    }
+    }*/
 
 /* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
+/*input:focus ~ .bar:before, input:focus ~ .bar:after {
     width: 50%;
-}
+}*/
 
 /* HIGHLIGHTER ================================== */
 .highlight {

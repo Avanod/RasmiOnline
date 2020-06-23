@@ -16,10 +16,12 @@ namespace RasmiOnline.Console.Controllers
     {
         readonly IUserBusiness _userSrv;
         readonly IOrderBusiness _orderSrv;
-        public HomeController(IUserBusiness userSrv, IOrderBusiness orderSrv)
+        readonly IAttachmentBusiness _attachmentSrv;
+        public HomeController(IUserBusiness userSrv, IOrderBusiness orderSrv, IAttachmentBusiness attachmentSrv)
         {
             _userSrv = userSrv;
             _orderSrv = orderSrv;
+            _attachmentSrv = attachmentSrv;
         }
         [AllowAnonymous]
         public virtual ActionResult Index()
@@ -47,7 +49,8 @@ namespace RasmiOnline.Console.Controllers
             model.UserId = addUser.Result;
             var addOrder = _orderSrv.QuickInsert(model);
             if (!addOrder.IsSuccessful) return Json(addUser);
-            return Json(new { });
+            var addFiles = _attachmentSrv.Insert(addOrder.Result, AttachmentType.OrderFiles, attachments);
+            return Json(addFiles);
         }
     }
 }

@@ -1006,6 +1006,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to غیر رسمی.
+        /// </summary>
+        public static string NonOfficial {
+            get {
+                return ResourceManager.GetString("NonOfficial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام دفتر ترجمه.
         /// </summary>
         public static string OfficeName {
@@ -1020,6 +1029,24 @@ namespace RasmiOnline.Domain.Properties {
         public static string OfficeUserId {
             get {
                 return ResourceManager.GetString("OfficeUserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رسمی.
+        /// </summary>
+        public static string Official {
+            get {
+                return ResourceManager.GetString("Official", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رسمی با تاییدات.
+        /// </summary>
+        public static string OfficialWithConfirms {
+            get {
+                return ResourceManager.GetString("OfficialWithConfirms", resourceCulture);
             }
         }
         
@@ -1434,6 +1461,15 @@ namespace RasmiOnline.Domain.Properties {
         public static string TransactionStatus {
             get {
                 return ResourceManager.GetString("TransactionStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نوع ترجمه.
+        /// </summary>
+        public static string TranslateType {
+            get {
+                return ResourceManager.GetString("TranslateType", resourceCulture);
             }
         }
         

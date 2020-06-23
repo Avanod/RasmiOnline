@@ -42,6 +42,7 @@ namespace RasmiOnline.Domain.Dto
 
         public Guid UserId { get; set; }
 
+        [Display(Name = nameof(DisplayName.TranslateType), ResourceType = typeof(DisplayName))]
         public TranslateType TranslateType { get; set; }
     }
 }

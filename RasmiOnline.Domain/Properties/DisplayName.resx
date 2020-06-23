@@ -639,4 +639,16 @@
   <data name="PassportIsAttached" xml:space="preserve">
     <value>تصویر گذرنامه ضمیمه گردید</value>
   </data>
+  <data name="NonOfficial" xml:space="preserve">
+    <value>غیر رسمی</value>
+  </data>
+  <data name="Official" xml:space="preserve">
+    <value>رسمی</value>
+  </data>
+  <data name="OfficialWithConfirms" xml:space="preserve">
+    <value>رسمی با تاییدات</value>
+  </data>
+  <data name="TranslateType" xml:space="preserve">
+    <value>نوع ترجمه</value>
+  </data>
 </root>

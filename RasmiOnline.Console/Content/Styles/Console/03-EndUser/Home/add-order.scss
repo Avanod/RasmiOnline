@@ -19,6 +19,33 @@
     button:focus {
         outline: none !important;
     }
+
+    select {
+        font-size:1.2rem;
+        appearance: auto;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+    }
+
+    .btn-row {
+        margin-top: 15px;
+        display: flex;
+
+        > div:first-child {
+            display: flex;
+            align-items: center;
+
+            #WithPassport {
+                margin:0;
+                margin-left: 5px;
+            }
+
+            label {
+                margin-bottom: 0;
+                font-size: 1.1rem;
+            }
+        }
+    }
 }
 
 .alert--notify {
