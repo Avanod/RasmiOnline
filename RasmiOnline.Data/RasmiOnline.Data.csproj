@@ -102,6 +102,14 @@
     <Compile Include="ActivityLog\LogData.cs" />
     <Compile Include="ActivityLog\LogDetail.cs" />
     <Compile Include="GlobalVariable.cs" />
+    <Compile Include="Migrations\202006231645389_AddOfflineStatistics.cs" />
+    <Compile Include="Migrations\202006231645389_AddOfflineStatistics.designer.cs">
+      <DependentUpon>202006231645389_AddOfflineStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006231856441_AddSurvey.cs" />
+    <Compile Include="Migrations\202006231856441_AddSurvey.designer.cs">
+      <DependentUpon>202006231856441_AddSurvey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -116,6 +124,14 @@
       <Project>{FB6CCBF6-0CCB-4A8F-BFEF-44A6D480C653}</Project>
       <Name>RasmiOnline.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006231645389_AddOfflineStatistics.resx">
+      <DependentUpon>202006231645389_AddOfflineStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006231856441_AddSurvey.resx">
+      <DependentUpon>202006231856441_AddSurvey.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

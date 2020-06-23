@@ -106,6 +106,42 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کل سفارشات.
+        /// </summary>
+        public static string AllOrder {
+            get {
+                return ResourceManager.GetString("AllOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کل پرداخت ها.
+        /// </summary>
+        public static string AllPayment {
+            get {
+                return ResourceManager.GetString("AllPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to همه ی آمارها.
+        /// </summary>
+        public static string AllStatictics {
+            get {
+                return ResourceManager.GetString("AllStatictics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کل کاربران.
+        /// </summary>
+        public static string AllUser {
+            get {
+                return ResourceManager.GetString("AllUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اسکن پاسپورت.
         /// </summary>
         public static string AttachmentIdentity {
@@ -480,6 +516,15 @@ namespace RasmiOnline.Domain.Properties {
         public static string Express {
             get {
                 return ResourceManager.GetString("Express", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to داده های تکمیلی.
+        /// </summary>
+        public static string ExtraData {
+            get {
+                return ResourceManager.GetString("ExtraData", resourceCulture);
             }
         }
         
@@ -1078,6 +1123,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سفارشات به تفکیک روز.
+        /// </summary>
+        public static string OrderLastDays {
+            get {
+                return ResourceManager.GetString("OrderLastDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شماره سفارش.
         /// </summary>
         public static string OrderNumber {
@@ -1173,6 +1227,15 @@ namespace RasmiOnline.Domain.Properties {
         public static string PaymentGatewayId {
             get {
                 return ResourceManager.GetString("PaymentGatewayId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت ها به تفکیک روز.
+        /// </summary>
+        public static string PaymentLastDays {
+            get {
+                return ResourceManager.GetString("PaymentLastDays", resourceCulture);
             }
         }
         
@@ -1348,6 +1411,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to گزینه انتخاب شده.
+        /// </summary>
+        public static string SelectedOption {
+            get {
+                return ResourceManager.GetString("SelectedOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نام فرستنده.
         /// </summary>
         public static string Sender {
@@ -1393,6 +1465,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عنوان.
+        /// </summary>
+        public static string Subject {
+            get {
+                return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تایید مرجع بالا.
         /// </summary>
         public static string SubmitDescription {
@@ -1411,11 +1492,29 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نظرسنجی.
+        /// </summary>
+        public static string Survey {
+            get {
+                return ResourceManager.GetString("Survey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شماره تلفن.
         /// </summary>
         public static string Tel {
             get {
                 return ResourceManager.GetString("Tel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to متن.
+        /// </summary>
+        public static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
             }
         }
         
@@ -1524,6 +1623,15 @@ namespace RasmiOnline.Domain.Properties {
         public static string User {
             get {
                 return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کاربران به تفکیک روز.
+        /// </summary>
+        public static string UserLastDays {
+            get {
+                return ResourceManager.GetString("UserLastDays", resourceCulture);
             }
         }
         

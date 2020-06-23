@@ -124,9 +124,12 @@
     <Compile Include="Entity\Base\DiscountOrder.cs" />
     <Compile Include="Entity\Base\OfficeAddress.cs" />
     <Compile Include="Entity\Base\PricingItemTemplate.cs" />
+    <Compile Include="Entity\Base\Survey.cs" />
+    <Compile Include="Entity\Base\SurveyOption.cs" />
     <Compile Include="Entity\Order\OrderComment.cs" />
     <Compile Include="Entity\Order\OrderDetail.cs" />
     <Compile Include="Entity\Order\ShortLink.cs" />
+    <Compile Include="Entity\Statistics\OfflineStatistics.cs" />
     <Compile Include="Enum\DeliveryType.cs" />
     <Compile Include="Enum\PaymentGatewayType.cs" />
     <Compile Include="Enum\PaymentType.cs" />
@@ -152,6 +155,7 @@
     <Compile Include="Enum\CalculatorTemplate.cs" />
     <Compile Include="Enum\PricingItemUnit.cs" />
     <Compile Include="Enum\StateType.cs" />
+    <Compile Include="Enum\StaticticsKey.cs" />
     <Compile Include="Enum\TrnanslateType.cs" />
     <Compile Include="VisibleAttribute.cs" />
     <Compile Include="Properties\DisplayName.Designer.cs">
