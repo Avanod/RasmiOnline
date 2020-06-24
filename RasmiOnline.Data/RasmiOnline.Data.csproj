@@ -110,6 +110,10 @@
     <Compile Include="Migrations\202006231856441_AddSurvey.designer.cs">
       <DependentUpon>202006231856441_AddSurvey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006241711472_EditOfflineStatisticIndex.cs" />
+    <Compile Include="Migrations\202006241711472_EditOfflineStatisticIndex.designer.cs">
+      <DependentUpon>202006241711472_EditOfflineStatisticIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -131,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006231856441_AddSurvey.resx">
       <DependentUpon>202006231856441_AddSurvey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006241711472_EditOfflineStatisticIndex.resx">
+      <DependentUpon>202006241711472_EditOfflineStatisticIndex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

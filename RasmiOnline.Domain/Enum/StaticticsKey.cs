@@ -12,7 +12,7 @@
         AllUser = 1,
 
         [LocalizeDescription(nameof(DisplayName.UserLastDays), typeof(DisplayName))]
-        UserLastDays = 11,
+        UserLastDays = 2,
 
         [LocalizeDescription(nameof(DisplayName.AllOrder), typeof(DisplayName))]
         AllOrder = 3,

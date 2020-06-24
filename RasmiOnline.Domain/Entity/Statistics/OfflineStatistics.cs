@@ -14,7 +14,6 @@
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OfflineStatisticsId { get; set; }
 
-        [Index(IsUnique = true, IsClustered = false, Order = 0)]
         [Display(ResourceType = typeof(DisplayName), Name = nameof(DisplayName.Type))]
         [Required(ErrorMessageResourceName = nameof(ErrorMessage.Required), ErrorMessageResourceType = typeof(ErrorMessage))]
         public StaticticsType Type { get; set; }
