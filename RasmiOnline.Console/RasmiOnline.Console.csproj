@@ -255,6 +255,12 @@
     <Content Include="Content\Images\PricingItems\tick-services.png" />
     <Content Include="Content\Images\PricingItems\tourist.png" />
     <Content Include="Content\Images\stamp.png" />
+    <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.css">
+      <DependentUpon>statistic.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.min.css">
+      <DependentUpon>statistic.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.css">
       <DependentUpon>add-order.scss</DependentUpon>
     </Content>
@@ -330,6 +336,7 @@
     <Content Include="Content\Fonts\fontawasome\fa-solid-900.woff2" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Console\01-Admin\Dashboard\statistic.js" />
     <Content Include="Scripts\Console\03-EndUser\Home\add-order.js" />
     <Content Include="Scripts\Console\address.js" />
     <Content Include="Scripts\Console\Attachment\upload-after-transaction.js" />
@@ -380,6 +387,7 @@
     <Content Include="Scripts\Own\ViewController.js" />
     <Content Include="Scripts\pace.min.js" />
     <Content Include="Scripts\Plugins\bootstrap-notify.min.js" />
+    <Content Include="Scripts\Plugins\chart.min.js" />
     <Content Include="Scripts\Plugins\dropzone\dropzone.css" />
     <Content Include="Scripts\Plugins\dropzone\dropzone.js" />
     <Content Include="Scripts\Plugins\dropzone\fire-dropzone.js" />
@@ -410,6 +418,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Content\Styles\Console\Attachment\uploader.scss" />
+    <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\Mehran.pubxml" />
     <None Include="Service References\ZarinPal\PaymentGatewayImplementationService.wsdl" />
@@ -763,6 +772,7 @@
     <Content Include="Views\Shared\_WebsiteLayout.cshtml" />
     <Content Include="Views\Home\AddOrder.cshtml" />
     <Content Include="Views\Attachment\Partials\_Uploader.cshtml" />
+    <Content Include="Views\Dashboard\Statistic.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

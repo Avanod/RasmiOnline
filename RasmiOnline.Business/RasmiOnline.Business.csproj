@@ -138,7 +138,9 @@
     <Compile Include="Implement\BankCardBusiness.cs" />
     <Compile Include="Implement\ChannelBusiness.cs" />
     <Compile Include="Implement\DiscountBusiness.cs" />
+    <Compile Include="Protocol\IOfflineStatisticsBusiness.cs" />
     <Compile Include="Implement\OfficeAddressBusiness.cs" />
+    <Compile Include="Implement\OfflineStatisticsBusiness.cs" />
     <Compile Include="Implement\OrderBusiness.cs" />
     <Compile Include="Implement\OrderCommentBusiness.cs" />
     <Compile Include="Implement\OrderDetailBusiness.cs" />

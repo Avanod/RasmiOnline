@@ -25,6 +25,27 @@ $(document).on('ready', function () {
         for (i = 0; i < assets.length; i++) 
             data.append('attachments', assets[i]);
         ajaxBtn.inProgress($btn);
+
+        //var xhr = new XMLHttpRequest();
+        //xhr.upload.onprogress = function (e) {
+        //    $('#progress').text('%' + ((e.loaded / e.total) * 100).toString());
+        //};
+        //xhr.onloadend = function () {
+        //    $('#progress').text('');
+        //};
+        //xhr.open('POST', $frm.attr('action'));
+        //xhr.responseType = 'json';
+        //xhr.send(data);
+        //xhr.onload = function () {
+        //        ajaxBtn.normal();
+        //    if (xhr.status === 200) {
+        //        notify(true, 'ثبت سفارش با موفقیت انجام شد');
+        //        setTimeout(function () { window.location.reload(); }, 3000);
+        //    }
+        //    else notify(false, 'خطایی رخ داده است، لطفا دوباره تلاش نمایید');
+            
+        //};
+
         $.ajax({
             type: 'POST',
             url: $frm.attr('action'),

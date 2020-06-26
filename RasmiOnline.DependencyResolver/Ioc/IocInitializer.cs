@@ -50,6 +50,7 @@
                 x.For<IUserBusiness>().Use<UserBusiness>();
                 x.For<Lazy<IUserBusiness>>().Use(c => new Lazy<IUserBusiness>(c.GetInstance<IUserBusiness>));
                 x.For<IVerificationCodeBusiness>().Use<VerificationCodeBusiness>();
+                x.For<IOfflineStatisticsBusiness>().Use<OfflineStatisticsBusiness>();
                 #endregion
 
                 #region Order

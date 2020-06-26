@@ -319,6 +319,7 @@ namespace Links
             public static readonly string ViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/ViewController.min.js") ? Url("ViewController.min.js") : Url("ViewController.js");
         }
     
+        public static readonly string pace_min_js = Url("pace.min.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Plugins {
             public const string UrlPath = "~/Scripts/Plugins";
@@ -964,6 +965,7 @@ namespace Links
                 public static readonly string jquery_unobtrusive_ajax_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.unobtrusive-ajax.min.js"); 
                 public static readonly string jquery_validate_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.validate.js"); 
                 public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/jquery.validate.unobtrusive.js"); 
+                public static readonly string pace_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/pace.min.js"); 
                 public static readonly string tether_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/tether.min.js"); 
                 public static readonly string validation_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/validation.js"); 
                 public static readonly string waves_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/waves.min.js"); 

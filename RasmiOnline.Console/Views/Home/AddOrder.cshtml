@@ -76,6 +76,7 @@
             </label>
         </div>
         <div class="col-xs-12 col-sm-6">
+            <span id="progress"></span>
             <button class="btn-action rtl waves-effect" id="btn-submit" type="button">
                 <div class="text">
                     @LocalMessage.Send
@@ -92,6 +93,7 @@
 @section footer{
     <script src="@Url.Content(Links.Scripts.Console.Order.common_js)"></script>
     <script src="@Url.Content(Links.Scripts.Console._03_EndUser.Home.add_order_js)"></script>
+    <script src="@Url.Content(Links.Scripts.pace_min_js)"></script>
     <script src="@Url.Content(Links.Scripts.Console.Attachment.uploader_js)"></script>
     <script src="@Url.Content(Links.Scripts.Console.order_item_js)"></script>
 }
