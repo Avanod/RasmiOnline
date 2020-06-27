@@ -118,6 +118,7 @@
     <Compile Include="Dto\SendMessageModel.cs" />
     <Compile Include="Dto\StatisticExtraData.cs" />
     <Compile Include="Dto\StatisticModel.cs" />
+    <Compile Include="Dto\SurveySearchFilter.cs" />
     <Compile Include="Dto\TransactionModel.cs" />
     <Compile Include="Dto\UserDetailsModel.cs" />
     <Compile Include="Dto\ViewsFullPathModel.cs" />

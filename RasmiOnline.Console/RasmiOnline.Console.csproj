@@ -461,6 +461,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="GlobalMethod.cs" />
     <Compile Include="GlobalVariable.cs" />
     <Compile Include="T4\AddressController.generated.cs">
@@ -773,6 +774,7 @@
     <Content Include="Views\Home\AddOrder.cshtml" />
     <Content Include="Views\Attachment\Partials\_Uploader.cshtml" />
     <Content Include="Views\Dashboard\Statistic.cshtml" />
+    <Content Include="Views\Survey\Manage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
