@@ -223,6 +223,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to افزودن نظر سنجی.
+        /// </summary>
+        public static string AddSurvey {
+            get {
+                return ResourceManager.GetString("AddSurvey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to افزودن کاربر جدید.
         /// </summary>
         public static string AddUser {
@@ -1734,6 +1743,24 @@ namespace RasmiOnline.Console.Properties {
         public static string Success {
             get {
                 return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نظرسنجی.
+        /// </summary>
+        public static string Survey {
+            get {
+                return ResourceManager.GetString("Survey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مدیریت نظرسنجی.
+        /// </summary>
+        public static string SurveyManagement {
+            get {
+                return ResourceManager.GetString("SurveyManagement", resourceCulture);
             }
         }
         

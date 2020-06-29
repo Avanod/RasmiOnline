@@ -821,4 +821,13 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
   <data name="UploadImage" xml:space="preserve">
     <value>آپلود تصویر</value>
   </data>
+  <data name="AddSurvey" xml:space="preserve">
+    <value>افزودن نظر سنجی</value>
+  </data>
+  <data name="SurveyManagement" xml:space="preserve">
+    <value>مدیریت نظرسنجی</value>
+  </data>
+  <data name="Survey" xml:space="preserve">
+    <value>نظرسنجی</value>
+  </data>
 </root>

@@ -28,9 +28,6 @@ namespace RasmiOnline.Console.Controllers
     public partial class DashboardController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public DashboardController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected DashboardController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -76,12 +73,14 @@ namespace RasmiOnline.Console.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string Statistic = "Statistic";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string Statistic = "Statistic";
         }
 
 
@@ -96,8 +95,10 @@ namespace RasmiOnline.Console.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Index = "Index";
+                public readonly string Statistic = "Statistic";
             }
             public readonly string Index = "~/Views/Dashboard/Index.cshtml";
+            public readonly string Statistic = "~/Views/Dashboard/Statistic.cshtml";
         }
     }
 
@@ -114,6 +115,17 @@ namespace RasmiOnline.Console.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void StatisticOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Statistic()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Statistic);
+            StatisticOverride(callInfo);
             return callInfo;
         }
 

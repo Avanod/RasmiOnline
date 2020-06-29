@@ -1,0 +1,16 @@
+﻿@model SurveySearchFilter
+
+@{
+    <div class="row">
+
+        <div class="col-sm-12 col-md-3 m-b-20" dir="rtl">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Subject)
+                @Html.TextBoxFor(x => x.Subject, null, new { @class = "form-control type-fa" })
+                <i class="form-group__bar"></i>
+            </div>
+            <small class="text-danger"> @Html.ValidationMessageFor(x => x.Subject) </small>
+        </div>
+
+    </div>
+}

@@ -1,26 +1,32 @@
-﻿using RasmiOnline.Business.Protocol;
+﻿using System.Web.Mvc;
 using RasmiOnline.Domain.Dto;
 using RasmiOnline.Domain.Entity;
-using System.Web.Mvc;
+using RasmiOnline.Business.Protocol;
+using Gnu.Framework.Core;
 
 namespace RasmiOnline.Console.Controllers
 {
-    public class SurveyController : Controller
+    public partial class SurveyController : Controller
     {
         private readonly ISurveyBusiness _surveyBusiness;
         public SurveyController(ISurveyBusiness surveyBusiness)
         {
-            surveyBusiness = _surveyBusiness;
+            _surveyBusiness = surveyBusiness;
         }
-        public virtual ActionResult Manage(SurveySearchFilter filter)
+        public virtual ActionResult Search(SurveySearchFilter filter)
         {
-            return View(_surveyBusiness.Get(filter));
+            ViewBag.AutoSubmit = false;
+            var result = _surveyBusiness.Get(filter);
+            if (!Request.IsAjaxRequest()) return View(result);
+
+            return PartialView(MVC.Survey.Views.Partials._SearchList, result.Result);
         }
 
         [HttpGet]
-        public virtual ViewResult Add()
+        public virtual PartialViewResult Add()
         {
-            return View();
+            
+            return PartialView(MVC.Survey.Views.Partials._Form, new ActionResponse<Survey> { IsSuccessful = true, Result = new Survey() });
         }
 
         [HttpPost]
@@ -51,5 +57,8 @@ namespace RasmiOnline.Console.Controllers
             });
         }
 
+        [HttpGet]
+        public virtual JsonResult Delete(int id = default(int))
+          => Json(_surveyBusiness.Delete(id), JsonRequestBehavior.AllowGet);
     }
 }

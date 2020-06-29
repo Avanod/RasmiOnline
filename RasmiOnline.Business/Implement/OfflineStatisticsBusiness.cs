@@ -40,27 +40,46 @@ namespace RasmiOnline.Business.Implement
             || x.Type == StaticticsType.UserLastDays)
                 .OrderByDescending(x => x.InsertDateMi)
                 .Take(20).ToList();
-            model.OrderInDays = items.Where(x => x.Type == StaticticsType.OrderLastDays)
-                .Select(x => new
-                {
-                    Key = (string)(x.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].InsertDateSh),
-                    x.Value
-                })
-                .OrderBy(x => x.Key)
-               .ToDictionary(x => x.Key, x => x.Value);
-            model.UserInDays = items.Where(x => x.Type == StaticticsType.UserLastDays)
-                .Select(x => new
-                {
-                    Key = (string)(x.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].RegisterDateSh),
-                    x.Value
-                })
-                .OrderBy(x => x.Key)
-                .ToDictionary(x => x.Key, v => v.Value);
-            //model.PayCounts = items.Where(x => x.Type == StaticticsType.PaymentLastDays)
-            //    .ToDictionary(k => (string)(k.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].InsertDateSh), v => v.Value);
-            //model.PayAmounts = items.Where(x => x.Type == StaticticsType.PaymentLastDays)
-            //    .ToDictionary(k => (string)(k.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].InsertDateSh), v => v.Value);
-
+            foreach (var item in items.Where(x => x.Type == StaticticsType.OrderLastDays).Select(x => new
+            {
+                Key = (string)(x.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].InsertDateSh),
+                x.Value
+            })
+                .OrderBy(x => x.Key).ToList())
+            {
+                if (!model.OrderInDays.Any(x => x.Key == item.Key))
+                    model.OrderInDays.Add(item.Key, item.Value);
+            }
+            foreach (var item in items.Where(x => x.Type == StaticticsType.UserLastDays).Select(x => new
+            {
+                Key = (string)(x.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].RegisterDateSh),
+                x.Value
+            })
+                .OrderBy(x => x.Key).ToList())
+            {
+                if (!model.UserInDays.Any(x => x.Key == item.Key))
+                    model.UserInDays.Add(item.Key, item.Value);
+            }
+            foreach (var item in items.Where(x => x.Type == StaticticsType.PaymentLastDays).Select(x => new
+            {
+                Key = (string)(x.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].InsertDateSh),
+                x.Value
+            })
+            .OrderBy(x => x.Key).ToList())
+            {
+                if (!model.PayCountInDays.Any(x => x.Key == item.Key))
+                    model.PayCountInDays.Add(item.Key, item.Value);
+            }
+            foreach (var item in items.Where(x => x.Type == StaticticsType.PaymentLastDays).Select(x => new
+            {
+                Key = (string)(x.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].InsertDateSh),
+                Value = x.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].Price,
+            })
+            .OrderBy(x => x.Key).ToList())
+            {
+                if (!model.PayAmountInDays.Any(x => x.Key == item.Key))
+                    model.PayAmountInDays.Add(item.Key, item.Value);
+            }
             return model;
         }
     }

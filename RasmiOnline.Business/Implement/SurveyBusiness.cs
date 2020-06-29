@@ -17,6 +17,7 @@ namespace RasmiOnline.Business.Implement
         readonly IDbSet<Survey> _survey;
         public SurveyBusiness(IUnitOfWork uow)
         {
+            _uow = uow;
             _survey = _uow.Set<Survey>();
         }
 

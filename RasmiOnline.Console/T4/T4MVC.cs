@@ -50,6 +50,7 @@ public static partial class MVC
     public static RasmiOnline.Console.Controllers.ReportController Report = new RasmiOnline.Console.Controllers.T4MVC_ReportController();
     public static RasmiOnline.Console.Controllers.RoleController Role = new RasmiOnline.Console.Controllers.T4MVC_RoleController();
     public static RasmiOnline.Console.Controllers.SettingController Setting = new RasmiOnline.Console.Controllers.T4MVC_SettingController();
+    public static RasmiOnline.Console.Controllers.SurveyController Survey = new RasmiOnline.Console.Controllers.T4MVC_SurveyController();
     public static RasmiOnline.Console.Controllers.TransactionController Transaction = new RasmiOnline.Console.Controllers.T4MVC_TransactionController();
     public static RasmiOnline.Console.Controllers.UserController User = new RasmiOnline.Console.Controllers.T4MVC_UserController();
     public static RasmiOnline.Console.Controllers.ViewController View = new RasmiOnline.Console.Controllers.T4MVC_ViewController();
@@ -171,6 +172,29 @@ namespace Links
             public const string UrlPath = "~/Scripts/Console";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class _01_Admin {
+                public const string UrlPath = "~/Scripts/Console/01-Admin";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Dashboard {
+                    public const string UrlPath = "~/Scripts/Console/01-Admin/Dashboard";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string statistic_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/statistic.min.js") ? Url("statistic.min.js") : Url("statistic.js");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Survey {
+                    public const string UrlPath = "~/Scripts/Console/01-Admin/Survey";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string Search_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/Search.min.js") ? Url("Search.min.js") : Url("Search.js");
+                }
+            
+            }
+        
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class _03_EndUser {
                 public const string UrlPath = "~/Scripts/Console/03-EndUser";
@@ -326,6 +350,7 @@ namespace Links
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
             public static readonly string bootstrap_notify_min_js = Url("bootstrap-notify.min.js");
+            public static readonly string chart_min_js = Url("chart.min.js");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class dropzone {
                 public const string UrlPath = "~/Scripts/Plugins/dropzone";
@@ -602,6 +627,23 @@ namespace Links
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class _01_Admin {
+                    public const string UrlPath = "~/Content/Styles/Console/01-Admin";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class Dashboard {
+                        public const string UrlPath = "~/Content/Styles/Console/01-Admin/Dashboard";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                        public static readonly string statistic_scss = Url("statistic.scss");
+                        public static readonly string statistic_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/statistic.min.css") ? Url("statistic.min.css") : Url("statistic.css");
+                        public static readonly string statistic_min_css = Url("statistic.min.css");
+                    }
+                
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class _03_EndUser {
                     public const string UrlPath = "~/Content/Styles/Console/03-EndUser";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
@@ -758,6 +800,26 @@ namespace Links
         {
             public static partial class Console 
             {
+                public static partial class _01_Admin 
+                {
+                    public static partial class Dashboard 
+                    {
+                        public static class Assets
+                        {
+                            public static readonly string statistic_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/01-Admin/Dashboard/statistic.js"); 
+                        }
+                    }
+                    public static partial class Survey 
+                    {
+                        public static class Assets
+                        {
+                            public static readonly string Search_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/01-Admin/Survey/Search.js"); 
+                        }
+                    }
+                    public static class Assets
+                    {
+                    }
+                }
                 public static partial class _03_EndUser 
                 {
                     public static partial class Home 
@@ -943,6 +1005,7 @@ namespace Links
                 public static class Assets
                 {
                     public static readonly string bootstrap_notify_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Plugins/bootstrap-notify.min.js"); 
+                    public static readonly string chart_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Plugins/chart.min.js"); 
                     public static readonly string jquery_custom_modal_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Plugins/jquery.custom.modal.js"); 
                     public static readonly string jquery_custom_search_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Plugins/jquery.custom.search.js"); 
                     public static readonly string jquery_dataTables_min_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Plugins/jquery.dataTables.min.js"); 
@@ -1049,6 +1112,18 @@ namespace Links
             {
                 public static partial class Console 
                 {
+                    public static partial class _01_Admin 
+                    {
+                        public static partial class Dashboard 
+                        {
+                            public static class Assets
+                            {
+                            }
+                        }
+                        public static class Assets
+                        {
+                        }
+                    }
                     public static partial class _03_EndUser 
                     {
                         public static partial class Home 

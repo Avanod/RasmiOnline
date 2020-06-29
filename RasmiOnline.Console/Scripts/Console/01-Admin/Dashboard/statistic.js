@@ -25,7 +25,7 @@ var randomColor = new (function () {
         let rep = [];
         let max = colors.length;
         if (max >= count) {
-            for (var i = 0; i < count; i++) {
+            for (let i = 0; i < count; i++) {
                 let item = temp[Math.floor(Math.random() * temp.length)];
                 rep.push(item);
                 temp.splice(temp.findIndex(x => x.color === item.color && x.bColor === item.bColor), 1);
@@ -33,7 +33,7 @@ var randomColor = new (function () {
         }
         else {
 
-            for (var i = 0; i < count; i++) {
+            for (let i = 0; i < count; i++) {
                 rep.push(colors[Math.floor(Math.random() * max)]);
             }
         }
@@ -45,7 +45,7 @@ var randomColor = new (function () {
 }());
 
 $(document).ready(function () {
-    let rand = randomColor.get(2);
+    let rand = randomColor.get(4);
     let chtUserData = {
         label: 'تعداد کاربران',
         backgroundColor: rand[0].color,
@@ -66,6 +66,26 @@ $(document).ready(function () {
 
     initBarChart($('#order_in_days'), Object.keys(orderInDays), chtOrderData);
 
+    let chtPayCountData = {
+        label: 'تعداد پرداخت ها',
+        backgroundColor: rand[2].color,
+        borderColor: rand[2].bColor,
+        borderWidth: 1,
+        data: Object.values(payCountInDays)
+    };
+
+    initBarChart($('#payment_in_days'), Object.keys(payCountInDays), chtPayCountData);
+
+    let chtPayAmountData = {
+        label: 'میزان پرداخت ها',
+        backgroundColor: rand[3].color,
+        borderColor: rand[3].bColor,
+        borderWidth: 1,
+        data: Object.values(payAmountInDays),
+        fill: false
+    };
+    console.log(chtPayAmountData);
+    initLineChart($('#amount_in_days'), Object.keys(payAmountInDays), chtPayAmountData);
 });
 
 var initBarChart = function ($elm, lbls, data) {
@@ -129,5 +149,50 @@ var initBarChart = function ($elm, lbls, data) {
 
     let cht = new Chart($elm, config);
 }
+
+var initLineChart = function ($elm, lbls, data) {
+    console.log('line');
+    var config = {
+        type: 'line',
+        data: {
+            labels: lbls,
+            datasets: [data]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                yAxes: [{ ticks: { min: 0, beginAtZero: true, fontFamily: 'Iransans' } }],
+                xAxes: [{ ticks: { fontFamily: 'Iransans' } }]
+            },
+            tooltips: {
+                position: 'nearest',
+                intersect: false,
+                bodyFontFamily: 'Iransans',
+                titleFontFamily: 'Iransans',
+                xPadding: 10,
+                yPadding: 10,
+                custom: function (tooltip) {
+                    if (!tooltip) return;
+                    tooltip.displayColors = false;
+                }
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontFamily: 'iransans',
+                }
+            }
+        }
+    };
+
+
+    let cht = new Chart($elm, config);
+};
 
 

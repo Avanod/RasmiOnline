@@ -4,6 +4,11 @@
 }
 @section header{
     <link href="~/Content/Styles/Console/01-Admin/Dashboard/statistic.min.css" rel="stylesheet" />
+    <style>
+        .card{
+            padding:20px 10px;
+        }
+    </style>
 }
 <div class="row mb-15">
     <div class="col-12 col-sm-6 mb-15">
@@ -63,18 +68,26 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 mb-15">
-        <canvas height="300" id="user_in_days"></canvas>
+        <div class="card">
+            <canvas height="300" id="user_in_days"></canvas>
+        </div>
     </div>
     <div class="col-xs-12 col-sm-6 mb-15">
-        <canvas style="height:300px" id="order_in_days"></canvas>
+        <div class="card">
+            <canvas style="height:300px" id="order_in_days"></canvas>
+        </div>
     </div>
 </div>
 <div class="row mb-15">
     <div class="col-xs-12 col-sm-6 mb-15">
-        <canvas style="height:300px" id="payment_in_days"></canvas>
+        <div class="card">
+            <canvas style="height:300px" id="payment_in_days"></canvas>
+        </div>
     </div>
     <div class="col-xs-12 col-sm-6 mb-15">
-        <canvas style="height:300px" id="amount_in_days"></canvas>
+        <div class="card">
+            <canvas style="height:300px" id="amount_in_days"></canvas>
+        </div>
     </div>
 </div>
 
@@ -83,6 +96,8 @@
     <script>
         var userInDays = @(Html.Raw(Model.UserInDays.SerializeToJson()));
         var orderInDays = @(Html.Raw(Model.OrderInDays.SerializeToJson()));
+        var payCountInDays = @(Html.Raw(Model.PayCountInDays.SerializeToJson()));
+        var payAmountInDays = @(Html.Raw(Model.PayAmountInDays.SerializeToJson()));
     </script>
     <script src="~/Scripts/Console/01-Admin/Dashboard/statistic.js"></script>
 }

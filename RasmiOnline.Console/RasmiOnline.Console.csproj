@@ -261,6 +261,7 @@
     <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.min.css">
       <DependentUpon>statistic.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Console\01-Admin\Survey\search.css" />
     <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.css">
       <DependentUpon>add-order.scss</DependentUpon>
     </Content>
@@ -337,6 +338,7 @@
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Console\01-Admin\Dashboard\statistic.js" />
+    <Content Include="Scripts\Console\01-Admin\Survey\Search.js" />
     <Content Include="Scripts\Console\03-EndUser\Home\add-order.js" />
     <Content Include="Scripts\Console\address.js" />
     <Content Include="Scripts\Console\Attachment\upload-after-transaction.js" />
@@ -596,6 +598,9 @@
     <Compile Include="T4\SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4\SurveyController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4\T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -774,7 +779,10 @@
     <Content Include="Views\Home\AddOrder.cshtml" />
     <Content Include="Views\Attachment\Partials\_Uploader.cshtml" />
     <Content Include="Views\Dashboard\Statistic.cshtml" />
-    <Content Include="Views\Survey\Manage.cshtml" />
+    <Content Include="Views\Survey\Search.cshtml" />
+    <Content Include="Views\Survey\Partials\_Form.cshtml" />
+    <Content Include="Views\Survey\Partials\_SearchList.cshtml" />
+    <Content Include="Views\Survey\Partials\_SearchSurvey.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
