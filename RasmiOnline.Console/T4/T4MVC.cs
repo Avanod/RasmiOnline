@@ -641,6 +641,14 @@ namespace Links
                         public static readonly string statistic_min_css = Url("statistic.min.css");
                     }
                 
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class Survey {
+                        public const string UrlPath = "~/Content/Styles/Console/01-Admin/Survey";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                        public static readonly string search_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/search.min.css") ? Url("search.min.css") : Url("search.css");
+                    }
+                
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -1118,6 +1126,13 @@ namespace Links
                         {
                             public static class Assets
                             {
+                            }
+                        }
+                        public static partial class Survey 
+                        {
+                            public static class Assets
+                            {
+                                public static readonly string search_css = T4MVCHelpers.ProcessAssetPath("~/Content/Styles/Console/01-Admin/Survey/search.css");
                             }
                         }
                         public static class Assets

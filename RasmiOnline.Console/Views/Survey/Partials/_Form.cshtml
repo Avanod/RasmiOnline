@@ -5,16 +5,13 @@
         <div class="col-12">
             @if (Model.IsNotNull() && Model.IsSuccessful)
             {
-                <form id=@($"{nameof(Survey)}_FormControls") data-submit-action="@Url.Action(MVC.Survey.ActionNames.Add, MVC.Survey.Name)" class="col-12">
-                    @if (Model.Result.SurveyId > 0)
-                    {
-                        @Html.HiddenFor(x => x.Result.SurveyId)
-                    }
+                <form action="@Url.Action(Model.Result.SurveyId==0?"Add":"Update", MVC.Survey.Name)" class="col-12">
+                    @Html.HiddenFor(x => x.Result.SurveyId, new { @Name = nameof(Model.Result.SurveyId) })
                     <div class="row">
                         <div class="col-12 m-b-20" dir="rtl">
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Result.Subject)
-                                @Html.TextBoxFor(x => x.Result.Subject, null, new { @class = "form-control type-fa" })
+                                @Html.TextBoxFor(x => x.Result.Subject, null, new { @class = "form-control type-fa", @Name = nameof(Model.Result.Subject) })
                                 <i class="form-group__bar"></i>
                             </div>
                             <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.Subject) </small>
@@ -22,7 +19,7 @@
                         <div class="col-12 m-b-20" dir="rtl">
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Result.Text)
-                                @Html.TextAreaFor(x => x.Result.Text, new { @class = "form-control type-fa" })
+                                @Html.TextAreaFor(x => x.Result.Text, new { @class = "form-control type-fa", @Name = nameof(Model.Result.Text) })
                                 <i class="form-group__bar"></i>
                             </div>
                             <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.Text) </small>
@@ -37,47 +34,51 @@
                         <div class="col-12 col-sm-10 m-b-20" dir="rtl">
                             <div class="form-group">
                                 @Html.Label("")
-                                @Html.TextBox("opt_text", null, new { @class = "form-control type-fa" })
+                                @Html.TextBox("opt_text", null, new { @class = "form-control type-fa", @placeholder = "گزینه خود را بنویسید" })
                                 <i class="form-group__bar"></i>
                             </div>
                         </div>
                         <div class="col-12 col-sm-2 m-b-20">
-                            <button id="btn-add-opt" class="btn ">
+                            <button id="btn-add-opt" class="btn" type="button">
                                 <i class="zmdi zmdi-plus font-5x"></i>
                             </button>
                         </div>
                     </div>
                     <div class="row m-b-15">
-                        <table class="table-striped table dataTable">
-                            <thead>
-                                <tr>
-                                    <th>گزینه</th>
-                                    <th>حذف</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (Model.Result.SurveyOptions != null)
-                                {
-                                    foreach (var opt in Model.Result.SurveyOptions)
+                        <div class="col-12">
+                            <table class="table-striped table dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>گزینه</th>
+                                        <th>حذف</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="opt_items">
+                                    @if (Model.Result.SurveyOptions != null)
                                     {
-                                        <tr>
-                                            <td>@opt.Text</td>
-                                            <td><i class="zmdi zmdi-close"></i></td>
-                                        </tr>
+                                        foreach (var opt in Model.Result.SurveyOptions)
+                                        {
+                                            <tr>
+                                                <td>@opt.Text</td>
+                                                <td><i class="zmdi zmdi-close"></i></td>
+                                            </tr>
+                                        }
                                     }
-                                }
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="text-left m-b-20 o-f-h">
                                 <a class="btn-action rtl waves-effect next-panel" id="btn-submit-survey">
                                     <div class="text">
-                                        @LocalMessage.Add
+                                        @(Model.Result.SurveyId == 0 ? LocalMessage.Add : LocalMessage.Edit)
                                     </div>
                                     <div class="icon">
-                                        <i class="zmdi zmdi-plus"></i>
+
+                                        <i class="zmdi zmdi-@(Model.Result.SurveyId == 0 ? "plus" : "edit")"></i>
                                     </div>
                                 </a>
                             </div>
@@ -93,3 +94,19 @@
 
     </div>
 }
+<script>
+    options = [
+        @if(Model.Result.SurveyOptions!=null)
+        {
+            foreach (var item in Model.Result.SurveyOptions)
+            {
+                <text>
+                    {
+                        SurveyOptionId:@item.SurveyOptionId ,
+                        Text:'@item.Text'
+                    },
+                </text>
+            }
+        }
+    ];
+</script>

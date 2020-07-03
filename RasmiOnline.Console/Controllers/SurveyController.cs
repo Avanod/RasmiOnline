@@ -3,6 +3,7 @@ using RasmiOnline.Domain.Dto;
 using RasmiOnline.Domain.Entity;
 using RasmiOnline.Business.Protocol;
 using Gnu.Framework.Core;
+using RasmiOnline.Console.Properties;
 
 namespace RasmiOnline.Console.Controllers
 {
@@ -25,24 +26,25 @@ namespace RasmiOnline.Console.Controllers
         [HttpGet]
         public virtual PartialViewResult Add()
         {
-            
+
             return PartialView(MVC.Survey.Views.Partials._Form, new ActionResponse<Survey> { IsSuccessful = true, Result = new Survey() });
         }
 
         [HttpPost]
         public virtual JsonResult Add(Survey model)
         {
+            if (!ModelState.IsValid) return Json(new { IsSuccessful = false, Message = LocalMessage.ValidationFailed });
             return Json(_surveyBusiness.Add(model));
         }
 
         [HttpGet]
-        public virtual ViewResult Update(int id)
+        public virtual PartialViewResult Update(int id)
         {
 
             var survey = _surveyBusiness.Find(id);
-            if (survey == null)
-                return View(MVC.Shared.Views.Error);
-            return View(survey);
+            //if (survey == null)
+            //    return View(MVC.Shared.Views.Error);
+            return PartialView(MVC.Survey.Views.Partials._Form, survey);
         }
 
         [HttpPost]

@@ -64,9 +64,9 @@ namespace RasmiOnline.Console.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ViewResult Update()
+        public virtual System.Web.Mvc.PartialViewResult Update()
         {
-            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Update);
+            return new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Update);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -207,12 +207,12 @@ namespace RasmiOnline.Console.Controllers
         }
 
         [NonAction]
-        partial void UpdateOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, int id);
+        partial void UpdateOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, int id);
 
         [NonAction]
-        public override System.Web.Mvc.ViewResult Update(int id)
+        public override System.Web.Mvc.PartialViewResult Update(int id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Update);
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Update);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             UpdateOverride(callInfo, id);
             return callInfo;

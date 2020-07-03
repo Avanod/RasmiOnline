@@ -25,6 +25,7 @@ namespace RasmiOnline.Business.Implement
         {
             _survey.Add(survey);
             var rep = _uow.SaveChanges();
+            survey.SurveyOptions = null;
             return new ActionResponse<Survey>
             {
                 Result = survey,
@@ -65,12 +66,13 @@ namespace RasmiOnline.Business.Implement
             var item = _survey.Find(survey.SurveyId);
             item.Subject = survey.Subject;
             item.Text = survey.Text;
-            _uow.Entry(survey).State = EntityState.Modified;
-            foreach (var opt in survey.SurveyOptions.Where(x => x.SurveyOptionId == 0).ToList())
-            {
-                opt.SurveyId = survey.SurveyId;
-                _uow.Set<SurveyOption>().Add(opt);
-            }
+            //_uow.Entry(survey).State = EntityState.Modified;
+            if (survey.SurveyOptions != null)
+                foreach (var opt in survey.SurveyOptions.Where(x => x.SurveyOptionId == 0).ToList())
+                {
+                    opt.SurveyId = survey.SurveyId;
+                    _uow.Set<SurveyOption>().Add(opt);
+                }
 
             var rep = _uow.SaveChanges();
 
