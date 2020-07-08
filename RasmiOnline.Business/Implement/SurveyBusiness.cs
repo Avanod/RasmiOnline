@@ -50,9 +50,9 @@ namespace RasmiOnline.Business.Implement
 
         public IActionResponse<Survey> Find(int id)
         {
-            var item = _survey.FirstOrDefault(x => x.SurveyId == id);
+            var item = _survey.FirstOrDefault(x => x.SurveyId == id && !x.IsDeleted);
             if (item != null)
-                item.SurveyOptions = _uow.Set<SurveyOption>().Where(x => x.SurveyId == id && x.SelectedOption == 0).ToList();
+                item.SurveyOptions = _uow.Set<SurveyOption>().Where(x => x.SurveyId == id && x.SelectedOption == 0 && !x.IsDeleted).ToList();
             return new ActionResponse<Survey>
             {
                 IsSuccessful = item != null,

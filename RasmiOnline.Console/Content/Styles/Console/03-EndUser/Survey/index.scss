@@ -1,0 +1,63 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    background-color: #eee;
+    margin-top: 30px;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#survey {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .card {
+        padding: 0 15px;
+        margin-bottom: 15px;
+        background-color: #fff;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        border-radius: 3px;
+
+        .heading {
+            padding: 10px;
+            border-bottom: solid 4px #eee;
+
+            .subject {
+                margin-bottom: 10px;
+            }
+
+            .text {
+                margin-bottom: 0;
+            }
+        }
+
+        .body {
+            padding: 10px 0;
+
+            .opt {
+                margin-bottom: 5px;
+
+                .label-checkbox100 {
+                    cursor: pointer;
+                }
+
+                input[type='radio'] {
+                    margin-top: 0;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}
+@media(max-width:576px)
+{
+    main{
+        width:95%;
+    }
+}

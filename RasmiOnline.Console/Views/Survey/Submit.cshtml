@@ -1,0 +1,29 @@
+﻿@model IActionResponse<SurveyOption>
+@{
+    ViewBag.Title = "ثبت نظر";
+    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <br />
+            <br />
+            <br />
+            @if (Model.IsSuccessful)
+            {
+                <p class="alert alert-success text-center">
+                    نظر شما با موفقیت ثبت شد
+                </p>
+            }
+            else
+            {
+                <p class="alert alert-danger text-center">
+                   خطایی رخ داده است دوباره تلاش کنید <a href="@Request.UrlReferrer">بازگشت</a>
+                </p>
+            }
+
+        </div>
+    </div>
+</div>
+

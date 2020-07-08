@@ -12,6 +12,7 @@ namespace RasmiOnline.Console
         public static string webpages_Enabled { get { return GetConfigSettingItem("webpages:Enabled"); } }
         public static string ClientValidationEnabled { get { return GetConfigSettingItem("ClientValidationEnabled"); } }
         public static string UnobtrusiveJavaScriptEnabled { get { return GetConfigSettingItem("UnobtrusiveJavaScriptEnabled"); } }
+        public static string BaseDomain { get { return GetConfigSettingItem("BaseDomain"); } }
         public static string UserRoleId { get { return GetConfigSettingItem("UserRoleId"); } }
         public static string AuthTimeoutInMiutes { get { return GetConfigSettingItem("AuthTimeoutInMiutes"); } }
         public static string AuthTimeoutWithRemeberMeInHours { get { return GetConfigSettingItem("AuthTimeoutWithRemeberMeInHours"); } }

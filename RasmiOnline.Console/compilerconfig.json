@@ -10,5 +10,9 @@
   {
     "outputFile": "Content/Styles/Console/01-Admin/Dashboard/statistic.css",
     "inputFile": "Content/Styles/Console/01-Admin/Dashboard/statistic.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Survey/index.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Survey/index.scss"
   }
 ]

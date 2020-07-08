@@ -1,0 +1,65 @@
+﻿@model IActionResponse<Survey>
+@{
+    ViewBag.Title = Model.Result.Subject;
+    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+}
+@section head{
+    <link href="~/Content/Styles/Console/03-EndUser/Survey/index.min.css" rel="stylesheet" />
+}
+@if (Model.IsSuccessful)
+{
+    <form method="post" class="row" id="survey" action="@Url.Action(MVC.Survey.ActionNames.Submit,MVC.Survey.Name)">
+        @Html.Hidden("SurveyId", Model.Result.SurveyId)
+        <div class="col-xs-12 col-sm-12">
+            <div class="card">
+                <div class="row">
+                    <div class="col-xs-12 heading">
+                        <label class="subject">@Html.DisplayNameFor(x => x.Result.Subject): @Model.Result.Subject</label>
+                        <p class="text">@Html.DisplayNameFor(x => x.Result.Text): @Html.Raw(Model.Result.Text)</p>
+                    </div>
+                    <div class="col-xs-12">
+                        <ul class="body">
+                            @foreach (var item in Model.Result.SurveyOptions)
+                            {
+                                var id = "opt_" + item.SurveyOptionId.ToString();
+                                <li class="opt">
+                                    <div class="flex-sb-m w-full">
+                                        <div class="contact100-form-checkbox">
+                                            <input class="input-checkbox100" id="@id" type="radio" name="SurveyOptionId" value="@item.SurveyOptionId" />
+                                            <label class="label-checkbox100" for="@id">
+                                                @Html.Raw(item.Text)
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-12  col-sm-12">
+            <button type="submit" class="btn-action rtl waves-effect">
+                <div class="text">
+                    @LocalMessage.Submit
+                </div>
+                <div class="icon">
+                    <i class="zmdi zmdi-floppy"></i>
+                </div>
+            </button>
+        </div>
+
+    </form>
+
+}
+else
+{
+    <div class="row">
+        <p class="alert alert-danger">@Model.Message</p>
+    </div>
+}
+
+

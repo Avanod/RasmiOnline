@@ -24,6 +24,36 @@ $(document).on('ready', function () {
         }
     });
 
+    //Copy 'data-copy-value' attribute value to clipboard
+    $(document).on('click', '.copy-value', function (e) {
+        e.preventDefault();
+
+        let $this = $(this);
+        let value = $this.data('copy-value');
+        let elm = document.createElement('textarea');
+
+        elm.value = value;
+        document.body.appendChild(elm);
+        elm.select();
+        document.execCommand('copy');
+        document.body.removeChild(elm);
+        $this.addClass('animated fadeIn').bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function () {
+            $this.removeClass('animated fadeIn');
+        });
+
+        //$this.hide('fast')
+        //    .removeClass('zmdi-copy copy-value')
+        //    .addClass('zmdi-check-all copied-value')
+        //    .show('fast')
+        //    .delay(3000)
+        //    .hide('fast', function () {
+        //        $this.removeClass('zmdi-check-all copied-value')
+        //            .addClass('zmdi-copy copy-value')
+        //            .show('fast');
+        //    });
+
+    });
+
     if (getCookie("_.ASPXAUTH") != '' && getCookie("_.ASPXAUTH") != null) {
         $(".signInPanel").removeClass("hide");
     } else {

@@ -37,6 +37,7 @@
 
                 #region Base
                 x.For<ISurveyBusiness>().Use<SurveyBusiness>();
+                x.For<ISurveyOptionBusiness>().Use<SurveyOptionBusiness>();
                 x.For<IAddressBusiness>().Use<AddressBusiness>();
                 x.For<Lazy<IAddressBusiness>>().Use(c => new Lazy<IAddressBusiness>(c.GetInstance<IAddressBusiness>)); 
                 x.For<IBankCardBusiness>().Use<BankCardBusiness>();

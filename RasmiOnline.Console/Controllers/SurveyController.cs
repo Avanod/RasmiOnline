@@ -10,9 +10,11 @@ namespace RasmiOnline.Console.Controllers
     public partial class SurveyController : Controller
     {
         private readonly ISurveyBusiness _surveyBusiness;
-        public SurveyController(ISurveyBusiness surveyBusiness)
+        private readonly ISurveyOptionBusiness _surveyOptionBusiness;
+        public SurveyController(ISurveyBusiness surveyBusiness, ISurveyOptionBusiness surveyOptionBusiness)
         {
             _surveyBusiness = surveyBusiness;
+            _surveyOptionBusiness = surveyOptionBusiness;
         }
         public virtual ActionResult Search(SurveySearchFilter filter)
         {
@@ -61,6 +63,26 @@ namespace RasmiOnline.Console.Controllers
 
         [HttpGet]
         public virtual JsonResult Delete(int id = default(int))
-          => Json(_surveyBusiness.Delete(id), JsonRequestBehavior.AllowGet);
+            => Json(_surveyBusiness.Delete(id), JsonRequestBehavior.AllowGet);
+
+        [HttpPost]
+        public virtual JsonResult DeleteOption(int id = default(int))
+             => Json(_surveyOptionBusiness.Delete(id), JsonRequestBehavior.AllowGet);
+
+        [HttpGet, AllowAnonymous]
+        public virtual ViewResult Index(int id)
+        {
+            return View(_surveyBusiness.Find(id));
+        }
+
+        [HttpPost]
+        public virtual ViewResult Submit(int surveyId, int surveyOptionId)
+        {
+            return View(_surveyOptionBusiness.Add(new SurveyOption
+            {
+                SurveyId = surveyId,
+                SelectedOption = surveyOptionId
+            }));
+        }
     }
 }

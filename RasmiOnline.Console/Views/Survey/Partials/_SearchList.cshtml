@@ -34,6 +34,7 @@
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a href="" edit-item-modal="@($"{nameof(Survey)}")" data-edit-url="@(Url.Action(MVC.Survey.ActionNames.Update,MVC.Survey.Name, new { id= item.SurveyId}))" data-modal-title="@LocalMessage.Edit @LocalMessage.Survey" class="dropdown-item"><i class="zmdi zmdi-edit"></i>&nbsp;@LocalMessage.Edit</a>
                                                     <a href="" data-delete-url="@(Url.Action(MVC.Survey.ActionNames.Delete, MVC.Survey.Name, new { id= item.SurveyId}))" data-modal-title="@LocalMessage.Delete @LocalMessage.Survey" class="dropdown-item"><i class="zmdi zmdi-delete"></i>&nbsp;@LocalMessage.Delete</a>
+                                                    <div data-copy-value="@(AppSettings.BaseDomain+"/Survey/Index?id="+item.SurveyId)" class="dropdown-item copy-value"><i class="zmdi zmdi-copy"></i>&nbsp;کپی لینک</div>
                                                 </div>
                                             </div>
                                         </div>

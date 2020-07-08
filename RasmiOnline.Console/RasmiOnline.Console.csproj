@@ -268,6 +268,12 @@
     <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.min.css">
       <DependentUpon>add-order.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Survey\index.css">
+      <DependentUpon>index.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Survey\index.min.css">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Console\Attachment\uploader.css">
       <DependentUpon>uploader.scss</DependentUpon>
     </Content>
@@ -421,6 +427,7 @@
     </None>
     <Content Include="Content\Styles\Console\Attachment\uploader.scss" />
     <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.scss" />
+    <Content Include="Content\Styles\Console\03-EndUser\Survey\index.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\Mehran.pubxml" />
     <None Include="Service References\ZarinPal\PaymentGatewayImplementationService.wsdl" />
@@ -783,6 +790,8 @@
     <Content Include="Views\Survey\Partials\_Form.cshtml" />
     <Content Include="Views\Survey\Partials\_SearchList.cshtml" />
     <Content Include="Views\Survey\Partials\_SearchSurvey.cshtml" />
+    <Content Include="Views\Survey\Index.cshtml" />
+    <Content Include="Views\Survey\Submit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -68,6 +68,18 @@ namespace RasmiOnline.Console.Controllers
         {
             return new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Update);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ViewResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Index);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ViewResult Submit()
+        {
+            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Submit);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SurveyController Actions { get { return MVC.Survey; } }
@@ -88,6 +100,9 @@ namespace RasmiOnline.Console.Controllers
             public readonly string Add = "Add";
             public readonly string Update = "Update";
             public readonly string Delete = "Delete";
+            public readonly string DeleteOption = "DeleteOption";
+            public readonly string Index = "Index";
+            public readonly string Submit = "Submit";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -97,6 +112,9 @@ namespace RasmiOnline.Console.Controllers
             public const string Add = "Add";
             public const string Update = "Update";
             public const string Delete = "Delete";
+            public const string DeleteOption = "DeleteOption";
+            public const string Index = "Index";
+            public const string Submit = "Submit";
         }
 
 
@@ -133,6 +151,31 @@ namespace RasmiOnline.Console.Controllers
         {
             public readonly string id = "id";
         }
+        static readonly ActionParamsClass_DeleteOption s_params_DeleteOption = new ActionParamsClass_DeleteOption();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteOption DeleteOptionParams { get { return s_params_DeleteOption; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteOption
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Submit s_params_Submit = new ActionParamsClass_Submit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Submit SubmitParams { get { return s_params_Submit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Submit
+        {
+            public readonly string surveyId = "surveyId";
+            public readonly string surveyOptionId = "surveyOptionId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -143,9 +186,13 @@ namespace RasmiOnline.Console.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Index = "Index";
                 public readonly string Search = "Search";
+                public readonly string Submit = "Submit";
             }
+            public readonly string Index = "~/Views/Survey/Index.cshtml";
             public readonly string Search = "~/Views/Survey/Search.cshtml";
+            public readonly string Submit = "~/Views/Survey/Submit.cshtml";
             static readonly _PartialsClass s_Partials = new _PartialsClass();
             public _PartialsClass Partials { get { return s_Partials; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -239,6 +286,43 @@ namespace RasmiOnline.Console.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DeleteOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteOptionOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult DeleteOption(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteOption);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteOptionOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Index(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            IndexOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SubmitOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, int surveyId, int surveyOptionId);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Submit(int surveyId, int surveyOptionId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Submit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "surveyId", surveyId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "surveyOptionId", surveyOptionId);
+            SubmitOverride(callInfo, surveyId, surveyOptionId);
             return callInfo;
         }
 

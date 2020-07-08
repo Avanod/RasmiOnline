@@ -15,6 +15,22 @@ $(document).ready(function () {
         }
     });
     $('#modal-default').on('click', '.btn-delete-opt', function () {
+        console.log('fired');
+        let $elm = $(this);
+        let $wrapper = $elm.closest('.btn-delete-opt');
+        let $wrapperContent = $wrapper.html();
+        $wrapper.html($circularLoader);
+        $.post($elm.data('url'))
+            .done(function (rep) {
+                if (rep.IsSuccessful) $wrapper.closest('tr').remove();
+                else {
+                    $wrapper.html($wrapperContent);
+                    notify(false,rep.Message);
+                }
+            })
+            .fail(function () {
+                notify(false, errorMsg);
+            });
 
     });
     $('#modal-default').on('click', '#btn-submit-survey', function () {
