@@ -3,10 +3,12 @@ using Gnu.Framework.EntityFramework;
 using Gnu.Framework.EntityFramework.DataAccess;
 using RasmiOnline.Business.Properties;
 using RasmiOnline.Business.Protocol;
+using RasmiOnline.Domain;
 using RasmiOnline.Domain.Dto;
 using RasmiOnline.Domain.Entity;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace RasmiOnline.Business.Implement
@@ -96,5 +98,12 @@ namespace RasmiOnline.Business.Implement
                          .ToList();
             return response;
         }
+
+        public List<SurveyResultSPModel> GetResult(int SurveyId)
+                => _uow.Database.SqlQuery<SurveyResultSPModel>("[Base].[GetSurveyResult] @SurveyId",
+                new SqlParameter("@SurveyId", SurveyId)
+                {
+                    SqlDbType = System.Data.SqlDbType.Int
+                }).ToList();
     }
 }

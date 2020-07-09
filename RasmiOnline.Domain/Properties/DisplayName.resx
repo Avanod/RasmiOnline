@@ -687,4 +687,10 @@
   <data name="UserLastDays" xml:space="preserve">
     <value>کاربران به تفکیک روز</value>
   </data>
+  <data name="AnswerPercent" xml:space="preserve">
+    <value>درصد پاسخگویی</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>گزینه</value>
+  </data>
 </root>

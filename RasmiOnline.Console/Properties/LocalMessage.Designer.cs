@@ -1765,6 +1765,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نتیجه نظر سنجی.
+        /// </summary>
+        public static string SurveyResult {
+            get {
+                return ResourceManager.GetString("SurveyResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تنظیمات سیستم.
         /// </summary>
         public static string SystemSetting {

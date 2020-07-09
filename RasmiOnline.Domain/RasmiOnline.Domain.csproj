@@ -88,6 +88,8 @@
     <Compile Include="Dto\AddDiscountModel.cs" />
     <Compile Include="Dto\AddOrderModel.cs" />
     <Compile Include="Dto\AddTransactionModel.cs" />
+    <Compile Include="Dto\Base\SurveyResult.cs" />
+    <Compile Include="Dto\Base\SurveyResultSPModel.cs" />
     <Compile Include="Dto\CustomUserAction.cs" />
     <Compile Include="Dto\DiscountCheckModel.cs" />
     <Compile Include="Dto\GetTransactionModel.cs" />
@@ -118,7 +120,7 @@
     <Compile Include="Dto\SendMessageModel.cs" />
     <Compile Include="Dto\StatisticExtraData.cs" />
     <Compile Include="Dto\StatisticModel.cs" />
-    <Compile Include="Dto\SurveySearchFilter.cs" />
+    <Compile Include="Dto\Base\SurveySearchFilter.cs" />
     <Compile Include="Dto\TransactionModel.cs" />
     <Compile Include="Dto\UserDetailsModel.cs" />
     <Compile Include="Dto\ViewsFullPathModel.cs" />

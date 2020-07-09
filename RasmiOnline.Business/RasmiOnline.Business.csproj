@@ -139,9 +139,9 @@
     <Compile Include="Implement\ChannelBusiness.cs" />
     <Compile Include="Implement\DiscountBusiness.cs" />
     <Compile Include="Protocol\ISurveyOptionBusiness.cs" />
-    <Compile Include="Implement\SurveyOptionBusiness.cs" />
+    <Compile Include="Implement\Base\SurveyOptionBusiness.cs" />
     <Compile Include="Protocol\ISurveyBusiness.cs" />
-    <Compile Include="Implement\SurveyBusiness.cs" />
+    <Compile Include="Implement\Base\SurveyBusiness.cs" />
     <Compile Include="Protocol\IOfflineStatisticsBusiness.cs" />
     <Compile Include="Implement\OfficeAddressBusiness.cs" />
     <Compile Include="Implement\OfflineStatisticsBusiness.cs" />

@@ -792,6 +792,7 @@
     <Content Include="Views\Survey\Partials\_SearchSurvey.cshtml" />
     <Content Include="Views\Survey\Index.cshtml" />
     <Content Include="Views\Survey\Submit.cshtml" />
+    <Content Include="Views\Survey\Partials\_ShowResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -80,6 +80,12 @@ namespace RasmiOnline.Console.Controllers
         {
             return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Submit);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.PartialViewResult ShowResult()
+        {
+            return new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.ShowResult);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SurveyController Actions { get { return MVC.Survey; } }
@@ -103,6 +109,7 @@ namespace RasmiOnline.Console.Controllers
             public readonly string DeleteOption = "DeleteOption";
             public readonly string Index = "Index";
             public readonly string Submit = "Submit";
+            public readonly string ShowResult = "ShowResult";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -115,6 +122,7 @@ namespace RasmiOnline.Console.Controllers
             public const string DeleteOption = "DeleteOption";
             public const string Index = "Index";
             public const string Submit = "Submit";
+            public const string ShowResult = "ShowResult";
         }
 
 
@@ -176,6 +184,14 @@ namespace RasmiOnline.Console.Controllers
             public readonly string surveyId = "surveyId";
             public readonly string surveyOptionId = "surveyOptionId";
         }
+        static readonly ActionParamsClass_ShowResult s_params_ShowResult = new ActionParamsClass_ShowResult();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ShowResult ShowResultParams { get { return s_params_ShowResult; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ShowResult
+        {
+            public readonly string id = "id";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -205,10 +221,12 @@ namespace RasmiOnline.Console.Controllers
                     public readonly string _Form = "_Form";
                     public readonly string _SearchList = "_SearchList";
                     public readonly string _SearchSurvey = "_SearchSurvey";
+                    public readonly string _ShowResult = "_ShowResult";
                 }
                 public readonly string _Form = "~/Views/Survey/Partials/_Form.cshtml";
                 public readonly string _SearchList = "~/Views/Survey/Partials/_SearchList.cshtml";
                 public readonly string _SearchSurvey = "~/Views/Survey/Partials/_SearchSurvey.cshtml";
+                public readonly string _ShowResult = "~/Views/Survey/Partials/_ShowResult.cshtml";
             }
         }
     }
@@ -323,6 +341,18 @@ namespace RasmiOnline.Console.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "surveyId", surveyId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "surveyOptionId", surveyOptionId);
             SubmitOverride(callInfo, surveyId, surveyOptionId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ShowResultOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult ShowResult(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.ShowResult);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ShowResultOverride(callInfo, id);
             return callInfo;
         }
 

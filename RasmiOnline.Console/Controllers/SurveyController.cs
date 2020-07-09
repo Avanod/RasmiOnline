@@ -4,6 +4,7 @@ using RasmiOnline.Domain.Entity;
 using RasmiOnline.Business.Protocol;
 using Gnu.Framework.Core;
 using RasmiOnline.Console.Properties;
+using System.Linq;
 
 namespace RasmiOnline.Console.Controllers
 {
@@ -83,6 +84,17 @@ namespace RasmiOnline.Console.Controllers
                 SurveyId = surveyId,
                 SelectedOption = surveyOptionId
             }));
+        }
+
+        [HttpGet]
+        public virtual PartialViewResult ShowResult(int id)
+        {
+            var survey = _surveyBusiness.Find(id);
+            return PartialView(MVC.Survey.Views.Partials._ShowResult, new SurveyResult { 
+                Subject = survey.Result.Subject,
+                Text = survey.Result.Text,
+                Items = _surveyBusiness.GetResult(id)
+            });
         }
     }
 }

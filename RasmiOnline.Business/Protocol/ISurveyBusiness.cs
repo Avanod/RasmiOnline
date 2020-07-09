@@ -1,4 +1,5 @@
 ﻿using Gnu.Framework.Core;
+using RasmiOnline.Domain;
 using RasmiOnline.Domain.Dto;
 using RasmiOnline.Domain.Entity;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace RasmiOnline.Business.Protocol
         IActionResponse<Survey> Find(int id);
         IActionResponse<Survey> Update(Survey survey);
         IActionResponse<List<Survey>> Get(SurveySearchFilter filterModel);
+        List<SurveyResultSPModel> GetResult(int SurveyId);
     }
 }

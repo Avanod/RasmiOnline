@@ -142,6 +142,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to درصد پاسخگویی.
+        /// </summary>
+        public static string AnswerPercent {
+            get {
+                return ResourceManager.GetString("AnswerPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اسکن پاسپورت.
         /// </summary>
         public static string AttachmentIdentity {
@@ -1092,6 +1101,15 @@ namespace RasmiOnline.Domain.Properties {
         public static string OfficialWithConfirms {
             get {
                 return ResourceManager.GetString("OfficialWithConfirms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گزینه.
+        /// </summary>
+        public static string Option {
+            get {
+                return ResourceManager.GetString("Option", resourceCulture);
             }
         }
         
