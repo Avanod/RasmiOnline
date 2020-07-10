@@ -18,6 +18,12 @@
         [Display(Name = nameof(DisplayName.OrderNumber), ResourceType = typeof(DisplayName))]
         public int OrderId { get; set; }
 
+        [Display(Name = nameof(DisplayName.IsFullPayed), ResourceType = typeof(DisplayName))]
+        public bool IsFullPayed { get; set; }
+
+        [Display(Name = nameof(DisplayName.NeedDraft), ResourceType = typeof(DisplayName))]
+        public bool NeedDraft { get; set; }
+
         [ForeignKey(nameof(AddressId))]
         public Address Address { get; set; }
         public int? AddressId { get; set; }

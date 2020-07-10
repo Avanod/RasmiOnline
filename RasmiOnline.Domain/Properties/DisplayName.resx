@@ -693,4 +693,10 @@
   <data name="Option" xml:space="preserve">
     <value>گزینه</value>
   </data>
+  <data name="IsFullPayed" xml:space="preserve">
+    <value>پرداخت یک مرحله ای</value>
+  </data>
+  <data name="NeedDraft" xml:space="preserve">
+    <value>پبش نویش نیاز است</value>
+  </data>
 </root>

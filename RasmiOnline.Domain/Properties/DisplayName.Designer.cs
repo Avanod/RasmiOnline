@@ -862,6 +862,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پرداخت یک مرحله ای.
+        /// </summary>
+        public static string IsFullPayed {
+            get {
+                return ResourceManager.GetString("IsFullPayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to پرکاربرد.
         /// </summary>
         public static string IsMustlyUse {
@@ -1047,6 +1056,15 @@ namespace RasmiOnline.Domain.Properties {
         public static string NationalCode {
             get {
                 return ResourceManager.GetString("NationalCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پبش نویش نیاز است.
+        /// </summary>
+        public static string NeedDraft {
+            get {
+                return ResourceManager.GetString("NeedDraft", resourceCulture);
             }
         }
         
