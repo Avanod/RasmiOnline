@@ -79,6 +79,7 @@
             order.OrderStatus = model.OrderStatus;
             order.DayToDelivery = model.DayToDelivery;
             order.DocsBeenRecieved = model.DocsBeenRecieved;
+            order.IsFullPayed = model.IsFullPayed;
             if (!string.IsNullOrEmpty(model.DeliverFiles_DateSh) && new Regex(RegexPattern.PersianDateTime).IsMatch(model.DeliverFiles_DateSh))
             {
                 order.DeliverFiles_DateSh = model.DeliverFiles_DateSh;

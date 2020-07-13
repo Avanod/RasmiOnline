@@ -10,7 +10,8 @@ $(document).on('ready', function () {
 
     //show modal event for add & editing address
     $(document).on('click', '.add-address-button,.address-edit', function () {
-        let $elm = $(this);;
+        console.log('open');
+        let $elm = $(this);
         $('#modal .modal-title').html($elm.data('modal-title'));
         $('#modal .modal-body').html(threeDotLoader).load($elm.data('modal-url'), function () {
             $.validator.unobtrusive.parse($('#modal'));

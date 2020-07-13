@@ -26,6 +26,8 @@
       #add-order-page .btn-row > div:first-child label {
         margin-bottom: 0;
         font-size: 1.1rem; }
+  #add-order-page #input-file {
+    display: none; }
 
 .alert--notify .alert--notify__close {
   background: no-repeat;

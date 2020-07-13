@@ -5,14 +5,14 @@
 
 <div class="row">
     <div class="col-md-4 map-wrapper p-r-0">
-        <div class="google-map" data-type="static" data-location="@ViewBag.Location" style="height:220px;border-radius:5px">
+        <div class="google-map" data-type="static" data-location="@ViewBag.Location" style="height:240px;border-radius:5px">
         </div>
     </div>
     <div class="col-md-8 order-wrapper">
         <div class="row p-0">
             <div class="col-md-6">
                 <ul class="order">
-                  
+
                     <li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.User.FullName) : <span>@Model.User.FullName</span></span>
@@ -37,16 +37,19 @@
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.DeliverFiles_DateSh) : @(Model.DeliverFiles_DateSh == null ? $"{Model.DayToDelivery} روز کاری" : Model.DeliverFiles_DateSh)</span>
                     </li>
-
+                    <li>
+                        <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+                        <span>@Html.DisplayNameFor(x => x.NeedDraft) : @(Model.NeedDraft ? LocalMessage.Yes : LocalMessage.No)</span>
+                    </li>
                     <li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.OrderTitle) : @Model.OrderTitle</span>
                     </li>
                 </ul>
             </div>
-            
-                @{ Html.RenderAction(MVC.OrderAdmin.ActionNames.GetOrderPaymentInfo, MVC.OrderAdmin.Name, new { orderId = Model.OrderId });}
-           
+
+            @{ Html.RenderAction(MVC.OrderAdmin.ActionNames.GetOrderPaymentInfo, MVC.OrderAdmin.Name, new { orderId = Model.OrderId });}
+
         </div>
     </div>
     <div class="col-md-12 p-0 form-group">
@@ -55,7 +58,7 @@
             @Html.HiddenFor(x => x.OrderId)
             <div class="row">
                 <div class="col-md-4" style="margin-left:-12px">
-                    @Html.TextAreaFor(X => X.OrderDescription, 9, 5, new { @PlaceHolder = "توضیحات سفارش", @Class = "form-control border-control valid" })
+                    @Html.TextAreaFor(X => X.OrderDescription, 11, 5, new { @PlaceHolder = "توضیحات سفارش", @Class = "form-control border-control valid" })
                 </div>
 
                 <ul class="order col-md-8">
@@ -96,9 +99,9 @@
 
                             <select name="OfficeUserId" id="OfficeUserId" class="form-control">
                                 @foreach (var item in (IEnumerable<SelectListItem>)ViewBag.OfficeUserId)
-                {
-                    <option @(item.Selected ? "selected" : string.Empty) value="@item.Value">@item.Text</option>
-}
+                                {
+                                    <option @(item.Selected ? "selected" : string.Empty) value="@item.Value">@item.Text</option>
+                                }
                             </select>
                         </div>
                     </li>
@@ -107,6 +110,21 @@
                         <label class="lbl">@Html.DisplayNameFor(x => x.OrderStatus) </label>
                         <div class="select-value select">
                             @Html.DropDownListFor(x => x.OrderStatus, (IEnumerable<SelectListItem>)ViewBag.OrderStatuses, new { @class = "form-control" })
+                        </div>
+                    </li>
+                    <li class="order-status  order-status-top-border">
+                        <label class="lbl" for="@nameof(Model.IsFullPayed)">@Html.DisplayNameFor(x => x.IsFullPayed)</label>
+                        <div class="select-value select">
+                            @Html.DropDownListFor(x => x.OrderStatus, new List<SelectListItem> {
+                                    new SelectListItem{
+                                        Text = LocalMessage.Yes,
+                                        Value = "true"
+                                    },
+                                    new SelectListItem{
+                                        Text = LocalMessage.No,
+                                        Value = "false"
+                                    }
+                                }, new { @class = "form-control" })
                         </div>
                     </li>
                 </ul>
@@ -130,13 +148,13 @@
             </a>
 
             @*<a class="btn-action rtl info SignInPanel waves-effect float-right m-l-5" data-userId="@Model.UserId">
-                <div class="text">
-                    ورود به پنل کاربر
-                </div>
-                <div class="icon">
-                    <i class="zmdi zmdi-shield-security"></i>
-                </div>
-            </a>*@
+                    <div class="text">
+                        ورود به پنل کاربر
+                    </div>
+                    <div class="icon">
+                        <i class="zmdi zmdi-shield-security"></i>
+                    </div>
+                </a>*@
 
 
 

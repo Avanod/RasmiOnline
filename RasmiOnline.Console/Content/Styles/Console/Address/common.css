@@ -1,4 +1,6 @@
-﻿
+﻿.mb-50{
+    margin-bottom:50px;
+}
 #udpShipping {
     width: 100%;
 }
@@ -11,8 +13,8 @@
 .address_list .address_item {
     border: 1px solid #cbcbcb;
     border-radius: 2px;
-    height: 200px;
-    width: 415px;
+    height: 290px;
+    width: 350px;
     float: right;
     margin-left: 10px;
     box-sizing: border-box;
@@ -49,6 +51,10 @@
     border-top: 1px solid #f0f0f0;
     cursor: pointer;
     padding: 8px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .address_list .add-address-button {
@@ -175,6 +181,7 @@
 }
 
 .v-a-m {
+    vertical-align:middle;
     font-size: 16px !important;
     color: #888;
 }
@@ -259,7 +266,7 @@
     width: 18px;
     padding: 0;
     margin: 0;
-    top: 5px;
+    top: 2px;
 }
 
     .radio-control input[type=radio]:checked + label {
@@ -269,6 +276,7 @@
         height: 14px;
         top: -13px;
         right: 3px;
+        margin:0;
     }
 
 .modal .crisp-h5bnuo {
@@ -290,4 +298,8 @@
 .flickity-enabled {
     margin-right: 30px;
     margin-left: 30px;
+}
+
+.address_item .info{
+    padding:5px;
 }

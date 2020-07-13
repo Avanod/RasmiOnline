@@ -116,6 +116,18 @@ namespace RasmiOnline.Console.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SubmitPayAllFactor);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Submit()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Submit);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public OrderController Actions { get { return MVC.Order; } }
@@ -143,6 +155,8 @@ namespace RasmiOnline.Console.Controllers
             public readonly string Pay = "Pay";
             public readonly string PayAllFactor = "PayAllFactor";
             public readonly string SubmitPayAllFactor = "SubmitPayAllFactor";
+            public readonly string Index = "Index";
+            public readonly string Submit = "Submit";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -159,6 +173,8 @@ namespace RasmiOnline.Console.Controllers
             public const string Pay = "Pay";
             public const string PayAllFactor = "PayAllFactor";
             public const string SubmitPayAllFactor = "SubmitPayAllFactor";
+            public const string Index = "Index";
+            public const string Submit = "Submit";
         }
 
 
@@ -249,6 +265,24 @@ namespace RasmiOnline.Console.Controllers
             public readonly string paymentType = "paymentType";
             public readonly string paymentGatewayId = "paymentGatewayId";
         }
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string orderId = "orderId";
+            public readonly string userId = "userId";
+        }
+        static readonly ActionParamsClass_Submit s_params_Submit = new ActionParamsClass_Submit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Submit SubmitParams { get { return s_params_Submit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Submit
+        {
+            public readonly string orderId = "orderId";
+            public readonly string needDraft = "needDraft";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -267,6 +301,7 @@ namespace RasmiOnline.Console.Controllers
                 public readonly string DetailedAdd = "DetailedAdd";
                 public readonly string DetailedAdd_Mobile = "DetailedAdd.Mobile";
                 public readonly string History = "History";
+                public readonly string Index = "Index";
                 public readonly string NotFound = "NotFound";
                 public readonly string Pay = "Pay";
                 public readonly string Pay_Mobile = "Pay.Mobile";
@@ -281,6 +316,7 @@ namespace RasmiOnline.Console.Controllers
             public readonly string DetailedAdd = "~/Views/Order/DetailedAdd.cshtml";
             public readonly string DetailedAdd_Mobile = "~/Views/Order/DetailedAdd.Mobile.cshtml";
             public readonly string History = "~/Views/Order/History.cshtml";
+            public readonly string Index = "~/Views/Order/Index.cshtml";
             public readonly string NotFound = "~/Views/Order/NotFound.cshtml";
             public readonly string Pay = "~/Views/Order/Pay.cshtml";
             public readonly string Pay_Mobile = "~/Views/Order/Pay.Mobile.cshtml";
@@ -504,6 +540,32 @@ namespace RasmiOnline.Console.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "paymentType", paymentType);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "paymentGatewayId", paymentGatewayId);
             SubmitPayAllFactorOverride(callInfo, orderId, paymentType, paymentGatewayId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId, System.Guid userId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Index(int orderId, System.Guid userId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userId", userId);
+            IndexOverride(callInfo, orderId, userId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SubmitOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId, bool needDraft);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Submit(int orderId, bool needDraft)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Submit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "needDraft", needDraft);
+            SubmitOverride(callInfo, orderId, needDraft);
             return callInfo;
         }
 
