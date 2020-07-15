@@ -56,6 +56,18 @@ namespace RasmiOnline.Console.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Payment()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Payment);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Submit()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Submit);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -74,6 +86,8 @@ namespace RasmiOnline.Console.Controllers
         {
             public readonly string Index = "Index";
             public readonly string AddOrder = "AddOrder";
+            public readonly string Payment = "Payment";
+            public readonly string Submit = "Submit";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,6 +95,8 @@ namespace RasmiOnline.Console.Controllers
         {
             public const string Index = "Index";
             public const string AddOrder = "AddOrder";
+            public const string Payment = "Payment";
+            public const string Submit = "Submit";
         }
 
 
@@ -93,6 +109,23 @@ namespace RasmiOnline.Console.Controllers
             public readonly string model = "model";
             public readonly string attachments = "attachments";
         }
+        static readonly ActionParamsClass_Payment s_params_Payment = new ActionParamsClass_Payment();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Payment PaymentParams { get { return s_params_Payment; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Payment
+        {
+            public readonly string orderId = "orderId";
+            public readonly string userId = "userId";
+        }
+        static readonly ActionParamsClass_Submit s_params_Submit = new ActionParamsClass_Submit();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Submit SubmitParams { get { return s_params_Submit; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Submit
+        {
+            public readonly string model = "model";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -104,8 +137,10 @@ namespace RasmiOnline.Console.Controllers
             public class _ViewNamesClass
             {
                 public readonly string AddOrder = "AddOrder";
+                public readonly string Payment = "Payment";
             }
             public readonly string AddOrder = "~/Views/Home/AddOrder.cshtml";
+            public readonly string Payment = "~/Views/Home/Payment.cshtml";
         }
     }
 
@@ -146,6 +181,31 @@ namespace RasmiOnline.Console.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "attachments", attachments);
             AddOrderOverride(callInfo, model, attachments);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void PaymentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId, System.Guid userId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Payment(int orderId, System.Guid userId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Payment);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userId", userId);
+            PaymentOverride(callInfo, orderId, userId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SubmitOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, RasmiOnline.Domain.Dto.CompleteOrderModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Submit(RasmiOnline.Domain.Dto.CompleteOrderModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Submit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            SubmitOverride(callInfo, model);
             return callInfo;
         }
 

@@ -402,27 +402,36 @@ $(document).on('click', '.setting .send-sms, .setting .send-email', function () 
 });
 
 var customSerialize = function ($wrapper, checkNumbers) {
-    let model = {};
-    $wrapper.find('input:not([type="checkbox"]):not([type="radio"]),select,textarea').each(function () {
-
-        if (checkNumbers && !isNaN($(this).val()) && $(this).val() !== '') {
-            model[$(this).attr('name')] = parseInt($(this).val());
-
+    var model = {};
+    let checkNumberValue = function (v) {
+        if (checkNumbers && !isNaN(v) && v !== '') return parseInt(v);
+        else return v;
+    };
+    function valueSetter(obj, name, v) {
+        let arr = name.split('.');
+        if (arr.length > 1)
+            valueSetter(obj[arr[0]], arr.splice(1, arr.length - 1).join('.'), v);
+        if (typeof obj[name] !== 'undefined') {
+            if (Array.isArray(obj[name])) obj[name].push(v);
+            else obj[name] = [obj[name], v];
         }
-        else
-            model[$(this).attr('name')] = $(this).val();
+        else obj[name] = v;
+    };
+    $wrapper.find('input:not([type="checkbox"]):not([type="radio"]),select,textarea').each(function () {
+        let name = $(this).attr('name');
+        if (typeof name !== 'undefined') {
+            let v = checkNumberValue($(this).val());
+            valueSetter(model, name, v);
+        }
+
     });
 
-    $wrapper.find('input[type="checkbox"],input[type="radio"]').each(function () {
+    $wrapper.find('input[type="checkbox"],input[type="radio"]:Checked').each(function () {
         let name = $(this).attr('name');
-        let val = $(this).attr('value').toLowerCase();
-        if (!val || val === 'true' || val === 'false') val = $(this).prop('checked');
-        if (!model[name]) {
-            model[name] = val;
-        }
-        else {
-            if (Array.isArray(model[name])) model[name].push(val);
-            else model[name] = [model[name], val];
+        if (typeof name !== 'undefined') {
+            let val = $(this).attr('value');
+            if (!val || val === 'true' || val === 'false') val = $(this).prop('checked');
+            valueSetter(model, name, val);
         }
     });
     return model;

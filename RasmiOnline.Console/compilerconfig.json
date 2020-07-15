@@ -18,5 +18,13 @@
   {
     "outputFile": "Content/Styles/Console/03-EndUser/Order/index.css",
     "inputFile": "Content/Styles/Console/03-EndUser/Order/index.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Home/index.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Home/index.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Home/payment.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Home/payment.scss"
   }
 ]

@@ -6,10 +6,14 @@
 }
 @section head{
     <link href="@Url.Content(Links.Content.Styles.Shared.flickity_min_css)" rel="stylesheet" />
-    <link href="~/Content/Styles/Console/Address/common.css" rel="stylesheet" />
-    <link href="@Url.Content("~/Content/Styles/Console/03-EndUser/Order/index.min.css")" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console.Address.common_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Shared.sweetalert_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console._03_EndUser.Home.payment_min_css)" rel="stylesheet" />
 }
-<div class="row" id="order-payment">
+<form class="row" id="order-payment" action="@Url.Action(MVC.Home.ActionNames.Submit,MVC.Home.Name)">
+    @Html.HiddenFor(x=>x.UserId)
+    @Html.HiddenFor(x=>x.OrderId)
+    @Html.Hidden("PaymentGatewayId",(int)ViewBag.PaymentGatewayId)
     <div class="col-xs-12">
         <div class="card">
             <div class="row">
@@ -115,14 +119,27 @@
                                     <td>@item.Price.ToString()</td>
                                 </tr>
                             }
-                            <tr>
-                                <td></td>
-                                <td>جمع کل</td>
-                                <td>@Model.OrderItems.Sum(x => x.Count)</td>
-                                <td>@Model.OrderItems.Sum(x => x.CalculateTotalPrice(Model.LangType)).ToString("N0")</td>
-                            </tr>
+                            @*<tr>
+                            <td></td>
+                            <td>جمع کل</td>
+                            <td>@Model.OrderItems.Sum(x => x.Count)</td>
+                            <td>@Model.OrderItems.Sum(x => x.CalculateTotalPrice(Model.LangType)).ToString("N0")</td>
+                        </tr>*@
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="alert alert-success">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <label>مبلغ پرداخت شده: <strong>@(((int)ViewBag.PayedPrice).ToString("N0"))</strong></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label>مبلغ قایل پرداخت: <strong>@(((int)ViewBag.Price).ToString("N0"))</strong></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <label>جمع کل: <strong>@Model.OrderItems.Sum(x => x.CalculateTotalPrice(Model.LangType)).ToString("N0")</strong></label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,7 +159,7 @@
 
             </div>
             <div class="col-sx-12 col-sm-6">
-                <button type="button" data-url="@Url.Action(MVC.Order.ActionNames.Submit,MVC.Order.Name)" class="btn-action rtl waves-effect" id="btn-submit">
+                <button type="button" data-url="@Url.Action(MVC.Home.ActionNames.Submit,MVC.Order.Name)" class="btn-action rtl waves-effect" id="btn-submit">
                     <div class="text">
                         @LocalMessage.Payment
                     </div>
@@ -154,11 +171,12 @@
         </div>
 
     </div>
-</div>
+</form>
 @section footer{
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBa_C42jDWvco-ZAni9pltEALfP9kQvv8g"></script>
     <script src="@Url.Content(Links.Scripts.Plugins.Flickity.flickity_pkgd_min_js)"></script>
     <script src="@Url.Content(Links.Scripts.Plugins.Flickity.flickity_pkgd_min_js)"></script>
     <script src="@Url.Content(Links.Scripts.Console.address_js)"></script>
-    <script src="@Url.Content(Links.Scripts.Console._03_EndUser.Order.index_js)"></script>
+    <script src="@Url.Content(Links.Scripts.Plugins.SweetAlert.sweetalert_min_js)"></script>
+    <script src="@Url.Content(Links.Scripts.Console._03_EndUser.Home.payment_js)"></script>
 }

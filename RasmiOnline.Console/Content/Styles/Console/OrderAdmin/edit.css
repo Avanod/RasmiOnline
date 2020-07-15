@@ -149,3 +149,10 @@ button.Zebra_DatePicker_Icon {
         background-color: #989898!important;
         color: #fff!important;
     }
+
+    .payment-link .wrapper {
+        white-space: nowrap;
+        overflow: hidden;
+        direction: ltr;
+        overflow: hidden;
+    }

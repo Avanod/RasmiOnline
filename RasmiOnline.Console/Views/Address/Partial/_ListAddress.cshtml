@@ -22,7 +22,7 @@
                     </a>
                 </div>
                 <div class="address_item__detail row m-0">
-                    <div class="map-wrapper clearfix col-md-4">
+                    <div class="map-wrapper clearfix col-xs-12">
                         <div id="map_@item.AddressId" class="google-map" data-type="static" data-location="@item.Location"></div>
                     </div>
                     <div class="row">
@@ -66,12 +66,12 @@
                         </div>*@
                 </div>
                 <div class="address_item__radio" data-addressId="@item.AddressId">
-                    @if (count == 1)
+                    @*@if (count == 1)
                     {
                         @Html.Hidden("AddressId", item.AddressId)
-                    }
+                    }*@
                     <div class="radio-control">
-                        <input class="rdb-address-box" name="Address" type="radio" @(count == 1 ? "checked" : "")>
+                        <input class="rdb-address-box" name="AddressId" type="radio" @(count == 1 ? "checked" : "") value="@item.AddressId">
                         <label></label>
                     </div>
                     <span>مدارک از این آدرس تحویل گرفته می شود</span>

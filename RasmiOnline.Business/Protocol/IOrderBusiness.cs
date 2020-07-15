@@ -33,5 +33,7 @@
         int OlderOrderCount(Guid? officeUserId = null);
 
         IEnumerable<Order> GetReport(Guid? officeUserId = null, string fromDate = null, string toDate = null);
+
+        IActionResponse<Order> Add(AddOrderModel model);
     }
 }

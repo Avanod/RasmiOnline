@@ -91,6 +91,9 @@
 
 
 @section footer{
+    <script>
+        var successMessage = '@Html.Raw(LocalMessage.AddOrderSuccessMessage)';
+    </script>
     <script src="@Url.Content(Links.Scripts.Console.Order.common_js)"></script>
     <script src="@Url.Content(Links.Scripts.Console._03_EndUser.Home.add_order_js)"></script>
     <script src="@Url.Content(Links.Scripts.pace_min_js)"></script>

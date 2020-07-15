@@ -1,4 +1,24 @@
-﻿/*-----------------------------------
+﻿.copy-value{
+    cursor:pointer;
+}
+.alert--notify .alert--notify__close {
+    background-color: transparent;
+    border: navajowhite;
+}
+
+    .alert--notify .alert--notify__close:focus {
+        border: none;
+    }
+
+    .alert--notify .alert--notify__close i {
+        vertical-align: middle;
+    }
+
+.alert--notify [data-notify="icon"] {
+    font-size: 20px;
+    vertical-align: middle;
+}
+/*-----------------------------------
               utils
 ------------------------------------*/
 .custom-alert-info {
@@ -7,9 +27,11 @@
     border-color: #bee5eb;
     padding: 7.5px;
 }
-.display-none{
-    display:none!important;
+
+.display-none {
+    display: none !important;
 }
+
 .border-control {
     border: 1px solid #e6e4e4;
     padding: 7px;
@@ -67,17 +89,21 @@
 .m-l-5 {
     margin-left: 5px;
 }
-.w-100{
-    width:100%;
+
+.w-100 {
+    width: 100%;
 }
+
 .m-b-0 {
     margin-bottom: 0px !important;
 }
-.padding-7{
-    padding:7px;
+
+.padding-7 {
+    padding: 7px;
 }
-.padding-3{
-    padding:3px;
+
+.padding-3 {
+    padding: 3px;
 }
 /*-----------------------------------
               panels
@@ -469,11 +495,11 @@
 }
 
 
-.orderPaymentInfo {
+/*.orderPaymentInfo {
     position: absolute;
     left: 0;
     top: 0;
-}
+}*/
 
     .orderPaymentInfo .row {
         margin: 0 -3px 5px -3px;
@@ -503,10 +529,11 @@
         text-align: left;
         font-size: 16px;
     }
-    .orderPaymentInfo .desc{
-        text-align:justify;
-        max-height:100px;
-        overflow:auto;
+
+    .orderPaymentInfo .desc {
+        text-align: justify;
+        max-height: 100px;
+        overflow: auto;
     }
 
 .f-s-11 td {

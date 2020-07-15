@@ -1,7 +1,7 @@
 ﻿/// <reference path="../jquery-1.10.2.min.js"/>
 $(document).on('ready', function () {
     //
-    $(".address_item__radio").click(function () {
+    $(document).on('click', ".address_item__radio", function () {
         $(".address_item").removeClass("selected");
         $(this).parent().addClass("selected");
         $("#AddressId").val($(this).attr("data-addressId"));
@@ -43,7 +43,7 @@ $(document).on('ready', function () {
                     $('#modal').modal('toggle');
 
                     var idx = $('.flickity-enabled  .address_item').length;
-                    $('.addreses-wrapper').html(rep.Result);
+                    $('.address_list').replaceWith(rep.Result);
                     var addrs = $('.flickity-enabled').flickity({
                         rightToLeft: true,
                         contain: true,

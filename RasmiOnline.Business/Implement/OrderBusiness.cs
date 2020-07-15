@@ -820,5 +820,38 @@
                 Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
             };
         }
+
+        public IActionResponse<Order> Add(AddOrderModel model)
+        {
+            var order = new Order();
+            var _setting = _settingBusiness.Value.Get();
+            order.DayToDelivery = _setting.DayToDelivery;
+            order.UserId = model.UserId;
+            order.OrderStatus = model.Status;
+            order.OrderDescription = model.Description;
+            order.TranslateType = model.TranslateType;
+            order.WithPassport = model.WithPassport;
+            order.OrderTitle = "بدون عنوان";
+            order.LangType = LangType.Fa_En;
+            _order.Add(order);
+            var rep = _uow.SaveChanges();
+            if (rep.ToSaveChangeResult())
+            {
+                _observerManager.Value.Notify(ConcreteKey.Order_Add, new ObserverMessage
+                {
+                    SmsContent = string.Format(BusinessMessage.Order_Add_Sms, order.OrderId),
+                    BotContent = string.Format(BusinessMessage.Order_Add_Bot, order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                    Key = ConcreteKey.Order_Add.ToString(),
+                    RecordId = order.OrderId,
+                    UserId = model.UserId
+                });
+            }
+            return new ActionResponse<Order>
+            {
+                IsSuccessful = rep.ToSaveChangeResult(),
+                Result = order,
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
+            };
+        }
     }
 }

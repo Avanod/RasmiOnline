@@ -26,6 +26,8 @@
         readonly ISettingBusiness _settingBusiness;
         readonly IUserBusiness _userBusiness;
         readonly Lazy<IPricingItemBusiness> _pricingItemBusiness;
+
+
         readonly Lazy<IShortLinkBusiness> _shortLinkBusiness;
         readonly Lazy<ITransactionBusiness> _transBusiness;
 
@@ -116,61 +118,6 @@
                 Value = s.Value.ToString(),
                 Selected = s.Value == orderStatus
             }).ToList();
-        }
-
-        [NonAction]
-        private ActionResponse<string> SignIn(User user, bool rememberMe)
-        {
-            var menuRep = _userBusiness.GetAvailableActions(user.UserId);
-            if (menuRep == null)
-                return new ActionResponse<string>
-                {
-                    IsSuccessful = false,
-                    Message = LocalMessage.ThereIsNoView
-                };
-
-            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie != null)
-            {
-                HttpCookie _AuthCookie = new HttpCookie($"_{FormsAuthentication.FormsCookieName}", (User as ICurrentUserPrincipal).UserId.ToString())
-                {
-                    Expires = authCookie.Expires
-                };
-                HttpContext.Response.Cookies.Add(_AuthCookie);
-            }
-
-            var currentUser = new CurrentUserPrincipal();
-            currentUser.UserId = user.UserId;
-            currentUser.FullName = $"{user.FirstName} {user.LastName}";
-            currentUser.UserName = user.Email.ToString();
-            currentUser.CustomField = new UserExtraData { MobileNumber = user.MobileNumber };
-            var expDateTime = rememberMe ? DateTime.Now.AddHours(int.Parse(AppSettings.AuthTimeoutWithRemeberMeInHours)) : DateTime.Now.AddMinutes(int.Parse(AppSettings.AuthTimeoutInMiutes));
-            string userData = currentUser.SerializeToJson();
-            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.MobileNumber.ToString(), DateTime.Now, expDateTime, true, userData);
-            string encTicket = FormsAuthentication.Encrypt(authTicket);
-            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket)
-            {
-                Expires = expDateTime,
-                HttpOnly = true
-            };
-            //FormsAuthentication.set
-            //System.Web.HttpContext.Current.Response.Cookies.Add(cookie);
-            HttpContext.Response.Cookies.Add(cookie);
-            //var currentUser = serializer.Deserialize<CurrentUserPrincipal>(authTicket.UserData);
-            currentUser.SetIdentity(authTicket.Name);
-            currentUser.UserActionList = menuRep.Items.ToList();
-            System.Web.HttpContext.Current.User = currentUser;
-            if (menuRep.DefaultUserAction.RoleId != int.Parse(AppSettings.UserRoleId))
-                return new ActionResponse<string>
-                {
-                    IsSuccessful = true
-                };
-
-            return new ActionResponse<string>
-            {
-                IsSuccessful = true
-            };
-
         }
         #endregion
 
@@ -407,33 +354,6 @@
                 UserId = (User as ICurrentUserPrincipal).UserId
             });
             return Json(result);
-        }
-
-        [HttpGet, Route("Order/Index/{orderId:int}/{userId:Guid}")]
-        public virtual ActionResult Index(int orderId, Guid userId)
-        {
-            var user = _userBusiness.Find(userId);
-            if (user == null) return View(MVC.Order.Views.NotFound);
-            var rep = SignIn(user, true);
-            if (!rep.IsSuccessful) return View(MVC.Shared.Views.Error, (object)rep.Message);
-            var order = _orderBusiness.Find(orderId, "OrderItems,Transactions,User");
-            if (order == null || order.UserId != userId)
-                return View(MVC.Order.Views.NotFound);
-            //ViewBag.OrderId = order.OrderId;
-            //ViewBag.LangType = order.LangType;
-            //LoadRelatedInfo(true, order.LangType);
-            ViewBag.CompletePayment  = order.AddressId != null;
-            ViewBag.Addresses = _addressBusiness.GetAll(userId);
-            ViewBag.PayedPrice = _transBusiness.Value.GetTotalPayedPrice(orderId);
-            return View(order);
-        }
-
-        [HttpPost]
-        public virtual ActionResult Submit(int orderId, bool needDraft)
-        {
-            var order = _orderBusiness.Find(orderId);
-
-            return Redirect("");
         }
     }
 }

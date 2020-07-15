@@ -268,11 +268,17 @@
     <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.min.css">
       <DependentUpon>add-order.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\Console\03-EndUser\Order\index.css">
-      <DependentUpon>index.scss</DependentUpon>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\index.css">
+      <DependentUpon>payment.scss</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\Console\03-EndUser\Order\index.min.css">
+    <Content Include="Content\Styles\Console\03-EndUser\Home\index.min.css">
       <DependentUpon>index.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\payment.css">
+      <DependentUpon>payment.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\payment.min.css">
+      <DependentUpon>payment.css</DependentUpon>
     </Content>
     <Content Include="Content\Styles\Console\03-EndUser\Survey\index.css">
       <DependentUpon>index.scss</DependentUpon>
@@ -352,7 +358,7 @@
     <Content Include="Scripts\Console\01-Admin\Dashboard\statistic.js" />
     <Content Include="Scripts\Console\01-Admin\Survey\Search.js" />
     <Content Include="Scripts\Console\03-EndUser\Home\add-order.js" />
-    <Content Include="Scripts\Console\03-EndUser\Order\index.js" />
+    <Content Include="Scripts\Console\03-EndUser\Home\payment.js" />
     <Content Include="Scripts\Console\address.js" />
     <Content Include="Scripts\Console\Attachment\upload-after-transaction.js" />
     <Content Include="Scripts\Console\Attachment\uploader.js" />
@@ -435,7 +441,7 @@
     <Content Include="Content\Styles\Console\Attachment\uploader.scss" />
     <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.scss" />
     <Content Include="Content\Styles\Console\03-EndUser\Survey\index.scss" />
-    <Content Include="Content\Styles\Console\03-EndUser\Order\index.scss" />
+    <Content Include="Content\Styles\Console\03-EndUser\Home\payment.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\Mehran.pubxml" />
     <None Include="Service References\ZarinPal\PaymentGatewayImplementationService.wsdl" />
@@ -801,7 +807,8 @@
     <Content Include="Views\Survey\Index.cshtml" />
     <Content Include="Views\Survey\Submit.cshtml" />
     <Content Include="Views\Survey\Partials\_ShowResult.cshtml" />
-    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Home\Payment.cshtml" />
+    <Content Include="Views\OrderAdmin\Partials\_OrderPaymentInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,7 +11,6 @@
     {
         public string Views { get; set; }
 
-        
         public bool IsView { get; set; }
 
         [NotMapped]

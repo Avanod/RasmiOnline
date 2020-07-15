@@ -205,6 +205,7 @@ namespace RasmiOnline.Console.Controllers
                     public readonly string _OrderBoardMobile = "_OrderBoardMobile";
                     public readonly string _OrderListView = "_OrderListView";
                     public readonly string _OrderListViewMobile = "_OrderListViewMobile";
+                    public readonly string _OrderPaymentInfo = "_OrderPaymentInfo";
                 }
                 public readonly string _AddOrder = "~/Views/OrderAdmin/Partials/_AddOrder.cshtml";
                 public readonly string _AllTodayOrder = "~/Views/OrderAdmin/Partials/_AllTodayOrder.cshtml";
@@ -215,6 +216,7 @@ namespace RasmiOnline.Console.Controllers
                 public readonly string _OrderBoardMobile = "~/Views/OrderAdmin/Partials/_OrderBoardMobile.cshtml";
                 public readonly string _OrderListView = "~/Views/OrderAdmin/Partials/_OrderListView.cshtml";
                 public readonly string _OrderListViewMobile = "~/Views/OrderAdmin/Partials/_OrderListViewMobile.cshtml";
+                public readonly string _OrderPaymentInfo = "~/Views/OrderAdmin/Partials/_OrderPaymentInfo.cshtml";
             }
         }
     }

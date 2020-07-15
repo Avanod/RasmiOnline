@@ -186,20 +186,33 @@
 
             #region Find Default View
             var defaultAction = new CustomUserAction();
-            foreach (var menuItem in spResult)
-            {
-                var views = menuItem.ViewsList;
-                if (views.Any(x => x.IsDefault))
+            var defUserAction = spResult.Where(x => x.IsView).FirstOrDefault(x => x.IsDefault);
+            if (defUserAction != null)
+                defaultAction = new CustomUserAction
                 {
-                    defaultAction = new CustomUserAction
+                    Action = defUserAction.ActionName,
+                    Controller = defUserAction.Controller,
+                    RoleId = defUserAction.RoleId
+                };
+
+            if (defaultAction == null && !spResult.Where(x => x.Views != null).Any())
+            {
+                foreach (var menuItem in spResult.Where(x => x.Views != null).ToList())
+                {
+                    var views = menuItem.ViewsList;
+                    if (views.Any(x => x.IsDefault))
                     {
-                        Action = views.FirstOrDefault(x => x.IsDefault).ActionName,
-                        Controller = views.FirstOrDefault(x => x.IsDefault).Controller,
-                        RoleId = views.FirstOrDefault(x => x.IsDefault).RoleId
-                    };
-                    break;
+                        defaultAction = new CustomUserAction
+                        {
+                            Action = views.FirstOrDefault(x => x.IsDefault).ActionName,
+                            Controller = views.FirstOrDefault(x => x.IsDefault).Controller,
+                            RoleId = views.FirstOrDefault(x => x.IsDefault).RoleId
+                        };
+                        break;
+                    }
                 }
             }
+
             if (defaultAction.Controller.IsNull()) return null;
             #endregion
 
@@ -474,6 +487,5 @@
                 Result = user.UserId
             };
         }
-
     }
 }

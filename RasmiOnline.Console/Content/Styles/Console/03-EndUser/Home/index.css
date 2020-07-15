@@ -54,7 +54,15 @@ body {
   body {
     background-color: #fff; }
   .card {
-    box-shadow: none; } }
+    box-shadow: none !important;
+    padding: 10px 0 !important; }
+  .address_list {
+    overflow: hidden !important; }
+    .address_list .add-address-button {
+      width: 50px;
+      margin: 0 15px; }
+    .address_list:after, .address_list:before {
+      display: none !important; } }
 
 #modal button.close {
   position: absolute;

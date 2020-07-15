@@ -160,6 +160,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ثبت سفارش با موفقیت انجام شد، بزودی برای هماهنگی بیشتر با شما تماس خواهیم گرفت.
+        /// </summary>
+        public static string AddOrderSuccessMessage {
+            get {
+                return ResourceManager.GetString("AddOrderSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to افزودن درگاه جدید.
         /// </summary>
         public static string AddPaymentGateway {

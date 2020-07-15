@@ -206,14 +206,7 @@ namespace Links
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                     public static readonly string add_order_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/add-order.min.js") ? Url("add-order.min.js") : Url("add-order.js");
-                }
-            
-                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class Order {
-                    public const string UrlPath = "~/Scripts/Console/03-EndUser/Order";
-                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
-                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-                    public static readonly string index_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/index.min.js") ? Url("index.min.js") : Url("index.js");
+                    public static readonly string payment_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/payment.min.js") ? Url("payment.min.js") : Url("payment.js");
                 }
             
             }
@@ -672,16 +665,11 @@ namespace Links
                         public static readonly string add_order_scss = Url("add-order.scss");
                         public static readonly string add_order_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/add-order.min.css") ? Url("add-order.min.css") : Url("add-order.css");
                         public static readonly string add_order_min_css = Url("add-order.min.css");
-                    }
-                
-                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                    public static class Order {
-                        public const string UrlPath = "~/Content/Styles/Console/03-EndUser/Order";
-                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
-                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
-                        public static readonly string index_scss = Url("index.scss");
+                        public static readonly string payment_scss = Url("payment.scss");
                         public static readonly string index_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/index.min.css") ? Url("index.min.css") : Url("index.css");
                         public static readonly string index_min_css = Url("index.min.css");
+                        public static readonly string payment_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/payment.min.css") ? Url("payment.min.css") : Url("payment.css");
+                        public static readonly string payment_min_css = Url("payment.min.css");
                     }
                 
                     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -863,13 +851,7 @@ namespace Links
                         public static class Assets
                         {
                             public static readonly string add_order_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/03-EndUser/Home/add-order.js"); 
-                        }
-                    }
-                    public static partial class Order 
-                    {
-                        public static class Assets
-                        {
-                            public static readonly string index_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/03-EndUser/Order/index.js"); 
+                            public static readonly string payment_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/03-EndUser/Home/payment.js"); 
                         }
                     }
                     public static class Assets
@@ -1177,12 +1159,6 @@ namespace Links
                     public static partial class _03_EndUser 
                     {
                         public static partial class Home 
-                        {
-                            public static class Assets
-                            {
-                            }
-                        }
-                        public static partial class Order 
                         {
                             public static class Assets
                             {

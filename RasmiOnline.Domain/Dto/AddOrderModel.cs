@@ -44,5 +44,7 @@ namespace RasmiOnline.Domain.Dto
 
         [Display(Name = nameof(DisplayName.TranslateType), ResourceType = typeof(DisplayName))]
         public TranslateType TranslateType { get; set; }
+
+        public OrderStatus Status { get; set; }
     }
 }

@@ -52,7 +52,13 @@
         {
             if (!ModelState.IsValid) return Json(new { IsSuccessful = false, Message = LocalMessage.ValidationFailed });
             model.UserId = (User as ICurrentUserPrincipal).UserId;
-            return Json(_addressBusiness.Update(model));
+            var update = _addressBusiness.Update(model);
+            if (!update.IsSuccessful) return Json(update);
+            return Json(new
+            {
+                IsSuccessful = true,
+                Result = MvcExtention.RenderViewToString(this, MVC.Address.Views.Partial._ListAddress, _addressBusiness.GetAll(model.UserId))
+            });
         }
 
         [HttpPost]
