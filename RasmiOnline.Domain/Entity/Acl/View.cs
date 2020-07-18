@@ -68,5 +68,7 @@
         public bool IsDefault { get; set; }
 
         public virtual ICollection<ViewInRole> ViewInRoles { get; set; }
+
+        public string Path => "/" + Controller + "/" + ActionName;
     }
 }

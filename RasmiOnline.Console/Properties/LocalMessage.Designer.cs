@@ -214,7 +214,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد&lt;br /&gt; کارشناسان مجموعه رسمی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
+        ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد&lt;br /&gt; کارشناسان مجموعه دارالترجمه امیرشاهی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
         /// </summary>
         public static string AddSummaryHeaderText {
             get {
@@ -223,7 +223,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد. کارشناسان مجموعه رسمی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
+        ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد. کارشناسان مجموعه دارالترجمه امیرشاهی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
         /// </summary>
         public static string AddSummaryHeaderTextForMobile {
             get {
@@ -421,7 +421,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to www.rasmionline.com.
+        ///   Looks up a localized string similar to www.amirshahi.com.
         /// </summary>
         public static string Copyright {
             get {
@@ -511,7 +511,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to به نماینده رسمی آنلاین تحویل میدهم.
+        ///   Looks up a localized string similar to به نماینده دارالترجمه امیرشاهی آنلاین تحویل میدهم.
         /// </summary>
         public static string DeliverByPost {
             get {
@@ -1276,7 +1276,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to توسط نماینده رسمی آنلاین.
+        ///   Looks up a localized string similar to توسط نماینده دارالترجمه امیرشاهی آنلاین.
         /// </summary>
         public static string PostIt {
             get {
@@ -1591,7 +1591,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} عزیز ، آدرس دفتر ترجمه رسمی آنلاین به شرح زیر میباشد:
+        ///   Looks up a localized string similar to {0} عزیز ، آدرس دفتر ترجمه دارالترجمه امیرشاهی آنلاین به شرح زیر میباشد:
         ///{1}
         ///لوکیشن :
         ///https://goo.gl/maps/nWfrH3Kccqm.
@@ -1729,7 +1729,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to رسمی آنلاین.
+        ///   Looks up a localized string similar to دارالترجمه امیر شاهی.
         /// </summary>
         public static string SiteName {
             get {
@@ -1900,7 +1900,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام ‘{0}’ سفارش خود را به شرح زیر پرداخت نموده است :
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام ‘{0}’ سفارش خود را به شرح زیر پرداخت نموده است :
         ///شماره سفارش : {1}
         ///درگاه بانکی : {2}
         ///مبلغ پرداختی : {3}
@@ -1986,7 +1986,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to با توجه به حساسیت درج صحیح اسامی در مدارک رسمی تاکید می شود که تصویر مطلوب با اسکن پاسپورت خود را در این قسمت آپلود نمایید و یا اسپل صحیح اسامی موجود در مدارک سفارش خود را در قسمت مربوطه تایپ نمایید ..
+        ///   Looks up a localized string similar to با توجه به حساسیت درج صحیح اسامی در مدارک دارالترجمه امیرشاهی تاکید می شود که تصویر مطلوب با اسکن پاسپورت خود را در این قسمت آپلود نمایید و یا اسپل صحیح اسامی موجود در مدارک سفارش خود را در قسمت مربوطه تایپ نمایید ..
         /// </summary>
         public static string UploadIdentityFilesText {
             get {
@@ -2139,7 +2139,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to لطفا برای تایید عضویت کد {0} را در سایت رسمی‌آنلاین وارد کنید..
+        ///   Looks up a localized string similar to لطفا برای تایید عضویت کد {0} را در سایت دارالترجمه امیرشاهی‌آنلاین وارد کنید..
         /// </summary>
         public static string VerificationCodeSms {
             get {

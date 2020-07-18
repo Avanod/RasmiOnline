@@ -18,7 +18,7 @@ var changePanelFactory = function (strategy) {
         //    if ($('input[name="DeliverPaymentByMyself"]:checked').val() === 'true')
         //        cost = 0;
         //    let $tr = '<tr class="delivery-row" data-cost="' + cost + '">'
-        //        + '<td class="text-right">هزینه نماینده رسمی آنلاین </td>'
+        //        + '<td class="text-right">هزینه نماینده دارالترجمه امیرشاهی آنلاین </td>'
         //        + '<td colspan="4"></td>'
         //        + '<td dir="ltr">' + cost.toString().cThSeperator() + '</td>'
         //        + '</tr>';

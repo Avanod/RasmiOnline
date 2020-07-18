@@ -132,7 +132,7 @@
                     <li class="order-status  order-status-top-border">
                         <label class="lbl" for="@nameof(Model.IsFullPayed)">@Html.DisplayNameFor(x => x.IsFullPayed)</label>
                         <div class="select-value select">
-                            @Html.DropDownListFor(x => x.OrderStatus, new List<SelectListItem> {
+                            @Html.DropDownListFor(x => x.IsFullPayed, new List<SelectListItem> {
                                     new SelectListItem{
                                         Text = LocalMessage.Yes,
                                         Value = "true"

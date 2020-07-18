@@ -118,7 +118,7 @@ $(document).on('ready', function () {
                 Count: $(elm).find('.doc-count').val(),
                 PricingItemId: $(elm).data('id'),
                 Description: $(elm).find('.description').text(),
-
+                IsFullPayed: $('#IsFullPayed').val()
             };
             if ($(elm).data('added')) {
                 items.push(item);

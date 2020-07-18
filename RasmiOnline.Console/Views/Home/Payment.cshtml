@@ -132,13 +132,13 @@
             <div class="alert alert-success">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4">
+                        <label>جمع کل: <strong>@Model.OrderItems.Sum(x => x.CalculateTotalPrice(Model.LangType)).ToString("N0")</strong></label>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
                         <label>مبلغ پرداخت شده: <strong>@(((int)ViewBag.PayedPrice).ToString("N0"))</strong></label>
                     </div>
                     <div class="col-xs-12 col-sm-4">
-                        <label>مبلغ قایل پرداخت: <strong>@(((int)ViewBag.Price).ToString("N0"))</strong></label>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <label>جمع کل: <strong>@Model.OrderItems.Sum(x => x.CalculateTotalPrice(Model.LangType)).ToString("N0")</strong></label>
+                        <label>مبلغ قابل پرداخت: <strong>@(((int)ViewBag.Price).ToString("N0"))</strong></label>
                     </div>
                 </div>
             </div>

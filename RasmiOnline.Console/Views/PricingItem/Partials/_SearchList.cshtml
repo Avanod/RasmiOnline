@@ -12,6 +12,7 @@
                     <thead class="thead-default">
                         <tr role="row">
                             <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending">#</th>
+                            <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().Lable)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().CategoryId)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().DocumentType)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().Price)</th>
@@ -28,6 +29,7 @@
                             {
                                 <tr role="row">
                                     <td class="sorting_1">@count</td>
+                                    <td>@item.Lable</td>
                                     <td>@item.CategoryId.GetLocalizeDescription()</td>
                                     <td>@($"{item.DocumentType}")</td>
                                     <td>@(item.Price.ToString("0,0"))</td>

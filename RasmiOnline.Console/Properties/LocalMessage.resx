@@ -133,7 +133,7 @@
     <value>عضویت</value>
   </data>
   <data name="SiteName" xml:space="preserve">
-    <value>رسمی آنلاین</value>
+    <value>دارالترجمه امیر شاهی</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>ورود</value>
@@ -232,7 +232,7 @@
     <value>خودم تحویل میدهم</value>
   </data>
   <data name="DeliverByPost" xml:space="preserve">
-    <value>به نماینده رسمی آنلاین تحویل میدهم</value>
+    <value>به نماینده دارالترجمه امیرشاهی آنلاین تحویل میدهم</value>
   </data>
   <data name="BadRequest" xml:space="preserve">
     <value>درخواست داده شده معتبر نمی باشد</value>
@@ -316,7 +316,7 @@
     <value>توسط کاربر</value>
   </data>
   <data name="PostIt" xml:space="preserve">
-    <value>توسط نماینده رسمی آنلاین</value>
+    <value>توسط نماینده دارالترجمه امیرشاهی آنلاین</value>
   </data>
   <data name="AddNewPricingItem" xml:space="preserve">
     <value>جهت افزودن مدرک جدید، نوع آن را تایپ نمایید</value>
@@ -559,7 +559,7 @@
     <value>آدرس برایم پیامک شود</value>
   </data>
   <data name="SendCompanyAddressToUser" xml:space="preserve">
-    <value>{0} عزیز ، آدرس دفتر ترجمه رسمی آنلاین به شرح زیر میباشد:
+    <value>{0} عزیز ، آدرس دفتر ترجمه دارالترجمه امیرشاهی آنلاین به شرح زیر میباشد:
 {1}
 لوکیشن :
 https://goo.gl/maps/nWfrH3Kccqm</value>
@@ -580,10 +580,10 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
     <value>ایمیل</value>
   </data>
   <data name="VerificationCodeSms" xml:space="preserve">
-    <value>لطفا برای تایید عضویت کد {0} را در سایت رسمی‌آنلاین وارد کنید.</value>
+    <value>لطفا برای تایید عضویت کد {0} را در سایت دارالترجمه امیرشاهی‌آنلاین وارد کنید.</value>
   </data>
   <data name="AddSummaryHeaderText" xml:space="preserve">
-    <value>سفارش شما با کد &lt;span class='order-number'&gt;{0}&lt;/span&gt; با موفقیت ثبت شد&lt;br /&gt; کارشناسان مجموعه رسمی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند</value>
+    <value>سفارش شما با کد &lt;span class='order-number'&gt;{0}&lt;/span&gt; با موفقیت ثبت شد&lt;br /&gt; کارشناسان مجموعه دارالترجمه امیرشاهی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند</value>
   </data>
   <data name="LoginToSystem" xml:space="preserve">
     <value>ورود به سیستم</value>
@@ -625,13 +625,13 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
     <value>هزینه دفتری</value>
   </data>
   <data name="UploadIdentityFilesText" xml:space="preserve">
-    <value>با توجه به حساسیت درج صحیح اسامی در مدارک رسمی تاکید می شود که تصویر مطلوب با اسکن پاسپورت خود را در این قسمت آپلود نمایید و یا اسپل صحیح اسامی موجود در مدارک سفارش خود را در قسمت مربوطه تایپ نمایید .</value>
+    <value>با توجه به حساسیت درج صحیح اسامی در مدارک دارالترجمه امیرشاهی تاکید می شود که تصویر مطلوب با اسکن پاسپورت خود را در این قسمت آپلود نمایید و یا اسپل صحیح اسامی موجود در مدارک سفارش خود را در قسمت مربوطه تایپ نمایید .</value>
   </data>
   <data name="UnSuccess" xml:space="preserve">
     <value>نا موفق</value>
   </data>
   <data name="Transaction_Add_Bot" xml:space="preserve">
-    <value>یکی از کاربران رسمی آنلاین با نام ‘{0}’ سفارش خود را به شرح زیر پرداخت نموده است :
+    <value>یکی از کاربران دارالترجمه امیرشاهی با نام ‘{0}’ سفارش خود را به شرح زیر پرداخت نموده است :
 شماره سفارش : {1}
 درگاه بانکی : {2}
 مبلغ پرداختی : {3}
@@ -639,7 +639,7 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
 #واریز_آنلاین</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>www.rasmionline.com</value>
+    <value>www.amirshahi.com</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>تایید</value>
@@ -741,7 +741,7 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
     <value>جهت جستجوی پیشرفته ضربه بزنید...</value>
   </data>
   <data name="AddSummaryHeaderTextForMobile" xml:space="preserve">
-    <value>سفارش شما با کد &lt;span class='order-number'&gt;{0}&lt;/span&gt; با موفقیت ثبت شد. کارشناسان مجموعه رسمی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند</value>
+    <value>سفارش شما با کد &lt;span class='order-number'&gt;{0}&lt;/span&gt; با موفقیت ثبت شد. کارشناسان مجموعه دارالترجمه امیرشاهی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند</value>
   </data>
   <data name="InsertDate" xml:space="preserve">
     <value>تاریخ ثبت</value>
