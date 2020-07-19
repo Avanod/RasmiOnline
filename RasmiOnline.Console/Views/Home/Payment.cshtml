@@ -11,9 +11,9 @@
     <link href="@Url.Content(Links.Content.Styles.Console._03_EndUser.Home.payment_min_css)" rel="stylesheet" />
 }
 <form class="row" id="order-payment" action="@Url.Action(MVC.Home.ActionNames.Submit,MVC.Home.Name)">
-    @Html.HiddenFor(x=>x.UserId)
-    @Html.HiddenFor(x=>x.OrderId)
-    @Html.Hidden("PaymentGatewayId",(int)ViewBag.PaymentGatewayId)
+    @Html.HiddenFor(x => x.UserId)
+    @Html.HiddenFor(x => x.OrderId)
+    @Html.Hidden("PaymentGatewayId", (int)ViewBag.PaymentGatewayId)
     <div class="col-xs-12">
         <div class="card">
             <div class="row">
@@ -120,11 +120,11 @@
                                 </tr>
                             }
                             @*<tr>
-                            <td></td>
-                            <td>جمع کل</td>
-                            <td>@Model.OrderItems.Sum(x => x.Count)</td>
-                            <td>@Model.OrderItems.Sum(x => x.CalculateTotalPrice(Model.LangType)).ToString("N0")</td>
-                        </tr>*@
+                                    <td></td>
+                                    <td>جمع کل</td>
+                                    <td>@Model.OrderItems.Sum(x => x.Count)</td>
+                                    <td>@Model.OrderItems.Sum(x => x.CalculateTotalPrice(Model.LangType)).ToString("N0")</td>
+                                </tr>*@
                         </tbody>
                     </table>
                 </div>
@@ -173,6 +173,9 @@
     </div>
 </form>
 @section footer{
+    <script>
+        var completePayment = @completePayment.ToString().ToLower();
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBa_C42jDWvco-ZAni9pltEALfP9kQvv8g"></script>
     <script src="@Url.Content(Links.Scripts.Plugins.Flickity.flickity_pkgd_min_js)"></script>
     <script src="@Url.Content(Links.Scripts.Plugins.Flickity.flickity_pkgd_min_js)"></script>

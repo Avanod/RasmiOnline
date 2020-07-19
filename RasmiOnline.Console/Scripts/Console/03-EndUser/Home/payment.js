@@ -19,7 +19,7 @@ $(document).on('ready', function () {
         let model = customSerialize($frm);
         console.log(model);
         //let addresses = $('[name="AddressId"]');
-        if ($('[name="AddressId"]:checked').length === 0) {
+        if (!completePayment && $('[name="AddressId"]:checked').length === 0) {
             notify(false, 'لطفا آدرس را مشخص کنید');
             return;
         }

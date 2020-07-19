@@ -107,9 +107,11 @@ $(document).on('ready', function () {
     //send added or changed order items to server
     $(document).on('click', ".btn-submit-order-items", function () {
         let items = [];
+        console.log('fired');
         $('.order-items .pricing-item').each(function (idx, elm) {
             console.log($(this).find('input[name="price"]').val());
             let info = $(this).data('info');
+            
             let item = {
                 OrderId: parseInt($('#OrderId').val()),
                 Price: $(this).find('input[name="price"]').val(),
@@ -131,15 +133,19 @@ $(document).on('ready', function () {
         });
         //official record
         let $officialRecordItem = $('.order-items .official-record-item');
-        let info = $officialRecordItem.data('info');
-        items.push({
-            OrderId: parseInt($('#OrderId').val()),
-            OrderItemId: info.orderItemId,
-            OrderItemType: "OfficialRecordItem",
-            Price: $officialRecordItem.find('input[name="price"]').val(),
-            Copy: $officialRecordItem.find('.copy-count').val(),
-            Count: $officialRecordItem.find('.doc-count').val()
-        });
+        if ($officialRecordItem.length > 0) {
+            let info = $officialRecordItem.data('info');
+            console.log(info);
+            items.push({
+                OrderId: parseInt($('#OrderId').val()),
+                OrderItemId: info.orderItemId,
+                OrderItemType: "OfficialRecordItem",
+                Price: $officialRecordItem.find('input[name="price"]').val(),
+                Copy: $officialRecordItem.find('.copy-count').val(),
+                Count: $officialRecordItem.find('.doc-count').val()
+            });
+        }
+
 
         if (items.length === 0) {
             notify(false, "هیچ آیتمی وجود ندارد");

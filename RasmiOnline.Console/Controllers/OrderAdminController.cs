@@ -57,7 +57,7 @@
             var office = _officeAddressBusiness.GetAll();
             var lstOffice = new List<SelectListItem>();
 
-            lstOffice.Add(new SelectListItem { Value = Guid.Empty.ToString(), Text = LocalMessage.PleaseSelect });
+            //lstOffice.Add(new SelectListItem { Value = Guid.Empty.ToString(), Text = LocalMessage.PleaseSelect });
             lstOffice.AddRange(office.Result.Select(x => new SelectListItem
             {
                 Text = $"{x.DeliveryName} :: {x.LangType.GetDescription()}",

@@ -12,7 +12,7 @@
                     <div class="col-sm-12 m-b-20" dir="rtl">
                         <div class="form-group">
                             @Html.LabelFor(x => x.Result.ViewId)
-                            @Html.DropDownListFor(x => x.Result.ViewId, (List<SelectListItem>)ViewBag.Views, new { @class = "form-control select2 select2-hidden-accessible", @aria_hidden = "true", @tabindex = "-1", @style = "width:100% !important;" })
+                            @Html.DropDownListFor(x => x.Result.ViewId, (List<SelectListItem>)ViewBag.Views, new { @class = "form-control select2", @style = "width:100% !important;" })
                         </div>
                     </div>
 

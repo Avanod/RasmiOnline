@@ -14,6 +14,7 @@ namespace RasmiOnline.Console
         public static string UnobtrusiveJavaScriptEnabled { get { return GetConfigSettingItem("UnobtrusiveJavaScriptEnabled"); } }
         public static string BaseDomain { get { return GetConfigSettingItem("BaseDomain"); } }
         public static string UserRoleId { get { return GetConfigSettingItem("UserRoleId"); } }
+        public static string EndUserRoleId { get { return GetConfigSettingItem("EndUserRoleId"); } }
         public static string AuthTimeoutInMiutes { get { return GetConfigSettingItem("AuthTimeoutInMiutes"); } }
         public static string AuthTimeoutWithRemeberMeInHours { get { return GetConfigSettingItem("AuthTimeoutWithRemeberMeInHours"); } }
         public static string TransactionRedirectUrl_Pay { get { return GetConfigSettingItem("TransactionRedirectUrl_Pay"); } }

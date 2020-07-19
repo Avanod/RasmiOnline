@@ -12,6 +12,8 @@ using RasmiOnline.Business.Protocol;
 using RasmiOnline.Console.Properties;
 using Gnu.Framework.Core.Authentication;
 using RasmiOnline.Console.PaymentStrategy;
+using Gnu.Framework.Core;
+using Gnu.Framework.AspNet.Mvc;
 
 namespace RasmiOnline.Console.Controllers
 {
@@ -132,7 +134,7 @@ namespace RasmiOnline.Console.Controllers
             return View(new AddOrderModel());
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public virtual JsonResult AddOrder(AddOrderModel model, List<HttpPostedFileBase> attachments)
         {
             var addUser = _userSrv.Insert(model);
@@ -141,7 +143,7 @@ namespace RasmiOnline.Console.Controllers
             var userInRole = new UserInRole
             {
                 UserId = addUser.Result,
-                RoleId = int.Parse(AppSettings.UserRoleId),
+                RoleId = int.Parse(AppSettings.EndUserRoleId),
                 IsActive = true,
                 ExpireDateSh = PersianDateTime.Now.AddYears(5).ToString(PersianDateTimeFormat.Date)
             };
@@ -151,10 +153,22 @@ namespace RasmiOnline.Console.Controllers
             var addOrder = _orderSrv.Add(model);
             if (!addOrder.IsSuccessful) return Json(addUser);
             var addFiles = _attachmentSrv.Insert(addOrder.Result, AttachmentType.OrderFiles, attachments);
-            return Json(new { addFiles.IsSuccessful, addFiles.Message });
+            addOrder.Result.User = new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                MobileNumber = long.Parse(model.MobileNumber)
+            };
+            return Json(new
+            {
+                addFiles.IsSuccessful,
+                addFiles.Message,
+                Result = MvcExtention.RenderViewToString(this, MVC.Home.Views.Partials._AfterAdd, addOrder.Result)
+            });
         }
 
-        [HttpGet, Route("Home/{orderId:int}/{userId:Guid}")]
+        [HttpGet, AllowAnonymous, Route("Home/{orderId:int}/{userId:Guid}")]
         public virtual ActionResult Payment(int orderId, Guid userId)
         {
             var user = _userBusiness.Find(userId);
@@ -175,7 +189,7 @@ namespace RasmiOnline.Console.Controllers
             return View(order);
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public virtual ActionResult Submit(CompleteOrderModel model)
         {
             #region Checking

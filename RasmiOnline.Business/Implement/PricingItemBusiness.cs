@@ -39,9 +39,8 @@
         /// <returns></returns>
         public IEnumerable<PricingItem> Get(string str, bool? isPricingItem = null, int count = 500)
         {
-            var query = _pricingItem.Where(x => x.Lable.Contains(str) 
-            && !x.IsDeleted
-            && x.DocumentType.Contains(str));
+            var query = _pricingItem.Where(x => (x.Lable.Contains(str) || x.DocumentType.Contains(str))
+            && !x.IsDeleted);
             if (isPricingItem == true)
                 query = query.Where(x => x.IsPricingItem == isPricingItem);
             return query.AsNoTracking().Take(count).ToList();

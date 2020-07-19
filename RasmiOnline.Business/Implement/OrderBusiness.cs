@@ -127,7 +127,7 @@
         /// <returns></returns>
         public IActionResponse<Order> Update(int orderId, LangType newLangType, IEnumerable<OrderItem> items)
         {
-            var orderItem =new OrderItem();
+            var orderItem = new OrderItem();
             PricingItem pricingItem;
             var order = Find(orderId, "OrderItems");
             order.LangType = newLangType;
@@ -173,12 +173,19 @@
             }
             #region update official record item 
             orderItem = order.OrderItems.FirstOrDefault(x => x.OrderItemType == OrderItemType.OfficialRecordItem);
-            var modelOfficialRecordItem = items.FirstOrDefault(x => x.OrderItemType == OrderItemType.OfficialRecordItem);
-            orderItem.Copy = modelOfficialRecordItem.Copy;
-            orderItem.Count = modelOfficialRecordItem.Count;
-            if (newLangType != LangType.Fa_En) orderItem.Price_OthersLang = modelOfficialRecordItem.Price;
-            else orderItem.Price = modelOfficialRecordItem.Price;
-            _uow.Entry(orderItem).State = EntityState.Modified;
+            if (orderItem != null)
+            {
+                var modelOfficialRecordItem = items.FirstOrDefault(x => x.OrderItemType == OrderItemType.OfficialRecordItem);
+                if (modelOfficialRecordItem == null)
+                {
+                    orderItem.Copy = modelOfficialRecordItem.Copy;
+                    orderItem.Count = modelOfficialRecordItem.Count;
+                }
+                if (newLangType != LangType.Fa_En) orderItem.Price_OthersLang = modelOfficialRecordItem.Price;
+                else orderItem.Price = modelOfficialRecordItem.Price;
+                _uow.Entry(orderItem).State = EntityState.Modified;
+            }
+
             #endregion
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
@@ -319,7 +326,7 @@
             if (user == null)
             {
                 #region Set New User Ptops
-                if(string.IsNullOrWhiteSpace(model.User.FirstName))  model.User.FirstName = BusinessMessage.User;
+                if (string.IsNullOrWhiteSpace(model.User.FirstName)) model.User.FirstName = BusinessMessage.User;
                 if (string.IsNullOrWhiteSpace(model.User.LastName)) model.User.LastName = BusinessMessage.New;
                 model.User.RegisterDateMi = model.User.LastLoginDateMi = DateTime.Now;
                 model.User.RegisterDateSh = model.User.LastLoginDateSh = PersianDateTime.Now.ToString(PersianDateTimeFormat.Date);
@@ -833,6 +840,7 @@
             order.WithPassport = model.WithPassport;
             order.OrderTitle = "بدون عنوان";
             order.LangType = LangType.Fa_En;
+            order.IsFullPayed = true;
             _order.Add(order);
             var rep = _uow.SaveChanges();
             if (rep.ToSaveChangeResult())

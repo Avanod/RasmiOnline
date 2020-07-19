@@ -18,7 +18,6 @@ $(document).on('ready', function () {
         }
         let data = new FormData();
         let model = customSerialize($frm);
-        console.log(model);
         let keys = Object.keys(model);
         let i = 0;
         for (i = 0; i < keys.length; i++)
@@ -37,7 +36,7 @@ $(document).on('ready', function () {
 
                 if (rep.IsSuccessful) {
                     ajaxBtn.normal();
-                    $('#add-order-page').html('<p class="alert alert-success text-center">' + successMessage + '</p>');
+                    $('#add-order-page').html(rep.Result);
                 }
                 else  notify(false, rep.Message);
   

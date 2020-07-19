@@ -138,9 +138,24 @@ namespace RasmiOnline.Console.Controllers
             {
                 public readonly string AddOrder = "AddOrder";
                 public readonly string Payment = "Payment";
+                public readonly string Temp = "Temp";
             }
             public readonly string AddOrder = "~/Views/Home/AddOrder.cshtml";
             public readonly string Payment = "~/Views/Home/Payment.cshtml";
+            public readonly string Temp = "~/Views/Home/Temp.cshtml";
+            static readonly _PartialsClass s_Partials = new _PartialsClass();
+            public _PartialsClass Partials { get { return s_Partials; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _PartialsClass
+            {
+                static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                public class _ViewNamesClass
+                {
+                    public readonly string _AfterAdd = "_AfterAdd";
+                }
+                public readonly string _AfterAdd = "~/Views/Home/Partials/_AfterAdd.cshtml";
+            }
         }
     }
 

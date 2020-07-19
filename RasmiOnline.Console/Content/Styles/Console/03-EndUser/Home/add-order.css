@@ -28,6 +28,20 @@
         font-size: 1.1rem; }
   #add-order-page #input-file {
     display: none; }
+  #add-order-page .info-wrapper {
+    border: solid 1px #cfcece;
+    border-radius: 4px; }
+    #add-order-page .info-wrapper label {
+      padding: 10px;
+      margin-bottom: 0;
+      background-color: #eee;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px; }
+  #add-order-page .desc-wrapper {
+    border: solid 1px #cfcece;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 4px; }
 
 .alert--notify .alert--notify__close {
   background: no-repeat;

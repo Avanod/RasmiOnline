@@ -5,7 +5,6 @@
     using Gnu.Framework.Core;
     using System.Data.Entity;
     using RasmiOnline.Domain.Dto;
-    using System.Data.SqlClient;
     using RasmiOnline.Domain.Entity;
     using System.Collections.Generic;
     using RasmiOnline.Business.Protocol;
@@ -61,7 +60,6 @@
         public IActionResponse<IEnumerable<ViewInRole>> GetViewsInRole(int? roleId = null)
         {
             var response = new ActionResponse<IEnumerable<ViewInRole>>();
-
             var result = _viewInRole.Include(i => i.Role)
                          .Include(i => i.View)
                          .Where(x => (roleId != null ? x.RoleId == roleId : true))

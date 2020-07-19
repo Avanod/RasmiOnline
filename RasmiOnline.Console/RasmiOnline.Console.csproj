@@ -809,6 +809,7 @@
     <Content Include="Views\Survey\Partials\_ShowResult.cshtml" />
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\OrderAdmin\Partials\_OrderPaymentInfo.cshtml" />
+    <Content Include="Views\Home\Partials\_AfterAdd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
