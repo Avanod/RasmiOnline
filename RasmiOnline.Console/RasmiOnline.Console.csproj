@@ -214,6 +214,7 @@
     <Content Include="Content\Images\BankName\Tose_eSaderat.png" />
     <Content Include="Content\Images\BankName\Tose_eTaavon.png" />
     <Content Include="Content\Images\BankName\ZarinPal.png" />
+    <Content Include="Content\Images\bg-pattern.svg" />
     <Content Include="Content\Images\Ext\avi.png" />
     <Content Include="Content\Images\Ext\docx.png" />
     <Content Include="Content\Images\Ext\mp3.png" />
