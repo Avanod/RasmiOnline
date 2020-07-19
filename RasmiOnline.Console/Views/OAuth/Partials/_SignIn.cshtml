@@ -3,8 +3,8 @@
     Layout = null;
 }
 
-<div class="form-block sign-in-form @(ViewBag.ActiveBlock=="signin"?"active":"")" id="signin-form">
-    <form class="oauth-form " action="@Url.Action(MVC.OAuth.ActionNames.SignIn)" >
+<div class="form-block sign-in-form @(ViewBag.ActiveBlock=="signin"?"active":"") " id="signin-form">
+    <form class="oauth-form p-b-20" action="@Url.Action(MVC.OAuth.ActionNames.SignIn)" >
         <div class="group alert w-full" dir="rtl">
             <small></small>
         </div>
@@ -51,7 +51,7 @@
            
         </div>
     </form>
-    <div class="footer">
+    <div class="footer hidden">
         حساب کاربری ندارید؟ همین حالا
         <a href="#signup-form" class="inner-nav goto-sign-up">ثبت نام کنید</a>
         
