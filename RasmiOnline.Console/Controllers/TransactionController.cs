@@ -165,11 +165,14 @@
                     return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
 
                 }
-                var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction);
-                if (result.IsSuccessful)
+                transaction.TrackingId = "123";//TODO:Remove
+                //TODO:Uncomment Below
+                //var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction);
+                //if (result.IsSuccessful)
+                if (true)//TODO:Remove
                     return View(viewName: MVC.Transaction.Views.Success, model: transaction);
-
-                ViewBag.ErrorMessage = result.Message;
+                //TODO:Uncomment Below
+                //ViewBag.ErrorMessage = result.Message;
                 return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
             }
             ViewBag.ErrorMessage = LocalMessage.RedirectException;

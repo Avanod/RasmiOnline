@@ -68,7 +68,13 @@
         border: solid 1px #cfcece;
         padding: 10px;
         background-color: #eee;
-        border-radius:4px;
+        border-radius: 4px;
+    }
+
+    .upload-box {
+        [class^=col-] {
+            float: right;
+        }
     }
 }
 
@@ -76,12 +82,12 @@
     .alert--notify__close {
         background: no-repeat;
         border: none;
-        &:focus{
-            outline:none;
+
+        &:focus {
+            outline: none;
         }
     }
 }
-
 .pace {
     -webkit-pointer-events: none;
     pointer-events: none;
@@ -570,4 +576,14 @@
 
 .pace.pace-inactive {
     display: none;
+}
+body.pace-running:after{
+    content:'';
+    background-color:rgba(0,0,0,0.5);
+    position:fixed;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    z-index:99;
 }

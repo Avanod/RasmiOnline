@@ -43,15 +43,16 @@
                 Mobile: currentUser.MobileNumber.ToString(),
                 CallbackURL: AppSettings.TransactionRedirectUrl_ZarinPal,
                 Authority: out uniqueIdentifier);
-
-            if (paymentRequest == 100)
+            //TODO:Uncomment Below
+            //if (paymentRequest == 100)
+            if (true)//TODO:Remove
             {
                 var transaction = _transactionBusiness.Do(new Transaction
                 {
                     OrderId = model.OrderId,
                     Price = model.Price,
                     PaymentGatewayId = model.PaymentGatewayId,
-                    Authority = uniqueIdentifier,
+                    Authority = "testing",//uniqueIdentifier,
                     Status = "100",
                     InsertDateMi = DateTime.Now,
                     InsertDateSh = PersianDateTime.Now.ToString(PersianDateTimeFormat.Date)
@@ -84,8 +85,9 @@
                 Amount: model.Price,
                 RefID: out trackingId
                 );
-
-            if (paymentVerify == 100)
+            //TODO:Uncomment Below
+            //if (paymentVerify == 100)
+            if (true)//TODO:Remove
             {
                 model.IsSuccess = true;
                 model.TrackingId = trackingId.ToString();

@@ -42,6 +42,8 @@
     padding: 10px;
     background-color: #eee;
     border-radius: 4px; }
+  #add-order-page .upload-box [class^=col-] {
+    float: right; }
 
 .alert--notify .alert--notify__close {
   background: no-repeat;
@@ -431,3 +433,13 @@
 
 .pace.pace-inactive {
   display: none; }
+
+body.pace-running:after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 99; }
