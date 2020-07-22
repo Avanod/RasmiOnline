@@ -26,23 +26,23 @@
         public IActionResponse<bool> Send(Message message)
         {
             var result = new ActionResponse<bool>();
-            //try
-            //{
-           // FileLoger.Info($"Send Sms Message = Receiver:{message.Receiver}, Content:{message.Content}", GlobalVariable.LogPath);
-            var sendResult = _smsAdapter.SendMessage("tarjomano1", "11360655", "9830008638000067", message.Content, new ArrayOfString() { message.Receiver }, 1, null);
-            if (sendResult[0] > 1000)
+            try
             {
-                message.State = StateType.Accepted;
-                result.IsSuccessful = true;
-            }
-            message.SendStatus = sendResult[0].ToString();
-            _uow.Entry(message).State = EntityState.Modified;
-            var saveChange = _uow.SaveChanges();
+                FileLoger.Info($"Send Sms Message = Receiver:{message.Receiver}, Content:{message.Content}", GlobalVariable.LogPath);
+                var sendResult = _smsAdapter.SendMessage("tarjomano1", "11360655", "9830008638000067", message.Content, new ArrayOfString() { message.Receiver }, 1, null);
+                if (sendResult[0] > 1000)
+                {
+                    message.State = StateType.Accepted;
+                    result.IsSuccessful = true;
+                }
+                message.SendStatus = sendResult[0].ToString();
+                _uow.Entry(message).State = EntityState.Modified;
+                var saveChange = _uow.SaveChanges();
 
-            result.Result = saveChange.ToSaveChangeResult();
-           // FileLoger.Info($"Send Sms Result = IsSuccessful:{result.IsSuccessful}, Result:{sendResult[0]}", GlobalVariable.LogPath);
-            //}
-            //catch (Exception e) { FileLoger.Error(e, GlobalVariable.LogPath); }
+                result.Result = saveChange.ToSaveChangeResult();
+                FileLoger.Info($"Send Sms Result = IsSuccessful:{result.IsSuccessful}, Result:{sendResult[0]}", GlobalVariable.LogPath);
+            }
+            catch (Exception e) { FileLoger.Error(e, GlobalVariable.LogPath); }
             return result;
         }
     }
