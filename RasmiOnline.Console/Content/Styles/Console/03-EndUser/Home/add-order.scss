@@ -2,6 +2,21 @@
     margin-top: 50px;
     padding: 15px;
 
+    label {
+        font-weight: 300;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .alert-warning{
+        line-height:20px;
+
+        .text-1{
+            font-weight:600;
+        }
+    }
     div[class^='col'] {
         float: right;
     }
@@ -76,6 +91,10 @@
             float: right;
         }
     }
+
+    #WithPassport {
+        transform: scale(1.2);
+    }
 }
 
 .alert--notify {
@@ -88,6 +107,32 @@
         }
     }
 }
+
+body.pace-running:not(.pace-done) {
+    &:before {
+        content: 'در حال بارگذاری...';
+        color: #fff;
+        position: fixed;
+        top: 50%;
+        margin-top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+        font-size: 1.2rem;
+    }
+
+    &:after {
+        content: '';
+        background-color: rgba(0,0,0,0.5);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 99;
+    }
+}
+
 .pace {
     -webkit-pointer-events: none;
     pointer-events: none;
@@ -116,7 +161,6 @@
     height: 50px;
     overflow: hidden;
 }
-
 .pace .pace-progress {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -158,6 +202,7 @@
     right: 0;
     padding-right: 16px;
     top: 4px;
+    color:#fff;
 }
 
 .pace .pace-progress[data-progress-text="0%"]:after {
@@ -576,14 +621,4 @@
 
 .pace.pace-inactive {
     display: none;
-}
-body.pace-running:after{
-    content:'';
-    background-color:rgba(0,0,0,0.5);
-    position:fixed;
-    top:0;
-    bottom:0;
-    right:0;
-    left:0;
-    z-index:99;
 }

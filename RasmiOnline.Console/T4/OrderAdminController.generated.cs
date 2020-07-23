@@ -179,13 +179,13 @@ namespace RasmiOnline.Console.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Add = "Add";
+                public readonly string disabled_Edit_Mobile = "disabled-Edit.Mobile";
                 public readonly string Edit = "Edit";
-                public readonly string Edit_Mobile = "Edit.Mobile";
                 public readonly string Manage = "Manage";
             }
             public readonly string Add = "~/Views/OrderAdmin/Add.cshtml";
+            public readonly string disabled_Edit_Mobile = "~/Views/OrderAdmin/disabled-Edit.Mobile.cshtml";
             public readonly string Edit = "~/Views/OrderAdmin/Edit.cshtml";
-            public readonly string Edit_Mobile = "~/Views/OrderAdmin/Edit.Mobile.cshtml";
             public readonly string Manage = "~/Views/OrderAdmin/Manage.cshtml";
             static readonly _PartialsClass s_Partials = new _PartialsClass();
             public _PartialsClass Partials { get { return s_Partials; } }

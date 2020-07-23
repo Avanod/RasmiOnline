@@ -1,13 +1,13 @@
 ﻿/// <reference path="../../../jquery-1.10.2.min.js" />
 var assets = [];
 paceOptions = {
+    startOnPageLoad: false,
     ajax: {
-        trackMethods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH']
+        trackMethods: ['POST']
     }
 };
 $(document).on('ready', function () {
-    
-
+    $('body').addClass('loaded');
     $('#add-order-page').on('click', '#btn-submit', function () {
         let $btn = $(this);
         let $frm = $btn.closest('form');
@@ -33,7 +33,6 @@ $(document).on('ready', function () {
             contentType: false,
             processData: false,
             success: function (rep) {
-
                 if (rep.IsSuccessful) {
                     ajaxBtn.normal();
                     $('#add-order-page').html(rep.Result);

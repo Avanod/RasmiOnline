@@ -1,5 +1,6 @@
 ﻿/// <reference path="../../jquery-1.10.2.min.js" />
-var $fileBox = '<div class="col-xs-12 col-sm-4 uploaded new m-b">' +
+const maxImageSize = 3 * 1024 * 1024;//bytes
+var $fileBox = '<div class="uploader-item uploaded new m-b">' +
     '<button class="btn-remove"><i class="fa fa-times"></i></button>' +
     '<img src="{0}"/>' +
     '</div>';
@@ -41,6 +42,10 @@ $(document).ready(function () {
         event.stopPropagation();
         var $i = $(this);
         var file = this.files[0];
+        if (file.size > maxImageSize) {
+            notify(false,'حداکثر حجم هر تصویر 3 مگا بایت می باشد');
+            return;
+        }
         var reader = new FileReader();
         reader.onload = function (e) {
             var fileType = getFileType(file.name);

@@ -86,7 +86,7 @@
         [StringLength(300, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         public string ConfirmComment { get; set; }
 
-        [Display(Name = nameof(DisplayName.ConfirmComment), ResourceType = typeof(DisplayName))]
+        [Display(Name = nameof(DisplayName.Description), ResourceType = typeof(DisplayName))]
         [MaxLength(500, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         [StringLength(500, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         public string OrderDescription { get; set; }

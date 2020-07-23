@@ -256,6 +256,7 @@
     <Content Include="Content\Images\PricingItems\tick-services.png" />
     <Content Include="Content\Images\PricingItems\tourist.png" />
     <Content Include="Content\Images\stamp.png" />
+    <Content Include="Content\key.txt" />
     <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.css">
       <DependentUpon>statistic.scss</DependentUpon>
     </Content>
@@ -488,6 +489,7 @@
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="GlobalMethod.cs" />
     <Compile Include="GlobalVariable.cs" />
+    <Compile Include="PaymentStrategy\PasargadStrategy.cs" />
     <Compile Include="T4\AddressController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -752,7 +754,7 @@
     <Content Include="Views\Transaction\Partials\_AddableList.cshtml" />
     <Content Include="Views\Order\Partials\_SelectPaymentType.cshtml" />
     <Content Include="Views\Order\Pay.Mobile.cshtml" />
-    <Content Include="Views\OrderAdmin\Edit.Mobile.cshtml" />
+    <Content Include="Views\OrderAdmin\disabled-Edit.Mobile.cshtml" />
     <Content Include="Views\User\Partials\_ResetUserPassword.cshtml" />
     <Content Include="Views\OrderItem\Partials\_EditableList.Mobile.cshtml" />
     <Content Include="Views\Order\Detail.Mobile.cshtml" />

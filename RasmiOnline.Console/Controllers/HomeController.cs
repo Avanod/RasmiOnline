@@ -150,6 +150,7 @@ namespace RasmiOnline.Console.Controllers
             if (!_userInRoleBusiness.Value.CheckExist(userInRole))
                 _userInRoleBusiness.Value.Insert(userInRole);
             model.Status = OrderStatus.WaitForPricing;
+            model.DayToDeliver = byte.Parse(AppSettings.DefaultDayToDeliver);
             var addOrder = _orderSrv.Add(model);
             if (!addOrder.IsSuccessful) return Json(addUser);
             var addFiles = _attachmentSrv.Insert(addOrder.Result, AttachmentType.OrderFiles, attachments);
@@ -172,7 +173,7 @@ namespace RasmiOnline.Console.Controllers
         public virtual ActionResult Payment(int orderId, Guid userId)
         {
             var user = _userBusiness.Find(userId);
-            ViewBag.PaymentGatewayId = _paymentGatewayBusiness.GetAll().First().PaymentGatewayId;
+            ViewBag.PaymentGatewayId = int.Parse(AppSettings.DefaultPaymentGatewayId);//_paymentGatewayBusiness.GetAll().First().PaymentGatewayId;
             if (user == null) return View(MVC.Order.Views.NotFound);
             var rep = SignIn(user, true);
             if (!rep.IsSuccessful) return View(MVC.Shared.Views.Error, (object)rep.Message);

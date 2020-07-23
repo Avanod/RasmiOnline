@@ -165,19 +165,40 @@
                     return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
 
                 }
-                transaction.TrackingId = "123";//TODO:Remove
-                //TODO:Uncomment Below
-                //var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction);
-                //if (result.IsSuccessful)
-                if (true)//TODO:Remove
+                var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction);
+                if (result.IsSuccessful)
                     return View(viewName: MVC.Transaction.Views.Success, model: transaction);
-                //TODO:Uncomment Below
-                //ViewBag.ErrorMessage = result.Message;
+                ViewBag.ErrorMessage = result.Message;
                 return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
             }
             ViewBag.ErrorMessage = LocalMessage.RedirectException;
 
             return View(viewName: MVC.Transaction.Views.Failed, model: new Transaction());
+        }
+
+        public virtual ViewResult PasargadVerify(string IN,string tref ,string id)
+        {
+            ViewBag.PaymentGateway = BankNames.Pasargad;
+            var transaction = _transactionBusiness.Find(IN);
+            if (transaction.IsNull())
+            {
+                ViewBag.ErrorMessage = LocalMessage.PaymentException;
+                return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
+            }
+
+            var gateWay = _paymentGatewayBusiness.Find(transaction.PaymentGatewayId);
+            if (gateWay.IsNull())
+                return View(viewName: MVC.Transaction.Views.Failed, model: LocalMessage.PaymentException);
+            var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction, tref);
+            if (result.IsSuccessful)
+            {
+                //_orderBusiness.
+                return View(viewName: MVC.Transaction.Views.Success, model: transaction);
+            }
+
+            transaction.TrackingId = "0";
+            ViewBag.ErrorMessage = result.Message;
+            return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
         }
 
         [HttpGet, AllowAnonymous]

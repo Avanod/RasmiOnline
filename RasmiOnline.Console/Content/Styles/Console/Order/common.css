@@ -47,7 +47,7 @@ ul.order li {
         background-color: #e6e4e4;
         padding: 8px 5px;
         margin: 0;
-        min-width:170px;
+        min-width:220px;
     }
 
     .order .order-status .select-value {
@@ -55,7 +55,7 @@ ul.order li {
         margin-right: 10px;
         position: absolute;
         left: 15px;
-        right: 170px;
+        right: 220px;
     }
 
         .order .order-status .select-value .border-none {

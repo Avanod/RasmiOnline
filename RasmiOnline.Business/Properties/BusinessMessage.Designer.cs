@@ -401,8 +401,8 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} قیمت گذاری گردید. لطفا برای مشاهده فاکتور بر روی لینک زیر کلیک کنید:
-        ///http://panel.rasmiOnline.com.
+        ///   Looks up a localized string similar to عزیز، سفارش شماره {0} قیمت گذاری گردید. لطفا برای مشاهده فاکتور بر روی لینک زیر کلیک کنید:
+        ///{1}.
         /// </summary>
         public static string Waiting_For_Payment {
             get {

@@ -184,8 +184,8 @@
 www.rasmionline.com</value>
   </data>
   <data name="Waiting_For_Payment" xml:space="preserve">
-    <value>NAME عزیز، سفارش شماره {0} قیمت گذاری گردید. لطفا برای مشاهده فاکتور بر روی لینک زیر کلیک کنید:
-http://panel.rasmiOnline.com</value>
+    <value>عزیز، سفارش شماره {0} قیمت گذاری گردید. لطفا برای مشاهده فاکتور بر روی لینک زیر کلیک کنید:
+{1}</value>
   </data>
   <data name="MobileNumberIsAlreadyRegistered" xml:space="preserve">
     <value>شماره موبایل قبلا ثبت شده است</value>

@@ -40,6 +40,10 @@ body {
       #order-payment .card #addresses .radio-wrapper input {
         vertical-align: middle;
         margin-top: 0; }
+  #order-payment #NeedDraft {
+    transform: scale(1.2);
+    vertical-align: middle;
+    margin-top: 0; }
   #order-payment .draft {
     display: flex;
     align-items: center;
@@ -62,7 +66,9 @@ body {
       width: 50px;
       margin: 0 15px; }
     .address_list:after, .address_list:before {
-      display: none !important; } }
+      display: none !important; }
+  .address_list .address_item:not(.add-address-button) {
+    width: 280px; } }
 
 #modal button.close {
   position: absolute;

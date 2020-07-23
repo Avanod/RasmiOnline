@@ -15,6 +15,7 @@
     using Observers;
     using System.Text.RegularExpressions;
     using Gnu.Framework.Core.Security;
+    using System.Web.Compilation;
 
     public class OrderBusiness : IOrderBusiness, IExportTableBusiness
     {
@@ -70,7 +71,7 @@
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IActionResponse<Order> BriefUpdate(Order model)
+        public IActionResponse<Order> BriefUpdate(Order model, string baseDomain = "")
         {
             var notifOffice = false;
             var order = _order.Find(model.OrderId);
@@ -95,7 +96,7 @@
 
             var rep = _uow.SaveChanges();
             if (rep.ToSaveChangeResult())
-                StatusNotifier(order);
+                StatusNotifier(order, baseDomain);
 
             //Notif office once
             if (notifOffice)
@@ -189,7 +190,6 @@
             #endregion
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
-
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
@@ -198,7 +198,7 @@
             };
         }
 
-        public void StatusNotifier(Order order)
+        public void StatusNotifier(Order order, string baseDomain = "")
         {
             var user = _userBusiness.Value.Find(order.UserId);
 
@@ -209,7 +209,7 @@
                     case OrderStatus.WaitForPayment:
                         _observerManager.Value.Notify(ConcreteKey.Waiting_For_Payment, new ObserverMessage
                         {
-                            SmsContent = string.Format(BusinessMessage.Waiting_For_Payment, order.OrderId),
+                            SmsContent = string.Format(BusinessMessage.Waiting_For_Payment, order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
                             BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             Key = ConcreteKey.Waiting_For_Payment.ToString(),
                             RecordId = order.OrderId,
@@ -841,6 +841,10 @@
             order.OrderTitle = "بدون عنوان";
             order.LangType = LangType.Fa_En;
             order.IsFullPayed = true;
+            order.DayToDelivery = model.DayToDeliver;
+            order.DeliverFiles_DateMi = DateTime.Now.AddDays(model.DayToDeliver);
+            order.DeliverFiles_DateSh = PersianDateTime.Now.AddDays(model.DayToDeliver).ToString(PersianDateTimeFormat.Date);
+
             _order.Add(order);
             var rep = _uow.SaveChanges();
             if (rep.ToSaveChangeResult())
