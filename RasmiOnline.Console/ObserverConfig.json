@@ -37,6 +37,12 @@
     ]
   },
   {
+    "Key": "Pay_First_PaymentPart",
+    "Observers": [
+      "RasmiOnline.Business.Observers.SmsObserver"
+    ]
+  },
+  {
     "Key": "Pay_All_Factor",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver"
