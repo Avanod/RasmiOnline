@@ -830,17 +830,20 @@
 
         public IActionResponse<Order> Add(AddOrderModel model)
         {
-            var order = new Order();
             var _setting = _settingBusiness.Value.Get();
-            order.DayToDelivery = _setting.DayToDelivery;
-            order.UserId = model.UserId;
-            order.OrderStatus = model.Status;
-            order.OrderDescription = model.Description;
-            order.TranslateType = model.TranslateType;
-            order.WithPassport = model.WithPassport;
-            order.OrderTitle = "بدون عنوان";
-            order.LangType = LangType.Fa_En;
-            order.IsFullPayed = true;
+
+            var order = new Order
+            {
+                DayToDelivery = _setting.DayToDelivery,
+                UserId = model.UserId,
+                OrderStatus = model.Status,
+                OrderDescription = model.Description,
+                TranslateType = model.TranslateType,
+                WithPassport = model.WithPassport,
+                OrderTitle = "بدون عنوان",
+                LangType = LangType.Fa_En,
+                IsFullPayed = true
+            };
             order.DayToDelivery = model.DayToDeliver;
             order.DeliverFiles_DateMi = DateTime.Now.AddDays(model.DayToDeliver);
             order.DeliverFiles_DateSh = PersianDateTime.Now.AddDays(model.DayToDeliver).ToString(PersianDateTimeFormat.Date);
@@ -858,6 +861,7 @@
                     UserId = model.UserId
                 });
             }
+
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
