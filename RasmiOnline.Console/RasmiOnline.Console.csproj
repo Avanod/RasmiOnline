@@ -236,6 +236,7 @@
     <Content Include="Content\Images\Landing\running-active.png" />
     <Content Include="Content\Images\Landing\running.png" />
     <Content Include="Content\Images\Landing\tick.png" />
+    <Content Include="Content\Images\Logo\logo-square.png" />
     <Content Include="Content\Images\Logo\Logo-Transparent.png" />
     <Content Include="Content\Images\Logo\Logo.png" />
     <Content Include="Content\Images\oauth-bg.jpg" />

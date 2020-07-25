@@ -13,6 +13,7 @@
         IActionResponse<Order> BriefUpdate(Order model, string baseDomain = "");
         IActionResponse<Order> Update(int orderId, LangType newLangType, IEnumerable<OrderItem> items);
         IActionResponse<Order> UpdateStatus(int orderId);
+        IActionResponse<Order> UpdateStatus(int orderId, OrderStatus status);
         IActionResponse<Order> UpdateOrderDeliverFiles(int orderId);
         void StatusNotifier(Order order, string baseDomain = "");
         IActionResponse<IEnumerable<Order>> GetAllOrder(Guid? userId = null, Guid? officeUserId = null, OrderStatus? orderStatus = null, int count = 100);

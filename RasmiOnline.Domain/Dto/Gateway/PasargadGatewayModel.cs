@@ -9,7 +9,7 @@
         public string Token { get; set; }
     }
 
-    public class PasargadVerifyResponse
+    public class PasargadCheckResponse
     {
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
@@ -22,5 +22,14 @@
         public int MerchantCode { get; set; }
         public int TerminalCode { get; set; }
         public decimal Amount { get; set; }
+    }
+
+    public class PasargadVerifyResponse
+    {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
+        public string MaskedCardNumber { get; set; }
+        public string HashedCardNumber { get; set; }
+        public string ShaparakRefNumber { get; set; }
     }
 }

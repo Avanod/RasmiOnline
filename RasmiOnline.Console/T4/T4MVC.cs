@@ -580,6 +580,7 @@ namespace Links
                 public const string UrlPath = "~/Content/Images/Logo";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string logo_square_png = Url("logo-square.png");
                 public static readonly string Logo_Transparent_png = Url("Logo-Transparent.png");
                 public static readonly string Logo_png = Url("Logo.png");
             }

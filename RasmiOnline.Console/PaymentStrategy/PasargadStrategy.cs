@@ -86,16 +86,17 @@
                     IsSuccessful = false,
                     Message = LocalMessage.Exception
                 };
-            var dataModel = new {
-                InvoiceNumber= model.OrderId.ToString(),
-                InvoiceDate= transaction.InsertDateSh,
-                TerminalCode = int.Parse(gateway.Username),//TODO:Place Real In Db
-                MerchantCode= int.Parse(gateway.Password),//TODO:Place Real In Db
-                Amount = model.Price.ToString(),
+            var dataModel = new
+            {
+                InvoiceNumber = model.OrderId.ToString(),
+                InvoiceDate = transaction.InsertDateSh,
+                TerminalCode = int.Parse(gateway.Username),
+                MerchantCode = int.Parse(gateway.Password),
+                Amount = Convert.ToDecimal(model.Price),
                 RedirectAddress = AppSettings.TransactionRedirectUrl_Pasargad,
-                Timestamp= CreateTimeSpan(transaction.InsertDateMi),
-                Action="1003",
-                Mobile=currentUser.MobileNumber,
+                Timestamp = CreateTimeSpan(transaction.InsertDateMi),
+                Action = "1003",
+                Mobile = currentUser.MobileNumber,
                 currentUser.Email
             };
             var data = JsonConvert.SerializeObject(dataModel);
@@ -112,7 +113,7 @@
             MediaTypeWithQualityHeaderValue("application/json"));
             var response = client.SendAsync(requestMessage).Result;
             var deserializeResponse = JsonConvert.DeserializeObject<PasargadGetTokenReponse>(Encoding.UTF8.GetString(response.Content.ReadAsByteArrayAsync().Result));
-            if(deserializeResponse.IsSuccess)
+            if (deserializeResponse.IsSuccess)
                 return new ActionResponse<string>
                 {
                     IsSuccessful = true,
@@ -129,69 +130,99 @@
         {
             try
             {
-                var deserializeResponse = new PasargadVerifyResponse();
+                var deserializeCheckingResponse = new PasargadCheckResponse();
                 if (responseGateway == null || ((PayRedirectModel)(responseGateway)).status == 0)
                     return new ActionResponse<string>
                     {
                         IsSuccessful = false,
                         Message = "عملیات پرداخت از سمت درگاه تایید نشد، لطفا مجددا عملیات پرداخت را تکرار نمایید",
                     };
-
-                using (HttpClient http = new HttpClient())
+                #region Checking
+                using (HttpClient chkHttp = new HttpClient())
                 {
-                    var dataModel = new
+                    var checkingSerilizedModel = JsonConvert.SerializeObject(new
                     {
                         InvoiceNumber = model.OrderId.ToString(),
                         InvoiceDate = model.InsertDateSh,
-                        TerminalCode = int.Parse(gateway.Username),//TODO:Place Real In Db
-                        MerchantCode = int.Parse(gateway.Password),//TODO:Place Real In Db
+                        TerminalCode = int.Parse(gateway.Username),
+                        MerchantCode = int.Parse(gateway.Password),
                         TransactionReferenceID = (string)responseGateway
-                    };
-                    var content = new StringContent(JsonConvert.SerializeObject(dataModel), Encoding.UTF8, "application/json");
-                    var response = http.PostAsync("https://pep.shaparak.ir/Api/v1/Payment/CheckTransactionResult", content).Result;
-                    FileLoger.Info("webservice response : " + response.Content.ReadAsStringAsync().Result, GlobalVariable.LogPath);
-                    deserializeResponse = JsonConvert.DeserializeObject<PasargadVerifyResponse>(response.Content.ReadAsStringAsync().Result);
-                }
-
-                if (deserializeResponse.IsSuccess)
-                {
-                    model.IsSuccess = true;
-                    model.TrackingId = ((PayRedirectModel)(responseGateway)).transId.ToString();
-                    model.Status = "1";
-                    if (model.OrderId != 0)
-                        _orderBusiness.UpdateStatus(model.OrderId);
-                    _transactionBusiness.Update(model);
-
-                    _observerManager.Value.Notify(ConcreteKey.Transaction_Add, new ObserverMessage
-                    {
-                        SmsContent = string.Format(LocalMessage.Transaction_Add_Sms, (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId),
-                        BotContent = string.Format(LocalMessage.Transaction_Add_Bot, (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
-                                                model.OrderId, gateway.BankName.GetLocalizeDescription(),
-                                                model.Price.ToString("0,0"),
-                                                model.TrackingId),
-                        Key = nameof(Transaction),
-                        UserId = (HttpContext.Current.User as ICurrentUserPrincipal).UserId,
                     });
-                    return new ActionResponse<string>
-                    {
-                        IsSuccessful = true,
-                        Message = "عملیات پرداخت با موفقیت انجام شد",
-                        Result = model.TrackingId.ToString()
-                    };
+                    var checkingContent = new StringContent(checkingSerilizedModel, Encoding.UTF8, "application/json");
+                    var chkResponse = chkHttp.PostAsync("https://pep.shaparak.ir/Api/v1/Payment/CheckTransactionResult", checkingContent).Result;
+                    FileLoger.Info("webservice response : " + chkResponse.Content.ReadAsStringAsync().Result, GlobalVariable.LogPath);
+                    deserializeCheckingResponse = JsonConvert.DeserializeObject<PasargadCheckResponse>(chkResponse.Content.ReadAsStringAsync().Result);
                 }
-                else
+                #endregion
+
+                if (deserializeCheckingResponse.IsSuccess)
                 {
-                    model.IsSuccess = false;
-                    model.TrackingId = model.TrackingId.ToString();
-                    model.Status = "-1";
-                    _transactionBusiness.Update(model);
-                    return new ActionResponse<string>
+                    var deserializeResponse = new PasargadVerifyResponse();
+                    using (HttpClient verifyHttp = new HttpClient())
                     {
-                        IsSuccessful = false,
-                        Message = "عملیات پرداخت از سمت درگاه تایید نشد، لطفا مجددا عملیات پرداخت را تکرار نمایید",
-                        Result = model.TrackingId.ToString()
-                    };
+                        var verifyModel = new
+                        {
+                            InvoiceNumber = model.OrderId.ToString(),
+                            InvoiceDate = model.InsertDateSh,
+                            TerminalCode = int.Parse(gateway.Username),
+                            MerchantCode = int.Parse(gateway.Password),
+                            deserializeCheckingResponse.Amount,
+                            TimeStamp = CreateTimeSpan(DateTime.Now)
+                        };
+                        var verifyContent = new StringContent(JsonConvert.SerializeObject(verifyModel), Encoding.UTF8, "application/json");
+                        var requestMessage = new HttpRequestMessage
+                        {
+                            RequestUri = new Uri("https://pep.shaparak.ir/Api/v1/Payment/GetToken"),
+                            Method = HttpMethod.Post,
+                            Content = verifyContent
+                        };
+                        var data = JsonConvert.SerializeObject(verifyModel);
+                        requestMessage.Headers.Add("Sign", GetSign(data));
+                        verifyHttp.DefaultRequestHeaders.Accept.Add(new
+                        MediaTypeWithQualityHeaderValue("application/json"));
+                        var response = verifyHttp.SendAsync(requestMessage).Result;
+                        deserializeResponse = JsonConvert.DeserializeObject<PasargadVerifyResponse>(Encoding.UTF8.GetString(response.Content.ReadAsByteArrayAsync().Result));
+                    }
+                    if (!deserializeResponse.IsSuccess)
+                    {
+                        model.IsSuccess = true;
+                        model.TrackingId = responseGateway.ToString();
+                        model.Status = "1";
+                        if (model.OrderId != 0)
+                            _orderBusiness.UpdateStatus(model.OrderId, OrderStatus.DeliveryFiles);
+
+                        _transactionBusiness.Update(model);
+
+                        _observerManager.Value.Notify(ConcreteKey.Transaction_Add, new ObserverMessage
+                        {
+                            SmsContent = string.Format(LocalMessage.Transaction_Add_Sms, (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId),
+                            BotContent = string.Format(LocalMessage.Transaction_Add_Bot, (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
+                                                    model.OrderId, gateway.BankName.GetLocalizeDescription(),
+                                                    model.Price.ToString("0,0"),
+                                                    model.TrackingId),
+                            Key = nameof(Transaction),
+                            UserId = (HttpContext.Current.User as ICurrentUserPrincipal).UserId,
+                        });
+                        return new ActionResponse<string>
+                        {
+                            IsSuccessful = true,
+                            Message = "عملیات پرداخت با موفقیت انجام شد",
+                            Result = model.TrackingId.ToString()
+                        };
+                    }
+                    //----------
                 }
+                model.IsSuccess = false;
+                model.TrackingId = model.TrackingId.ToString();
+                model.Status = "-1";
+                _transactionBusiness.Update(model);
+                return new ActionResponse<string>
+                {
+                    IsSuccessful = false,
+                    Message = "عملیات پرداخت از سمت درگاه تایید نشد، لطفا مجددا عملیات پرداخت را تکرار نمایید",
+                    Result = model.TrackingId.ToString()
+                };
+
             }
             catch (Exception e)
             {

@@ -192,7 +192,7 @@
             var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction, tref);
             if (result.IsSuccessful)
             {
-                //_orderBusiness.
+                //_orderBusiness.UpdateStatus();
                 return View(viewName: MVC.Transaction.Views.Success, model: transaction);
             }
 

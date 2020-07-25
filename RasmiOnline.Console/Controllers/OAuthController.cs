@@ -70,7 +70,9 @@
         public virtual ActionResult Index(string block = "signin")
         {
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction(MVC.Order.ActionNames.History, MVC.Order.Name);
+            {
+                return RedirectToAction("SignOut");
+            }
             ViewBag.ActiveBlock = block;
             return View();
         }

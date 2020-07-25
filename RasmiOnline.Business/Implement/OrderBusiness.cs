@@ -15,7 +15,6 @@
     using Observers;
     using System.Text.RegularExpressions;
     using Gnu.Framework.Core.Security;
-    using System.Web.Compilation;
 
     public class OrderBusiness : IOrderBusiness, IExportTableBusiness
     {
@@ -422,6 +421,22 @@
                 order.DeliverFiles_DateSh = PersianDateTime.Parse((DateTime)order.DeliverFiles_DateMi).ToString(PersianDateTimeFormat.Date);
             }
             order.OrderStatus = newOrderStatus;
+            _uow.Entry(order).State = EntityState.Modified;
+            var rep = _uow.SaveChanges();
+
+            return new ActionResponse<Order>
+            {
+                IsSuccessful = rep.ToSaveChangeResult(),
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                Result = order
+            };
+        }
+
+        public IActionResponse<Order> UpdateStatus(int orderId, OrderStatus status)
+        {
+            var order = _order.Find(orderId);
+            if (order == null) return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
+            order.OrderStatus = status;
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
 
