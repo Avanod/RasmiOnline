@@ -90,7 +90,7 @@
                 InvoiceNumber= model.OrderId.ToString(),
                 InvoiceDate= transaction.InsertDateSh,
                 TerminalCode = int.Parse(gateway.Username),//TODO:Place Real In Db
-                MerchantCode= int.Parse(gateway.MerchantId),//TODO:Place Real In Db
+                MerchantCode= int.Parse(gateway.Password),//TODO:Place Real In Db
                 Amount = model.Price.ToString(),
                 RedirectAddress = AppSettings.TransactionRedirectUrl_Pasargad,
                 Timestamp= CreateTimeSpan(transaction.InsertDateMi),
@@ -120,7 +120,7 @@
                 };
             else return new ActionResponse<string>
             {
-                IsSuccessful = true,
+                IsSuccessful = false,
                 Message = deserializeResponse.Message
             };
         }
@@ -144,7 +144,7 @@
                         InvoiceNumber = model.OrderId.ToString(),
                         InvoiceDate = model.InsertDateSh,
                         TerminalCode = int.Parse(gateway.Username),//TODO:Place Real In Db
-                        MerchantCode = int.Parse(gateway.MerchantId),//TODO:Place Real In Db
+                        MerchantCode = int.Parse(gateway.Password),//TODO:Place Real In Db
                         TransactionReferenceID = (string)responseGateway
                     };
                     var content = new StringContent(JsonConvert.SerializeObject(dataModel), Encoding.UTF8, "application/json");
