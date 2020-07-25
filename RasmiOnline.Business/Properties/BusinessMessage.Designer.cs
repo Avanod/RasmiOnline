@@ -61,7 +61,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام ‘NAME&apos; مدرکی را به شرح زیر در سایت بارگذاری کرده است  :
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام ‘NAME&apos; مدرکی را به شرح زیر در سایت بارگذاری کرده است  :
         ///شماره سفارش : {0}
         ///وضعیت سفارش : {1}
         ///نوع مدرک : {2}
@@ -94,7 +94,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام ‘NAME&apos; وضعیت سفارش را به شرح زیر تغییرداده است :
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام ‘NAME&apos; وضعیت سفارش را به شرح زیر تغییرداده است :
         ///شماره سفارش : {0}
         ///وضعیت سفارش : {1}
         ///ساعت تغییر وضعیت : {2}
@@ -251,7 +251,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام  ‘NAME’ یک سفارش با مشخصات زیر را ثبت کرده است:
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام  ‘NAME’ یک سفارش با مشخصات زیر را ثبت کرده است:
         ///شماره سفارش : {0}
         ///عنوان سفارش : {1}
         ///زبان سفارش : {2}
@@ -331,7 +331,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام ‘{0}’ پرداختی را به شرح زیر ثبت نموده است :
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام ‘{0}’ پرداختی را به شرح زیر ثبت نموده است :
         ///شماره سفارش : {1}
         ///درگاه بانکی : {2}
         ///مبلغ پرداختی : {3}
@@ -355,7 +355,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران با نام {0} در ساعت {1} در رسمی آنلاین ثبت نام کرده است. 
+        ///   Looks up a localized string similar to یکی از کاربران با نام {0} در ساعت {1} در دارالترجمه امیرشاهی ثبت نام کرده است. 
         ///#ثبت_نام.
         /// </summary>
         public static string User_Register {
@@ -392,7 +392,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to کاربر گرامی {0} برای شما با نام کاربری {1} و رمز عبور {2} در وب سایت ترجمه رسمی حساب کاربری ایجاد گردید.
+        ///   Looks up a localized string similar to کاربر گرامی {0} برای شما با نام کاربری {1} و رمز عبور {2} در وب سایت دارالترجمه امیرشاهی حساب کاربری ایجاد گردید.
         /// </summary>
         public static string UserRegisterMessage {
             get {

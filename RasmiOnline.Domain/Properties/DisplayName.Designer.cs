@@ -232,7 +232,7 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to به نماینده رسمی آنلاین تحویل میدهم.
+        ///   Looks up a localized string similar to به نماینده دارالترجمه امیرشاهی تحویل میدهم.
         /// </summary>
         public static string ByDeliveryMan {
             get {

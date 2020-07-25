@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Linq;
 using System.Web;
+using System.Linq;
 using System.Web.Mvc;
 using Gnu.Framework.Core;
 using System.Web.Security;
 using RasmiOnline.Domain.Dto;
 using RasmiOnline.Domain.Enum;
+using Gnu.Framework.AspNet.Mvc;
 using RasmiOnline.Domain.Entity;
 using System.Collections.Generic;
 using RasmiOnline.Business.Protocol;
 using RasmiOnline.Console.Properties;
 using Gnu.Framework.Core.Authentication;
 using RasmiOnline.Console.PaymentStrategy;
-using Gnu.Framework.Core;
-using Gnu.Framework.AspNet.Mvc;
 
 namespace RasmiOnline.Console.Controllers
 {
@@ -139,6 +138,7 @@ namespace RasmiOnline.Console.Controllers
         {
             var addUser = _userSrv.Insert(model);
             if (!addUser.IsSuccessful) return Json(addUser);
+            
             model.UserId = addUser.Result;
             var userInRole = new UserInRole
             {
@@ -147,12 +147,15 @@ namespace RasmiOnline.Console.Controllers
                 IsActive = true,
                 ExpireDateSh = PersianDateTime.Now.AddYears(5).ToString(PersianDateTimeFormat.Date)
             };
+
             if (!_userInRoleBusiness.Value.CheckExist(userInRole))
                 _userInRoleBusiness.Value.Insert(userInRole);
+
             model.Status = OrderStatus.WaitForPricing;
             model.DayToDeliver = byte.Parse(AppSettings.DefaultDayToDeliver);
             var addOrder = _orderSrv.Add(model);
             if (!addOrder.IsSuccessful) return Json(addUser);
+
             var addFiles = _attachmentSrv.Insert(addOrder.Result, AttachmentType.OrderFiles, attachments);
             addOrder.Result.User = new User
             {
@@ -161,6 +164,7 @@ namespace RasmiOnline.Console.Controllers
                 Email = model.Email,
                 MobileNumber = long.Parse(model.MobileNumber)
             };
+
             return Json(new
             {
                 addFiles.IsSuccessful,

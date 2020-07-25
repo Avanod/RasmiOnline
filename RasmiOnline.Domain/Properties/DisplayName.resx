@@ -556,7 +556,7 @@
     <value>نوع مدرک</value>
   </data>
   <data name="ByDeliveryMan" xml:space="preserve">
-    <value>به نماینده رسمی آنلاین تحویل میدهم</value>
+    <value>به نماینده دارالترجمه امیرشاهی تحویل میدهم</value>
   </data>
   <data name="ByPost" xml:space="preserve">
     <value>ارسال پستی(ویژه شهرستان)</value>
