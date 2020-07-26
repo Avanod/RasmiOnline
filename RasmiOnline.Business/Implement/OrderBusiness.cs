@@ -847,8 +847,6 @@
 
         public IActionResponse<Order> Add(AddOrderModel model)
         {
-            var _setting = _settingBusiness.Value.Get();
-
             var order = new Order
             {
                 DayToDelivery = model.DayToDeliver,

@@ -11,7 +11,10 @@
     using Domain.Entity;
     using Domain;
     using RasmiOnline.Domain.Dto;
+    using Gnu.Framework.AspNet.Mvc;
 
+    //[ActionAuthorizationFilter]
+    //[AuthorizationFilter("/OAuth/Index", "Home/Error")]
     public partial class OrderAdminController : Controller
     {
         readonly ISettingBusiness _settingBusiness;

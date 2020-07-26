@@ -228,5 +228,8 @@ namespace RasmiOnline.Console.Controllers
             result.Result = AppSettings.BaseDomain + "/Transaction/FakeVerify?IN=" + result.Result;
             return Json(result);
         }
+
+        [HttpGet]
+        public virtual ViewResult Error() => View();
     }
 }

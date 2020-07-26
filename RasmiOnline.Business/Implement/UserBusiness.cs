@@ -444,7 +444,7 @@
         {
             var userExist = false;
             var mobNum = long.Parse(model.MobileNumber);
-            var user = _user.FirstOrDefault(x => x.MobileNumber == mobNum);
+            var user = _user.FirstOrDefault(x => x.Email == model.Email);
             if (user != null)
             {
                 userExist = true;
