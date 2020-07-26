@@ -2,19 +2,19 @@
 {
     using System;
     using Protocol;
+    using Observers;
+    using Domain.Dto;
     using System.Linq;
+    using Domain.Enum;
     using Domain.Entity;
     using Gnu.Framework.Core;
     using System.Data.Entity;
-    using Domain.Dto;
-    using Domain.Enum;
-    using System.Collections.Generic;
     using Business.Properties;
-    using Gnu.Framework.EntityFramework;
-    using Gnu.Framework.EntityFramework.DataAccess;
-    using Observers;
-    using System.Text.RegularExpressions;
+    using System.Collections.Generic;
     using Gnu.Framework.Core.Security;
+    using Gnu.Framework.EntityFramework;
+    using System.Text.RegularExpressions;
+    using Gnu.Framework.EntityFramework.DataAccess;
 
     public class OrderBusiness : IOrderBusiness, IExportTableBusiness
     {
@@ -23,18 +23,20 @@
         readonly IDbSet<Order> _order;
         readonly IDbSet<OrderItem> _orderItem;
         readonly IDbSet<DiscountOrder> _discountOrder;
+        readonly Lazy<ITransactionBusiness> _transBusiness;
         readonly Lazy<ISettingBusiness> _settingBusiness;
         readonly Lazy<IDiscountBusiness> _discountBusiness;
         readonly Lazy<IPricingItemBusiness> _pricingItemBusiness;
         readonly Lazy<IOrderItemBusiness> _orderItemBusiness;
         readonly Lazy<IObserverManager> _observerManager;
         readonly Lazy<IUserBusiness> _userBusiness;
-        public OrderBusiness(IUnitOfWork uow, Lazy<IUserBusiness> userBusiness, Lazy<IObserverManager> observerManager, Lazy<ISettingBusiness> settingBusiness, Lazy<IDiscountBusiness> discountBusiness, Lazy<IPricingItemBusiness> pricingItemBusiness, Lazy<IOrderItemBusiness> orderItemBusiness)
+        public OrderBusiness(IUnitOfWork uow, Lazy<IUserBusiness> userBusiness, Lazy<ITransactionBusiness> transBusiness, Lazy<IObserverManager> observerManager, Lazy<ISettingBusiness> settingBusiness, Lazy<IDiscountBusiness> discountBusiness, Lazy<IPricingItemBusiness> pricingItemBusiness, Lazy<IOrderItemBusiness> orderItemBusiness)
         {
             _uow = uow;
             _order = uow.Set<Order>();
             _orderItem = uow.Set<OrderItem>();
             _discountOrder = uow.Set<DiscountOrder>();
+            _transBusiness = transBusiness;
             _discountBusiness = discountBusiness;
             _pricingItemBusiness = pricingItemBusiness;
             _orderItemBusiness = orderItemBusiness;
@@ -849,7 +851,9 @@
 
             var order = new Order
             {
-                DayToDelivery = _setting.DayToDelivery,
+                DayToDelivery = model.DayToDeliver,
+                DeliverFiles_DateMi = DateTime.Now.AddDays(model.DayToDeliver),
+                DeliverFiles_DateSh = PersianDateTime.Now.AddDays(model.DayToDeliver).ToString(PersianDateTimeFormat.Date),
                 UserId = model.UserId,
                 OrderStatus = model.Status,
                 OrderDescription = model.Description,
@@ -859,9 +863,6 @@
                 LangType = LangType.Fa_En,
                 IsFullPayed = true
             };
-            order.DayToDelivery = model.DayToDeliver;
-            order.DeliverFiles_DateMi = DateTime.Now.AddDays(model.DayToDeliver);
-            order.DeliverFiles_DateSh = PersianDateTime.Now.AddDays(model.DayToDeliver).ToString(PersianDateTimeFormat.Date);
 
             _order.Add(order);
             var rep = _uow.SaveChanges();
@@ -882,6 +883,30 @@
                 IsSuccessful = rep.ToSaveChangeResult(),
                 Result = order,
                 Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
+            };
+        }
+
+        public IActionResponse<Tuple<Order, int>> UpdateBeforePayment(CompleteOrderModel model)
+        {
+            var order = Find(model.OrderId, "OrderItems");
+            if (order == null)
+                return new ActionResponse<Tuple<Order, int>> { Message = BusinessMessage.RecordNotFound };
+            var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
+            if (payedPrice > 0 && !order.IsFullPayed)
+                return new ActionResponse<Tuple<Order, int>> { IsSuccessful = true, Result = new Tuple<Order, int>(order, order.TotalPrice() - payedPrice) };
+            order.DeliveryType = model.DeliveryType;
+            order.PaymentType = model.PaymentType;
+            order.AddressId = model.AddressId;
+            if (model.PaymentType == PaymentType.InPerson)
+                order.OrderStatus = order.GetNextStatus();
+            _uow.Entry(order).State = EntityState.Modified;
+
+            var rep = _uow.SaveChanges();
+            return new ActionResponse<Tuple<Order, int>>
+            {
+                IsSuccessful = rep.ToSaveChangeResult(),
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                Result = new Tuple<Order, int>(order, order.TotalPrice())
             };
         }
     }

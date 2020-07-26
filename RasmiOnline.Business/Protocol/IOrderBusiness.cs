@@ -36,5 +36,6 @@
         IEnumerable<Order> GetReport(Guid? officeUserId = null, string fromDate = null, string toDate = null);
 
         IActionResponse<Order> Add(AddOrderModel model);
+        IActionResponse<Tuple<Order, int>> UpdateBeforePayment(CompleteOrderModel model);
     }
 }

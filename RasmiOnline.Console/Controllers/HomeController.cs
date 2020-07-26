@@ -105,14 +105,14 @@ namespace RasmiOnline.Console.Controllers
         }
 
         [NonAction]
-        private int GetPrice(Order order)
+        private (int price, int payedPrice) CheckPrice(Order order)
         {
             int price = order.TotalPrice();
             int payedPrice = _transBusiness.Value.GetTotalPayedPrice(order.OrderId);
             if (!order.IsFullPayed)
                 if (payedPrice == 0) price = price / 2;
                 else price = price - payedPrice;
-            return price;
+            return (price, payedPrice);
         }
 
         [AllowAnonymous]
@@ -138,7 +138,7 @@ namespace RasmiOnline.Console.Controllers
         {
             var addUser = _userSrv.Insert(model);
             if (!addUser.IsSuccessful) return Json(addUser);
-            
+
             model.UserId = addUser.Result;
             var userInRole = new UserInRole
             {
@@ -184,12 +184,10 @@ namespace RasmiOnline.Console.Controllers
             var order = _orderBusiness.Find(orderId, "OrderItems,Transactions,User,Address");
             if (order == null || order.UserId != userId)
                 return View(MVC.Order.Views.NotFound);
-            //ViewBag.OrderId = order.OrderId;
-            //ViewBag.LangType = order.LangType;
-            //LoadRelatedInfo(true, order.LangType);
-            ViewBag.PayedPrice = _transBusiness.Value.GetTotalPayedPrice(orderId);
-            ViewBag.CompletePayment = ViewBag.PayedPrice > 0;
-            ViewBag.Price = GetPrice(order);
+            var priceCheck = CheckPrice(order);
+            ViewBag.PayedPrice = priceCheck.payedPrice;
+            ViewBag.CompletePayment = priceCheck.payedPrice > 0;
+            ViewBag.Price = priceCheck.price;
             ViewBag.Addresses = _addressBusiness.GetAll(userId);
             return View(order);
         }
@@ -208,10 +206,11 @@ namespace RasmiOnline.Console.Controllers
                     return Json(new { IsSuccessful = false, Message = LocalMessage.RecordsNotFound });
             }
             #endregion
+
             #region Fill Some Props of Model
             model.UserId = (User as ICurrentUserPrincipal).UserId;
             #endregion
-            var findOrder = _orderBusiness.CompleteOrder(model);
+            var findOrder = _orderBusiness.UpdateBeforePayment(model);
             if (!findOrder.IsSuccessful) return Json(findOrder);
             //if (model.PaymentType == PaymentType.InPerson)
             //{
@@ -222,7 +221,7 @@ namespace RasmiOnline.Console.Controllers
             {
                 OrderId = model.OrderId,
                 PaymentGatewayId = model.PaymentGatewayId,
-                Price = GetPrice(findOrder.Result),
+                Price = findOrder.Result.Item2,
                 UserId = (User as ICurrentUserPrincipal).UserId
             });
             //TODO:Remove
