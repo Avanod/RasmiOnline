@@ -33,7 +33,7 @@
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
             IocInitializer.Initialize();
-            //JobScheduler.Start();
+            JobScheduler.Start();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new IocControllerFactory());

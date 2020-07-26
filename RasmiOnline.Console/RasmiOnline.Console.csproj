@@ -74,6 +74,7 @@
       <HintPath>..\packages\Gnu.Framework.EntityFramework.3.0.2\lib\Gnu.Framework.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Gnu.Framework.EntityFramework.DataAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -896,6 +897,10 @@
     <ProjectReference Include="..\RasmiOnline.Business\RasmiOnline.Business.csproj">
       <Project>{99e097bb-a9ed-4775-8265-1c817022b0c8}</Project>
       <Name>RasmiOnline.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RasmiOnline.Data\RasmiOnline.Data.csproj">
+      <Project>{261D2408-3F55-46D2-A404-3D2F560FC6D2}</Project>
+      <Name>RasmiOnline.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\RasmiOnline.DependencyResolver\RasmiOnline.DependencyResolver.csproj">
       <Project>{a1d22858-ed19-4b4f-b0fc-8fe5ae7f38e4}</Project>
