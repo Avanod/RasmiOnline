@@ -225,6 +225,8 @@ namespace RasmiOnline.Console.Controllers
                 Price = GetPrice(findOrder.Result),
                 UserId = (User as ICurrentUserPrincipal).UserId
             });
+            //TODO:Remove
+            result.Result = AppSettings.BaseDomain + "/Transaction/FakeVerify?IN=" + result.Result;
             return Json(result);
         }
     }

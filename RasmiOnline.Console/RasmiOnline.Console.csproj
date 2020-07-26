@@ -541,6 +541,7 @@
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="GlobalMethod.cs" />
     <Compile Include="GlobalVariable.cs" />
+    <Compile Include="PaymentStrategy\FakeStrategy.cs" />
     <Compile Include="PaymentStrategy\PasargadStrategy.cs" />
     <Compile Include="QuartzService\JobScheduler.cs" />
     <Compile Include="QuartzService\MainJob.cs" />

@@ -176,10 +176,11 @@
             return View(viewName: MVC.Transaction.Views.Failed, model: new Transaction());
         }
 
-        public virtual ViewResult PasargadVerify(string IN,string tref ,string id)
+        [HttpGet]
+        public virtual ViewResult PasargadVerify(string IN, string tref, string id)
         {
             ViewBag.PaymentGateway = BankNames.Pasargad;
-            var transaction = _transactionBusiness.Find(IN);
+            var transaction = _transactionBusiness.Find(int.Parse(IN));
             if (transaction.IsNull())
             {
                 ViewBag.ErrorMessage = LocalMessage.PaymentException;
@@ -199,6 +200,22 @@
             transaction.TrackingId = "0";
             ViewBag.ErrorMessage = result.Message;
             return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
+        }
+
+        public virtual ViewResult FakeVerify(string IN)
+        {
+            var transaction = _transactionBusiness.Find(int.Parse(IN));
+            if (transaction.IsNull())
+            {
+                ViewBag.ErrorMessage = LocalMessage.PaymentException;
+                return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
+            }
+            var gateWay = _paymentGatewayBusiness.Find(transaction.PaymentGatewayId);
+            if (gateWay.IsNull())
+                return View(viewName: MVC.Transaction.Views.Failed, model: LocalMessage.PaymentException);
+            var verify = new FakeStrategy().Verify(gateWay, transaction);
+
+            return View(viewName: MVC.Transaction.Views.Success, model: transaction);
         }
 
         [HttpGet, AllowAnonymous]

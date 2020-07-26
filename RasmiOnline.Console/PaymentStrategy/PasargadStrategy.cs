@@ -88,7 +88,7 @@
                 };
             var dataModel = new
             {
-                InvoiceNumber = model.OrderId.ToString(),
+                InvoiceNumber = transaction.TransactionId.ToString(),
                 InvoiceDate = transaction.InsertDateSh,
                 TerminalCode = int.Parse(gateway.Username),
                 MerchantCode = int.Parse(gateway.Password),
@@ -117,7 +117,8 @@
                 return new ActionResponse<string>
                 {
                     IsSuccessful = true,
-                    Result = $"https://pep.shaparak.ir/payment.aspx?n={deserializeResponse.Token}"
+                    //TODO:UnComment
+                    Result = transaction.TransactionId.ToString()//$"https://pep.shaparak.ir/payment.aspx?n={deserializeResponse.Token}"
                 };
             else return new ActionResponse<string>
             {
