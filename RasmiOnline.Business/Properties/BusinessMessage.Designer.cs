@@ -285,8 +285,8 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} شما در وضعیت تسویه نهایی قرار گرفته است. لطفا به پنل کاربری خود مراجعه نمایید.
-        ///http://panel.rasmiOnline.com.
+        ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} شما در وضعیت تسویه نهایی قرار گرفته است. لطفا سفارش خود را از طریق لینک زیر تسویه نمایید.
+        ///{1}.
         /// </summary>
         public static string Pay_All_Factor_Sms {
             get {

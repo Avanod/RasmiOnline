@@ -220,7 +220,7 @@
                     case OrderStatus.PayAllFactor:
                         _observerManager.Value.Notify(ConcreteKey.Pay_All_Factor, new ObserverMessage
                         {
-                            SmsContent = string.Format(BusinessMessage.Pay_All_Factor_Sms, order.OrderId),
+                            SmsContent = string.Format(BusinessMessage.Pay_All_Factor_Sms, order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
                             BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             Key = ConcreteKey.Waiting_For_Payment.ToString(),
                             RecordId = order.OrderId,
