@@ -442,9 +442,7 @@ table.order-items .description{
 table.order-items tr:last-child{
     background-color:transparent!important;
 }
-table.order-items > tbody > tr{
-    border-bottom:solid 1px #ccc;
-}
+ 
 table.order-items > tbody > tr:last-child{
      border-bottom:none;
 }
