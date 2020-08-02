@@ -443,6 +443,7 @@
         public IActionResponse<Guid> Insert(AddOrderModel model)
         {
             var userExist = false;
+            var mobNum = long.Parse(model.MobileNumber);
             var user = _user.FirstOrDefault(x => x.Email == model.Email);
             if (user != null)
             {
@@ -450,13 +451,20 @@
                 if (!user.IsActive)
                     return new ActionResponse<Guid> { Message = BusinessMessage.InActiveUser };
                 else
+                {
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Email = model.Email;
+                    _uow.Entry(user).State = EntityState.Modified;
+                    var update = _uow.SaveChanges();
                     return new ActionResponse<Guid> { IsSuccessful = true, Result = user.UserId };
+                }
             }
             var cdt = DateTime.Now;
             user = new User
             {
                 Email = model.Email,
-                MobileNumber = long.Parse(model.MobileNumber),
+                MobileNumber = mobNum,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 IsActive = true,

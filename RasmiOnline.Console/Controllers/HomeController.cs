@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Linq;
 using System.Web;
+using System.Linq;
 using System.Web.Mvc;
 using Gnu.Framework.Core;
 using System.Web.Security;
 using RasmiOnline.Domain.Dto;
 using RasmiOnline.Domain.Enum;
+using Gnu.Framework.AspNet.Mvc;
 using RasmiOnline.Domain.Entity;
 using System.Collections.Generic;
 using RasmiOnline.Business.Protocol;
 using RasmiOnline.Console.Properties;
 using Gnu.Framework.Core.Authentication;
 using RasmiOnline.Console.PaymentStrategy;
-using Gnu.Framework.Core;
-using Gnu.Framework.AspNet.Mvc;
 
 namespace RasmiOnline.Console.Controllers
 {
@@ -106,14 +105,14 @@ namespace RasmiOnline.Console.Controllers
         }
 
         [NonAction]
-        private int GetPrice(Order order)
+        private (int price, int payedPrice) CheckPrice(Order order)
         {
             int price = order.TotalPrice();
             int payedPrice = _transBusiness.Value.GetTotalPayedPrice(order.OrderId);
             if (!order.IsFullPayed)
                 if (payedPrice == 0) price = price / 2;
                 else price = price - payedPrice;
-            return price;
+            return (price, payedPrice);
         }
 
         [AllowAnonymous]
@@ -139,6 +138,7 @@ namespace RasmiOnline.Console.Controllers
         {
             var addUser = _userSrv.Insert(model);
             if (!addUser.IsSuccessful) return Json(addUser);
+
             model.UserId = addUser.Result;
             var userInRole = new UserInRole
             {
@@ -147,11 +147,15 @@ namespace RasmiOnline.Console.Controllers
                 IsActive = true,
                 ExpireDateSh = PersianDateTime.Now.AddYears(5).ToString(PersianDateTimeFormat.Date)
             };
+
             if (!_userInRoleBusiness.Value.CheckExist(userInRole))
                 _userInRoleBusiness.Value.Insert(userInRole);
+
             model.Status = OrderStatus.WaitForPricing;
+            model.DayToDeliver = byte.Parse(AppSettings.DefaultDayToDeliver);
             var addOrder = _orderSrv.Add(model);
             if (!addOrder.IsSuccessful) return Json(addUser);
+
             var addFiles = _attachmentSrv.Insert(addOrder.Result, AttachmentType.OrderFiles, attachments);
             addOrder.Result.User = new User
             {
@@ -160,6 +164,7 @@ namespace RasmiOnline.Console.Controllers
                 Email = model.Email,
                 MobileNumber = long.Parse(model.MobileNumber)
             };
+
             return Json(new
             {
                 addFiles.IsSuccessful,
@@ -172,19 +177,17 @@ namespace RasmiOnline.Console.Controllers
         public virtual ActionResult Payment(int orderId, Guid userId)
         {
             var user = _userBusiness.Find(userId);
-            ViewBag.PaymentGatewayId = _paymentGatewayBusiness.GetAll().First().PaymentGatewayId;
+            ViewBag.PaymentGatewayId = int.Parse(AppSettings.DefaultPaymentGatewayId);//_paymentGatewayBusiness.GetAll().First().PaymentGatewayId;
             if (user == null) return View(MVC.Order.Views.NotFound);
             var rep = SignIn(user, true);
             if (!rep.IsSuccessful) return View(MVC.Shared.Views.Error, (object)rep.Message);
             var order = _orderBusiness.Find(orderId, "OrderItems,Transactions,User,Address");
             if (order == null || order.UserId != userId)
                 return View(MVC.Order.Views.NotFound);
-            //ViewBag.OrderId = order.OrderId;
-            //ViewBag.LangType = order.LangType;
-            //LoadRelatedInfo(true, order.LangType);
-            ViewBag.PayedPrice = _transBusiness.Value.GetTotalPayedPrice(orderId);
-            ViewBag.CompletePayment = ViewBag.PayedPrice > 0;
-            ViewBag.Price = GetPrice(order);
+            var priceCheck = CheckPrice(order);
+            ViewBag.PayedPrice = priceCheck.payedPrice;
+            ViewBag.CompletePayment = priceCheck.payedPrice > 0;
+            ViewBag.Price = priceCheck.price;
             ViewBag.Addresses = _addressBusiness.GetAll(userId);
             return View(order);
         }
@@ -203,10 +206,11 @@ namespace RasmiOnline.Console.Controllers
                     return Json(new { IsSuccessful = false, Message = LocalMessage.RecordsNotFound });
             }
             #endregion
+
             #region Fill Some Props of Model
             model.UserId = (User as ICurrentUserPrincipal).UserId;
             #endregion
-            var findOrder = _orderBusiness.CompleteOrder(model);
+            var findOrder = _orderBusiness.UpdateBeforePayment(model);
             if (!findOrder.IsSuccessful) return Json(findOrder);
             //if (model.PaymentType == PaymentType.InPerson)
             //{
@@ -217,10 +221,15 @@ namespace RasmiOnline.Console.Controllers
             {
                 OrderId = model.OrderId,
                 PaymentGatewayId = model.PaymentGatewayId,
-                Price = GetPrice(findOrder.Result),
+                Price = findOrder.Result.Item2,
                 UserId = (User as ICurrentUserPrincipal).UserId
             });
+            //TODO:Remove
+            result.Result = AppSettings.BaseDomain + "/Transaction/FakeVerify?IN=" + result.Result;
             return Json(result);
         }
+
+        [HttpGet]
+        public virtual ViewResult Error() => View();
     }
 }

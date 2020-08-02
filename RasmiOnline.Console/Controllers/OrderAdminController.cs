@@ -11,7 +11,10 @@
     using Domain.Entity;
     using Domain;
     using RasmiOnline.Domain.Dto;
+    using Gnu.Framework.AspNet.Mvc;
 
+    //[ActionAuthorizationFilter]
+    //[AuthorizationFilter("/OAuth/Index", "Home/Error")]
     public partial class OrderAdminController : Controller
     {
         readonly ISettingBusiness _settingBusiness;
@@ -62,7 +65,7 @@
             {
                 Text = $"{x.DeliveryName} :: {x.LangType.GetDescription()}",
                 Value = x.UserId.ToString(),
-                Selected = (officeUserId!=null && x.UserId == officeUserId)
+                Selected = (officeUserId != null && x.UserId == officeUserId)
             }));
             return lstOffice;
 
@@ -150,7 +153,7 @@
         [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
         public virtual JsonResult Update(Order model)
         {
-            var updateRep = _orderBusiness.BriefUpdate(model);
+            var updateRep = _orderBusiness.BriefUpdate(model, AppSettings.BaseDomain);
             return Json(updateRep);
         }
 

@@ -14,9 +14,12 @@ namespace RasmiOnline.Console
         public static string UnobtrusiveJavaScriptEnabled { get { return GetConfigSettingItem("UnobtrusiveJavaScriptEnabled"); } }
         public static string BaseDomain { get { return GetConfigSettingItem("BaseDomain"); } }
         public static string UserRoleId { get { return GetConfigSettingItem("UserRoleId"); } }
+        public static string DefaultDayToDeliver { get { return GetConfigSettingItem("DefaultDayToDeliver"); } }
         public static string EndUserRoleId { get { return GetConfigSettingItem("EndUserRoleId"); } }
+        public static string DefaultPaymentGatewayId { get { return GetConfigSettingItem("DefaultPaymentGatewayId"); } }
         public static string AuthTimeoutInMiutes { get { return GetConfigSettingItem("AuthTimeoutInMiutes"); } }
         public static string AuthTimeoutWithRemeberMeInHours { get { return GetConfigSettingItem("AuthTimeoutWithRemeberMeInHours"); } }
+        public static string TransactionRedirectUrl_Pasargad { get { return GetConfigSettingItem("TransactionRedirectUrl_Pasargad"); } }
         public static string TransactionRedirectUrl_Pay { get { return GetConfigSettingItem("TransactionRedirectUrl_Pay"); } }
         public static string TransactionRedirectUrl_ZarinPal { get { return GetConfigSettingItem("TransactionRedirectUrl_ZarinPal"); } }
         public static string TransactionRedirectUrl_Sadad { get { return GetConfigSettingItem("TransactionRedirectUrl_Sadad"); } }

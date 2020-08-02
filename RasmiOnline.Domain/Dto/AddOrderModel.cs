@@ -13,6 +13,8 @@ namespace RasmiOnline.Domain.Dto
         [StringLength(25, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         public string FirstName { get; set; }
 
+        public byte DayToDeliver { get; set; }
+
         [Display(Name = nameof(DisplayName.LastName), ResourceType = typeof(DisplayName))]
         [Required(ErrorMessageResourceName = nameof(ErrorMessage.Required), ErrorMessageResourceType = typeof(ErrorMessage))]
         [MaxLength(30, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]

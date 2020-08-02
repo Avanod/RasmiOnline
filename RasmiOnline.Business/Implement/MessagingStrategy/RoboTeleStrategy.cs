@@ -7,6 +7,7 @@
     using Gnu.Framework.Core;
     using System.Data.Entity;
     using System.Configuration;
+    using Gnu.Framework.Core.Log;
     using RasmiOnline.Business.Properties;
     using Gnu.Framework.EntityFramework.DataAccess;
 
@@ -40,7 +41,7 @@
             }
             catch (Exception e)
             {
-                //FileLoger.Error(e, GlobalVariable.LogPath);
+                FileLoger.Error(e, GlobalVariable.LogPath);
 
                 result.Message = BusinessMessage.Error;
                 return result;

@@ -2,19 +2,19 @@
 {
     using System;
     using Protocol;
+    using Observers;
+    using Domain.Dto;
     using System.Linq;
+    using Domain.Enum;
     using Domain.Entity;
     using Gnu.Framework.Core;
     using System.Data.Entity;
-    using Domain.Dto;
-    using Domain.Enum;
-    using System.Collections.Generic;
     using Business.Properties;
-    using Gnu.Framework.EntityFramework;
-    using Gnu.Framework.EntityFramework.DataAccess;
-    using Observers;
-    using System.Text.RegularExpressions;
+    using System.Collections.Generic;
     using Gnu.Framework.Core.Security;
+    using Gnu.Framework.EntityFramework;
+    using System.Text.RegularExpressions;
+    using Gnu.Framework.EntityFramework.DataAccess;
 
     public class OrderBusiness : IOrderBusiness, IExportTableBusiness
     {
@@ -23,18 +23,20 @@
         readonly IDbSet<Order> _order;
         readonly IDbSet<OrderItem> _orderItem;
         readonly IDbSet<DiscountOrder> _discountOrder;
+        readonly Lazy<ITransactionBusiness> _transBusiness;
         readonly Lazy<ISettingBusiness> _settingBusiness;
         readonly Lazy<IDiscountBusiness> _discountBusiness;
         readonly Lazy<IPricingItemBusiness> _pricingItemBusiness;
         readonly Lazy<IOrderItemBusiness> _orderItemBusiness;
         readonly Lazy<IObserverManager> _observerManager;
         readonly Lazy<IUserBusiness> _userBusiness;
-        public OrderBusiness(IUnitOfWork uow, Lazy<IUserBusiness> userBusiness, Lazy<IObserverManager> observerManager, Lazy<ISettingBusiness> settingBusiness, Lazy<IDiscountBusiness> discountBusiness, Lazy<IPricingItemBusiness> pricingItemBusiness, Lazy<IOrderItemBusiness> orderItemBusiness)
+        public OrderBusiness(IUnitOfWork uow, Lazy<IUserBusiness> userBusiness, Lazy<ITransactionBusiness> transBusiness, Lazy<IObserverManager> observerManager, Lazy<ISettingBusiness> settingBusiness, Lazy<IDiscountBusiness> discountBusiness, Lazy<IPricingItemBusiness> pricingItemBusiness, Lazy<IOrderItemBusiness> orderItemBusiness)
         {
             _uow = uow;
             _order = uow.Set<Order>();
             _orderItem = uow.Set<OrderItem>();
             _discountOrder = uow.Set<DiscountOrder>();
+            _transBusiness = transBusiness;
             _discountBusiness = discountBusiness;
             _pricingItemBusiness = pricingItemBusiness;
             _orderItemBusiness = orderItemBusiness;
@@ -70,7 +72,7 @@
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IActionResponse<Order> BriefUpdate(Order model)
+        public IActionResponse<Order> BriefUpdate(Order model, string baseDomain = "")
         {
             var notifOffice = false;
             var order = _order.Find(model.OrderId);
@@ -95,7 +97,7 @@
 
             var rep = _uow.SaveChanges();
             if (rep.ToSaveChangeResult())
-                StatusNotifier(order);
+                StatusNotifier(order, baseDomain);
 
             //Notif office once
             if (notifOffice)
@@ -189,7 +191,6 @@
             #endregion
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
-
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
@@ -198,7 +199,7 @@
             };
         }
 
-        public void StatusNotifier(Order order)
+        public void StatusNotifier(Order order, string baseDomain = "")
         {
             var user = _userBusiness.Value.Find(order.UserId);
 
@@ -209,7 +210,7 @@
                     case OrderStatus.WaitForPayment:
                         _observerManager.Value.Notify(ConcreteKey.Waiting_For_Payment, new ObserverMessage
                         {
-                            SmsContent = string.Format(BusinessMessage.Waiting_For_Payment, order.OrderId),
+                            SmsContent = string.Format(BusinessMessage.Waiting_For_Payment, order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
                             BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             Key = ConcreteKey.Waiting_For_Payment.ToString(),
                             RecordId = order.OrderId,
@@ -219,7 +220,7 @@
                     case OrderStatus.PayAllFactor:
                         _observerManager.Value.Notify(ConcreteKey.Pay_All_Factor, new ObserverMessage
                         {
-                            SmsContent = string.Format(BusinessMessage.Pay_All_Factor_Sms, order.OrderId),
+                            SmsContent = string.Format(BusinessMessage.Pay_All_Factor_Sms, order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
                             BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             Key = ConcreteKey.Waiting_For_Payment.ToString(),
                             RecordId = order.OrderId,
@@ -422,6 +423,22 @@
                 order.DeliverFiles_DateSh = PersianDateTime.Parse((DateTime)order.DeliverFiles_DateMi).ToString(PersianDateTimeFormat.Date);
             }
             order.OrderStatus = newOrderStatus;
+            _uow.Entry(order).State = EntityState.Modified;
+            var rep = _uow.SaveChanges();
+
+            return new ActionResponse<Order>
+            {
+                IsSuccessful = rep.ToSaveChangeResult(),
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                Result = order
+            };
+        }
+
+        public IActionResponse<Order> UpdateStatus(int orderId, OrderStatus status)
+        {
+            var order = _order.Find(orderId);
+            if (order == null) return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
+            order.OrderStatus = status;
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
 
@@ -830,17 +847,21 @@
 
         public IActionResponse<Order> Add(AddOrderModel model)
         {
-            var order = new Order();
-            var _setting = _settingBusiness.Value.Get();
-            order.DayToDelivery = _setting.DayToDelivery;
-            order.UserId = model.UserId;
-            order.OrderStatus = model.Status;
-            order.OrderDescription = model.Description;
-            order.TranslateType = model.TranslateType;
-            order.WithPassport = model.WithPassport;
-            order.OrderTitle = "بدون عنوان";
-            order.LangType = LangType.Fa_En;
-            order.IsFullPayed = true;
+            var order = new Order
+            {
+                DayToDelivery = model.DayToDeliver,
+                DeliverFiles_DateMi = DateTime.Now.AddDays(model.DayToDeliver),
+                DeliverFiles_DateSh = PersianDateTime.Now.AddDays(model.DayToDeliver).ToString(PersianDateTimeFormat.Date),
+                UserId = model.UserId,
+                OrderStatus = model.Status,
+                OrderDescription = model.Description,
+                TranslateType = model.TranslateType,
+                WithPassport = model.WithPassport,
+                OrderTitle = "بدون عنوان",
+                LangType = LangType.Fa_En,
+                IsFullPayed = true
+            };
+
             _order.Add(order);
             var rep = _uow.SaveChanges();
             if (rep.ToSaveChangeResult())
@@ -854,11 +875,36 @@
                     UserId = model.UserId
                 });
             }
+
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
                 Result = order,
                 Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
+            };
+        }
+
+        public IActionResponse<Tuple<Order, int>> UpdateBeforePayment(CompleteOrderModel model)
+        {
+            var order = Find(model.OrderId, "OrderItems");
+            if (order == null)
+                return new ActionResponse<Tuple<Order, int>> { Message = BusinessMessage.RecordNotFound };
+            var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
+            if (payedPrice > 0 && !order.IsFullPayed)
+                return new ActionResponse<Tuple<Order, int>> { IsSuccessful = true, Result = new Tuple<Order, int>(order, order.TotalPrice() - payedPrice) };
+            order.DeliveryType = model.DeliveryType;
+            order.PaymentType = model.PaymentType;
+            order.AddressId = model.AddressId;
+            if (model.PaymentType == PaymentType.InPerson)
+                order.OrderStatus = order.GetNextStatus();
+            _uow.Entry(order).State = EntityState.Modified;
+
+            var rep = _uow.SaveChanges();
+            return new ActionResponse<Tuple<Order, int>>
+            {
+                IsSuccessful = rep.ToSaveChangeResult(),
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                Result = new Tuple<Order, int>(order, order.TotalPrice())
             };
         }
     }

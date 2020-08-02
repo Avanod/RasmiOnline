@@ -92,6 +92,7 @@
     <Compile Include="Dto\Base\SurveyResultSPModel.cs" />
     <Compile Include="Dto\CustomUserAction.cs" />
     <Compile Include="Dto\DiscountCheckModel.cs" />
+    <Compile Include="Dto\Gateway\PasargadGatewayModel.cs" />
     <Compile Include="Dto\GetTransactionModel.cs" />
     <Compile Include="Dto\AddUserInRoleModel.cs" />
     <Compile Include="Dto\AddUserModel.cs" />

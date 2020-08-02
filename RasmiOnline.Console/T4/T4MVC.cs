@@ -525,6 +525,7 @@ namespace Links
                 public static readonly string ZarinPal_png = Url("ZarinPal.png");
             }
         
+            public static readonly string bg_pattern_svg = Url("bg-pattern.svg");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class Ext {
                 public const string UrlPath = "~/Content/Images/Ext";
@@ -579,6 +580,7 @@ namespace Links
                 public const string UrlPath = "~/Content/Images/Logo";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                public static readonly string logo_square_png = Url("logo-square.png");
                 public static readonly string Logo_Transparent_png = Url("Logo-Transparent.png");
                 public static readonly string Logo_png = Url("Logo.png");
             }
@@ -617,6 +619,7 @@ namespace Links
             public static readonly string stamp_png = Url("stamp.png");
         }
     
+        public static readonly string key_txt = Url("key.txt");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class Styles {
             public const string UrlPath = "~/Content/Styles";

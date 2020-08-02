@@ -38,7 +38,7 @@
 
             if (saveResult.ToSaveChangeResult())
             {
-                var sendResult = MessageFactory.GetInstance(model.Type, _uow).Send(model);
+                MessageFactory.GetInstance(model.Type, _uow).Send(model);
                 result.Result = model.MessagingId;
             }
 

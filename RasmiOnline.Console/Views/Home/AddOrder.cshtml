@@ -1,5 +1,5 @@
 ﻿@model AddOrderModel
-@using RasmiOnline.Console.Enum
+
 @{
     ViewBag.Title = LocalMessage.AddOrder;
     Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
@@ -15,14 +15,18 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="form-group">
-                @Html.LabelFor(x => x.FirstName)
+                <label for="@nameof(Model.FirstName)">
+                    @Html.DisplayNameFor(x=>x.FirstName)<span class="red">*</span>
+                </label>
                 @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(x => x.FirstName)
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="form-group">
-                @Html.LabelFor(x => x.LastName)
+                <label for="@nameof(Model.LastName)">
+                    @Html.DisplayNameFor(x => x.LastName)<span class="red">*</span>
+                </label>
                 @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(x => x.LastName)
             </div>
@@ -30,7 +34,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
                 @Html.LabelFor(x => x.TranslateType)
-                @Html.DropDownListFor(x => x.TranslateType,(IEnumerable<SelectListItem>)ViewBag.TranslateTypes, new { @class = "form-control" })
+                @Html.DropDownListFor(x => x.TranslateType, (IEnumerable<SelectListItem>)ViewBag.TranslateTypes, new { @class = "form-control" })
                 @Html.ValidationMessageFor(x => x.TranslateType)
             </div>
         </div>
@@ -38,14 +42,18 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6">
             <div class="form-group">
-                @Html.LabelFor(x => x.Email)
+                <label for="@nameof(Model.Email)">
+                    @Html.DisplayNameFor(x => x.Email)<span class="red">*</span>
+                </label>
                 @Html.TextBoxFor(x => x.Email, new { @class = "form-control ltr-elm" })
                 @Html.ValidationMessageFor(x => x.Email)
             </div>
         </div>
         <div class="col-xs-12 col-sm-6">
             <div class="form-group">
-                @Html.LabelFor(x => x.MobileNumber)
+                <label for="@nameof(Model.MobileNumber)">
+                    @Html.DisplayNameFor(x => x.MobileNumber)<span class="red">*</span>
+                </label>
                 @Html.TextBoxFor(x => x.MobileNumber, new { @class = "form-control ltr-elm" })
                 @Html.ValidationMessageFor(x => x.MobileNumber)
             </div>
@@ -62,8 +70,10 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12">
-            <p class="alert alert-success text-center">
-                لطفا مدارک خود را جهت ترجمه الصاق نمایید
+            <p class="alert alert-warning text-center">
+                <span class="txt-1">لطفا مدارک خود را جهت ترجمه الصاق نمایید</span>
+                <br/>
+                <small class="txt-2"> حداکثر حجم هر عکس 3MB می باشد</small>
             </p>
         </div>
     </div>

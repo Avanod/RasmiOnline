@@ -8,9 +8,9 @@
     <meta name="keywords" content="@ViewBag.Keywords" />
     <meta name="description" content="@ViewBag.Description" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="http://rasmionline.com/wp-content/uploads/2018/05/cropped-favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" href="http://rasmionline.com/wp-content/uploads/2018/05/cropped-favicon-192x192.png" sizes="192x192" />
-    <link rel="apple-touch-icon-precomposed" href="http://rasmionline.com/wp-content/uploads/2018/05/cropped-favicon-180x180.png" />
+    <link rel="icon" href="@Url.Content(Links.Content.Images.Logo.logo_square_png)" sizes="32x32" />
+    <link rel="icon" href="@Url.Content(Links.Content.Images.Logo.logo_square_png)" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="@Url.Content(Links.Content.Images.Logo.logo_square_png)" />
 
     @Styles.Render(Links.Bundles.Styles.DashboardStyles)
     @RenderSection("Header", false)
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <a class="header__logo hidden-sm-down">
-                @*<img src="@Links.Content.Images.Logo.Logo_png" class="float-right " />*@
+                <img src="@Links.Content.Images.Logo.Logo_png" class="float-right " />
             </a>
 
             @{Html.RenderPartial(MVC.Shared.Views._Navbar); }
