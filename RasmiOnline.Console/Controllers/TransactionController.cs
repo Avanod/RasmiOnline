@@ -183,20 +183,13 @@
         public virtual ViewResult PasargadVerify(int IN, string tref, string id)
         {
             ViewBag.PaymentGateway = BankNames.Pasargad;
-            ViewBag.timeLineStatus = DetailedAddOrderTimeLine.ConfirmDraft;
             var transaction = _transactionBusiness.Find(IN);
             if (transaction.IsNull())
             {
                 ViewBag.ErrorMessage = LocalMessage.PaymentException;
                 return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
             }
-
-            var secondPayment = false;
-            var order = _orderBusiness.Find(transaction.OrderId);
-            if (!order.IsFullPayed && _transactionBusiness.GetTotalPayedPrice(transaction.OrderId) > 0)
-                secondPayment = true;
             var gateWay = _paymentGatewayBusiness.Find(transaction.PaymentGatewayId);
-            ViewBag.timeLineStatus = secondPayment ? DetailedAddOrderTimeLine.ConfirmDraft : DetailedAddOrderTimeLine.PaymentAllFactor;
             if (gateWay.IsNull())
             {
                 ViewBag.ErrorMessage = LocalMessage.OperationFailed;
@@ -210,39 +203,24 @@
                 ViewBag.ErrorMessage = result.Message;
                 return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
             }
-            if (order.IsFullPayed)
-                ViewBag.timeLineStatus = DetailedAddOrderTimeLine.WaitForDeliverDocument;
-            else if (secondPayment)
-                ViewBag.timeLineStatus = DetailedAddOrderTimeLine.PaymentAllFactor;
             return View(viewName: MVC.Transaction.Views.Success, model: transaction);
         }
 
         public virtual ViewResult FakeVerify(string IN)
         {
             ViewBag.PaymentGateway = BankNames.Pasargad;
-            ViewBag.timeLineStatus = DetailedAddOrderTimeLine.ConfirmDraft;
             var transaction = _transactionBusiness.Find(int.Parse(IN));
             if (transaction.IsNull())
             {
                 ViewBag.ErrorMessage = LocalMessage.PaymentException;
                 return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
             }
-            var secondPayment = false;
-            var order = _orderBusiness.Find(transaction.OrderId);
-            if (!order.IsFullPayed && _transactionBusiness.GetTotalPayedPrice(transaction.OrderId) > 0)
-                secondPayment = true;
-
-
             var gateWay = _paymentGatewayBusiness.Find(transaction.PaymentGatewayId);
             if (gateWay.IsNull())
             {
-                ViewBag.timeLineStatus = secondPayment ? DetailedAddOrderTimeLine.ConfirmDraft : DetailedAddOrderTimeLine.PaymentAllFactor;
+                ViewBag.ErrorMessage = LocalMessage.OperationFailed;
                 return View(viewName: MVC.Transaction.Views.Failed, transaction);
             }
-            if (order.IsFullPayed)
-                ViewBag.timeLineStatus = DetailedAddOrderTimeLine.WaitForDeliverDocument;
-            else if (secondPayment)
-                ViewBag.timeLineStatus = DetailedAddOrderTimeLine.PaymentAllFactor;
             var verify = new FakeStrategy().Verify(gateWay, transaction);
             return View(viewName: MVC.Transaction.Views.Success, model: transaction);
         }

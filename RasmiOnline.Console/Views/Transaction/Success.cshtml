@@ -17,7 +17,7 @@
 
 <div class="order-row">
     @{
-        Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, (DetailedAddOrderTimeLine)ViewBag.timeLineStatus);
+        Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, DetailedAddOrderTimeLine.WaitForDeliverDocument);
     }
     <aside class="col-md-9 time-line-content">
         <div class="card">

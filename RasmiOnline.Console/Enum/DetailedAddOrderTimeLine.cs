@@ -28,9 +28,6 @@
         //[LocalizeDescription(nameof(LocalMessage.SelectAddress), typeof(LocalMessage))]
         //SelectAddress,
 
-        [LocalizeDescription(nameof(LocalMessage.PaymentAllFactor), typeof(LocalMessage))]
-        PaymentAllFactor,
-
         [LocalizeDescription(nameof(LocalMessage.WaitForDeliverDocument), typeof(LocalMessage))]
         WaitForDeliverDocument,
 
@@ -38,6 +35,9 @@
         BeginTranslation,
         //[LocalizeDescription(nameof(LocalMessage.UploadFiles), typeof(LocalMessage))]
         //UploadFiles,
+
+        [LocalizeDescription(nameof(LocalMessage.PaymentAllFactor), typeof(LocalMessage))]
+        PaymentAllFactor,
 
         [LocalizeDescription(nameof(LocalMessage.ConfirmDraft), typeof(LocalMessage))]
         ConfirmDraft,
