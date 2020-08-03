@@ -313,6 +313,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شروع ترجمه.
+        /// </summary>
+        public static string BeginTranslation {
+            get {
+                return ResourceManager.GetString("BeginTranslation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to توسط کاربر.
         /// </summary>
         public static string ByMyself {
@@ -2171,6 +2180,15 @@ namespace RasmiOnline.Console.Properties {
         public static string ViewSearch {
             get {
                 return ResourceManager.GetString("ViewSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to در انتظار تحویل مدارک.
+        /// </summary>
+        public static string WaitForDeliverDocument {
+            get {
+                return ResourceManager.GetString("WaitForDeliverDocument", resourceCulture);
             }
         }
         

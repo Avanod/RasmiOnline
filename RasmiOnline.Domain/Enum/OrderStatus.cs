@@ -20,8 +20,8 @@
         [LocalizeDescription(nameof(DisplayName.WaitForDeliverDocumentByPost), typeof(DisplayName))]
         WaitForDeliverDocumentByPost = 12,
 
-        [LocalizeDescription(nameof(DisplayName.UploadFiles), typeof(DisplayName))]
-        UploadFiles = 13,
+        //[LocalizeDescription(nameof(DisplayName.UploadFiles), typeof(DisplayName))]
+        //UploadFiles = 13,
 
         [LocalizeDescription(nameof(DisplayName.StartTranslation), typeof(DisplayName))]
         StartTranslation = 14,

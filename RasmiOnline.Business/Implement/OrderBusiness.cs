@@ -87,8 +87,8 @@
                 order.DeliverFiles_DateSh = model.DeliverFiles_DateSh;
                 order.DeliverFiles_DateMi = PersianDateTime.Parse(model.DeliverFiles_DateSh).ToDateTime();
             }
-
-            order.OrderDescription = model.OrderDescription;
+            if (!string.IsNullOrWhiteSpace(model.OrderDescription))
+                order.OrderDescription = model.OrderDescription;
             order.LangType = model.LangType;
 
             if (order.OfficeUserId == Guid.Empty && model.OfficeUserId != Guid.Empty)
@@ -812,38 +812,38 @@
             return DateTime.Now.AddDays(dayCount);
         }
 
-        public IActionResponse<Order> QuickInsert(AddOrderModel model)
-        {
-            var order = new Order();
-            var _setting = _settingBusiness.Value.Get();
-            order.DayToDelivery = _setting.DayToDelivery;
-            order.UserId = model.UserId;
-            order.OrderStatus = OrderStatus.UploadFiles;
-            order.OrderDescription = model.Description;
-            order.TranslateType = model.TranslateType;
-            order.WithPassport = model.WithPassport;
-            order.OrderTitle = "بدون عنوان";
-            order.LangType = LangType.Fa_En;
-            _order.Add(order);
-            var rep = _uow.SaveChanges();
-            if (rep.ToSaveChangeResult())
-            {
-                _observerManager.Value.Notify(ConcreteKey.Order_Add, new ObserverMessage
-                {
-                    SmsContent = string.Format(BusinessMessage.Order_Add_Sms, order.OrderId),
-                    BotContent = string.Format(BusinessMessage.Order_Add_Bot, order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                    Key = ConcreteKey.Order_Add.ToString(),
-                    RecordId = order.OrderId,
-                    UserId = model.UserId
-                });
-            }
-            return new ActionResponse<Order>
-            {
-                IsSuccessful = rep.ToSaveChangeResult(),
-                Result = order,
-                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
-            };
-        }
+        //public IActionResponse<Order> QuickInsert(AddOrderModel model)
+        //{
+        //    var order = new Order();
+        //    var _setting = _settingBusiness.Value.Get();
+        //    order.DayToDelivery = _setting.DayToDelivery;
+        //    order.UserId = model.UserId;
+        //    order.OrderStatus = OrderStatus.UploadFiles;
+        //    order.OrderDescription = model.Description;
+        //    order.TranslateType = model.TranslateType;
+        //    order.WithPassport = model.WithPassport;
+        //    order.OrderTitle = "بدون عنوان";
+        //    order.LangType = LangType.Fa_En;
+        //    _order.Add(order);
+        //    var rep = _uow.SaveChanges();
+        //    if (rep.ToSaveChangeResult())
+        //    {
+        //        _observerManager.Value.Notify(ConcreteKey.Order_Add, new ObserverMessage
+        //        {
+        //            SmsContent = string.Format(BusinessMessage.Order_Add_Sms, order.OrderId),
+        //            BotContent = string.Format(BusinessMessage.Order_Add_Bot, order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+        //            Key = ConcreteKey.Order_Add.ToString(),
+        //            RecordId = order.OrderId,
+        //            UserId = model.UserId
+        //        });
+        //    }
+        //    return new ActionResponse<Order>
+        //    {
+        //        IsSuccessful = rep.ToSaveChangeResult(),
+        //        Result = order,
+        //        Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
+        //    };
+        //}
 
         public IActionResponse<Order> Add(AddOrderModel model)
         {
@@ -890,7 +890,7 @@
             if (order == null)
                 return new ActionResponse<Tuple<Order, int>> { Message = BusinessMessage.RecordNotFound };
             var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
-            if (payedPrice > 0 && !order.IsFullPayed)
+            if (!order.IsFullPayed && payedPrice > 0)
                 return new ActionResponse<Tuple<Order, int>> { IsSuccessful = true, Result = new Tuple<Order, int>(order, order.TotalPrice() - payedPrice) };
             order.DeliveryType = model.DeliveryType;
             order.PaymentType = model.PaymentType;
@@ -904,7 +904,7 @@
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
                 Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
-                Result = new Tuple<Order, int>(order, order.TotalPrice())
+                Result = new Tuple<Order, int>(order, order.IsFullPayed ? order.TotalPrice() : (order.TotalPrice() / 2))
             };
         }
     }

@@ -88,6 +88,7 @@ namespace RasmiOnline.Console.Controllers
             public readonly string AddOrder = "AddOrder";
             public readonly string Payment = "Payment";
             public readonly string Submit = "Submit";
+            public readonly string Error = "Error";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -97,6 +98,7 @@ namespace RasmiOnline.Console.Controllers
             public const string AddOrder = "AddOrder";
             public const string Payment = "Payment";
             public const string Submit = "Submit";
+            public const string Error = "Error";
         }
 
 
@@ -137,9 +139,11 @@ namespace RasmiOnline.Console.Controllers
             public class _ViewNamesClass
             {
                 public readonly string AddOrder = "AddOrder";
+                public readonly string Error = "Error";
                 public readonly string Payment = "Payment";
             }
             public readonly string AddOrder = "~/Views/Home/AddOrder.cshtml";
+            public readonly string Error = "~/Views/Home/Error.cshtml";
             public readonly string Payment = "~/Views/Home/Payment.cshtml";
             static readonly _PartialsClass s_Partials = new _PartialsClass();
             public _PartialsClass Partials { get { return s_Partials; } }
@@ -219,6 +223,17 @@ namespace RasmiOnline.Console.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Submit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             SubmitOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ErrorOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Error()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Error);
+            ErrorOverride(callInfo);
             return callInfo;
         }
 

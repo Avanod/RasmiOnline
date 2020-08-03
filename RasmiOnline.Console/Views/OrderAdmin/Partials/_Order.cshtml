@@ -2,16 +2,16 @@
 @{
     Layout = null;
     var hasAddress = true;
-    if (Model.OrderStatus == OrderStatus.WaitForPricing || Model.OrderStatus == OrderStatus.Cancel)
-    {
-        hasAddress = false;
-    }
+    //if (Model.OrderStatus == OrderStatus.WaitForPricing || Model.OrderStatus == OrderStatus.Cancel)
+    //{
+    //    hasAddress = false;
+    //}
 
 }
 
 <div class="row">
     <div class="@(hasAddress?"col-xs-12 col-md-4":"d-none") map-wrapper p-r-0">
-        <div class="google-map" data-type="static" data-location="@ViewBag.Location" style="height:240px;border-radius:5px">
+        <div class="google-map" data-type="static" data-location="@ViewBag.Location" style="height:360px;border-radius:5px">
         </div>
     </div>
     <div class="@(hasAddress?"col-xs-12 col-md-8":"col-xs-12") order-wrapper">
@@ -59,7 +59,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 orderPaymentInfo ">
                 @{ Html.RenderAction(MVC.OrderAdmin.ActionNames.GetOrderPaymentInfo, MVC.OrderAdmin.Name, new { orderId = Model.OrderId });}
-                @if (Model.OrderStatus == OrderStatus.WaitForPayment || Model.OrderStatus == OrderStatus.WaitForPricing)
+                @if ((byte)Model.OrderStatus <  (byte)OrderStatus.StartTranslation)
                 {
                     var url = AppSettings.BaseDomain + "/Home/" + Model.OrderId + "/" + Model.UserId;
                     <div class="row payment-link">

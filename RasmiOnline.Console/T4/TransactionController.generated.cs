@@ -82,6 +82,12 @@ namespace RasmiOnline.Console.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ViewResult FakeVerify()
+        {
+            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.FakeVerify);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.PartialViewResult List()
         {
             return new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.List);
@@ -136,6 +142,7 @@ namespace RasmiOnline.Console.Controllers
             public readonly string SadadVerify = "SadadVerify";
             public readonly string ZarinPalVerify = "ZarinPalVerify";
             public readonly string PasargadVerify = "PasargadVerify";
+            public readonly string FakeVerify = "FakeVerify";
             public readonly string List = "List";
             public readonly string AddableList = "AddableList";
             public readonly string AddTransaction = "AddTransaction";
@@ -153,6 +160,7 @@ namespace RasmiOnline.Console.Controllers
             public const string SadadVerify = "SadadVerify";
             public const string ZarinPalVerify = "ZarinPalVerify";
             public const string PasargadVerify = "PasargadVerify";
+            public const string FakeVerify = "FakeVerify";
             public const string List = "List";
             public const string AddableList = "AddableList";
             public const string AddTransaction = "AddTransaction";
@@ -198,6 +206,14 @@ namespace RasmiOnline.Console.Controllers
             public readonly string IN = "IN";
             public readonly string tref = "tref";
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_FakeVerify s_params_FakeVerify = new ActionParamsClass_FakeVerify();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_FakeVerify FakeVerifyParams { get { return s_params_FakeVerify; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_FakeVerify
+        {
+            public readonly string IN = "IN";
         }
         static readonly ActionParamsClass_List s_params_List = new ActionParamsClass_List();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -331,16 +347,28 @@ namespace RasmiOnline.Console.Controllers
         }
 
         [NonAction]
-        partial void PasargadVerifyOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, string IN, string tref, string id);
+        partial void PasargadVerifyOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, int IN, string tref, string id);
 
         [NonAction]
-        public override System.Web.Mvc.ViewResult PasargadVerify(string IN, string tref, string id)
+        public override System.Web.Mvc.ViewResult PasargadVerify(int IN, string tref, string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.PasargadVerify);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "IN", IN);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tref", tref);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             PasargadVerifyOverride(callInfo, IN, tref, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FakeVerifyOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, string IN);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult FakeVerify(string IN)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.FakeVerify);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "IN", IN);
+            FakeVerifyOverride(callInfo, IN);
             return callInfo;
         }
 

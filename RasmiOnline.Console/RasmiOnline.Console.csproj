@@ -340,6 +340,7 @@
     <Content Include="Content\Styles\Console\03-EndUser\Survey\index.min.css">
       <DependentUpon>index.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Transaction\success.css" />
     <Content Include="Content\Styles\Console\Attachment\uploader.css">
       <DependentUpon>uploader.scss</DependentUpon>
     </Content>

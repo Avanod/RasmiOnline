@@ -1,0 +1,19 @@
+﻿.w-48-px{
+    width:48px
+}
+main .container {
+    width: 100%;
+}
+.spec-list li {
+    overflow:hidden;
+    padding:10px 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.time-line-content > .card {
+    padding: 40px 50px;
+}
+.summary-success .icon{
+    float:right!important;
+}

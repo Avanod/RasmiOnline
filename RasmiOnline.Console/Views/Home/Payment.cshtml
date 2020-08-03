@@ -127,7 +127,7 @@
                                     <td>@(Model.OrderItems.ToList().IndexOf(item) + 1)</td>
                                     <td>@item.Name</td>
                                     <td>@item.Count</td>
-                                    <td>@item.Price.ToString()</td>
+                                    <td>@item.CalculateTotalPrice(Model.LangType)</td>
                                 </tr>
                             }
                             @*<tr>

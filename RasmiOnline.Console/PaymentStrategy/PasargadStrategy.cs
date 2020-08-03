@@ -190,7 +190,7 @@
                         model.TrackingId = responseGateway.ToString();
                         model.Status = "1";
                         if (model.OrderId != 0)
-                            _orderBusiness.UpdateStatus(model.OrderId, OrderStatus.DeliveryFiles);
+                            _orderBusiness.UpdateStatus(model.OrderId);
 
                         _transactionBusiness.Update(model);
 

@@ -1,29 +1,30 @@
 ﻿@model Transaction
 @using RasmiOnline.Console.Enum
-@{ 
+@{
     ViewBag.Title = "بازگشت از درگاه";
+    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
 }
-@section Header{
+@section Head{
     <link href="@Url.Content(Links.Content.Styles.Shared.timeline_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.order_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.Order.common_css)" rel="stylesheet" />
 }
 
 <div class="order-row">
-    @{Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, DetailedAddOrderTimeLine.PaymentAllFactor);}
+    @{Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, (DetailedAddOrderTimeLine)ViewBag.timeLineStatus);}
     <aside class="col-md-9 time-line-content">
         <div class="card" style="padding:25px 50px">
             @* Details Of Transaction *@
             @Html.Partial(MVC.Order.Views.Partials._SummaryHeader, new SummaryHeader
-       {
-           Message = ViewBag.ErrorMessage,
-           BGColor = "#ff5652d4",
-           Icon = "zmdi-close",
-           PaddingTop = "15px",
-           Color = "#fff"
-       })
+           {
+               Message = ViewBag.ErrorMessage,
+               BGColor = "#ff5652d4",
+               Icon = "zmdi-close",
+               PaddingTop = "15px",
+               Color = "#fff"
+           })
             <div class="row m-0">
-                <ul class="spec-list col-sm-12 p-r-0 p-l-0">
+                <ul class="spec-list col-xs-12 col-sm-12 p-r-0 p-l-0 m-b">
                     <li class="d-flex">
                         <span class="technicalspecs-title col-md-4 float-right d-block" data-id="">درگاه بانکی</span>
                         <span class="technicalspecs-value col-md-8 float-left" data-id="">
@@ -59,9 +60,9 @@
 
                             @if (Model != null)
                             {
-                            <span>
-                                @Model.OrderId
-                            </span>
+                                <span>
+                                    @Model.OrderId
+                                </span>
                             }
 
                         </span>
@@ -83,10 +84,10 @@
 
 
 
-                <div class="nav-actions col-md-12 p-0">
-                    <a class="btn-action rtl waves-effect m-b-20 next-panel float-left" href="@Url.Action(MVC.Order.ActionNames.History, MVC.Order.Name)">
+                <div class="col-xs-12 col-sm-12">
+                    <a class="btn-action rtl waves-effect m-b-20 next-panel float-left" href="@Url.Action(MVC.Home.ActionNames.AddOrder, MVC.Home.Name)">
                         <div class="text">
-                            @LocalMessage.OrderHistory
+                            بازگشت
                         </div>
                         <div class="icon">
                             <i class="zmdi zmdi-long-arrow-return"></i>
@@ -98,6 +99,7 @@
     </aside>
 </div>
 
-@section Scripts{
+@section Footer{
     <script src="@Url.Content(Links.Scripts.Console.Order.common_js)"></script>
+    <link href="@Url.Content("~/Content/Styles/Console/03-EndUser/Transaction/success.css")" rel="stylesheet" />
 }
