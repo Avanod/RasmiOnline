@@ -890,8 +890,9 @@
             if (order == null)
                 return new ActionResponse<Tuple<Order, int>> { Message = BusinessMessage.RecordNotFound };
             var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
-            if (!order.IsFullPayed && payedPrice > 0)
+            if (payedPrice > 0)
                 return new ActionResponse<Tuple<Order, int>> { IsSuccessful = true, Result = new Tuple<Order, int>(order, order.TotalPrice() - payedPrice) };
+
             order.DeliveryType = model.DeliveryType;
             order.PaymentType = model.PaymentType;
             order.AddressId = model.AddressId;
@@ -904,7 +905,7 @@
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
                 Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
-                Result = new Tuple<Order, int>(order, order.IsFullPayed ? order.TotalPrice() : (order.TotalPrice() / 2))
+                Result = new Tuple<Order, int>(order, order.IsFullPayed ? (order.TotalPrice() - payedPrice) : (order.TotalPrice() / 2))
             };
         }
     }
