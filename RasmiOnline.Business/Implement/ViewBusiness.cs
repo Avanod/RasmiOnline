@@ -113,17 +113,25 @@
             return response;
         }
 
-        public IList<ItemTextValueModel<string, int>> GetParentViews()
-        {
-            var dateNow = DateTime.Now.Date;
-            return _view.Where(x => x.ParentId == 0 && x.IsVisible && x.ExpireDateMi >= dateNow)
-                        .Select(x => new ItemTextValueModel<string, int>
-                        {
-                            Key = x.ActionNameFa,
-                            Value = x.ViewId,
-                        }).OrderBy(x => x.Key)
-                        .ToList();
-         }
-            
+        //public IList<ItemTextValueModel<string, int>> GetParentViews()
+        //{
+        //    var dateNow = DateTime.Now.Date;
+        //    return _view.Where(x => x.ParentId == 0 && x.IsVisible && x.ExpireDateMi >= dateNow)
+        //                .Select(x => new ItemTextValueModel<string, int>
+        //                {
+        //                    Key = x.ActionNameFa,
+        //                    Value = x.ViewId,
+        //                }).OrderBy(x => x.Key)
+        //                .ToList();
+        //}
+
+        public IList<ItemTextValueModel<string, int>> GetAll(bool? justRoot = null, string q = null)
+                => _view.Where(x => (justRoot == null || x.ParentId == 0))
+                .Select(x => new ItemTextValueModel<string, int>
+                {
+                    Key = x.ActionNameFa + (x.Controller == null ? "" : ("(" + x.Controller + "/" + x.ActionName + ")")),
+                    Value = x.ViewId
+                }).ToList();
+
     }
 }

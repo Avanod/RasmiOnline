@@ -13,6 +13,7 @@
         View Find(int viewId);
         IActionResponse<View> GetView(int viewId);
         IActionResponse<List<View>> Search(FilterViewModel filterModel);
-        IList<ItemTextValueModel<string, int>> GetParentViews();
+        //IList<ItemTextValueModel<string, int>> GetParentViews();
+        IList<ItemTextValueModel<string, int>> GetAll(bool? justRoot = null, string q = null);
     }
 }

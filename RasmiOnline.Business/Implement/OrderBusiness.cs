@@ -75,9 +75,20 @@
         public IActionResponse<Order> BriefUpdate(Order model, string baseDomain = "")
         {
             var notifOffice = false;
-            var order = _order.Find(model.OrderId);
+            var order = Find(model.OrderId, "OrderItems");
             if (order == null)
                 return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
+            if (model.OrderStatus != order.OrderStatus && model.OrderStatus == OrderStatus.Done)
+            {
+                var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
+                if (order.TotalPrice() > payedPrice)
+                    return new ActionResponse<Order>
+                    {
+                        IsSuccessful = false,
+                        Message = BusinessMessage.OrderIsNotPayed
+                    };
+
+            }
             order.OrderStatus = model.OrderStatus;
             order.DayToDelivery = model.DayToDelivery;
             order.DocsBeenRecieved = model.DocsBeenRecieved;
@@ -94,7 +105,7 @@
             if (order.OfficeUserId == Guid.Empty && model.OfficeUserId != Guid.Empty)
                 notifOffice = true;
             order.OfficeUserId = model.OfficeUserId;
-
+            _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
             if (rep.ToSaveChangeResult())
                 StatusNotifier(order, baseDomain);

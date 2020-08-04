@@ -7,19 +7,18 @@
     using System.Web;
     using Domain.Dto;
     using Domain.Enum;
+    using System.Text;
     using Domain.Entity;
+    using Newtonsoft.Json;
+    using System.Net.Http;
     using Business.Protocol;
     using Gnu.Framework.Core;
     using Business.Observers;
     using DependencyResolver.Ioc;
-    using Gnu.Framework.Core.Authentication;
-    using System.Net.Http;
-    using System.Text;
-    using System.Security.Cryptography;
-    using Newtonsoft.Json;
     using System.Net.Http.Headers;
     using Gnu.Framework.Core.Log;
-    using System.EnterpriseServices;
+    using System.Security.Cryptography;
+    using Gnu.Framework.Core.Authentication;
 
     public class PasargadStrategy : IPaymentStrategy
     {
@@ -190,7 +189,11 @@
                         model.TrackingId = responseGateway.ToString();
                         model.Status = "1";
                         if (model.OrderId != 0)
-                            _orderBusiness.UpdateStatus(model.OrderId);
+                        {
+                            if (_transactionBusiness.GetTotalPayedPrice(model.OrderId) == 0)
+                                _orderBusiness.UpdateStatus(model.OrderId);
+                            else _orderBusiness.UpdateStatus(model.OrderId, OrderStatus.DeliveryFiles);
+                        }
 
                         _transactionBusiness.Update(model);
 

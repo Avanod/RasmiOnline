@@ -17,6 +17,7 @@ namespace RasmiOnline.Console.Controllers
             _surveyBusiness = surveyBusiness;
             _surveyOptionBusiness = surveyOptionBusiness;
         }
+        #region Admin Actions
         public virtual ActionResult Search(SurveySearchFilter filter)
         {
             ViewBag.AutoSubmit = false;
@@ -68,7 +69,8 @@ namespace RasmiOnline.Console.Controllers
 
         [HttpPost]
         public virtual JsonResult DeleteOption(int id = default(int))
-             => Json(_surveyOptionBusiness.Delete(id), JsonRequestBehavior.AllowGet);
+             => Json(_surveyOptionBusiness.Delete(id), JsonRequestBehavior.AllowGet); 
+        #endregion
 
         [HttpGet, AllowAnonymous]
         public virtual ViewResult Index(int id)

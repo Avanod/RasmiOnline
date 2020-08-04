@@ -17,13 +17,18 @@
         private readonly Lazy<IUserBusiness> _lazyUserBusiness;
         private readonly IUserInRoleBusiness _userInRoleBusiness;
         private readonly IViewInRoleBusiness _viewInRoleBusiness;
-
-        public RoleController(IRoleBusiness roleBusiness, IUserInRoleBusiness userInRoleBusiness, IViewInRoleBusiness viewInRoleBusiness, Lazy<IUserBusiness> lazyUserBusiness)
+        private readonly IViewBusiness _viewBusiness;
+        public RoleController(IRoleBusiness roleBusiness,
+            IUserInRoleBusiness userInRoleBusiness,
+            IViewInRoleBusiness viewInRoleBusiness,
+             IViewBusiness viewBusiness,
+            Lazy<IUserBusiness> lazyUserBusiness)
         {
             _roleBusiness = roleBusiness;
             _lazyUserBusiness = lazyUserBusiness;
             _userInRoleBusiness = userInRoleBusiness;
             _viewInRoleBusiness = viewInRoleBusiness;
+            _viewBusiness = viewBusiness;
         }
         #endregion
 
@@ -66,8 +71,7 @@
         [NonAction]
         private void GetViews(int roleId)
         {
-            var views = _viewInRoleBusiness.GetFilteredViewsFullPath(roleId);
-            ViewBag.Views = views.Select(s => new SelectListItem
+            ViewBag.Views = _viewBusiness.GetAll().Select(s => new SelectListItem
             {
                 Text = s.Key,
                 Value = s.Value.ToString()

@@ -77,21 +77,11 @@
 
         public IList<ItemTextValueModel<string, int>> GetFilteredViewsFullPath(int roleId)
         => _uow.Set<ViewInRole>().Include(x => x.View)
-            //.Where(x => x.RoleId == roleId && x.View.Controller != null)
+            .Where(x => x.RoleId == roleId && x.View.Controller != null)
             .Select(x => new ItemTextValueModel<string, int>
             {
                 Key = x.View.ActionNameFa + (x.View.Controller == null ? "" : ("(" + x.View.Controller + "/" + x.View.ActionName + ")")),
                 Value = x.ViewInRoleId
             }).ToList();
-        //    _uow.Database.SqlQuery<ViewsFullPathModel>("[Acl].[GetFilteredViewsFullPath] @RoleId",
-        //        new SqlParameter("@RoleId", roleId)
-        //        {
-        //            SqlDbType = SqlDbType.Int
-        //        }).ToList()
-        //          .Select(x => new ItemTextValueModel<string, int>
-        //          {
-        //              Value = x.ViewId,
-        //              Key = x.FullPath
-        //          }).ToList();
     }
 }

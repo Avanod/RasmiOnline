@@ -285,6 +285,15 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پرداخت بصورت کامل انجام نشده است، لطفا وضعیت را به تسویه نهایی تغییر دهید.
+        /// </summary>
+        public static string OrderIsNotPayed {
+            get {
+                return ResourceManager.GetString("OrderIsNotPayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} شما در وضعیت تسویه نهایی قرار گرفته است. لطفا سفارش خود را از طریق لینک زیر تسویه نمایید.
         ///{1}.
         /// </summary>

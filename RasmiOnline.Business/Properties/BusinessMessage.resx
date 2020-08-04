@@ -257,4 +257,7 @@ www.RasmiOnline.com</value>
   <data name="UserRegisterMessage" xml:space="preserve">
     <value>کاربر گرامی {0} برای شما با نام کاربری {1} و رمز عبور {2} در وب سایت دارالترجمه امیرشاهی حساب کاربری ایجاد گردید</value>
   </data>
+  <data name="OrderIsNotPayed" xml:space="preserve">
+    <value>پرداخت بصورت کامل انجام نشده است، لطفا وضعیت را به تسویه نهایی تغییر دهید</value>
+  </data>
 </root>

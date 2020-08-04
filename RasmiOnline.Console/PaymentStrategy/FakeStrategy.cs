@@ -39,7 +39,12 @@
         public IActionResponse<string> Verify(PaymentGateway gateway, Transaction model, object responseGateway = null)
         {
             if (model.OrderId != 0)
-                _orderBusiness.UpdateStatus(model.OrderId);
+            {
+                if (_transactionBusiness.GetTotalPayedPrice(model.OrderId) == 0)
+                    _orderBusiness.UpdateStatus(model.OrderId);
+                else _orderBusiness.UpdateStatus(model.OrderId, OrderStatus.DeliveryFiles);
+            }
+
             model.IsSuccess = true;
             model.TrackingId = "123";
             model.Status = "1";

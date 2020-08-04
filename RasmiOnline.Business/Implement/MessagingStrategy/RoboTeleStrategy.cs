@@ -28,15 +28,17 @@
             var result = new ActionResponse<bool>();
             try
             {
-                var roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content);
-                message.SendStatus = roboResponse.Result.MessageId.ToString();
-                message.State = StateType.Accepted;
-                _uow.Entry(message).State = EntityState.Modified;
-                _uow.SaveChanges();
+                //var roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content);
+                //message.SendStatus = roboResponse.Result.MessageId.ToString();
+                //message.State = StateType.Accepted;
+                //_uow.Entry(message).State = EntityState.Modified;
+                //_uow.SaveChanges();
 
-                result.Result = true;
+                //result.Result = true;
+                //result.IsSuccessful = true;
+                //result.Message = BusinessMessage.Success;
+                //return result;
                 result.IsSuccessful = true;
-                result.Message = BusinessMessage.Success;
                 return result;
             }
             catch (Exception e)

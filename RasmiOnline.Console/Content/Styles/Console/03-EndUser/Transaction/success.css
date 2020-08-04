@@ -1,8 +1,8 @@
 ﻿.w-48-px{
     width:48px
 }
-main .container {
-    width: 100%;
+main .order-row {
+   margin:50px 0!important;
 }
 .spec-list li {
     overflow:hidden;
@@ -11,9 +11,9 @@ main .container {
     justify-content:center;
     align-items:center;
 }
-.time-line-content > .card {
+/*.time-line-content > .card {
     padding: 40px 50px;
-}
+}*/
 .summary-success .icon{
     float:right!important;
 }
