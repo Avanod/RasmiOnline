@@ -10,15 +10,15 @@
     {
         public void Observe(IUnitOfWork uow, IMessageBusiness messageBusiness, ObserverMessage msg, User user)
         {
-            messageBusiness.Insert(new Message
-            {
-                Content = msg.BotContent.Replace("NAME", user.FullName),
-                Receiver = GlobalVariable.AdminInstanceId,
-                State = StateType.Begin,
-                Type = MessagingType.RoboTele,
-                ExtraData = msg.Key,
-                ReplyMessageId = msg.MessageId
-            });
+            //messageBusiness.Insert(new Message
+            //{
+            //    Content = msg.BotContent.Replace("NAME", user.FullName),
+            //    Receiver = GlobalVariable.AdminInstanceId,
+            //    State = StateType.Begin,
+            //    Type = MessagingType.RoboTele,
+            //    ExtraData = msg.Key,
+            //    ReplyMessageId = msg.MessageId
+            //});
         }
     }
 }
