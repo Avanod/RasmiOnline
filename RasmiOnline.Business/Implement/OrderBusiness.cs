@@ -78,7 +78,8 @@
             var order = Find(model.OrderId, "OrderItems");
             if (order == null)
                 return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
-            if (model.OrderStatus != order.OrderStatus && model.OrderStatus == OrderStatus.Done)
+            var statusChanged = model.OrderStatus != order.OrderStatus;
+            if (statusChanged && model.OrderStatus == OrderStatus.Done)
             {
                 var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
                 if (order.TotalPrice() > payedPrice)
@@ -107,7 +108,7 @@
             order.OfficeUserId = model.OfficeUserId;
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
-            if (rep.ToSaveChangeResult())
+            if (rep.ToSaveChangeResult() && statusChanged)
                 StatusNotifier(order, baseDomain);
 
             //Notif office once
