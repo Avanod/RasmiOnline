@@ -266,7 +266,7 @@ namespace RasmiOnline.Business.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} با موفقیت ثبت گردید. به زودی همکاران ما برای پیگیری با شما تماس خواهند گرفت.
-        ///www.rasmionline.com.
+        ///Portal.amirshahigroup.com.
         /// </summary>
         public static string Order_Add_Sms {
             get {
@@ -276,7 +276,7 @@ namespace RasmiOnline.Business.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to NAME عزیز، سفارش به شماره {0} در پنل کاربری شما قرار گرفت ، جهت پیگیری سفارش فوق لطفا به پنل کاربری خود مراجعه نمایید .
-        ///www.RasmiOnline.com.
+        ///Portal.amirshahigroup.com.
         /// </summary>
         public static string Order_Moved_Office {
             get {

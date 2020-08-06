@@ -241,7 +241,7 @@
             return Json(_messageBusiness.Value.Insert(new Message
             {
                 Receiver = user.MobileNumber.ToString(),
-                Content = string.Format(LocalMessage.RecoverPasswordSms, "www.RasmiOnline.com", pw.ToString()),
+                Content = string.Format(LocalMessage.RecoverPasswordSms, "Portal.amirshahigroup.com", pw.ToString()),
                 Type = MessagingType.Sms
             }));
         }
