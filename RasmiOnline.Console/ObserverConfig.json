@@ -37,6 +37,12 @@
     ]
   },
   {
+    "Key": "Submit_Draft",
+    "Observers": [
+      "RasmiOnline.Business.Observers.SmsObserver"
+    ]
+  },
+  {
     "Key": "Pay_First_PaymentPart",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver"

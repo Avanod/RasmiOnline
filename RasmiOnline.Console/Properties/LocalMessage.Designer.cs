@@ -1950,6 +1950,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to توضیحات خود را اینجا بنویسید.
+        /// </summary>
+        public static string TypeHere {
+            get {
+                return ResourceManager.GetString("TypeHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to واحد.
         /// </summary>
         public static string Unit {

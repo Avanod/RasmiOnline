@@ -81,26 +81,30 @@ $(document).on('ready', function () {
     fireDropZone($('#upload-attachments'), function (rep, dz) {
         if (rep.IsSuccessful) {
             dz.removeAllFiles();
-            let $wrapper = $('#upload-attachments').closest('.tab-pane').find('.attchs-wrapper').html(threeDotLoader);
-            $.get($wrapper.data('url'), function (rep) { $wrapper.html(rep); });
-        }
-    });
-
-    fireDropZone($('#upload-translation-attachments'), function (rep, dz) {
-        if (rep.IsSuccessful) {
-            dz.removeAllFiles();
-            let $wrapper = $('#upload-translation-attachments').closest('.tab-pane').find('.attchs-wrapper').html(threeDotLoader);
-            $.get($wrapper.data('url'), function (rep) { $wrapper.html(rep); });
+            let $wrapper = $('#upload-attachments').closest('.tab-pane').find('.attchs-wrapper');
+            $('#target-OrderFiles').html('<div class="text-center p-4">' + threeDotLoader + '</div>');
+            $.get($wrapper.data('url'), { attachmentType: "OrderFiles" }, function (rep) { $('#target-OrderFiles').html(rep); });
         }
     });
 
     fireDropZone($('#upload-identity-attachments'), function (rep, dz) {
         if (rep.IsSuccessful) {
             dz.removeAllFiles();
-            let $wrapper = $('#upload-identity-attachments').closest('.tab-pane').find('.attchs-wrapper').html(threeDotLoader);
-            $.get($wrapper.data('url'), function (rep) { $wrapper.html(rep); });
+            let $wrapper = $('#upload-identity-attachments').closest('.tab-pane').find('.attchs-wrapper');
+            $('#target-Identity').html('<div class="text-center p-4">' + threeDotLoader + '</div>');
+            $.get($wrapper.data('url'), { attachmentType: "Identity" }, function (rep) { $('#target-Identity').html(rep); });
         }
     });
+
+    fireDropZone($('#upload-translation-attachments'), function (rep, dz) {
+        if (rep.IsSuccessful) {
+            dz.removeAllFiles();
+            let $wrapper = $('#upload-translation-attachments').closest('.tab-pane').find('.attchs-wrapper');
+            $('#target-Translation').html('<div class="text-center p-4">'+threeDotLoader+'</div>');
+            $.get($wrapper.data('url'), { attachmentType: "Translation" }, function (rep) { console.log(rep); $('#target-Translation').html(rep); });
+        }
+    });
+
 
     fireGoogleMap();
 
@@ -111,7 +115,7 @@ $(document).on('ready', function () {
         $('.order-items .pricing-item').each(function (idx, elm) {
             console.log($(this).find('input[name="price"]').val());
             let info = $(this).data('info');
-            
+
             let item = {
                 OrderId: parseInt($('#OrderId').val()),
                 Price: $(this).find('input[name="price"]').val(),

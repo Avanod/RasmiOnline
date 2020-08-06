@@ -7,6 +7,7 @@
         Order_Add,
         Waiting_For_Payment,
         Pay_All_Factor,
+        Submit_Draft,
         Offline_Transaction_Add,
         Cancel_Order,
         Order_Moved_Office,

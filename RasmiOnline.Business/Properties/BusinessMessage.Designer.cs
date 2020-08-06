@@ -322,6 +322,16 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کاربر گرامی NAME، پیش نویس سفارش {0} آماده شده است، شما میتوانید از طریق لینک زیر آن را مشاهده نمایید
+        ///{1}.
+        /// </summary>
+        public static string SubmitDraftMessage {
+            get {
+                return ResourceManager.GetString("SubmitDraftMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات با موفقیت انجام شد.
         /// </summary>
         public static string Success {

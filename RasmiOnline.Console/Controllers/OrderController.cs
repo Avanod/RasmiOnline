@@ -17,7 +17,7 @@
     using System.Web;
     using System.Web.Security;
 
-    public partial class OrderController : Controller
+    public partial class OrderController : AuthBaseController
     {
         readonly IPaymentGatewayBusiness _paymentGatewayBusiness;
         readonly IOfficeAddressBusiness _officeAdressBusiness;
@@ -40,7 +40,7 @@
             IUserBusiness userBusiness,
             Lazy<IPricingItemBusiness> pricingItemBusiness,
             Lazy<IShortLinkBusiness> shortLinkBusiness,
-            Lazy<ITransactionBusiness> transBusiness)
+            Lazy<ITransactionBusiness> transBusiness) : base(userBusiness)
         {
             _paymentGatewayBusiness = paymentGatewayBusiness;
             _officeAdressBusiness = officeAdressBusiness;
@@ -255,33 +255,41 @@
         [HttpGet, AllowAnonymous]
         public virtual PartialViewResult ShowList(Guid userId) => PartialView(MVC.Order.Views.Partials._ListForMobile, _orderBusiness.GetAllOrder(userId));
 
-        [HttpGet, Route("Order/ConfirmDraft/{orderId:int}")]
-        public virtual ActionResult ConfirmDraft(int orderId)
+        [HttpGet, AllowAnonymous, Route("Order/ConfirmDraft/{orderId:int}/{userId:Guid}")]
+        public virtual ActionResult ConfirmDraft(int orderId, Guid userId)
         {
             #region Checking
             var order = _orderBusiness.Find(orderId, "Attachments");
             if (order == null)
                 return View(MVC.Shared.Views.Error);
-            var userId = (User as ICurrentUserPrincipal).UserId;
-            if (userId != order.UserId)
-                return RedirectToAction(MVC.Order.ActionNames.History, MVC.Order.Name);
+            //var userId = (User as ICurrentUserPrincipal).UserId;
+            //if (userId != order.UserId)
+            //    return RedirectToAction(MVC.Order.ActionNames.History, MVC.Order.Name);
             #endregion
+            var user = _userBusiness.Find(userId);
+            if (user == null) return View(MVC.Order.Views.NotFound);
+            var rep = SignIn(user, true);
+            if (!rep.IsSuccessful) return View(MVC.Shared.Views.Error, (object)rep.Message);
             return View(order);
         }
 
-        [HttpPost]
-        public virtual JsonResult ConfirmDraft([Bind(Include = "OrderId, IsConfirmedByClient, ConfirmComment")]Order model)
+        [HttpPost, AllowAnonymous]
+        public virtual JsonResult ConfirmDraft([Bind(Include = "OrderId, IsConfirmedByClient, ConfirmComment")] Order model)
         {
             if (!ModelState.IsValid)
                 return Json(new { IsSuccessful = false, Message = LocalMessage.ValidationFailed });
-            var order = _orderBusiness.Find(model.OrderId);
+            var order = _orderBusiness.Find(model.OrderId, "OrderItems");
             if (order == null)
                 return Json(new { IsSuccessful = false, Message = LocalMessage.RecordsNotFound });
             order.IsConfirmedByClient = model.IsConfirmedByClient;
             order.ConfirmComment = model.ConfirmComment;
             if (model.IsConfirmedByClient)
-                order.OrderStatus = OrderStatus.DeliveryFiles;
-            return Json(_orderBusiness.Update(order));
+            {
+                var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
+                order.OrderStatus = payedPrice == order.TotalPrice() ? OrderStatus.DeliveryFiles : OrderStatus.PayAllFactor;
+            }
+            var update = _orderBusiness.Update(order, AppSettings.BaseDomain);
+            return Json(new { update.IsSuccessful, update.Message });
         }
 
         [HttpGet, AllowAnonymous, Route("Order/Pay/{code}")]

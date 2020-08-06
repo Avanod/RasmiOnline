@@ -544,7 +544,7 @@
     <value>صفحه (ویو)</value>
   </data>
   <data name="ConfirmComment" xml:space="preserve">
-    <value>توضیحات خود را اینجا بنویسید</value>
+    <value>توضیحات تایید</value>
   </data>
   <data name="IsConfirmedByClient" xml:space="preserve">
     <value>تایید توسط مشتری</value>

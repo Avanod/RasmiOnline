@@ -331,7 +331,7 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to توضیحات خود را اینجا بنویسید.
+        ///   Looks up a localized string similar to توضیحات تایید.
         /// </summary>
         public static string ConfirmComment {
             get {

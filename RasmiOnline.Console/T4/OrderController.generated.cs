@@ -219,6 +219,7 @@ namespace RasmiOnline.Console.Controllers
         public class ActionParamsClass_ConfirmDraft
         {
             public readonly string orderId = "orderId";
+            public readonly string userId = "userId";
             public readonly string model = "model";
         }
         static readonly ActionParamsClass_Pay s_params_Pay = new ActionParamsClass_Pay();
@@ -432,14 +433,15 @@ namespace RasmiOnline.Console.Controllers
         }
 
         [NonAction]
-        partial void ConfirmDraftOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId);
+        partial void ConfirmDraftOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId, System.Guid userId);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ConfirmDraft(int orderId)
+        public override System.Web.Mvc.ActionResult ConfirmDraft(int orderId, System.Guid userId)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmDraft);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
-            ConfirmDraftOverride(callInfo, orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userId", userId);
+            ConfirmDraftOverride(callInfo, orderId, userId);
             return callInfo;
         }
 

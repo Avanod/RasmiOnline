@@ -17,7 +17,7 @@ using RasmiOnline.Console.PaymentStrategy;
 namespace RasmiOnline.Console.Controllers
 {
     [AllowAnonymous]
-    public partial class HomeController : Controller
+    public partial class HomeController : AuthBaseController
     {
         readonly IUserBusiness _userSrv;
         readonly IOrderBusiness _orderSrv;
@@ -36,7 +36,7 @@ namespace RasmiOnline.Console.Controllers
             IOrderBusiness orderBusiness,
             IAddressBusiness addressBusiness,
             Lazy<IUserInRoleBusiness> userInRoleBusiness,
-            Lazy<ITransactionBusiness> transBusiness)
+            Lazy<ITransactionBusiness> transBusiness):base(userSrv)
         {
             _userSrv = userSrv;
             _orderSrv = orderSrv;
@@ -49,60 +49,6 @@ namespace RasmiOnline.Console.Controllers
             _transBusiness = transBusiness;
         }
 
-        [NonAction]
-        private ActionResponse<string> SignIn(User user, bool rememberMe)
-        {
-            var menuRep = _userBusiness.GetAvailableActions(user.UserId);
-            if (menuRep == null)
-                return new ActionResponse<string>
-                {
-                    IsSuccessful = false,
-                    Message = LocalMessage.ThereIsNoView
-                };
-
-            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie != null)
-            {
-                HttpCookie _AuthCookie = new HttpCookie($"_{FormsAuthentication.FormsCookieName}", (User as ICurrentUserPrincipal).UserId.ToString())
-                {
-                    Expires = authCookie.Expires
-                };
-                HttpContext.Response.Cookies.Add(_AuthCookie);
-            }
-
-            var currentUser = new CurrentUserPrincipal();
-            currentUser.UserId = user.UserId;
-            currentUser.FullName = $"{user.FirstName} {user.LastName}";
-            currentUser.UserName = user.Email.ToString();
-            currentUser.CustomField = new UserExtraData { MobileNumber = user.MobileNumber };
-            var expDateTime = rememberMe ? DateTime.Now.AddHours(int.Parse(AppSettings.AuthTimeoutWithRemeberMeInHours)) : DateTime.Now.AddMinutes(int.Parse(AppSettings.AuthTimeoutInMiutes));
-            string userData = currentUser.SerializeToJson();
-            FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.MobileNumber.ToString(), DateTime.Now, expDateTime, true, userData);
-            string encTicket = FormsAuthentication.Encrypt(authTicket);
-            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket)
-            {
-                Expires = expDateTime,
-                HttpOnly = true
-            };
-            //FormsAuthentication.set
-            //System.Web.HttpContext.Current.Response.Cookies.Add(cookie);
-            HttpContext.Response.Cookies.Add(cookie);
-            //var currentUser = serializer.Deserialize<CurrentUserPrincipal>(authTicket.UserData);
-            currentUser.SetIdentity(authTicket.Name);
-            currentUser.UserActionList = menuRep.Items.ToList();
-            System.Web.HttpContext.Current.User = currentUser;
-            if (menuRep.DefaultUserAction.RoleId != int.Parse(AppSettings.UserRoleId))
-                return new ActionResponse<string>
-                {
-                    IsSuccessful = true
-                };
-
-            return new ActionResponse<string>
-            {
-                IsSuccessful = true
-            };
-
-        }
 
         [NonAction]
         private (int price, int payedPrice) CheckPrice(Order order)

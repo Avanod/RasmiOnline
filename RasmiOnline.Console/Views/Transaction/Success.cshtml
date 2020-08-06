@@ -9,16 +9,16 @@
     }*@
 
 @section Head{
-    <link href="@Url.Content(Links.Content.Styles.Shared.timeline_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.order_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.Order.common_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console._03_EndUser.Transaction.success_css)" rel="stylesheet" />
 }
 
 
 <div class="order-row">
     @*@{
-        Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, DetailedAddOrderTimeLine.WaitForDeliverDocument);
-    }*@
+            Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, DetailedAddOrderTimeLine.WaitForDeliverDocument);
+        }*@
     <aside class="col-12 col-sm-12">
         <div class="card">
             @Html.Partial(MVC.Order.Views.Partials._SummaryHeader, new SummaryHeader
@@ -93,6 +93,4 @@
 
 @section Footer{
     <script src="@Url.Content(Links.Scripts.Console.Order.common_js)"></script>
-    <link href="@Url.Content("~/Content/Styles/Console/03-EndUser/Transaction/success.css")" rel="stylesheet" />
-
 }

@@ -260,4 +260,8 @@ Portal.amirshahigroup.com</value>
   <data name="OrderIsNotPayed" xml:space="preserve">
     <value>پرداخت بصورت کامل انجام نشده است، لطفا وضعیت را به تسویه نهایی تغییر دهید</value>
   </data>
+  <data name="SubmitDraftMessage" xml:space="preserve">
+    <value>کاربر گرامی NAME، پیش نویس سفارش {0} آماده شده است، شما میتوانید از طریق لینک زیر آن را مشاهده نمایید
+{1}</value>
+  </data>
 </root>

@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="@(hasAddress?"col-xs-12 col-md-4":"d-none") map-wrapper p-r-0">
-        <div class="google-map" data-type="static" data-location="@ViewBag.Location" style="height:220px;border-radius:5px">
+        <div class="google-map" data-type="static" data-location="@ViewBag.Location" style="height:250px;border-radius:5px">
         </div>
     </div>
     <div class="@(hasAddress?"col-xs-12 col-md-8":"col-xs-12") order-wrapper">
@@ -47,19 +47,26 @@
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.NeedDraft) : @(Model.NeedDraft ? LocalMessage.Yes : LocalMessage.No)</span>
                     </li>
-                    <li>
-                        <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
-                        <span>@Html.DisplayNameFor(x => x.OrderTitle) : @Model.OrderTitle</span>
-                    </li>
+                    @*<li>
+                            <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+                            <span>@Html.DisplayNameFor(x => x.OrderTitle) : @Model.OrderTitle</span>
+                        </li>*@
                     <li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.OrderDescription) : @Model.OrderDescription</span>
                     </li>
+                    @if (Model.IsConfirmedByClient)
+                    {
+                        <li>
+                            <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+                            <span>@Html.DisplayNameFor(x => x.ConfirmComment) : @Model.ConfirmComment</span>
+                        </li>
+                    }
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 orderPaymentInfo ">
                 @{ Html.RenderAction(MVC.OrderAdmin.ActionNames.GetOrderPaymentInfo, MVC.OrderAdmin.Name, new { orderId = Model.OrderId });}
-                @if ((byte)Model.OrderStatus <  (byte)OrderStatus.StartTranslation)
+                @if ((byte)Model.OrderStatus < (byte)OrderStatus.StartTranslation)
                 {
                     var url = AppSettings.BaseDomain + "/Home/" + Model.OrderId + "/" + Model.UserId;
                     <div class="row payment-link">

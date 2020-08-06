@@ -29,6 +29,7 @@ public static partial class MVC
 {
     public static RasmiOnline.Console.Controllers.AddressController Address = new RasmiOnline.Console.Controllers.T4MVC_AddressController();
     public static RasmiOnline.Console.Controllers.AttachmentController Attachment = new RasmiOnline.Console.Controllers.T4MVC_AttachmentController();
+    public static RasmiOnline.Console.Controllers.AuthBaseController AuthBase = new RasmiOnline.Console.Controllers.T4MVC_AuthBaseController();
     public static RasmiOnline.Dashboard.Controllers.BankCardController BankCard = new RasmiOnline.Dashboard.Controllers.T4MVC_BankCardController();
     public static RasmiOnline.Console.Controllers.ChannelController Channel = new RasmiOnline.Console.Controllers.T4MVC_ChannelController();
     public static RasmiOnline.Console.Controllers.DashboardController Dashboard = new RasmiOnline.Console.Controllers.T4MVC_DashboardController();
@@ -685,6 +686,14 @@ namespace Links
                         public static readonly string index_min_css = Url("index.min.css");
                     }
                 
+                    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                    public static class Transaction {
+                        public const string UrlPath = "~/Content/Styles/Console/03-EndUser/Transaction";
+                        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
+                        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                        public static readonly string success_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/success.min.css") ? Url("success.min.css") : Url("success.css");
+                    }
+                
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -1171,6 +1180,13 @@ namespace Links
                         {
                             public static class Assets
                             {
+                            }
+                        }
+                        public static partial class Transaction 
+                        {
+                            public static class Assets
+                            {
+                                public static readonly string success_css = T4MVCHelpers.ProcessAssetPath("~/Content/Styles/Console/03-EndUser/Transaction/success.css");
                             }
                         }
                         public static class Assets

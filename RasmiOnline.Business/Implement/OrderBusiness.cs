@@ -51,13 +51,13 @@
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IActionResponse<Order> Update(Order model)
+        public IActionResponse<Order> Update(Order model, string baseDomain = "")
         {
             _order.Attach(model);
             _uow.Entry(model).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
             if (rep.ToSaveChangeResult())
-                StatusNotifier(model);
+                StatusNotifier(model, baseDomain);
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
@@ -237,6 +237,16 @@
                             Key = ConcreteKey.Waiting_For_Payment.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId,
+                        });
+                        break;
+                    case OrderStatus.SubmitDraft:
+                        _observerManager.Value.Notify(ConcreteKey.Submit_Draft, new ObserverMessage
+                        {
+                            SmsContent = string.Format(BusinessMessage.SubmitDraftMessage, order.OrderId, $"{baseDomain}/Order/ConfirmDraft/{order.OrderId}/{order.UserId}"),
+                            BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            Key = ConcreteKey.Submit_Draft.ToString(),
+                            RecordId = order.OrderId,
+                            UserId = user.UserId
                         });
                         break;
                     case OrderStatus.Cancel:
@@ -904,7 +914,7 @@
             var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
             if (payedPrice > 0)
                 return new ActionResponse<Tuple<Order, int>> { IsSuccessful = true, Result = new Tuple<Order, int>(order, order.TotalPrice() - payedPrice) };
-
+            order.NeedDraft = model.NeedDraft;
             order.DeliveryType = model.DeliveryType;
             order.PaymentType = model.PaymentType;
             order.AddressId = model.AddressId;

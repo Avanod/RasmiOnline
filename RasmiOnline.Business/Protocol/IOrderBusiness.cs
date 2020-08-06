@@ -9,7 +9,7 @@
 
     public interface IOrderBusiness
     {
-        IActionResponse<Order> Update(Order model);
+        IActionResponse<Order> Update(Order model, string baseDomain = "");
         IActionResponse<Order> BriefUpdate(Order model, string baseDomain = "");
         IActionResponse<Order> Update(int orderId, LangType newLangType, IEnumerable<OrderItem> items);
         IActionResponse<Order> UpdateStatus(int orderId);
