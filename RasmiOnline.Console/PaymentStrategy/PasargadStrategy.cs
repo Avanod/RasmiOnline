@@ -116,8 +116,8 @@
                 return new ActionResponse<string>
                 {
                     IsSuccessful = true,
-                    //TODO:UnComment
-                    Result = transaction.TransactionId.ToString()//$"https://pep.shaparak.ir/payment.aspx?n={deserializeResponse.Token}"
+                    Result = $"https://pep.shaparak.ir/payment.aspx?n={deserializeResponse.Token}"
+                    //Result = transaction.TransactionId.ToString()
                 };
             else return new ActionResponse<string>
             {
@@ -150,11 +150,10 @@
                     });
                     var checkingContent = new StringContent(checkingSerilizedModel, Encoding.UTF8, "application/json");
                     var chkResponse = chkHttp.PostAsync("https://pep.shaparak.ir/Api/v1/Payment/CheckTransactionResult", checkingContent).Result;
-                    FileLoger.Info("webservice response : " + chkResponse.Content.ReadAsStringAsync().Result, GlobalVariable.LogPath);
+                    FileLoger.Info("deserializeCheckingResponse : " + chkResponse.Content.ReadAsStringAsync().Result, GlobalVariable.LogPath);
                     deserializeCheckingResponse = JsonConvert.DeserializeObject<PasargadCheckResponse>(chkResponse.Content.ReadAsStringAsync().Result);
                 }
                 #endregion
-
                 if (deserializeCheckingResponse.IsSuccess)
                 {
                     var deserializeResponse = new PasargadVerifyResponse();
@@ -181,6 +180,7 @@
                         verifyHttp.DefaultRequestHeaders.Accept.Add(new
                         MediaTypeWithQualityHeaderValue("application/json"));
                         var response = verifyHttp.SendAsync(requestMessage).Result;
+                        FileLoger.Info("verifyResponse : " + response.Content.ReadAsByteArrayAsync().Result, GlobalVariable.LogPath);
                         deserializeResponse = JsonConvert.DeserializeObject<PasargadVerifyResponse>(Encoding.UTF8.GetString(response.Content.ReadAsByteArrayAsync().Result));
                     }
                     if (!deserializeResponse.IsSuccess)

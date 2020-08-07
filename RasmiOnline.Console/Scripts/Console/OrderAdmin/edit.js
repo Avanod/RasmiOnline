@@ -30,34 +30,37 @@ $(document).on('ready', function () {
 
     $(".btnRemoveTransaction").click(function () {
         $this = $(this);
-        console.log($this.attr('data-transactionid'))
-        ajaxBtn.inProgress($this);
+        swalConfirm(function () {
+            console.log($this.attr('data-transactionid'))
+            ajaxBtn.inProgress($this);
 
-        $.ajax({
-            url: "/Transaction/RemoveTransaction",
-            type: 'POST',
-            data: {
-                transactionId: $this.attr('data-transactionId'),
-                orderId: $this.attr('data-orderId')
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (rep) {
-                ajaxBtn.normal($this);
-                if (rep.IsSuccessful) {
-                    $(".transaction_" + $this.attr('data-transactionId') + "_" + $this.attr('data-orderId')).fadeOut();
-                }
-                else {
+            $.ajax({
+                url: "/Transaction/RemoveTransaction",
+                type: 'POST',
+                data: {
+                    transactionId: $this.attr('data-transactionId'),
+                    orderId: $this.attr('data-orderId')
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (rep) {
+                    ajaxBtn.normal($this);
+                    if (rep.IsSuccessful) {
+                        $(".transaction_" + $this.attr('data-transactionId') + "_" + $this.attr('data-orderId')).fadeOut();
+                    }
+                    else {
 
-                    notify(false, rep.Message);
+                        notify(false, rep.Message);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    ajaxBtn.normal($this);
+                    notify(false, errorMsg);
+                    console.log(jqXHR.responseText);
                 }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                ajaxBtn.normal($this);
-                notify(false, errorMsg);
-                console.log(jqXHR.responseText);
-            }
+            });
         });
+
     });
 
     orderItem.inEnglish = ($('#LangType').val() === 'Fa_En');
@@ -100,7 +103,7 @@ $(document).on('ready', function () {
         if (rep.IsSuccessful) {
             dz.removeAllFiles();
             let $wrapper = $('#upload-translation-attachments').closest('.tab-pane').find('.attchs-wrapper');
-            $('#target-Translation').html('<div class="text-center p-4">'+threeDotLoader+'</div>');
+            $('#target-Translation').html('<div class="text-center p-4">' + threeDotLoader + '</div>');
             $.get($wrapper.data('url'), { attachmentType: "Translation" }, function (rep) { console.log(rep); $('#target-Translation').html(rep); });
         }
     });

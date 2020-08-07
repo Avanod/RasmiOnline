@@ -79,17 +79,21 @@
             if (order == null)
                 return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
             var statusChanged = model.OrderStatus != order.OrderStatus;
-            if (statusChanged && model.OrderStatus == OrderStatus.Done)
-            {
-                var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
-                if (order.TotalPrice() > payedPrice)
-                    return new ActionResponse<Order>
-                    {
-                        IsSuccessful = false,
-                        Message = BusinessMessage.OrderIsNotPayed
-                    };
-
-            }
+            var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
+            #region validate status change
+            if (statusChanged && model.OrderStatus == OrderStatus.Done && order.TotalPrice() > payedPrice)
+                return new ActionResponse<Order>
+                {
+                    IsSuccessful = false,
+                    Message = BusinessMessage.OrderIsNotPayed
+                };
+            if (statusChanged && model.OrderStatus == OrderStatus.PayAllFactor && order.TotalPrice() <= payedPrice)
+                return new ActionResponse<Order>
+                {
+                    IsSuccessful = false,
+                    Message = BusinessMessage.OrderIsPayed
+                };
+            #endregion
             order.OrderStatus = model.OrderStatus;
             order.DayToDelivery = model.DayToDelivery;
             order.DocsBeenRecieved = model.DocsBeenRecieved;

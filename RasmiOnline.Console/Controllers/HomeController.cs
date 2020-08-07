@@ -171,7 +171,7 @@ namespace RasmiOnline.Console.Controllers
                 UserId = (User as ICurrentUserPrincipal).UserId
             });
             //TODO:Remove
-            result.Result = AppSettings.BaseDomain + "/Transaction/FakeVerify?IN=" + result.Result;
+            //result.Result = AppSettings.BaseDomain + "/Transaction/FakeVerify?IN=" + result.Result;
             return Json(result);
         }
 

@@ -294,6 +294,15 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سفارش بصورت کامل پرداخت شده است، لطفا به وضعیت تحوبل ترجمه تغییر وضعیت دهید.
+        /// </summary>
+        public static string OrderIsPayed {
+            get {
+                return ResourceManager.GetString("OrderIsPayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} شما در وضعیت تسویه نهایی قرار گرفته است. لطفا سفارش خود را از طریق لینک زیر تسویه نمایید.
         ///{1}.
         /// </summary>

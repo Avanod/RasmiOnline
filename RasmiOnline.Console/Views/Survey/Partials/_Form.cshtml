@@ -58,9 +58,9 @@
                                     {
                                         foreach (var opt in Model.Result.SurveyOptions)
                                         {
-                                            <tr>
+                                            <tr class="tr-opt">
                                                 <td>@opt.Text</td>
-                                                <td class="btn-delete-opt cursor-pointer" data-url="@Url.Action(MVC.Survey.ActionNames.DeleteOption,MVC.Survey.Name,new { id= opt.SurveyOptionId })"><i class="zmdi zmdi-close"></i></td>
+                                                <td class="btn-delete-opt" data-url="@Url.Action(MVC.Survey.ActionNames.DeleteOption,MVC.Survey.Name,new { id= opt.SurveyOptionId })"><i class="zmdi zmdi-close"></i></td>
                                             </tr>
                                         }
                                     }

@@ -6,3 +6,7 @@
     width: 40px;
     margin-top: 5px;
 }
+.btn-delete-opt{
+    cursor:pointer;
+    padding:10px;
+}

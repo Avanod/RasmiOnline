@@ -264,4 +264,7 @@ Portal.amirshahigroup.com</value>
     <value>کاربر گرامی NAME، پیش نویس سفارش {0} آماده شده است، شما میتوانید از طریق لینک زیر آن را مشاهده نمایید
 {1}</value>
   </data>
+  <data name="OrderIsPayed" xml:space="preserve">
+    <value>سفارش بصورت کامل پرداخت شده است، لطفا به وضعیت تحوبل ترجمه تغییر وضعیت دهید</value>
+  </data>
 </root>
