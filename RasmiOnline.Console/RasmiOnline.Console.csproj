@@ -498,6 +498,7 @@
     <Content Include="Content\Styles\Console\03-EndUser\Survey\index.scss" />
     <Content Include="Content\Styles\Console\03-EndUser\Home\payment.scss" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\amirshahi.pubxml" />
     <None Include="Properties\PublishProfiles\Mehran.pubxml" />
     <None Include="Service References\ZarinPal\PaymentGatewayImplementationService.wsdl" />
     <None Include="Service References\ZarinPal\configuration91.svcinfo" />

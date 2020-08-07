@@ -13,6 +13,7 @@ using RasmiOnline.Business.Protocol;
 using RasmiOnline.Console.Properties;
 using Gnu.Framework.Core.Authentication;
 using RasmiOnline.Console.PaymentStrategy;
+using Gnu.Framework.Core.Log;
 
 namespace RasmiOnline.Console.Controllers
 {
@@ -36,7 +37,7 @@ namespace RasmiOnline.Console.Controllers
             IOrderBusiness orderBusiness,
             IAddressBusiness addressBusiness,
             Lazy<IUserInRoleBusiness> userInRoleBusiness,
-            Lazy<ITransactionBusiness> transBusiness):base(userSrv)
+            Lazy<ITransactionBusiness> transBusiness) : base(userSrv)
         {
             _userSrv = userSrv;
             _orderSrv = orderSrv;
@@ -141,38 +142,39 @@ namespace RasmiOnline.Console.Controllers
         [HttpPost, AllowAnonymous]
         public virtual ActionResult Submit(CompleteOrderModel model)
         {
-            #region Checking
-            var gatewayRep = _paymentGatewayBusiness.GetPaymentGateway(model.PaymentGatewayId);
-            if (!gatewayRep.IsSuccessful)
-                return Json(new { IsSuccessful = false, Message = LocalMessage.RecordsNotFound });
-            if (model.AddressId != null)
+            try
             {
-                var addrRep = _addressBusiness.Find((User as ICurrentUserPrincipal).UserId, model.AddressId ?? 0);
-                if (!addrRep.IsSuccessful)
+                #region Checking
+                var gatewayRep = _paymentGatewayBusiness.GetPaymentGateway(model.PaymentGatewayId);
+                if (!gatewayRep.IsSuccessful)
                     return Json(new { IsSuccessful = false, Message = LocalMessage.RecordsNotFound });
+                if (model.AddressId != null)
+                {
+                    var addrRep = _addressBusiness.Find((User as ICurrentUserPrincipal).UserId, model.AddressId ?? 0);
+                    if (!addrRep.IsSuccessful)
+                        return Json(new { IsSuccessful = false, Message = LocalMessage.RecordsNotFound });
+                }
+                #endregion
+                #region Fill Some Props of Model
+                model.UserId = (User as ICurrentUserPrincipal).UserId;
+                #endregion
+                var findOrder = _orderBusiness.UpdateBeforePayment(model);
+                if (!findOrder.IsSuccessful) return Json(findOrder);
+                var result = PaymentFactory.GetInstance(gatewayRep.Result.BankName).Do(gatewayRep.Result, new TransactionModel
+                {
+                    OrderId = model.OrderId,
+                    PaymentGatewayId = model.PaymentGatewayId,
+                    Price = findOrder.Result.Item2,
+                    UserId = (User as ICurrentUserPrincipal).UserId
+                });
+                return Json(result);
             }
-            #endregion
-
-            #region Fill Some Props of Model
-            model.UserId = (User as ICurrentUserPrincipal).UserId;
-            #endregion
-            var findOrder = _orderBusiness.UpdateBeforePayment(model);
-            if (!findOrder.IsSuccessful) return Json(findOrder);
-            //if (model.PaymentType == PaymentType.InPerson)
-            //{
-            //    return Json(new { rep.IsSuccessful, Result = Url.Action(MVC.Attachment.ActionNames.UploadAfterTransacttion, MVC.Attachment.Name, new { rep.Result.OrderId }) });
-            //}
-
-            var result = PaymentFactory.GetInstance(gatewayRep.Result.BankName).Do(gatewayRep.Result, new TransactionModel
+            catch (Exception e)
             {
-                OrderId = model.OrderId,
-                PaymentGatewayId = model.PaymentGatewayId,
-                Price = findOrder.Result.Item2,
-                UserId = (User as ICurrentUserPrincipal).UserId
-            });
-            //TODO:Remove
-            //result.Result = AppSettings.BaseDomain + "/Transaction/FakeVerify?IN=" + result.Result;
-            return Json(result);
+                FileLoger.Error(e);
+                return Json(new { IsSuccessful = false, Message = LocalMessage.Error });
+            }
+
         }
 
         [HttpGet]

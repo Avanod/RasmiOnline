@@ -12,6 +12,7 @@
     using System.Collections.Generic;
     using Gnu.Framework.Core.Authentication;
     using RasmiOnline.Console.Enum;
+    using Gnu.Framework.Core.Log;
 
     public partial class TransactionController : Controller
     {
@@ -182,14 +183,17 @@
         [HttpGet]
         public virtual ViewResult PasargadVerify(int IN, string tref, string id)
         {
+            FileLoger.Info($"TransactionController-PasargadVerify-(In={IN})");
             ViewBag.PaymentGateway = BankNames.Pasargad;
             var transaction = _transactionBusiness.Find(IN);
+            FileLoger.Info($"TransactionController-PasargadVerify-f1");
             if (transaction.IsNull())
             {
                 ViewBag.ErrorMessage = LocalMessage.PaymentException;
                 return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
             }
             var gateWay = _paymentGatewayBusiness.Find(transaction.PaymentGatewayId);
+            FileLoger.Info($"TransactionController-PasargadVerify-f2");
             if (gateWay.IsNull())
             {
                 ViewBag.ErrorMessage = LocalMessage.OperationFailed;
@@ -197,6 +201,7 @@
             }
 
             var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction, tref);
+            FileLoger.Info($"TransactionController-PasargadVerify-f3");
             if (!result.IsSuccessful)
             {
                 transaction.TrackingId = "0";

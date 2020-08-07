@@ -175,6 +175,7 @@ $(document).on('ready', function () {
                 ajaxBtn.normal();
 
                 if (rep.IsSuccessful) {
+                    $('#Order.tab-pane .total-sum').text(orderItem.toalSumOfItems.toString().cThSeperator());
                     notify(true, rep.Message);
                     $('.order-items .item').each(function () {
                         let info = $(this).data('info');

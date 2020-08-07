@@ -38,6 +38,7 @@
         public string GetSign(string data)
         {
             var cs = new CspParameters { KeyContainerName = "PaymentTest" };
+            cs.Flags = CspProviderFlags.UseMachineKeyStore;
             var rsa = new RSACryptoServiceProvider(cs) { PersistKeyInCsp = false };
             rsa.Clear();
             rsa = new RSACryptoServiceProvider();
@@ -60,70 +61,82 @@
 
         public IActionResponse<string> Do(PaymentGateway gateway, TransactionModel model)
         {
-            var currentUser = _userBusiness.Find(model.UserId);
-            if (currentUser == null)
+            try
             {
-                return new ActionResponse<string>()
+                var currentUser = _userBusiness.Find(model.UserId);
+                if (currentUser == null)
                 {
-                    Message = LocalMessage.UsernameIsWrong
+                    return new ActionResponse<string>()
+                    {
+                        Message = LocalMessage.UsernameIsWrong
+                    };
+                }
+                var transaction = new Transaction
+                {
+                    OrderId = model.OrderId,
+                    Price = model.Price,
+                    PaymentGatewayId = model.PaymentGatewayId,
+                    Authority = "100",
+                    Status = "100",
+                    InsertDateMi = DateTime.Now,
+                    InsertDateSh = PersianDateTime.Now.ToString(PersianDateTimeFormat.Date)
+                };
+                var doTransaction = _transactionBusiness.Do(transaction);
+                if (!doTransaction.IsSuccessful)
+                    return new ActionResponse<string>
+                    {
+                        IsSuccessful = false,
+                        Message = LocalMessage.Exception
+                    };
+                var dataModel = new
+                {
+                    InvoiceNumber = transaction.TransactionId.ToString(),
+                    InvoiceDate = transaction.InsertDateSh,
+                    TerminalCode = int.Parse(gateway.Username),
+                    MerchantCode = int.Parse(gateway.Password),
+                    Amount = Convert.ToDecimal(model.Price),
+                    RedirectAddress = AppSettings.TransactionRedirectUrl_Pasargad,
+                    Timestamp = CreateTimeSpan(transaction.InsertDateMi),
+                    Action = "1003",
+                    Mobile = currentUser.MobileNumber,
+                    currentUser.Email
+                };
+                var data = JsonConvert.SerializeObject(dataModel);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var requestMessage = new HttpRequestMessage
+                {
+                    RequestUri = new Uri("https://pep.shaparak.ir/Api/v1/Payment/GetToken"),
+                    Method = HttpMethod.Post,
+                    Content = content
+                };
+                requestMessage.Headers.Add("Sign", GetSign(data));
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Accept.Add(new
+                MediaTypeWithQualityHeaderValue("application/json"));
+                var response = client.SendAsync(requestMessage).Result;
+                var deserializeResponse = JsonConvert.DeserializeObject<PasargadGetTokenReponse>(Encoding.UTF8.GetString(response.Content.ReadAsByteArrayAsync().Result));
+                if (deserializeResponse.IsSuccess)
+                    return new ActionResponse<string>
+                    {
+                        IsSuccessful = true,
+                        Result = $"https://pep.shaparak.ir/payment.aspx?n={deserializeResponse.Token}"
+                        //Result = transaction.TransactionId.ToString()
+                    };
+                else return new ActionResponse<string>
+                {
+                    IsSuccessful = false,
+                    Message = deserializeResponse.Message
                 };
             }
-            var transaction = new Transaction
+            catch (Exception e)
             {
-                OrderId = model.OrderId,
-                Price = model.Price,
-                PaymentGatewayId = model.PaymentGatewayId,
-                Authority = "100",
-                Status = "100",
-                InsertDateMi = DateTime.Now,
-                InsertDateSh = PersianDateTime.Now.ToString(PersianDateTimeFormat.Date)
-            };
-            var doTransaction = _transactionBusiness.Do(transaction);
-            if (!doTransaction.IsSuccessful)
+                FileLoger.Error(e);
                 return new ActionResponse<string>
                 {
                     IsSuccessful = false,
-                    Message = LocalMessage.Exception
+                    Message = LocalMessage.Error
                 };
-            var dataModel = new
-            {
-                InvoiceNumber = transaction.TransactionId.ToString(),
-                InvoiceDate = transaction.InsertDateSh,
-                TerminalCode = int.Parse(gateway.Username),
-                MerchantCode = int.Parse(gateway.Password),
-                Amount = Convert.ToDecimal(model.Price),
-                RedirectAddress = AppSettings.TransactionRedirectUrl_Pasargad,
-                Timestamp = CreateTimeSpan(transaction.InsertDateMi),
-                Action = "1003",
-                Mobile = currentUser.MobileNumber,
-                currentUser.Email
-            };
-            var data = JsonConvert.SerializeObject(dataModel);
-            var content = new StringContent(data, Encoding.UTF8, "application/json");
-            var requestMessage = new HttpRequestMessage
-            {
-                RequestUri = new Uri("https://pep.shaparak.ir/Api/v1/Payment/GetToken"),
-                Method = HttpMethod.Post,
-                Content = content
-            };
-            requestMessage.Headers.Add("Sign", GetSign(data));
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new
-            MediaTypeWithQualityHeaderValue("application/json"));
-            var response = client.SendAsync(requestMessage).Result;
-            var deserializeResponse = JsonConvert.DeserializeObject<PasargadGetTokenReponse>(Encoding.UTF8.GetString(response.Content.ReadAsByteArrayAsync().Result));
-            if (deserializeResponse.IsSuccess)
-                return new ActionResponse<string>
-                {
-                    IsSuccessful = true,
-                    Result = $"https://pep.shaparak.ir/payment.aspx?n={deserializeResponse.Token}"
-                    //Result = transaction.TransactionId.ToString()
-                };
-            else return new ActionResponse<string>
-            {
-                IsSuccessful = false,
-                Message = deserializeResponse.Message
-            };
+            }
         }
 
         public IActionResponse<string> Verify(PaymentGateway gateway, Transaction model, object responseGateway = null)
@@ -131,7 +144,7 @@
             try
             {
                 var deserializeCheckingResponse = new PasargadCheckResponse();
-                if (responseGateway == null || ((PayRedirectModel)(responseGateway)).status == 0)
+                if (responseGateway == null)
                     return new ActionResponse<string>
                     {
                         IsSuccessful = false,
@@ -142,7 +155,7 @@
                 {
                     var checkingSerilizedModel = JsonConvert.SerializeObject(new
                     {
-                        InvoiceNumber = model.OrderId.ToString(),
+                        InvoiceNumber = model.TransactionId.ToString(),
                         InvoiceDate = model.InsertDateSh,
                         TerminalCode = int.Parse(gateway.Username),
                         MerchantCode = int.Parse(gateway.Password),
@@ -150,8 +163,8 @@
                     });
                     var checkingContent = new StringContent(checkingSerilizedModel, Encoding.UTF8, "application/json");
                     var chkResponse = chkHttp.PostAsync("https://pep.shaparak.ir/Api/v1/Payment/CheckTransactionResult", checkingContent).Result;
-                    FileLoger.Info("deserializeCheckingResponse : " + chkResponse.Content.ReadAsStringAsync().Result, GlobalVariable.LogPath);
-                    deserializeCheckingResponse = JsonConvert.DeserializeObject<PasargadCheckResponse>(chkResponse.Content.ReadAsStringAsync().Result);
+                    //FileLoger.Info("deserializeCheckingResponse : " + Encoding.UTF8.GetString(chkResponse.Content.ReadAsByteArrayAsync().Result));
+                    deserializeCheckingResponse = JsonConvert.DeserializeObject<PasargadCheckResponse>(Encoding.UTF8.GetString(chkResponse.Content.ReadAsByteArrayAsync().Result));
                 }
                 #endregion
                 if (deserializeCheckingResponse.IsSuccess)
@@ -161,7 +174,7 @@
                     {
                         var verifyModel = new
                         {
-                            InvoiceNumber = model.OrderId.ToString(),
+                            InvoiceNumber = model.TransactionId.ToString(),
                             InvoiceDate = model.InsertDateSh,
                             TerminalCode = int.Parse(gateway.Username),
                             MerchantCode = int.Parse(gateway.Password),
@@ -171,7 +184,7 @@
                         var verifyContent = new StringContent(JsonConvert.SerializeObject(verifyModel), Encoding.UTF8, "application/json");
                         var requestMessage = new HttpRequestMessage
                         {
-                            RequestUri = new Uri("https://pep.shaparak.ir/Api/v1/Payment/GetToken"),
+                            RequestUri = new Uri("https://pep.shaparak.ir/Api/v1/Payment/VerifyPayment"),
                             Method = HttpMethod.Post,
                             Content = verifyContent
                         };
@@ -180,10 +193,10 @@
                         verifyHttp.DefaultRequestHeaders.Accept.Add(new
                         MediaTypeWithQualityHeaderValue("application/json"));
                         var response = verifyHttp.SendAsync(requestMessage).Result;
-                        FileLoger.Info("verifyResponse : " + response.Content.ReadAsByteArrayAsync().Result, GlobalVariable.LogPath);
+                        //FileLoger.Info("verifyResponse : " + Encoding.UTF8.GetString(response.Content.ReadAsByteArrayAsync().Result));
                         deserializeResponse = JsonConvert.DeserializeObject<PasargadVerifyResponse>(Encoding.UTF8.GetString(response.Content.ReadAsByteArrayAsync().Result));
                     }
-                    if (!deserializeResponse.IsSuccess)
+                    if (deserializeResponse.IsSuccess)
                     {
                         model.IsSuccess = true;
                         model.TrackingId = responseGateway.ToString();
@@ -230,7 +243,7 @@
             }
             catch (Exception e)
             {
-                FileLoger.Error(e, GlobalVariable.LogPath);
+                FileLoger.Error(e);
                 return new ActionResponse<string>
                 {
                     IsSuccessful = false,
