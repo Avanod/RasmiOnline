@@ -66,8 +66,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 orderPaymentInfo ">
                 @{ Html.RenderAction(MVC.OrderAdmin.ActionNames.GetOrderPaymentInfo, MVC.OrderAdmin.Name, new { orderId = Model.OrderId });}
-                @if ((byte)Model.OrderStatus < (byte)OrderStatus.StartTranslation)
-                {
+                @{
                     var url = AppSettings.BaseDomain + "/Home/" + Model.OrderId + "/" + Model.UserId;
                     <div class="row payment-link">
                         <div class="col-xs-12 col-sm-6 subject">

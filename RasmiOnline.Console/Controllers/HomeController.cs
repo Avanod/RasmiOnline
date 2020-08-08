@@ -56,9 +56,10 @@ namespace RasmiOnline.Console.Controllers
         {
             int price = order.TotalPrice();
             int payedPrice = _transBusiness.Value.GetTotalPayedPrice(order.OrderId);
-            if (!order.IsFullPayed)
-                if (payedPrice == 0) price = price / 2;
-                else price = price - payedPrice;
+            if (payedPrice > 0)
+                price -= payedPrice;
+            else if(!order.IsFullPayed)
+                price = price / 2;
             return (price, payedPrice);
         }
 
