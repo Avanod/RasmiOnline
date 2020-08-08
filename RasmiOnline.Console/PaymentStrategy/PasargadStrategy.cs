@@ -78,6 +78,7 @@
                     PaymentGatewayId = model.PaymentGatewayId,
                     Authority = "100",
                     Status = "100",
+                    TrackingId = model.PaymentGatewayId.ToString(),
                     InsertDateMi = DateTime.Now,
                     InsertDateSh = PersianDateTime.Now.ToString(PersianDateTimeFormat.Date)
                 };
@@ -230,7 +231,6 @@
                     //----------
                 }
                 model.IsSuccess = false;
-                model.TrackingId = model.TrackingId.ToString();
                 model.Status = "-1";
                 _transactionBusiness.Update(model);
                 return new ActionResponse<string>
