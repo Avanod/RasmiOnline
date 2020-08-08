@@ -181,7 +181,7 @@
   </data>
   <data name="Order_Add_Sms" xml:space="preserve">
     <value>NAME عزیز، سفارش شماره {0} با موفقیت ثبت گردید. به زودی همکاران ما برای پیگیری با شما تماس خواهند گرفت.
-Portal.amirshahigroup.com</value>
+amirshahigroup.com</value>
   </data>
   <data name="Waiting_For_Payment" xml:space="preserve">
     <value>عزیز، سفارش شماره {0} قیمت گذاری گردید. لطفا برای مشاهده فاکتور بر روی لینک زیر کلیک کنید:

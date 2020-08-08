@@ -150,7 +150,7 @@
             console.log(totalSum);
             if (idx === $items.length - 1) {
                 orderItem.toalSumOfItems = totalSum;
-                orderItem.$wrapper.find('.total-sum').data('total-sum', totalSum).text(" تومان " + totalSum.toString().cThSeperator());
+                orderItem.$wrapper.find('.total-sum').data('total-sum', totalSum).text(" ریال " + totalSum.toString().cThSeperator());
             }
         });
     },
@@ -210,7 +210,7 @@ $(document).ready(function () {
         $items.each(function (idx, elm) {
             totalSum += parseInt($(this).find('.total-price input').val());
             if (idx == $items.length - 1)
-                orderItem.$wrapper.find('.total-sum').data('total-sum', totalSum).text(" تومان " + totalSum.toString().cThSeperator());
+                orderItem.$wrapper.find('.total-sum').data('total-sum', totalSum).text(" ریال " + totalSum.toString().cThSeperator());
         });
 
     });

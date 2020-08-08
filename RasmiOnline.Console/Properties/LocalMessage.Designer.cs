@@ -385,7 +385,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to برای تکمیل سفارش شما بایستی مبلغ {0} تومان پرداخت نمایید..
+        ///   Looks up a localized string similar to برای تکمیل سفارش شما بایستی مبلغ {0} ریال پرداخت نمایید..
         /// </summary>
         public static string CompleteOrderPaymentGatewaysTitle {
             get {
@@ -943,7 +943,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تومان.
+        ///   Looks up a localized string similar to ریال.
         /// </summary>
         public static string MoneyCurrency {
             get {
@@ -1375,7 +1375,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to برای ثبت سفارش شما بایستی حداقل مبلغ {0} تومان به عنوان پیش پرداخت واریز نمایید..
+        ///   Looks up a localized string similar to برای ثبت سفارش شما بایستی حداقل مبلغ {0} ریال به عنوان پیش پرداخت واریز نمایید..
         /// </summary>
         public static string QuickAddOrderPaymentGatewaysTitle {
             get {

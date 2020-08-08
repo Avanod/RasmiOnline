@@ -517,10 +517,10 @@
     <value>دارد</value>
   </data>
   <data name="CompleteOrderPaymentGatewaysTitle" xml:space="preserve">
-    <value>برای تکمیل سفارش شما بایستی مبلغ {0} تومان پرداخت نمایید.</value>
+    <value>برای تکمیل سفارش شما بایستی مبلغ {0} ریال پرداخت نمایید.</value>
   </data>
   <data name="QuickAddOrderPaymentGatewaysTitle" xml:space="preserve">
-    <value>برای ثبت سفارش شما بایستی حداقل مبلغ {0} تومان به عنوان پیش پرداخت واریز نمایید.</value>
+    <value>برای ثبت سفارش شما بایستی حداقل مبلغ {0} ریال به عنوان پیش پرداخت واریز نمایید.</value>
   </data>
   <data name="InvalidCodeType" xml:space="preserve">
     <value>نوع کد تخفیف انتخاب نشده است</value>
@@ -801,7 +801,7 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
     <value>اقلام</value>
   </data>
   <data name="MoneyCurrency" xml:space="preserve">
-    <value>تومان</value>
+    <value>ریال</value>
   </data>
   <data name="Discount" xml:space="preserve">
     <value>تخفیف</value>

@@ -7,11 +7,11 @@
     <tr>
         <th>@Html.DisplayNameFor(x => x.Name)</th>
         <th>@Html.DisplayNameFor(x => x.PricingItemUnitText)</th>
-        <th width="110px">@Html.DisplayNameFor(x => x.Price) (تومان)</th>
+        <th width="110px">@Html.DisplayNameFor(x => x.Price) (ریال)</th>
         <th width="70px">@Html.DisplayNameFor(x => x.Count)</th>
         <th width="70px">@Html.DisplayNameFor(x => x.Copy)</th>
         <th width="120px">@LocalMessage.TotalCopyPrice</th>
-        <th width="80px">@LocalMessage.TotalPrice (تومان)</th>
+        <th width="80px">@LocalMessage.TotalPrice (ریال)</th>
     </tr>
     @if (Model != null && Model.Count() > 0)
     {
@@ -77,7 +77,7 @@
     }
     <tr class="total-row">
         <td colspan="4" class="font-bold"><div class="text-right"></div> </td>
-        <td colspan="3" class="total-sum font-bold p-l-40 text-left" data-total-sum="@totalSum">(تومان) @totalSum.ToString("N0") </td>
+        <td colspan="3" class="total-sum font-bold p-l-40 text-left" data-total-sum="@totalSum">(ریال) @totalSum.ToString("N0") </td>
     </tr>
 </table>
 

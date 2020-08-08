@@ -33,13 +33,13 @@
                 <div class="col-12 col-sm-6">
                     <div class="wrapper">
                         <span class="lbl">مبلغ پرداخت شده</span>
-                        <span class="val">@Model.PayedValue.ToString("N0") تومان</span>
+                        <span class="val">@Model.PayedValue.ToString("N0") ریال</span>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6">
                     <div class="wrapper">
                         <span class="lbl">مبلغ قابل پرداخت</span>
-                        <span class="val">@((Model.TotalPrice() - Model.PayedValue).ToString("N0")) تومان</span>
+                        <span class="val">@((Model.TotalPrice() - Model.PayedValue).ToString("N0")) ریال</span>
                     </div>
                 </div>
             </div>
