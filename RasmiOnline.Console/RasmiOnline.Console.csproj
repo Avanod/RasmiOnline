@@ -224,8 +224,8 @@
     <Content Include="Content\Fonts\fontawasome\fa-regular-400.svg" />
     <Content Include="Content\Fonts\fontawasome\fa-solid-900.svg" />
     <Content Include="Content\Images\Attachments\archive.png" />
-    <Content Include="Content\Images\Attachments\music.png" />
     <Content Include="Content\Images\Attachments\pdf.png" />
+    <Content Include="Content\Images\Attachments\music.png" />
     <Content Include="Content\Images\Attachments\image.png" />
     <Content Include="Content\Images\Attachments\ppt.png" />
     <Content Include="Content\Images\Attachments\rar.png" />

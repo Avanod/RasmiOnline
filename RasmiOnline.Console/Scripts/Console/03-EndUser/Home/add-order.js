@@ -6,6 +6,8 @@ paceOptions = {
         trackMethods: ['POST']
     }
 };
+
+
 $(document).on('ready', function () {
     $('body').addClass('loaded');
     $('#add-order-page').on('click', '#btn-submit', function () {

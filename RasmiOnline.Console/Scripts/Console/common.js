@@ -492,3 +492,33 @@ var getFileType = function (fileName) {
             return fileTypes.Unknown;
     }
 };
+
+var getDefaultImageUrl = function (fileName) {
+    let ext = fileName.toLowerCase().split('.').reverse()[0];
+    switch (ext) {
+        case "png":
+        case "gif":
+        case "jpeg":
+        case "jpg":
+            return fileName;
+        case "pdf":
+            return "/Content/Images/Attachments/pdf.png";
+        case "zip":
+            return "/Content/Images/Attachments/archive.png";
+        case "rar":
+            return "/Content/Images/Attachments/rar.png";
+        case "txt":
+        case "doc":
+        case "docx":
+            return "/Content/Images/Attachments/archive.png";
+        case "mp3":
+        case "wav":
+            return "/Content/Images/Attachments/music.png";
+        case "mp4":
+        case "mkv":
+            return "/Content/Images/Attachments/archive.png";
+        default:
+            return "/Content/Images/Attachments/unknown.png";
+    }
+
+};
