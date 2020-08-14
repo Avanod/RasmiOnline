@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="card-block p-b-5">
-                            <div class="standard-item cardNumber">
+                            <div class="standard-item cardNumber"  style="color:@(item.IsEnable?"green":"red")">
                                 @item.CardNumber
                             </div>
                         </div>
@@ -30,12 +30,12 @@
                                 شماره حساب :  @item.AccountNumber
                             </div>
                         </div>
-                        @*<div class="card-block text-center p-0" style="background-color: #f9f9f9;">
-                            <a href="" style="padding:15px;color:#808080" edit-item-modal="bankcard-form" class="col-6 float-right waves-effect">
-                                <i class="zmdi zmdi-edit f-s-20"></i>
+                        <div class="card-block text-center p-0" style="background-color: #f9f9f9;"> 
+                            <button  type="button" style="padding:15px;color:#808080;border:none;cursor:pointer;" class="w-100 waves-effect add-bankcard-button"  data-modal-url="@Url.Action(MVC.BankCard.ActionNames.GetForm,MVC.BankCard.Name, new { id=item.BankCardId })" data-modal-title="@LocalMessage.Edit">
+                                <i class="zmdi zmdi-edit f-s-20 v-a-m"></i>
                                 @LocalMessage.Edit
-                            </a>
-                            <a href="" class="col-6 float-left waves-effect" style="padding:15px;border-right:3px solid #fff">
+                            </button>
+                            @*<a href="" class="col-6 float-left waves-effect" style="padding:15px;border-right:3px solid #fff">
 
                                 @if (item.IsEnable)
                                 {
@@ -47,8 +47,8 @@
                                     <i class="zmdi zmdi-check active-color f-s-20"></i>
                                     <span class="active-color">فعال سازی</span>
                                 }
-                            </a>
-                        </div>*@
+                            </a>*@
+                        </div>
                     </div>
                 </div>
             </div>

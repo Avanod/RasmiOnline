@@ -68,14 +68,16 @@
 
 
         [HttpGet]
-        public virtual PartialViewResult GetForm(int id = default(int))
+        public virtual ActionResult GetForm(int id = default(int))
         {
             GetIsActive();
             if (id > 0)
             {
                 var findedBankCard = _BankCardBusiness.Find(id);
+                if (!findedBankCard.IsSuccessful)
+                    return Content($"<div class='w-100'><p class='alert alert-warning text-center'>{LocalMessage.RecordsNotFound}</p></div>");
                 GetBankName(findedBankCard.Result.BankName.ToString());
-                return PartialView(MVC.BankCard.Views.Partials._Form, findedBankCard);
+                return PartialView(MVC.BankCard.Views.Partials._Form, findedBankCard.Result);
             }
             GetBankName();
             return PartialView(MVC.BankCard.Views.Partials._Form, new BankCard());

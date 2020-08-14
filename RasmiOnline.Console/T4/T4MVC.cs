@@ -494,6 +494,7 @@ namespace Links
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
                 public static readonly string _1_png = Url("1.png");
                 public static readonly string _2_png = Url("2.png");
+                public static readonly string _2222_png = Url("2222.png");
                 public static readonly string _3_png = Url("3.png");
                 public static readonly string _4_png = Url("4.png");
                 public static readonly string _5_png = Url("5.png");

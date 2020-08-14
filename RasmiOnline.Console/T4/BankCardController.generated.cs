@@ -169,12 +169,12 @@ namespace RasmiOnline.Dashboard.Controllers
         }
 
         [NonAction]
-        partial void GetFormOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, int id);
+        partial void GetFormOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
         [NonAction]
-        public override System.Web.Mvc.PartialViewResult GetForm(int id)
+        public override System.Web.Mvc.ActionResult GetForm(int id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetForm);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetForm);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             GetFormOverride(callInfo, id);
             return callInfo;
