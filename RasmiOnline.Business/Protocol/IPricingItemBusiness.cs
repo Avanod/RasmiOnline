@@ -8,6 +8,7 @@
 
     public interface IPricingItemBusiness
     {
+        IEnumerable<string> GetDescriptions(List<int> ids);
         PricingItem Find(int pricingItemId);
         IEnumerable<PricingItem> Get(bool isPricingItem);
         IEnumerable<PricingItem> Get(string str, bool? isPricingItem = null, int count = 50);

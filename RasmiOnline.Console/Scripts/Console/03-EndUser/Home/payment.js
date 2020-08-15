@@ -8,6 +8,15 @@ $(document).on('ready', function () {
         pageDots: false
     });
     fireGoogleMap();
+    $('[name="DeliveryType"]').on('change', function () {
+        console.log();
+        if ($('[name="DeliveryType"]:checked').val() !== 'ByDeliveryMan') {
+            $('#addresses').hide();
+        }
+        else {
+            $('#addresses').show();
+        }
+    });
     $('#order-payment').on('click', '#btn-submit', function () {
         let $btn = $(this);
         let $frm = $btn.closest('form');
@@ -19,7 +28,7 @@ $(document).on('ready', function () {
         let model = customSerialize($frm);
         console.log(model);
         //let addresses = $('[name="AddressId"]');
-        if (!completePayment && $('[name="AddressId"]:checked').length === 0) {
+        if (!completePayment && $('[name="AddressId"]:checked').length === 0 && $('[name="DeliveryType"]:checked').val() === 'ByDeliveryMan') {
             notify(false, 'لطفا آدرس را مشخص کنید');
             return;
         }

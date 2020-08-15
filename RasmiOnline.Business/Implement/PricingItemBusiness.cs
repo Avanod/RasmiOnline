@@ -11,7 +11,6 @@
     using System.Collections.Generic;
     using Gnu.Framework.EntityFramework;
     using Gnu.Framework.EntityFramework.DataAccess;
-    using System;
 
     public class PricingItemBusiness : IPricingItemBusiness
     {
@@ -179,8 +178,6 @@
             return response;
         }
 
-
-
         public IEnumerable<PricingItem> GetMustlyUsed() => _pricingItem.Where(X => X.IsMustlyUse).AsNoTracking().ToList();
 
         public IActionResponse<IEnumerable<PricingItem>> GetPricingItems()
@@ -198,5 +195,8 @@
 
             return response;
         }
+
+        public IEnumerable<string> GetDescriptions(List<int> ids)
+            => _pricingItem.AsNoTracking().Where(x => !x.IsDeleted && ids.Contains(x.PricingItemId)).Select(x => x.Description).ToList();
     }
 }

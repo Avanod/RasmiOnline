@@ -35,9 +35,9 @@ body {
       padding: 10px; }
       #order-payment .card .order li.heading {
         padding: 5px 10px; }
-    #order-payment .card #addresses .radio-wrapper {
+    #order-payment .card #delivery-types .radio-wrapper {
       padding: 10px 0; }
-      #order-payment .card #addresses .radio-wrapper input {
+      #order-payment .card #delivery-types .radio-wrapper input {
         vertical-align: middle;
         margin-top: 0; }
   #order-payment #NeedDraft {

@@ -29,6 +29,7 @@ namespace RasmiOnline.Console.Controllers
         readonly IAddressBusiness _addressBusiness;
         readonly Lazy<IUserInRoleBusiness> _userInRoleBusiness;
         readonly Lazy<ITransactionBusiness> _transBusiness;
+        readonly Lazy<IPricingItemBusiness> _pricingItemBusiness;
         public HomeController(IUserBusiness userSrv,
             IOrderBusiness orderSrv,
             IAttachmentBusiness attachmentSrv,
@@ -37,7 +38,8 @@ namespace RasmiOnline.Console.Controllers
             IOrderBusiness orderBusiness,
             IAddressBusiness addressBusiness,
             Lazy<IUserInRoleBusiness> userInRoleBusiness,
-            Lazy<ITransactionBusiness> transBusiness) : base(userSrv)
+            Lazy<ITransactionBusiness> transBusiness,
+            Lazy<IPricingItemBusiness> pricingItemBusiness) : base(userSrv)
         {
             _userSrv = userSrv;
             _orderSrv = orderSrv;
@@ -48,6 +50,7 @@ namespace RasmiOnline.Console.Controllers
             _addressBusiness = addressBusiness;
             _userInRoleBusiness = userInRoleBusiness;
             _transBusiness = transBusiness;
+            _pricingItemBusiness = pricingItemBusiness;
         }
 
 
@@ -137,6 +140,7 @@ namespace RasmiOnline.Console.Controllers
             ViewBag.CompletePayment = priceCheck.payedPrice > 0;
             ViewBag.Price = priceCheck.price;
             ViewBag.Addresses = _addressBusiness.GetAll(userId);
+            ViewBag.Warnings = _pricingItemBusiness.Value.GetDescriptions(order.OrderItems?.Select(x=>x.PricingItemId).ToList());
             return View(order);
         }
 

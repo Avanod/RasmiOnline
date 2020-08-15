@@ -921,9 +921,10 @@
             order.NeedDraft = model.NeedDraft;
             order.DeliveryType = model.DeliveryType;
             order.PaymentType = model.PaymentType;
-            order.AddressId = model.AddressId;
-            if (model.PaymentType == PaymentType.InPerson)
-                order.OrderStatus = order.GetNextStatus();
+            if (model.AddressId != null && model.AddressId != 0)
+                order.AddressId = model.AddressId;
+            //if (model.PaymentType == PaymentType.InPerson)
+            //    order.OrderStatus = order.GetNextStatus();
             _uow.Entry(order).State = EntityState.Modified;
 
             var rep = _uow.SaveChanges();
