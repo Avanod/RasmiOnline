@@ -14,6 +14,9 @@
         Term = 3,
 
         [Description("سال")]
-        Year = 4
+        Year = 4,
+
+        [Description("مدرک")]
+        Evidence = 5
     }
 }
