@@ -130,6 +130,7 @@
     <Compile Include="Entity\Base\DiscountOrder.cs" />
     <Compile Include="Entity\Base\OfficeAddress.cs" />
     <Compile Include="Entity\Base\PricingItemTemplate.cs" />
+    <Compile Include="Entity\Base\SmsTemplate.cs" />
     <Compile Include="Entity\Base\Survey.cs" />
     <Compile Include="Entity\Base\SurveyOption.cs" />
     <Compile Include="Entity\Order\OrderComment.cs" />

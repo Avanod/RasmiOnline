@@ -43,6 +43,7 @@
         public DbSet<OfflineStatistics> OfflineStatistics { get; set; }
         public DbSet<Survey> Survey { get; set; }
         public DbSet<SurveyOption> SurveyOption { get; set; }
+        public DbSet<SmsTemplate> SmsTemplate { get; set; }
 
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class

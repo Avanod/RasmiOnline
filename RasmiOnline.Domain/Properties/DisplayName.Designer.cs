@@ -934,6 +934,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کلید.
+        /// </summary>
+        public static string Key {
+            get {
+                return ResourceManager.GetString("Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to برچسب.
         /// </summary>
         public static string Lable {

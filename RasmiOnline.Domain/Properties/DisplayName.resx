@@ -699,4 +699,7 @@
   <data name="NeedDraft" xml:space="preserve">
     <value>پبش نویش نیاز است</value>
   </data>
+  <data name="Key" xml:space="preserve">
+    <value>کلید</value>
+  </data>
 </root>

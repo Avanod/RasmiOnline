@@ -114,6 +114,10 @@
     <Compile Include="Migrations\202006241711472_EditOfflineStatisticIndex.designer.cs">
       <DependentUpon>202006241711472_EditOfflineStatisticIndex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008161743482_AddSmsTemplateEntity.cs" />
+    <Compile Include="Migrations\202008161743482_AddSmsTemplateEntity.designer.cs">
+      <DependentUpon>202008161743482_AddSmsTemplateEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -138,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006241711472_EditOfflineStatisticIndex.resx">
       <DependentUpon>202006241711472_EditOfflineStatisticIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008161743482_AddSmsTemplateEntity.resx">
+      <DependentUpon>202008161743482_AddSmsTemplateEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
