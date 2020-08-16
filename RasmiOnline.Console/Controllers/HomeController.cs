@@ -184,5 +184,19 @@ namespace RasmiOnline.Console.Controllers
 
         [HttpGet]
         public virtual ViewResult Error() => View();
+
+
+        [AllowAnonymous, Route("Home/Download/{orderId:int}/{userId:Guid}")]
+        public virtual ViewResult Download(int orderId, Guid userId)
+        {
+            var user = _userBusiness.Find(userId);
+            if(user==null)
+                return View(MVC.Order.Views.NotFound);
+            var order = _orderBusiness.Find(orderId, "OrderItems,User");
+            if (order.UserId != userId)
+                return View(MVC.Order.Views.NotFound);
+            ViewBag.Items = _attachmentSrv.Get(orderId, AttachmentType.Translation);
+            return View(order);
+        }
     }
 }

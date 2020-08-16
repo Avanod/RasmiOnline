@@ -68,6 +68,12 @@ namespace RasmiOnline.Console.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Submit);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ViewResult Download()
+        {
+            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Download);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -89,6 +95,7 @@ namespace RasmiOnline.Console.Controllers
             public readonly string Payment = "Payment";
             public readonly string Submit = "Submit";
             public readonly string Error = "Error";
+            public readonly string Download = "Download";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -99,6 +106,7 @@ namespace RasmiOnline.Console.Controllers
             public const string Payment = "Payment";
             public const string Submit = "Submit";
             public const string Error = "Error";
+            public const string Download = "Download";
         }
 
 
@@ -128,6 +136,15 @@ namespace RasmiOnline.Console.Controllers
         {
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_Download s_params_Download = new ActionParamsClass_Download();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Download DownloadParams { get { return s_params_Download; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Download
+        {
+            public readonly string orderId = "orderId";
+            public readonly string userId = "userId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -139,10 +156,12 @@ namespace RasmiOnline.Console.Controllers
             public class _ViewNamesClass
             {
                 public readonly string AddOrder = "AddOrder";
+                public readonly string Download = "Download";
                 public readonly string Error = "Error";
                 public readonly string Payment = "Payment";
             }
             public readonly string AddOrder = "~/Views/Home/AddOrder.cshtml";
+            public readonly string Download = "~/Views/Home/Download.cshtml";
             public readonly string Error = "~/Views/Home/Error.cshtml";
             public readonly string Payment = "~/Views/Home/Payment.cshtml";
             static readonly _PartialsClass s_Partials = new _PartialsClass();
@@ -234,6 +253,19 @@ namespace RasmiOnline.Console.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Error);
             ErrorOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DownloadOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, int orderId, System.Guid userId);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult Download(int orderId, System.Guid userId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Download);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userId", userId);
+            DownloadOverride(callInfo, orderId, userId);
             return callInfo;
         }
 

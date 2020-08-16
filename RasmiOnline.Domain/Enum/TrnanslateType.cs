@@ -1,15 +1,16 @@
-﻿using Gnu.Framework.Core;
-using RasmiOnline.Domain.Properties;
+﻿using System.ComponentModel;
 
 namespace RasmiOnline.Domain.Enum
 {
     public enum TranslateType : byte
     {
-        [LocalizeDescription(nameof(DisplayName.Official), typeof(DisplayName))]
-        Official = 0,
-        [LocalizeDescription(nameof(DisplayName.OfficialWithConfirms), typeof(DisplayName))]
+        [Description("رسمی با مهر مترجم")]
+        OfficialWithTranslatorSign = 0,
+        [Description("رسمی همراه با تاییدات دادگستری و وزارت امور خارجه")]
         OfficialWithConfirms = 1,
-        [LocalizeDescription(nameof(DisplayName.NonOfficial), typeof(DisplayName))]
-        NonOfficial = 2
+        [Description("ناتی(استرالیا و نیوزلند)")]
+        Nati = 2,
+        [Description("ناجیت(آمریکا و کانادا)")]
+        Nagit = 3
     }
 }

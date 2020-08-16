@@ -112,17 +112,21 @@
                         <label>اقلام سفارش</label>
                     </h5>
                 </div>
-                <div class="col-xs-12 mb-15">
-                    <div class="alert alert-warning">
-                        <ul>
-                            @foreach (var desc in (List<string>)ViewBag.Warnings)
-                            {
-                                <li class="m-b-10">@desc</li>
-                            }
-                        </ul>
+                @if (ViewBag.Warnings != null && ((List<string>)ViewBag.Warnings).Any())
+                {
+                    <div class="col-xs-12 mb-15">
+                        <div class="alert alert-warning">
+                            <ul>
+                                @foreach (var desc in (List<string>)ViewBag.Warnings)
+                                {
+                                    <li class="m-b-10">@desc</li>
+                                }
+                            </ul>
 
+                        </div>
                     </div>
-                </div>
+                }
+
                 <div class="col-xs-12 mb-15">
                     <table class="table table-striped">
                         <thead>

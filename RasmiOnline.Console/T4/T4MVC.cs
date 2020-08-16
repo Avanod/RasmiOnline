@@ -670,6 +670,9 @@ namespace Links
                         public static readonly string add_order_scss = Url("add-order.scss");
                         public static readonly string add_order_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/add-order.min.css") ? Url("add-order.min.css") : Url("add-order.css");
                         public static readonly string add_order_min_css = Url("add-order.min.css");
+                        public static readonly string download_scss = Url("download.scss");
+                        public static readonly string download_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/download.min.css") ? Url("download.min.css") : Url("download.css");
+                        public static readonly string download_min_css = Url("download.min.css");
                         public static readonly string payment_scss = Url("payment.scss");
                         public static readonly string index_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/index.min.css") ? Url("index.min.css") : Url("index.css");
                         public static readonly string index_min_css = Url("index.min.css");

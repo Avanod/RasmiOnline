@@ -262,6 +262,15 @@
                             UserId = user.UserId,
                         });
                         break;
+                    case OrderStatus.Done:
+                        _observerManager.Value.Notify(ConcreteKey.Done, new ObserverMessage
+                        {
+                            SmsContent = string.Format(BusinessMessage.Order_Is_Done_Sms, order.OrderId, $"{baseDomain}/home/Download/{order.OrderId}/{order.UserId}"),
+                            Key = ConcreteKey.Cancel_Order.ToString(),
+                            RecordId = order.OrderId,
+                            UserId = user.UserId,
+                        });
+                        break;
                     default:
                         {
                             _observerManager.Value.Notify(ConcreteKey.Change_OrderState, new ObserverMessage

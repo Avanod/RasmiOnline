@@ -323,6 +323,12 @@
     <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.min.css">
       <DependentUpon>add-order.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\download.css">
+      <DependentUpon>download.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\download.min.css">
+      <DependentUpon>download.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Console\03-EndUser\Home\index.css">
       <DependentUpon>payment.scss</DependentUpon>
     </Content>
@@ -498,6 +504,7 @@
     <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.scss" />
     <Content Include="Content\Styles\Console\03-EndUser\Survey\index.scss" />
     <Content Include="Content\Styles\Console\03-EndUser\Home\payment.scss" />
+    <Content Include="Content\Styles\Console\03-EndUser\Home\download.scss" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\amirshahi.pubxml" />
     <None Include="Properties\PublishProfiles\Mehran.pubxml" />
@@ -876,6 +883,7 @@
     <Content Include="Views\OrderAdmin\Partials\_OrderPaymentInfo.cshtml" />
     <Content Include="Views\Home\Partials\_AfterAdd.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\Download.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

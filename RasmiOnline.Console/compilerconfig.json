@@ -26,5 +26,9 @@
   {
     "outputFile": "Content/Styles/Console/03-EndUser/Home/payment.css",
     "inputFile": "Content/Styles/Console/03-EndUser/Home/payment.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Home/download.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Home/download.scss"
   }
 ]

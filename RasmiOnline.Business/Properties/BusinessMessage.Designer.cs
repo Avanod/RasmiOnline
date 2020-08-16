@@ -275,6 +275,16 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NAME عزیز، ترجمه فایلهای سفارش شماره {0} شما به پایان رسیده است. شما میتوانید فایل های ترجمه شده را از طریق لینک زیر دانلود نمایید
+        ///{1}.
+        /// </summary>
+        public static string Order_Is_Done_Sms {
+            get {
+                return ResourceManager.GetString("Order_Is_Done_Sms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NAME عزیز، سفارش به شماره {0} در پنل کاربری شما قرار گرفت ، جهت پیگیری سفارش فوق لطفا به پنل کاربری خود مراجعه نمایید .
         ///Portal.amirshahigroup.com.
         /// </summary>
