@@ -5,6 +5,7 @@ using RasmiOnline.Business.Protocol;
 using Gnu.Framework.Core;
 using RasmiOnline.Console.Properties;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace RasmiOnline.Console.Controllers
 {
@@ -69,30 +70,25 @@ namespace RasmiOnline.Console.Controllers
 
         [HttpPost]
         public virtual JsonResult DeleteOption(int id = default(int))
-             => Json(_surveyOptionBusiness.Delete(id), JsonRequestBehavior.AllowGet); 
+             => Json(_surveyOptionBusiness.Delete(id), JsonRequestBehavior.AllowGet);
         #endregion
 
         [HttpGet, AllowAnonymous]
-        public virtual ViewResult Index(int id)
-        {
-            return View(_surveyBusiness.Find(id));
-        }
+        public virtual ViewResult Index()
+            => View(_surveyBusiness.GetAll());
 
         [HttpPost]
-        public virtual ViewResult Submit(int surveyId, int surveyOptionId)
+        public virtual ViewResult Submit(List<SurveyOption> options)
         {
-            return View(_surveyOptionBusiness.Add(new SurveyOption
-            {
-                SurveyId = surveyId,
-                SelectedOption = surveyOptionId
-            }));
+            return View(_surveyOptionBusiness.AddRange(options));
         }
 
         [HttpGet]
         public virtual PartialViewResult ShowResult(int id)
         {
             var survey = _surveyBusiness.Find(id);
-            return PartialView(MVC.Survey.Views.Partials._ShowResult, new SurveyResult { 
+            return PartialView(MVC.Survey.Views.Partials._ShowResult, new SurveyResult
+            {
                 Subject = survey.Result.Subject,
                 Text = survey.Result.Text,
                 Items = _surveyBusiness.GetResult(id)

@@ -13,6 +13,7 @@ namespace RasmiOnline.Business.Protocol
         IActionResponse<Survey> Find(int id);
         IActionResponse<Survey> Update(Survey survey);
         IActionResponse<List<Survey>> Get(SurveySearchFilter filterModel);
+        List<Survey> GetAll();
         List<SurveyResultSPModel> GetResult(int SurveyId);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IActionResponse<SurveyOption>
+﻿@model IActionResponse<int>
 @{
     ViewBag.Title = "ثبت نظر";
     Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
@@ -13,7 +13,7 @@
             @if (Model.IsSuccessful)
             {
                 <p class="alert alert-success text-center">
-                    نظر شما با موفقیت ثبت شد
+                    نظر شما با موفقیت ثبت شد، با تشکر از همکاری شما
                 </p>
             }
             else

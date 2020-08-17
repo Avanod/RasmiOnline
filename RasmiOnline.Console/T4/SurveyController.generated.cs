@@ -70,12 +70,6 @@ namespace RasmiOnline.Console.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ViewResult Index()
-        {
-            return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Index);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ViewResult Submit()
         {
             return new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Submit);
@@ -167,22 +161,13 @@ namespace RasmiOnline.Console.Controllers
         {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Index
-        {
-            public readonly string id = "id";
-        }
         static readonly ActionParamsClass_Submit s_params_Submit = new ActionParamsClass_Submit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Submit SubmitParams { get { return s_params_Submit; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Submit
         {
-            public readonly string surveyId = "surveyId";
-            public readonly string surveyOptionId = "surveyOptionId";
+            public readonly string options = "options";
         }
         static readonly ActionParamsClass_ShowResult s_params_ShowResult = new ActionParamsClass_ShowResult();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -320,27 +305,25 @@ namespace RasmiOnline.Console.Controllers
         }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, int id);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ViewResult Index(int id)
+        public override System.Web.Mvc.ViewResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            IndexOverride(callInfo, id);
+            IndexOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void SubmitOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, int surveyId, int surveyOptionId);
+        partial void SubmitOverride(T4MVC_System_Web_Mvc_ViewResult callInfo, System.Collections.Generic.List<RasmiOnline.Domain.Entity.SurveyOption> options);
 
         [NonAction]
-        public override System.Web.Mvc.ViewResult Submit(int surveyId, int surveyOptionId)
+        public override System.Web.Mvc.ViewResult Submit(System.Collections.Generic.List<RasmiOnline.Domain.Entity.SurveyOption> options)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.Submit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "surveyId", surveyId);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "surveyOptionId", surveyOptionId);
-            SubmitOverride(callInfo, surveyId, surveyOptionId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "options", options);
+            SubmitOverride(callInfo, options);
             return callInfo;
         }
 

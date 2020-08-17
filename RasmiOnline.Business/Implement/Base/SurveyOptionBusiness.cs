@@ -5,6 +5,7 @@ using Gnu.Framework.EntityFramework;
 using RasmiOnline.Business.Properties;
 using RasmiOnline.Business.Protocol;
 using Gnu.Framework.EntityFramework.DataAccess;
+using System.Collections.Generic;
 
 namespace RasmiOnline.Business.Implement
 {
@@ -25,6 +26,18 @@ namespace RasmiOnline.Business.Implement
             return new ActionResponse<SurveyOption>
             {
                 Result = surveyOpt,
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                IsSuccessful = rep.ToSaveChangeResult()
+            };
+        }
+
+        public IActionResponse<int> AddRange(List<SurveyOption> options)
+        {
+            _survey.AddRange(options);
+            var rep = _uow.SaveChanges();
+            return new ActionResponse<int>
+            {
+                Result = rep,
                 Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
                 IsSuccessful = rep.ToSaveChangeResult()
             };

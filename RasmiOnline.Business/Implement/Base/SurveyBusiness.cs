@@ -1,15 +1,15 @@
-﻿using Gnu.Framework.Core;
-using Gnu.Framework.EntityFramework;
-using Gnu.Framework.EntityFramework.DataAccess;
-using RasmiOnline.Business.Properties;
-using RasmiOnline.Business.Protocol;
-using RasmiOnline.Domain;
+﻿using System.Linq;
+using System.Data.Entity;
+using Gnu.Framework.Core;
+using System.Data.SqlClient;
 using RasmiOnline.Domain.Dto;
 using RasmiOnline.Domain.Entity;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.SqlClient;
-using System.Linq;
+using RasmiOnline.Business.Protocol;
+using Gnu.Framework.EntityFramework;
+using RasmiOnline.Business.Properties;
+using Gnu.Framework.EntityFramework.DataAccess;
+using System;
 
 namespace RasmiOnline.Business.Implement
 {
@@ -97,6 +97,15 @@ namespace RasmiOnline.Business.Implement
                          .Take(filterModel.ItemsCount)
                          .ToList();
             return response;
+        }
+
+        public List<Survey> GetAll()
+        {
+            var items = _survey.AsNoTracking().Where(x => !x.IsDeleted).ToList();
+            var ids = items.Select(x => x.SurveyId).ToList();
+            var options = _uow.Set<SurveyOption>().Where(x => x.SelectedOption == 0 && !x.IsDeleted && ids.Contains(x.SurveyId)).ToList();
+            foreach (var item in items) item.SurveyOptions = options.Where(x => x.SurveyId == item.SurveyId).ToList();
+            return items;
         }
 
         public List<SurveyResultSPModel> GetResult(int SurveyId)

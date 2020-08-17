@@ -38,5 +38,9 @@ body {
           vertical-align: middle; }
 
 @media (max-width: 576px) {
+  body {
+    background-color: #fff; }
+    body #survey .card {
+      box-shadow: none; }
   main {
     width: 95%; } }
