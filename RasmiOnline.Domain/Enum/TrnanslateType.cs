@@ -11,6 +11,8 @@ namespace RasmiOnline.Domain.Enum
         [Description("ناتی(استرالیا و نیوزلند)")]
         Nati = 2,
         [Description("ناجیت(آمریکا و کانادا)")]
-        Nagit = 3
+        Nagit = 3,
+        [Description("غیر رسمی")]
+        Others = 4
     }
 }
