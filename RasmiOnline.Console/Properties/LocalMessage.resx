@@ -845,4 +845,10 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
   <data name="TypeHere" xml:space="preserve">
     <value>توضیحات خود را اینجا بنویسید</value>
   </data>
+  <data name="AddSmsTemplate" xml:space="preserve">
+    <value>افزودن قالب پیامک</value>
+  </data>
+  <data name="SmsTemplate" xml:space="preserve">
+    <value>قالب پیامک</value>
+  </data>
 </root>

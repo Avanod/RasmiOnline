@@ -214,6 +214,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to افزودن قالب پیامک.
+        /// </summary>
+        public static string AddSmsTemplate {
+            get {
+                return ResourceManager.GetString("AddSmsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد&lt;br /&gt; کارشناسان مجموعه دارالترجمه امیرشاهی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
         /// </summary>
         public static string AddSummaryHeaderText {
@@ -1743,6 +1752,15 @@ namespace RasmiOnline.Console.Properties {
         public static string SiteName {
             get {
                 return ResourceManager.GetString("SiteName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to قالب پیامک.
+        /// </summary>
+        public static string SmsTemplate {
+            get {
+                return ResourceManager.GetString("SmsTemplate", resourceCulture);
             }
         }
         

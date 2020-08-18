@@ -550,6 +550,7 @@
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
+    <Compile Include="Controllers\SmsTemplateController.cs" />
     <Compile Include="GlobalMethod.cs" />
     <Compile Include="GlobalVariable.cs" />
     <Compile Include="PaymentStrategy\FakeStrategy.cs" />
@@ -689,6 +690,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4\SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4\SmsTemplateController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4\SurveyController.generated.cs">
@@ -884,6 +888,10 @@
     <Content Include="Views\Home\Partials\_AfterAdd.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Home\Download.cshtml" />
+    <Content Include="Views\SmsTemplate\Partials\_Form.cshtml" />
+    <Content Include="Views\SmsTemplate\Partials\_SearchList.cshtml" />
+    <Content Include="Views\SmsTemplate\Partials\_SearchView.cshtml" />
+    <Content Include="Views\SmsTemplate\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

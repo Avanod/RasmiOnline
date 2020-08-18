@@ -51,6 +51,7 @@ public static partial class MVC
     public static RasmiOnline.Console.Controllers.ReportController Report = new RasmiOnline.Console.Controllers.T4MVC_ReportController();
     public static RasmiOnline.Console.Controllers.RoleController Role = new RasmiOnline.Console.Controllers.T4MVC_RoleController();
     public static RasmiOnline.Console.Controllers.SettingController Setting = new RasmiOnline.Console.Controllers.T4MVC_SettingController();
+    public static RasmiOnline.Console.Controllers.SmsTemplateController SmsTemplate = new RasmiOnline.Console.Controllers.T4MVC_SmsTemplateController();
     public static RasmiOnline.Console.Controllers.SurveyController Survey = new RasmiOnline.Console.Controllers.T4MVC_SurveyController();
     public static RasmiOnline.Console.Controllers.TransactionController Transaction = new RasmiOnline.Console.Controllers.T4MVC_TransactionController();
     public static RasmiOnline.Console.Controllers.UserController User = new RasmiOnline.Console.Controllers.T4MVC_UserController();

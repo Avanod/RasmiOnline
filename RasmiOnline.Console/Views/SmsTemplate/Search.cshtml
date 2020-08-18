@@ -1,0 +1,46 @@
+﻿@model ActionResponse<List<SmsTemplate>>
+
+@{
+    ViewBag.Title = LocalMessage.SmsTemplate;
+}
+@section Header{
+    <style>
+        #addNewItem{
+            display:none;
+        }
+    </style>
+}
+@{
+    Html.RenderPartial(MVC.Shared.Views.Partials._AddButton, new AddButtonModel
+    {
+        ModalTitle = LocalMessage.AddSmsTemplate,
+        EntityName = nameof(SmsTemplate),
+        FormUrl = Url.Action(MVC.SmsTemplate.ActionNames.GetForm, MVC.SmsTemplate.Name),
+        Title = LocalMessage.AddSmsTemplate
+    });
+}
+
+@{
+//Html.RenderPartial(MVC.Shared.Views._SharedSearch, new SearchPartialModel
+//{
+//    ActionUrl = Url.Action(MVC.SmsTemplate.ActionNames.Search, MVC.SmsTemplate.Name),
+//    EntityName = nameof(SmsTemplate),
+//    Model = new SmsTemplateSearchFilter(),
+//    PartialViewName = MVC.SmsTemplate.Views.Partials._SearchView
+//});
+
+    <div id="loadingOver" style="position:relative;">
+        <div id="@(nameof(SmsTemplate))_SearchResultContainer">
+            @if (Model.IsNotNull())
+            {
+                Html.RenderPartial(MVC.SmsTemplate.Views.Partials._SearchList, Model.Result);
+            }
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="@Links.Scripts.Plugins.jquery_dataTables_min_js"></script>
+    <script src="@Links.Scripts.Plugins.jquery_custom_search_js" type="text/javascript"></script>
+    <script src="@Links.Scripts.Plugins.jquery_custom_modal_js" type="text/javascript"></script>
+}

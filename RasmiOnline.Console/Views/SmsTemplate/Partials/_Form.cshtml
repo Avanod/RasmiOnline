@@ -1,0 +1,52 @@
+﻿@model ActionResponse<SmsTemplate>
+
+@{
+    <div class="row">
+        @if (Model.IsNotNull() && Model.IsSuccessful)
+        {
+            <form id=@($"{nameof(SmsTemplate)}_FormControls") data-submit-action="@Url.Action(MVC.SmsTemplate.ActionNames.FormSubmited, MVC.SmsTemplate.Name)" class="col-12">
+                <div class="row">
+
+                    @if (Model.Result.SmsTemplateId > 0)
+                    {
+                        @Html.HiddenFor(x => x.Result.SmsTemplateId)
+                    }
+
+                    <div class="col-sm-6 m-b-20">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Result.Key)
+                            <div class="select">
+                                @Html.DropDownListFor(x => x.Result.Key, (List<SelectListItem>)ViewBag.Types, new { @class = "form-control  type-fa" })
+                                <i class="form-group__bar"></i>
+                                <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.Key) </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 m-b-20" dir="rtl">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Result.Title)
+                            @Html.TextBoxFor(x => x.Result.Title, null, new { @class = "form-control type-fa" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.Title) </small>
+                    </div>
+
+                    <div class="col-sm-12 m-b-20" dir="rtl">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Result.Text)
+                            @Html.TextBoxFor(x => x.Result.Text, null, new { @class = "form-control type-fa" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.Text) </small>
+                    </div>
+
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="text-center text-danger">@LocalMessage.BadRequest</div>
+        }
+    </div>
+}

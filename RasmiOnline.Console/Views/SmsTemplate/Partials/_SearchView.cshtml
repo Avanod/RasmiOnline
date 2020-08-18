@@ -1,0 +1,23 @@
+﻿@model SmsTemplateSearchFilter
+
+@{
+    <div class="row">
+
+        <div class="col-sm-12 col-md-3 m-b-20" dir="rtl">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Text)
+                @Html.TextBoxFor(x => x.Text, null, new { @class = "form-control type-fa" })
+                <i class="form-group__bar"></i>
+            </div>
+            <small class="text-danger"> @Html.ValidationMessageFor(x => x.Text) </small>
+        </div>
+
+        <div class="col-sm-12 col-md-6 m-b-20" dir="rtl">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Key)
+                @Html.DropDownListFor(x => x.Key, (List<SelectListItem>)ViewBag.Types, new { @class = "form-control select2 select2-hidden-accessible" , @aria_hidden = "true", @tabindex = "-1" })
+            </div>
+        </div>
+
+    </div>
+}
