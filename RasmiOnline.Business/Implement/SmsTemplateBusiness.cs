@@ -1,15 +1,17 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Data.Entity;
 using Gnu.Framework.Core;
 using RasmiOnline.Domain.Dto;
+using RasmiOnline.Domain.Enum;
 using RasmiOnline.Domain.Entity;
 using System.Collections.Generic;
+using Gnu.Framework.AspNet.Cache;
 using Gnu.Framework.EntityFramework;
+using RasmiOnline.Business.Protocol;
 using RasmiOnline.Business.Properties;
 using Gnu.Framework.EntityFramework.DataAccess;
-using System;
-using Gnu.Framework.AspNet.Cache;
-using RasmiOnline.Business.Protocol;
+using Gnu.Framework.Core.Log;
 
 namespace RasmiOnline.Business.Implement
 {
@@ -63,10 +65,21 @@ namespace RasmiOnline.Business.Implement
             };
         }
 
+        public string Find(ConcreteKey key)
+        {
+            var template = GetAll().FirstOrDefault(x => x.Key == key.ToString());
+            if (template == null)
+            {
+                FileLoger.Info($"Sms Tempalte With Key {key} Been Removed From Database");
+                return "sms template is removed";
+            }
+            return template.Text;
+        }
+
         public IActionResponse<SmsTemplate> Update(SmsTemplate SmsTemplate)
         {
             var item = _SmsTemplate.Find(SmsTemplate.SmsTemplateId);
-            item.Key = SmsTemplate.Key;
+            //item.Key = SmsTemplate.Key;
             item.Title = SmsTemplate.Title;
             item.Text = SmsTemplate.Text;
             var rep = _uow.SaveChanges();

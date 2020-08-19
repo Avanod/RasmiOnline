@@ -2,7 +2,6 @@
 {
     using System;
     using ZarinPal;
-    using System.Net;
     using Properties;
     using System.Web;
     using Domain.Dto;
@@ -26,6 +25,7 @@
         readonly IUserBusiness _userBusiness;
         readonly ITransactionBusiness _transactionBusiness;
         readonly IOrderBusiness _orderBusiness;
+        readonly Lazy<ISmsTemplateBusiness> _smsTemplateBusiness;
         readonly Lazy<IObserverManager> _observerManager;
         public PasargadStrategy()
         {
@@ -34,6 +34,7 @@
             _transactionBusiness = IocInitializer.GetInstance<ITransactionBusiness>();
             _orderBusiness = IocInitializer.GetInstance<IOrderBusiness>();
             _observerManager = IocInitializer.GetInstance<Lazy<IObserverManager>>();
+            _smsTemplateBusiness = IocInitializer.GetInstance<Lazy<ISmsTemplateBusiness>>();
         }
         public string GetSign(string data)
         {
@@ -213,11 +214,16 @@
 
                         _observerManager.Value.Notify(ConcreteKey.Transaction_Add, new ObserverMessage
                         {
-                            SmsContent = string.Format(LocalMessage.Transaction_Add_Sms, (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId),
-                            BotContent = string.Format(LocalMessage.Transaction_Add_Bot, (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
+                            SmsContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.Pay_First_PaymentPart), (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId, model.Price.ToString("N0") + LocalMessage.MoneyCurrency),
+                            //string.Format(LocalMessage.Transaction_Add_Sms, (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId),
+                            BotContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.Transaction_Add), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
                                                     model.OrderId, gateway.BankName.GetLocalizeDescription(),
                                                     model.Price.ToString("0,0"),
                                                     model.TrackingId),
+                            //string.Format(LocalMessage.Transaction_Add_Bot, (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
+                            //                        model.OrderId, gateway.BankName.GetLocalizeDescription(),
+                            //                        model.Price.ToString("0,0"),
+                            //                        model.TrackingId),
                             Key = nameof(Transaction),
                             UserId = (HttpContext.Current.User as ICurrentUserPrincipal).UserId,
                         });

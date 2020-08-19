@@ -11,8 +11,6 @@
     using RasmiOnline.Business.Protocol;
     using System.Collections.Generic;
     using Gnu.Framework.Core.Authentication;
-    using RasmiOnline.Console.Enum;
-    using Gnu.Framework.Core.Log;
 
     public partial class TransactionController : Controller
     {

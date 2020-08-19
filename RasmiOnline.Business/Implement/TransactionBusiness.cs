@@ -3,18 +3,18 @@
     using System;
     using Protocol;
     using Properties;
+    using System.Web;
+    using Observers;
+    using Domain.Dto;
     using System.Linq;
+    using Domain.Enum;
     using Domain.Entity;
     using Gnu.Framework.Core;
     using System.Data.Entity;
-    using Domain.Dto;
     using System.Collections.Generic;
     using Gnu.Framework.EntityFramework;
-    using Gnu.Framework.EntityFramework.DataAccess;
-    using Domain.Enum;
-    using System.Web;
     using Gnu.Framework.Core.Authentication;
-    using Observers;
+    using Gnu.Framework.EntityFramework.DataAccess;
 
     public class TransactionBusiness : ITransactionBusiness
     {
@@ -22,16 +22,22 @@
         readonly IUnitOfWork _uow;
         readonly IDbSet<Transaction> _transaction;
         readonly IOrderBusiness _orderBusiness;
+        readonly Lazy<ISmsTemplateBusiness> _smsTemplateBusiness;
         readonly Lazy<IObserverManager> _observerManager;
         readonly IPaymentGatewayBusiness _paymentGatewayBusiness;
 
-        public TransactionBusiness(IUnitOfWork uow, IOrderBusiness orderBusiness, Lazy<IObserverManager> observerManager, IPaymentGatewayBusiness paymentGatewayBusiness)
+        public TransactionBusiness(IUnitOfWork uow,
+            IOrderBusiness orderBusiness,
+            Lazy<IObserverManager> observerManager,
+            IPaymentGatewayBusiness paymentGatewayBusiness,
+            Lazy<ISmsTemplateBusiness> smsTemplateBusiness)
         {
             _observerManager = observerManager;
             _uow = uow;
             _transaction = _uow.Set<Transaction>();
             _orderBusiness = orderBusiness;
             _paymentGatewayBusiness = paymentGatewayBusiness;
+            _smsTemplateBusiness = smsTemplateBusiness;
         }
         #endregion
 
@@ -115,11 +121,16 @@
 
                 _observerManager.Value.Notify(ConcreteKey.Offline_Transaction_Add, new ObserverMessage
                 {
-                    BotContent = string.Format(BusinessMessage.Transaction_Add_Bot, (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
+                    BotContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.Offline_Transaction_Add), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
                                                model.OrderId, pg.PaymentGatewayType.GetLocalizeDescription(),
                                                model.Price.ToString("0,0"),
                                                model.TrackingId.ToString(),
                                                PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                    //string.Format(BusinessMessage.Transaction_Add_Bot, (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
+                    //               model.OrderId, pg.PaymentGatewayType.GetLocalizeDescription(),
+                    //               model.Price.ToString("0,0"),
+                    //               model.TrackingId.ToString(),
+                    //               PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                     Key = nameof(Transaction),
                     UserId = (HttpContext.Current.User as ICurrentUserPrincipal).UserId,
                 });

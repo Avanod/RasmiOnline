@@ -28,7 +28,7 @@ namespace RasmiOnline.Domain.Enum
         Change_OrderState,
         [Description("بارگذاری فایل")]
         Attachment_Add,
-        [Description("پرداخت قسط اول")]
+        [Description("پیامک پرداخت شتری")]
         Pay_First_PaymentPart
     }
 }

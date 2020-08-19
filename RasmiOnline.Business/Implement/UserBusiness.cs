@@ -26,9 +26,11 @@
         readonly IDbSet<User> _user;
         readonly ICacheProvider _cache;
         readonly Lazy<IObserverManager> _observerManager;
-        public UserBusiness(IUnitOfWork uow, ICacheProvider cache, Lazy<IObserverManager> observerManager)
+        readonly Lazy<ISmsTemplateBusiness> _smsTemplateBusiness;
+        public UserBusiness(IUnitOfWork uow, ICacheProvider cache, Lazy<ISmsTemplateBusiness> smsTemplateBusiness, Lazy<IObserverManager> observerManager)
         {
             _uow = uow;
+            _smsTemplateBusiness = smsTemplateBusiness;
             _observerManager = observerManager;
             _user = _uow.Set<User>();
             _cache = cache;
@@ -131,7 +133,8 @@
             {
                 _observerManager.Value.Notify(ConcreteKey.User_Register, new ObserverMessage
                 {
-                    BotContent = string.Format(BusinessMessage.User_Register, $"{user.FirstName} {user.LastName}", $"{DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second}"),
+                    BotContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.User_Register), $"{user.FirstName} {user.LastName}", $"{DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second}"),
+                    //string.Format(BusinessMessage.User_Register, $"{user.FirstName} {user.LastName}", $"{DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second}"),
                     UserId = user.UserId,
                     Key = $"{ConcreteKey.User_Register}|{user.UserId}",
                 });
@@ -481,7 +484,8 @@
             {
                 _observerManager.Value.Notify(ConcreteKey.User_Register, new ObserverMessage
                 {
-                    SmsContent = string.Format(BusinessMessage.UserRegisterMessage, user.FullName, user.Email, user.MobileNumber),
+                    SmsContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.User_Register), user.FullName, user.Email, user.MobileNumber),
+                    //string.Format(BusinessMessage.UserRegisterMessage, user.FullName, user.Email, user.MobileNumber),
                     BotContent = string.Format(BusinessMessage.UserRegisterMessage, user.FullName, user.Email, user.MobileNumber),
                     Key = ConcreteKey.User_Register.ToString(),
                     RecordId = 0,
