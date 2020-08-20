@@ -702,4 +702,25 @@
   <data name="Key" xml:space="preserve">
     <value>کلید</value>
   </data>
+  <data name="AllLicenseItemPayment" xml:space="preserve">
+    <value>کل پرداخت تاییدیه ها</value>
+  </data>
+  <data name="AllOtherItemPayment" xml:space="preserve">
+    <value>کل پرداخت سایر آیتم ها</value>
+  </data>
+  <data name="LicenseItemPaymentLastDays" xml:space="preserve">
+    <value>پرداخت تاییدیه به تفکیک روز</value>
+  </data>
+  <data name="LicenseItemPaymentLastMonths" xml:space="preserve">
+    <value>پرداخت تاییدیه به تفکیک ماه</value>
+  </data>
+  <data name="OtherItemPaymentLastDays" xml:space="preserve">
+    <value>پرداخت سایر آیتم ها به تفکیک روز</value>
+  </data>
+  <data name="OtherItemPaymentLastMonths" xml:space="preserve">
+    <value>پرداخت سایر آیتم ها به تفکیک ماه</value>
+  </data>
+  <data name="PaymentLastMonths" xml:space="preserve">
+    <value>کل پرداخت ها به تفکیک ماه</value>
+  </data>
 </root>

@@ -106,11 +106,29 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کل پرداخت تاییدیه ها.
+        /// </summary>
+        public static string AllLicenseItemPayment {
+            get {
+                return ResourceManager.GetString("AllLicenseItemPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کل سفارشات.
         /// </summary>
         public static string AllOrder {
             get {
                 return ResourceManager.GetString("AllOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کل پرداخت سایر آیتم ها.
+        /// </summary>
+        public static string AllOtherItemPayment {
+            get {
+                return ResourceManager.GetString("AllOtherItemPayment", resourceCulture);
             }
         }
         
@@ -979,6 +997,24 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پرداخت تاییدیه به تفکیک روز.
+        /// </summary>
+        public static string LicenseItemPaymentLastDays {
+            get {
+                return ResourceManager.GetString("LicenseItemPaymentLastDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت تاییدیه به تفکیک ماه.
+        /// </summary>
+        public static string LicenseItemPaymentLastMonths {
+            get {
+                return ResourceManager.GetString("LicenseItemPaymentLastMonths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to محدودیت باز بودن سفارش در روز.
         /// </summary>
         public static string LimitOrderOpenDay {
@@ -1222,6 +1258,24 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پرداخت سایر آیتم ها به تفکیک روز.
+        /// </summary>
+        public static string OtherItemPaymentLastDays {
+            get {
+                return ResourceManager.GetString("OtherItemPaymentLastDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پرداخت سایر آیتم ها به تفکیک ماه.
+        /// </summary>
+        public static string OtherItemPaymentLastMonths {
+            get {
+                return ResourceManager.GetString("OtherItemPaymentLastMonths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شاخه والد.
         /// </summary>
         public static string ParentId {
@@ -1281,6 +1335,15 @@ namespace RasmiOnline.Domain.Properties {
         public static string PaymentLastDays {
             get {
                 return ResourceManager.GetString("PaymentLastDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کل پرداخت ها به تفکیک ماه.
+        /// </summary>
+        public static string PaymentLastMonths {
+            get {
+                return ResourceManager.GetString("PaymentLastMonths", resourceCulture);
             }
         }
         

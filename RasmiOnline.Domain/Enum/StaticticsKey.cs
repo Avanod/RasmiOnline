@@ -25,5 +25,27 @@
 
         [LocalizeDescription(nameof(DisplayName.PaymentLastDays), typeof(DisplayName))]
         PaymentLastDays = 6,
+
+        [LocalizeDescription(nameof(DisplayName.AllLicenseItemPayment), typeof(DisplayName))]
+        AllLicenseItemPayment = 7,
+
+        [LocalizeDescription(nameof(DisplayName.LicenseItemPaymentLastDays), typeof(DisplayName))]
+        LicenseItemPaymentLastDays = 8,
+
+        [LocalizeDescription(nameof(DisplayName.AllOtherItemPayment), typeof(DisplayName))]
+        AllOtherItemPayment = 9,
+
+        [LocalizeDescription(nameof(DisplayName.OtherItemPaymentLastDays), typeof(DisplayName))]
+        OtherItemPaymentLastDays = 10,
+
+        [LocalizeDescription(nameof(DisplayName.PaymentLastMonths), typeof(DisplayName))]
+        PaymentLastMonths = 11,
+
+        [LocalizeDescription(nameof(DisplayName.LicenseItemPaymentLastMonths), typeof(DisplayName))]
+        LicenseItemPaymentLastMonths = 12,
+
+        [LocalizeDescription(nameof(DisplayName.OtherItemPaymentLastMonths), typeof(DisplayName))]
+        OtherItemPaymentLastMonths = 13,
+
     }
 }
