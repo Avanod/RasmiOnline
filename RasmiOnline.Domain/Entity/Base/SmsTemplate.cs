@@ -5,6 +5,7 @@
     using Gnu.Framework.Core;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using RasmiOnline.Domain.Enum;
 
     [Table(nameof(SmsTemplate), Schema = "Base")]
     public class SmsTemplate : IInsertDateProperties, ISoftDeleteProperty
@@ -12,6 +13,9 @@
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SmsTemplateId { get; set; }
+
+        [Display(Name = nameof(DisplayName.MessagingType), ResourceType = typeof(DisplayName))]
+        public MessagingType MessagingType { get; set; }
 
         [Display(Name = nameof(DisplayName.IsDeleted), ResourceType = typeof(DisplayName))]
         public bool IsDeleted { get; set; }

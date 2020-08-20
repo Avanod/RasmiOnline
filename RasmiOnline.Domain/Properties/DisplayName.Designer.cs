@@ -1069,6 +1069,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to نوع پیام.
+        /// </summary>
+        public static string MessagingType {
+            get {
+                return ResourceManager.GetString("MessagingType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شماره موبایل.
         /// </summary>
         public static string MobileNumber {

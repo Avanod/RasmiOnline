@@ -714,6 +714,9 @@
   <data name="LicenseItemPaymentLastMonths" xml:space="preserve">
     <value>پرداخت تاییدیه به تفکیک ماه</value>
   </data>
+  <data name="MessagingType" xml:space="preserve">
+    <value>نوع پیام</value>
+  </data>
   <data name="OtherItemPaymentLastDays" xml:space="preserve">
     <value>پرداخت سایر آیتم ها به تفکیک روز</value>
   </data>
