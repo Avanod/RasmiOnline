@@ -119,9 +119,9 @@
                 _orderBusiness.UpdateOrderDeliverFiles(model.OrderId);
                 var pg = _paymentGatewayBusiness.Find(model.PaymentGatewayId);
 
-                _observerManager.Value.Notify(ConcreteKey.Offline_Transaction_Add, new ObserverMessage
+                _observerManager.Value.Notify(ConcreteKey.Offline_Payment, new ObserverMessage
                 {
-                    BotContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.Offline_Transaction_Add), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
+                    BotContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.RoboTele,ConcreteKey.Offline_Payment), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
                                                model.OrderId, pg.PaymentGatewayType.GetLocalizeDescription(),
                                                model.Price.ToString("0,0"),
                                                model.TrackingId.ToString(),

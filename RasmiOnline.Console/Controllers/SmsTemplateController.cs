@@ -24,8 +24,16 @@
         #region Private Methods
 
         [NonAction]
-        private List<SelectListItem> GetTypes()
+        private List<SelectListItem> GetKeys()
             => EnumConvertor.GetEnumElements<ConcreteKey>()
+            .Select(x => new SelectListItem
+            {
+                Text = x.Description,
+                Value = x.Name
+            }).ToList();
+
+        private List<SelectListItem> GetTypes()
+            => EnumConvertor.GetEnumElements<MessagingType>()
             .Select(x => new SelectListItem
             {
                 Text = x.Description,
@@ -36,6 +44,7 @@
         [HttpGet]
         public virtual ActionResult Search(SmsTemplateSearchFilter model)
         {
+            ViewBag.Keys = GetKeys();
             ViewBag.Types = GetTypes();
             var result = _SmsTemplateBusiness.Get(model);
             if (!Request.IsAjaxRequest()) return View(result);
@@ -46,14 +55,15 @@
         [HttpGet]
         public virtual PartialViewResult GetForm(int id = default(int))
         {
+            ViewBag.Keys = GetKeys();
             ViewBag.Types = GetTypes();
             if (id > 0)
             {
                 var findedSmsTemplate = _SmsTemplateBusiness.Find(id);
-               
+
                 return PartialView(MVC.SmsTemplate.Views.Partials._Form, findedSmsTemplate);
             }
-            return PartialView(MVC.SmsTemplate.Views.Partials._Form, new ActionResponse<SmsTemplate> { IsSuccessful = true, Result = new SmsTemplate()});
+            return PartialView(MVC.SmsTemplate.Views.Partials._Form, new ActionResponse<SmsTemplate> { IsSuccessful = true, Result = new SmsTemplate() });
         }
 
         [HttpPost]

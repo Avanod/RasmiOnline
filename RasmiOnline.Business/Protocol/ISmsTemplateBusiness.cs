@@ -11,7 +11,7 @@ namespace RasmiOnline.Business.Protocol
         IActionResponse<SmsTemplate> Add(SmsTemplate SmsTemplate);
         IActionResponse<SmsTemplate> Delete(int id);
         IActionResponse<SmsTemplate> Find(int id);
-        string Find(ConcreteKey key);
+        string GetText(MessagingType type, ConcreteKey key);
         IActionResponse<List<SmsTemplate>> Get(SmsTemplateSearchFilter filterModel);
         List<SmsTemplate> GetAll();
         IActionResponse<SmsTemplate> Update(SmsTemplate SmsTemplate);

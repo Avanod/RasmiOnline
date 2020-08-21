@@ -61,7 +61,7 @@ namespace RasmiOnline.Console.Controllers
             int payedPrice = _transBusiness.Value.GetTotalPayedPrice(order.OrderId);
             if (payedPrice > 0)
                 price -= payedPrice;
-            else if(!order.IsFullPayed)
+            else if (!order.IsFullPayed)
                 price = price / 2;
             return (price, payedPrice);
         }
@@ -87,6 +87,7 @@ namespace RasmiOnline.Console.Controllers
         [HttpPost, AllowAnonymous]
         public virtual JsonResult AddOrder(AddOrderModel model, List<HttpPostedFileBase> attachments)
         {
+            if (!ModelState.IsValid) return Json(new ActionResponse<string> { Message = LocalMessage.ValidationFailed });
             var addUser = _userSrv.Insert(model);
             if (!addUser.IsSuccessful) return Json(addUser);
 
@@ -140,7 +141,7 @@ namespace RasmiOnline.Console.Controllers
             ViewBag.CompletePayment = priceCheck.payedPrice > 0;
             ViewBag.Price = priceCheck.price;
             ViewBag.Addresses = _addressBusiness.GetAll(userId);
-            ViewBag.Warnings = _pricingItemBusiness.Value.GetDescriptions(order.OrderItems?.Select(x=>x.PricingItemId).ToList());
+            ViewBag.Warnings = _pricingItemBusiness.Value.GetDescriptions(order.OrderItems?.Select(x => x.PricingItemId).ToList());
             return View(order);
         }
 
@@ -190,7 +191,7 @@ namespace RasmiOnline.Console.Controllers
         public virtual ViewResult Download(int orderId, Guid userId)
         {
             var user = _userBusiness.Find(userId);
-            if(user==null)
+            if (user == null)
                 return View(MVC.Order.Views.NotFound);
             var order = _orderBusiness.Find(orderId, "OrderItems,User");
             if (order.UserId != userId)

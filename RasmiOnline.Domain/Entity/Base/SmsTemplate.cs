@@ -14,7 +14,7 @@
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SmsTemplateId { get; set; }
 
-        [Display(Name = nameof(DisplayName.MessagingType), ResourceType = typeof(DisplayName))]
+        [Display(Name = nameof(DisplayName.MessageType), ResourceType = typeof(DisplayName))]
         public MessagingType MessagingType { get; set; }
 
         [Display(Name = nameof(DisplayName.IsDeleted), ResourceType = typeof(DisplayName))]

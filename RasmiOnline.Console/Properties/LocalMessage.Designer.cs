@@ -160,7 +160,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ثبت سفارش با موفقیت انجام شد، بزودی برای هماهنگی بیشتر با شما تماس خواهیم گرفت.
+        ///   Looks up a localized string similar to ثبت سفارش با موفقیت انجام شد! سفارش شما ظرف یک روز کاری قیمت گذاری میشود و نتیجه از طریق پیامک به شما اعلام خواهد شد..
         /// </summary>
         public static string AddOrderSuccessMessage {
             get {

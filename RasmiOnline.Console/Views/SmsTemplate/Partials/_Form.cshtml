@@ -14,16 +14,25 @@
 
                     <div class="col-sm-6 m-b-20">
                         <div class="form-group">
+                            @Html.LabelFor(x => x.Result.MessagingType)
+                            <div class="select">
+                                @Html.DropDownListFor(x => x.Result.MessagingType, (List<SelectListItem>)ViewBag.MessageTypes, new { @class = "form-control  type-fa", @disabled = "disabled" })
+                                <i class="form-group__bar"></i>
+                                <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.MessagingType) </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 m-b-20">
+                        <div class="form-group">
                             @Html.LabelFor(x => x.Result.Key)
                             <div class="select">
-                                @Html.DropDownListFor(x => x.Result.Key, (List<SelectListItem>)ViewBag.Types, new { @class = "form-control  type-fa", @disabled = "disabled" })
+                                @Html.DropDownListFor(x => x.Result.Key, (List<SelectListItem>)ViewBag.Keys, new { @class = "form-control  type-fa", @disabled = "disabled" })
                                 <i class="form-group__bar"></i>
                                 <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.Key) </small>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-sm-6 m-b-20" dir="rtl">
+                    <div class="col-xs-12 col-sm-12 m-b-20" dir="rtl">
                         <div class="form-group">
                             @Html.LabelFor(x => x.Result.Title)
                             @Html.TextBoxFor(x => x.Result.Title, null, new { @class = "form-control type-fa" })
@@ -32,7 +41,7 @@
                         <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.Title) </small>
                     </div>
 
-                    <div class="col-sm-12 m-b-20" dir="rtl">
+                    <div class="col-xs-12 col-sm-12 m-b-20" dir="rtl">
                         <div class="form-group">
                             @Html.LabelFor(x => x.Result.Text)
                             @Html.TextBoxFor(x => x.Result.Text, null, new { @class = "form-control type-fa" })

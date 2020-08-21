@@ -125,19 +125,6 @@
             if (rep.ToSaveChangeResult() && statusChanged)
                 StatusNotifier(order, baseDomain);
 
-            //Notif office once
-            if (notifOffice)
-            {
-                var officeUser = _userBusiness.Value.Find(order.OfficeUserId);
-                _observerManager.Value.Notify(ConcreteKey.Order_Moved_Office, new ObserverMessage
-                {
-                    SmsContent = string.Format(_smsTempalte.Find(ConcreteKey.Order_Moved_Office), order.OrderId),//string.Format(BusinessMessage.Order_Moved_Office, order.OrderId),
-                    Key = ConcreteKey.Order_Moved_Office.ToString(),
-                    RecordId = order.OrderId,
-                    UserId = officeUser.UserId
-                });
-            }
-
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
@@ -234,67 +221,70 @@
                 switch (order.OrderStatus)
                 {
                     case OrderStatus.WaitForPayment:
-                        _observerManager.Value.Notify(ConcreteKey.Waiting_For_Payment, new ObserverMessage
+                        _observerManager.Value.Notify(ConcreteKey.Order_Wait_For_Payment, new ObserverMessage
                         {
-                            SmsContent = string.Format(_smsTempalte.Find(ConcreteKey.Waiting_For_Payment), order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
+                            SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms, ConcreteKey.Order_Wait_For_Payment), order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
                             // string.Format(BusinessMessage.Waiting_For_Payment, order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
-                            BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                            Key = ConcreteKey.Waiting_For_Payment.ToString(),
+                            BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            //string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            Key = ConcreteKey.Order_Wait_For_Payment.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId
                         });
                         break;
                     case OrderStatus.PayAllFactor:
-                        _observerManager.Value.Notify(ConcreteKey.Pay_All_Factor, new ObserverMessage
+                        _observerManager.Value.Notify(ConcreteKey.Order_Pay_All_Factor, new ObserverMessage
                         {
-                            SmsContent = string.Format(_smsTempalte.Find(ConcreteKey.Pay_All_Factor), order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
+                            SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms, ConcreteKey.Order_Pay_All_Factor), order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
                             //string.Format(BusinessMessage.Pay_All_Factor_Sms, order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
-                            BotContent = string.Format(_smsTempalte.Find(ConcreteKey.Change_OrderState), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             //string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                            Key = ConcreteKey.Waiting_For_Payment.ToString(),
+                            Key = ConcreteKey.Order_Pay_All_Factor.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId,
                         });
                         break;
                     case OrderStatus.SubmitDraft:
-                        _observerManager.Value.Notify(ConcreteKey.Submit_Draft, new ObserverMessage
+                        _observerManager.Value.Notify(ConcreteKey.Order_Submit_Draft, new ObserverMessage
                         {
-                            SmsContent = string.Format(_smsTempalte.Find(ConcreteKey.Submit_Draft), order.OrderId, $"{baseDomain}/Order/ConfirmDraft/{order.OrderId}/{order.UserId}"),
+                            SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms, ConcreteKey.Order_Submit_Draft), order.OrderId, $"{baseDomain}/Order/ConfirmDraft/{order.OrderId}/{order.UserId}"),
                             //string.Format(BusinessMessage.SubmitDraftMessage, order.OrderId, $"{baseDomain}/Order/ConfirmDraft/{order.OrderId}/{order.UserId}"),
-                            BotContent = string.Format(_smsTempalte.Find(ConcreteKey.Change_OrderState), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             //string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                            Key = ConcreteKey.Submit_Draft.ToString(),
+                            Key = ConcreteKey.Order_Submit_Draft.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId
                         });
                         break;
                     case OrderStatus.Cancel:
-                        _observerManager.Value.Notify(ConcreteKey.Cancel_Order, new ObserverMessage
+                        _observerManager.Value.Notify(ConcreteKey.Order_Cancel, new ObserverMessage
                         {
-                            BotContent = string.Format(_smsTempalte.Find(ConcreteKey.Cancel_Order), order.OrderId, PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms, ConcreteKey.Order_Cancel), order.OrderId, PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             //string.Format(BusinessMessage.Cancel_Order, order.OrderId, PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                            Key = ConcreteKey.Cancel_Order.ToString(),
+                            BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            Key = ConcreteKey.Order_Cancel.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId,
                         });
                         break;
                     case OrderStatus.Done:
-                        _observerManager.Value.Notify(ConcreteKey.Done, new ObserverMessage
+                        _observerManager.Value.Notify(ConcreteKey.Order_Done, new ObserverMessage
                         {
-                            SmsContent = string.Format(_smsTempalte.Find(ConcreteKey.Done), order.OrderId, $"{baseDomain}/home/Download/{order.OrderId}/{order.UserId}"),
+                            SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms, ConcreteKey.Order_Done), order.OrderId, $"{baseDomain}/home/Download/{order.OrderId}/{order.UserId}"),
+                            BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             //string.Format(BusinessMessage.Order_Is_Done_Sms, order.OrderId, $"{baseDomain}/home/Download/{order.OrderId}/{order.UserId}"),
-                            Key = ConcreteKey.Done.ToString(),
+                            Key = ConcreteKey.Order_Done.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId,
                         });
                         break;
                     default:
                         {
-                            _observerManager.Value.Notify(ConcreteKey.Change_OrderState, new ObserverMessage
+                            _observerManager.Value.Notify(ConcreteKey.Order_Status_Changed, new ObserverMessage
                             {
-                                BotContent = string.Format(_smsTempalte.Find(ConcreteKey.Change_OrderState), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                                BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                                 //string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                                Key = ConcreteKey.Change_OrderState.ToString(),
+                                Key = ConcreteKey.Order_Status_Changed.ToString(),
                                 RecordId = order.OrderId,
                                 UserId = user.UserId,
                             });
@@ -358,9 +348,10 @@
             {
                 _observerManager.Value.Notify(ConcreteKey.Order_Add, new ObserverMessage
                 {
-                    SmsContent = string.Format(_smsTempalte.Find(ConcreteKey.Order_Add), model.OrderId),
+                    SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms, ConcreteKey.Order_Add), model.OrderId),
                     //string.Format( BusinessMessage.Order_Add_Sms, model.OrderId),
-                    BotContent = string.Format(BusinessMessage.Order_Add_Bot, model.OrderId, model.OrderTitle, model.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                    BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Add), model.OrderId, model.OrderTitle, model.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                    //string.Format(BusinessMessage.Order_Add_Bot, model.OrderId, model.OrderTitle, model.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                     Key = ConcreteKey.Order_Add.ToString(),
                     RecordId = model.OrderId,
                     UserId = model.UserId
@@ -922,9 +913,10 @@
             {
                 _observerManager.Value.Notify(ConcreteKey.Order_Add, new ObserverMessage
                 {
-                    SmsContent = string.Format(_smsTempalte.Find(ConcreteKey.Order_Add), order.OrderId),
+                    SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms,ConcreteKey.Order_Add), order.OrderId),
                     //string.Format(BusinessMessage.Order_Add_Sms, order.OrderId),
-                    BotContent = string.Format(BusinessMessage.Order_Add_Bot, order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                    BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Add), order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                    //string.Format(BusinessMessage.Order_Add_Bot, order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                     Key = ConcreteKey.Order_Add.ToString(),
                     RecordId = order.OrderId,
                     UserId = model.UserId

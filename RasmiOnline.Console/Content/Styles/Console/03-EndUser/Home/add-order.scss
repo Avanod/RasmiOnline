@@ -2,6 +2,11 @@
     margin-top: 50px;
     padding: 15px;
 
+    #a-return {
+        float: right;
+        background-color: #636363;
+    }
+
     label {
         font-weight: 300;
     }
@@ -10,13 +15,14 @@
         color: red;
     }
 
-    .alert-warning{
-        line-height:20px;
+    .alert-warning {
+        line-height: 20px;
 
-        .text-1{
-            font-weight:600;
+        .text-1 {
+            font-weight: 600;
         }
     }
+
     div[class^='col'] {
         float: right;
     }
@@ -95,6 +101,12 @@
     #WithPassport {
         transform: scale(1.2);
     }
+
+    .alert-info {
+        color: #004085;
+        background-color: #cce5ff;
+        border-color: #b8daff;
+    }
 }
 
 .alert--notify {
@@ -161,6 +173,7 @@ body.pace-running:not(.pace-done) {
     height: 50px;
     overflow: hidden;
 }
+
 .pace .pace-progress {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -202,7 +215,7 @@ body.pace-running:not(.pace-done) {
     right: 0;
     padding-right: 16px;
     top: 4px;
-    color:#fff;
+    color: #fff;
 }
 
 .pace .pace-progress[data-progress-text="0%"]:after {

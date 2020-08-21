@@ -2,6 +2,9 @@
 #add-order-page {
   margin-top: 50px;
   padding: 15px; }
+  #add-order-page #a-return {
+    float: right;
+    background-color: #636363; }
   #add-order-page label {
     font-weight: 300; }
   #add-order-page .red {
@@ -55,6 +58,10 @@
     float: right; }
   #add-order-page #WithPassport {
     transform: scale(1.2); }
+  #add-order-page .alert-info {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff; }
 
 .alert--notify .alert--notify__close {
   background: no-repeat;

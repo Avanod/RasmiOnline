@@ -133,7 +133,7 @@
             {
                 _observerManager.Value.Notify(ConcreteKey.User_Register, new ObserverMessage
                 {
-                    BotContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.User_Register), $"{user.FirstName} {user.LastName}", $"{DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second}"),
+                    BotContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.RoboTele,ConcreteKey.User_Register), $"{user.FirstName} {user.LastName}", $"{DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second}"),
                     //string.Format(BusinessMessage.User_Register, $"{user.FirstName} {user.LastName}", $"{DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second}"),
                     UserId = user.UserId,
                     Key = $"{ConcreteKey.User_Register}|{user.UserId}",
@@ -447,7 +447,8 @@
         {
             var userExist = false;
             var mobNum = long.Parse(model.MobileNumber);
-            var user = _user.FirstOrDefault(x => x.Email == model.Email);
+            var email = model.Email ?? $"user_{mobNum}@fake.com";
+            var user = _user.FirstOrDefault(x => x.MobileNumber == mobNum || x.Email == email);
             if (user != null)
             {
                 userExist = true;
@@ -457,7 +458,7 @@
                 {
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
-                    user.Email = model.Email;
+                    user.Email = model.Email?? user.Email;
                     _uow.Entry(user).State = EntityState.Modified;
                     var update = _uow.SaveChanges();
                     return new ActionResponse<Guid> { IsSuccessful = true, Result = user.UserId };
@@ -466,7 +467,7 @@
             var cdt = DateTime.Now;
             user = new User
             {
-                Email = model.Email,
+                Email = email,
                 MobileNumber = mobNum,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
@@ -484,9 +485,10 @@
             {
                 _observerManager.Value.Notify(ConcreteKey.User_Register, new ObserverMessage
                 {
-                    SmsContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.User_Register), user.FullName, user.Email, user.MobileNumber),
+                    SmsContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.Sms,ConcreteKey.User_Register), user.FullName, user.Email, user.MobileNumber),
                     //string.Format(BusinessMessage.UserRegisterMessage, user.FullName, user.Email, user.MobileNumber),
-                    BotContent = string.Format(BusinessMessage.UserRegisterMessage, user.FullName, user.Email, user.MobileNumber),
+                    BotContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.RoboTele, ConcreteKey.User_Register), user.FullName, user.Email, user.MobileNumber),
+                    //string.Format(BusinessMessage.UserRegisterMessage, user.FullName, user.Email, user.MobileNumber),
                     Key = ConcreteKey.User_Register.ToString(),
                     RecordId = 0,
                     UserId = model.UserId

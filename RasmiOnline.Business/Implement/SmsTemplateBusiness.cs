@@ -20,6 +20,8 @@ namespace RasmiOnline.Business.Implement
         readonly IUnitOfWork _uow;
         readonly IDbSet<SmsTemplate> _SmsTemplate;
         readonly ICacheProvider _cache;
+
+        readonly string Key = "SmsTemplates";
         public SmsTemplateBusiness(IUnitOfWork uow, ICacheProvider cache)
         {
             _uow = uow;
@@ -65,9 +67,9 @@ namespace RasmiOnline.Business.Implement
             };
         }
 
-        public string Find(ConcreteKey key)
+        public string GetText(MessagingType type, ConcreteKey key)
         {
-            var template = GetAll().FirstOrDefault(x => x.Key == key.ToString());
+            var template = GetAll().FirstOrDefault(x => x.MessagingType == type && x.Key == key.ToString());
             if (template == null)
             {
                 FileLoger.Info($"Sms Tempalte With Key {key} Been Removed From Database");
@@ -83,7 +85,8 @@ namespace RasmiOnline.Business.Implement
             item.Title = SmsTemplate.Title;
             item.Text = SmsTemplate.Text;
             var rep = _uow.SaveChanges();
-
+            if (rep.ToSaveChangeResult())
+                _cache.InvalidateItem(Key);
             return new ActionResponse<SmsTemplate>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
@@ -109,11 +112,10 @@ namespace RasmiOnline.Business.Implement
 
         public List<SmsTemplate> GetAll()
         {
-            const string key = "SmsTemplates";
-            var items = (List<SmsTemplate>)_cache.GetItem(key);
+            var items = (List<SmsTemplate>)_cache.GetItem(Key);
             if (items != null) return items;
             items = _SmsTemplate.AsNoTracking().Where(x => !x.IsDeleted).ToList();
-            _cache.PutItem(key, items, null, DateTime.Now.AddHours(2));
+            _cache.PutItem(Key, items, null, DateTime.Now.AddHours(2));
             return items;
         }
     }

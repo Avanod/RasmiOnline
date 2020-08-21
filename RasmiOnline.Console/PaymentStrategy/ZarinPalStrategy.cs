@@ -94,7 +94,7 @@
                     _orderBusiness.UpdateStatus(model.OrderId);
                 _transactionBusiness.Update(model);
 
-                _observerManager.Value.Notify(ConcreteKey.Transaction_Add, new ObserverMessage
+                _observerManager.Value.Notify(ConcreteKey.Success_Payment, new ObserverMessage
                 {
                     SmsContent = string.Format(LocalMessage.Transaction_Add_Sms, (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId),
                     BotContent = string.Format(LocalMessage.Transaction_Add_Bot, (HttpContext.Current.User as ICurrentUserPrincipal).FullName,

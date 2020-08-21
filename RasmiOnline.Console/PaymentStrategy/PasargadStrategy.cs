@@ -212,11 +212,11 @@
 
                         _transactionBusiness.Update(model);
 
-                        _observerManager.Value.Notify(ConcreteKey.Transaction_Add, new ObserverMessage
+                        _observerManager.Value.Notify(ConcreteKey.Success_Payment, new ObserverMessage
                         {
-                            SmsContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.Pay_First_PaymentPart), (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId, model.Price.ToString("N0") + LocalMessage.MoneyCurrency),
+                            SmsContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.Sms,ConcreteKey.Success_Payment), (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId, model.Price.ToString("N0") + LocalMessage.MoneyCurrency),
                             //string.Format(LocalMessage.Transaction_Add_Sms, (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId),
-                            BotContent = string.Format(_smsTemplateBusiness.Value.Find(ConcreteKey.Transaction_Add), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
+                            BotContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.RoboTele, ConcreteKey.Success_Payment), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
                                                     model.OrderId, gateway.BankName.GetLocalizeDescription(),
                                                     model.Price.ToString("0,0"),
                                                     model.TrackingId),
