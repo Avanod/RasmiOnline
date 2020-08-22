@@ -45,7 +45,6 @@
         LicenseItemPaymentLastMonths = 12,
 
         [LocalizeDescription(nameof(DisplayName.OtherItemPaymentLastMonths), typeof(DisplayName))]
-        OtherItemPaymentLastMonths = 13,
-
+        OtherItemPaymentLastMonths = 13
     }
 }
