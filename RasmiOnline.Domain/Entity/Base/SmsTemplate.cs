@@ -14,7 +14,7 @@
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SmsTemplateId { get; set; }
 
-        [NotMapped]
+        //[NotMapped]
         [Display(Name = nameof(DisplayName.MessageType), ResourceType = typeof(DisplayName))]
         public MessagingType MessagingType { get; set; }
 
