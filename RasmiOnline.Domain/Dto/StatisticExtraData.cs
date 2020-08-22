@@ -5,5 +5,7 @@
         public string InsertDateSh { get; set; }
         public string RegisterDateSh { get; set; }
         public int Price { get; set; }
+
+        public string Mounth { get; set; }
     }
 }

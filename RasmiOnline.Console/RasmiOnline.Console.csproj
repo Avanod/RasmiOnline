@@ -417,6 +417,11 @@
     <Content Include="Content\Fonts\fontawasome\fa-solid-900.woff2" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Console\01-Admin\Dashboard\common.js" />
+    <Content Include="Scripts\Console\01-Admin\Dashboard\financial-statistics.js" />
+    <Content Include="Scripts\Console\01-Admin\Dashboard\financial-statistics.min.js">
+      <DependentUpon>financial-statistics.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Console\01-Admin\Dashboard\statistic.js" />
     <Content Include="Scripts\Console\01-Admin\Survey\Search.js" />
     <Content Include="Scripts\Console\03-EndUser\Home\add-order.js" />
@@ -496,6 +501,7 @@
     <Content Include="Scripts\waves.min.js" />
     <Content Include="ObserverConfig.json" />
     <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.scss" />
+    <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -892,6 +898,7 @@
     <Content Include="Views\SmsTemplate\Partials\_SearchList.cshtml" />
     <Content Include="Views\SmsTemplate\Partials\_SearchView.cshtml" />
     <Content Include="Views\SmsTemplate\Search.cshtml" />
+    <Content Include="Views\Dashboard\FinancialStatistic.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

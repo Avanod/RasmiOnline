@@ -1,0 +1,103 @@
+﻿@model FinancialStatisticsModel
+@{
+    ViewBag.Title = "آمار مالی";
+}
+@section header{
+    <link href="@Url.Content("~/Content/Styles/Console/01-Admin/Dashboard/statistic.min.css")" rel="stylesheet" />
+    <style>
+        .card {
+            padding: 20px 10px;
+        }
+    </style>
+}
+<div class="row mb-15">
+    <div class="col-12 col-sm-4 mb-15">
+        <div class="widget style1 navy-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="zmdi zmdi-receipt font-5x"></i>
+                </div>
+                <div class="col-8 text-center">
+                    <span>@Html.DisplayNameFor(x => x.AllPayment) ( <small>@LocalMessage.MoneyCurrency</small> )</span>
+                    <h2 class="font-bold">@Model.AllPayment.ToString("N0")</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 mb-15">
+        <div class="widget style1 lazur-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="zmdi zmdi-format-list-numbered font-5x"></i>
+                </div>
+                <div class="col-8 text-center">
+                    <span> @Html.DisplayNameFor(x => x.AllOtherItemPayment) ( <small>@LocalMessage.MoneyCurrency</small> )</span>
+                    <h2 class="font-bold">@Model.AllOtherItemPayment.ToString("N0")</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-4 mb-15">
+        <div class="widget style1 yellow-bg">
+            <div class="row">
+                <div class="col-4">
+                    <i class="zmdi zmdi-check font-5x"></i>
+                </div>
+                <div class="col-8 text-center">
+                    <span>@Html.DisplayNameFor(x => x.AllLicenseItemPayment) ( <small>@LocalMessage.MoneyCurrency</small> )</span>
+                    <h2 class="font-bold">@Model.AllLicenseItemPayment.ToString("N0")</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6 mb-15">
+        <div class="card">
+            <canvas height="300" id="paymentLastDays" data-label="@Html.DisplayNameFor(x => x.PaymentLastDays)" data-type="bar"></canvas>
+        </div>
+    </div>
+    <div class="col-xs-12 col-6 mb-15">
+        <div class="card">
+            <canvas style="height:300px" id="paymentLastMonths" data-label="@Html.DisplayNameFor(x => x.PaymentLastMonths)" data-type="line"></canvas>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 mb-15">
+        <div class="card">
+            <canvas style="height:300px" id="otherItemPaymentLastDays" data-label="@Html.DisplayNameFor(x => x.OtherItemPaymentLastDays)" data-type="bar"></canvas>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 mb-15">
+        <div class="card">
+            <canvas style="height:300px" id="otherItemPaymentLastMonths" data-label="@Html.DisplayNameFor(x => x.OtherItemPaymentLastMonths)" data-type="line"></canvas>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 mb-15">
+        <div class="card">
+            <canvas style="height:300px" id="licenseItemPaymentLastDays" data-label="@Html.DisplayNameFor(x => x.LicenseItemPaymentLastDays)" data-type="bar"></canvas>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 mb-15">
+        <div class="card">
+            <canvas style="height:300px" id="licenseItemPaymentLastMonths" data-label="@Html.DisplayNameFor(x => x.LicenseItemPaymentLastMonths)" data-type="line"></canvas>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/Plugins/chart.min.js"></script>
+    <script>
+        var paymentLastDays = @(Html.Raw(Model.PaymentLastDays.SerializeToJson()));
+        var otherItemPaymentLastDays = @(Html.Raw(Model.OtherItemPaymentLastDays.SerializeToJson()));
+        var licenseItemPaymentLastDays = @(Html.Raw(Model.LicenseItemPaymentLastDays.SerializeToJson()));
+        var paymentLastMonths = @(Html.Raw(Model.PaymentLastMonths.SerializeToJson()));
+        var otherItemPaymentLastMonths = @(Html.Raw(Model.OtherItemPaymentLastMonths.SerializeToJson()));
+        var licenseItemPaymentLastMonths = @(Html.Raw(Model.LicenseItemPaymentLastMonths.SerializeToJson()));
+    </script>
+    <script src="~/Scripts/Console/01-Admin/Dashboard/common.js"></script>
+    <script src="~/Scripts/Console/01-Admin/Dashboard/financial-statistics.js"></script>
+}
+
+
+

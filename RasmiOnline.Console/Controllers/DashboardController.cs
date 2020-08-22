@@ -23,5 +23,10 @@
             return View(_statisticSrv.Get());
         }
 
+        [HttpGet]
+        public virtual ActionResult FinancialStatistic()
+        {
+            return View(_statisticSrv.GetFinancial());
+        }
     }
 }

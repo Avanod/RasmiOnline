@@ -1,12 +1,12 @@
 ﻿@model StatisticModel
 @{
-    ViewBag.Title = "Statistic";
+    ViewBag.Title = "آمار عمومی";
 }
 @section header{
     <link href="@Url.Content("~/Content/Styles/Console/01-Admin/Dashboard/statistic.min.css")" rel="stylesheet" />
     <style>
-        .card{
-            padding:20px 10px;
+        .card {
+            padding: 20px 10px;
         }
     </style>
 }
@@ -64,7 +64,7 @@
         </div>
     </div>
 </div>
- 
+
 <div class="row">
     <div class="col-xs-12 col-sm-6 mb-15">
         <div class="card">
@@ -98,6 +98,7 @@
         var payCountInDays = @(Html.Raw(Model.PayCountInDays.SerializeToJson()));
         var payAmountInDays = @(Html.Raw(Model.PayAmountInDays.SerializeToJson()));
     </script>
+    <script src="~/Scripts/Console/01-Admin/Dashboard/common.js"></script>
     <script src="~/Scripts/Console/01-Admin/Dashboard/statistic.js"></script>
 }
 

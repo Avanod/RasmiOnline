@@ -84,7 +84,6 @@
         /// <returns></returns>
         public IActionResponse<Order> BriefUpdate(Order model, string baseDomain = "")
         {
-            var notifOffice = false;
             var order = Find(model.OrderId, "OrderItems");
             if (order == null)
                 return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
@@ -117,8 +116,6 @@
                 order.OrderDescription = model.OrderDescription;
             order.LangType = model.LangType;
 
-            if (order.OfficeUserId == Guid.Empty && model.OfficeUserId != Guid.Empty)
-                notifOffice = true;
             order.OfficeUserId = model.OfficeUserId;
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();

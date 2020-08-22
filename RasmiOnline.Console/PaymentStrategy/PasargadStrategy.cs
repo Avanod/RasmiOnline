@@ -214,7 +214,7 @@
 
                         _observerManager.Value.Notify(ConcreteKey.Success_Payment, new ObserverMessage
                         {
-                            SmsContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.Sms,ConcreteKey.Success_Payment), (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId, model.Price.ToString("N0") + LocalMessage.MoneyCurrency),
+                            SmsContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.Sms, ConcreteKey.Success_Payment), model.OrderId, model.Price.ToString("N0") + LocalMessage.MoneyCurrency),
                             //string.Format(LocalMessage.Transaction_Add_Sms, (HttpContext.Current.User as ICurrentUserPrincipal).FullName, model.OrderId),
                             BotContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.RoboTele, ConcreteKey.Success_Payment), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
                                                     model.OrderId, gateway.BankName.GetLocalizeDescription(),
