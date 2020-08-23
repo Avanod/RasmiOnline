@@ -130,7 +130,7 @@
         public IActionResponse<BankCard> Find(int BankCardId)
         {
             var response = new ActionResponse<BankCard>();
-            var BankCard = _BankCard.FirstOrDefault(x => !x.IsEnable && x.BankCardId == BankCardId);
+            var BankCard = _BankCard.FirstOrDefault(x => x.BankCardId == BankCardId);
 
             if (BankCard.IsNull()) response.Message = BusinessMessage.RecordNotFound;
             else

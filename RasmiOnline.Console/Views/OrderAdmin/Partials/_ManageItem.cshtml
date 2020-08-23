@@ -8,11 +8,11 @@
         <th width="50px"></th>
         <th>@Html.DisplayNameFor(x => x.Name)</th>
         <th width="90px">@Html.DisplayNameFor(x => x.PricingItemUnitText)</th>
-        <th width="100px">@Html.DisplayNameFor(x => x.Price) (تومان)</th>
+        <th width="100px">@Html.DisplayNameFor(x => x.Price) (ریال)</th>
         <th width="70px">@Html.DisplayNameFor(x => x.Count)</th>
         <th width="70px">@Html.DisplayNameFor(x => x.Copy)</th>
-        <th width="120px">@LocalMessage.TotalCopyPrice (تومان)</th>
-        <th width="80px">@LocalMessage.TotalPrice (تومان)</th>
+        <th width="120px">@LocalMessage.TotalCopyPrice (ریال)</th>
+        <th width="80px">@LocalMessage.TotalPrice (ریال)</th>
 
     </tr>
     @if (Model != null && Model.Count() > 0)
@@ -92,7 +92,7 @@
         }
     }
     <tr class="plus-wrapper">
-        <td class="plus-ico"><i class="zmdi zmdi-plus-circle"></i></td>
+        <td class="plus-ico"></td>
         <td colspan="7" class="add-wrapper">
             <input class="add-doc ajax-auto-complete text-right" type="text" value="" placeholder="@LocalMessage.AddNewPricingItem" data-url="@Url.Action(MVC.PricingItem.ActionNames.Get,MVC.PricingItem.Name,new { isPricingItem = ViewBag.Client })" />
 
@@ -148,7 +148,7 @@
     <tr class="total-row">
         <td></td>
         <td colspan="4" class="font-bold"><div class="text-right"> </div> </td>
-        <td colspan="3" class="total-sum font-bold text-left" style="padding-left:25px" data-total-sum="@totalSum">تومان @totalSum.ToString("N0")</td>
+        <td colspan="3" class="total-sum font-bold text-left" style="padding-left:25px" data-total-sum="@totalSum">ریال @totalSum.ToString("N0")</td>
     </tr>
 </table>
 

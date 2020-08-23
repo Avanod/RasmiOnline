@@ -1,0 +1,30 @@
+﻿[
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Home/add-order.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Home/add-order.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/Attachment/uploader.css",
+    "inputFile": "Content/Styles/Console/Attachment/uploader.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/01-Admin/Dashboard/statistic.css",
+    "inputFile": "Content/Styles/Console/01-Admin/Dashboard/statistic.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Survey/index.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Survey/index.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Order/index.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Order/index.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Home/index.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Home/index.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Console/03-EndUser/Home/payment.css",
+    "inputFile": "Content/Styles/Console/03-EndUser/Home/payment.scss"
+  }
+]

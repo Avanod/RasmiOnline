@@ -5,7 +5,6 @@
     using Gnu.Framework.Core;
     using System.Data.Entity;
     using RasmiOnline.Domain.Dto;
-    using System.Data.SqlClient;
     using RasmiOnline.Domain.Entity;
     using System.Collections.Generic;
     using RasmiOnline.Business.Protocol;
@@ -13,7 +12,7 @@
     using Gnu.Framework.EntityFramework;
     using Gnu.Framework.EntityFramework.DataAccess;
 
-    public class ViewInRoleBusiness: IViewInRoleBusiness
+    public class ViewInRoleBusiness : IViewInRoleBusiness
     {
         #region Constructor
         readonly IUnitOfWork _uow;
@@ -25,7 +24,7 @@
             _viewInRole = _uow.Set<ViewInRole>();
         }
         #endregion
-        
+
         public IActionResponse<int> Insert(ViewInRole model)
         {
             model.ExpireDateMi = PersianDateTime.Parse(model.ExpireDateSh).ToDateTime();
@@ -61,7 +60,6 @@
         public IActionResponse<IEnumerable<ViewInRole>> GetViewsInRole(int? roleId = null)
         {
             var response = new ActionResponse<IEnumerable<ViewInRole>>();
-
             var result = _viewInRole.Include(i => i.Role)
                          .Include(i => i.View)
                          .Where(x => (roleId != null ? x.RoleId == roleId : true))
@@ -78,16 +76,12 @@
         }
 
         public IList<ItemTextValueModel<string, int>> GetFilteredViewsFullPath(int roleId)
-        =>
-            _uow.Database.SqlQuery<ViewsFullPathModel>("[Acl].[GetFilteredViewsFullPath] @RoleId",
-                new SqlParameter("@RoleId", roleId)
-                {
-                    SqlDbType = SqlDbType.Int
-                }).ToList()
-                  .Select(x => new ItemTextValueModel<string, int>
-                  {
-                      Value = x.ViewId,
-                      Key = x.FullPath
-                  }).ToList();
+        => _uow.Set<ViewInRole>().Include(x => x.View)
+            .Where(x => x.RoleId == roleId && x.View.Controller != null)
+            .Select(x => new ItemTextValueModel<string, int>
+            {
+                Key = x.View.ActionNameFa + (x.View.Controller == null ? "" : ("(" + x.View.Controller + "/" + x.View.ActionName + ")")),
+                Value = x.ViewInRoleId
+            }).ToList();
     }
 }

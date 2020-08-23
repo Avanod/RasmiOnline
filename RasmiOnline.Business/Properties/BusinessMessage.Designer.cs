@@ -61,7 +61,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام ‘NAME&apos; مدرکی را به شرح زیر در سایت بارگذاری کرده است  :
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام ‘NAME&apos; مدرکی را به شرح زیر در سایت بارگذاری کرده است  :
         ///شماره سفارش : {0}
         ///وضعیت سفارش : {1}
         ///نوع مدرک : {2}
@@ -94,7 +94,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام ‘NAME&apos; وضعیت سفارش را به شرح زیر تغییرداده است :
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام ‘NAME&apos; وضعیت سفارش را به شرح زیر تغییرداده است :
         ///شماره سفارش : {0}
         ///وضعیت سفارش : {1}
         ///ساعت تغییر وضعیت : {2}
@@ -251,7 +251,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام  ‘NAME’ یک سفارش با مشخصات زیر را ثبت کرده است:
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام  ‘NAME’ یک سفارش با مشخصات زیر را ثبت کرده است:
         ///شماره سفارش : {0}
         ///عنوان سفارش : {1}
         ///زبان سفارش : {2}
@@ -266,7 +266,7 @@ namespace RasmiOnline.Business.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} با موفقیت ثبت گردید. به زودی همکاران ما برای پیگیری با شما تماس خواهند گرفت.
-        ///www.rasmionline.com.
+        ///amirshahigroup.com.
         /// </summary>
         public static string Order_Add_Sms {
             get {
@@ -276,7 +276,7 @@ namespace RasmiOnline.Business.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to NAME عزیز، سفارش به شماره {0} در پنل کاربری شما قرار گرفت ، جهت پیگیری سفارش فوق لطفا به پنل کاربری خود مراجعه نمایید .
-        ///www.RasmiOnline.com.
+        ///Portal.amirshahigroup.com.
         /// </summary>
         public static string Order_Moved_Office {
             get {
@@ -285,8 +285,26 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} شما در وضعیت تسویه نهایی قرار گرفته است. لطفا به پنل کاربری خود مراجعه نمایید.
-        ///http://panel.rasmiOnline.com.
+        ///   Looks up a localized string similar to پرداخت بصورت کامل انجام نشده است، لطفا وضعیت را به تسویه نهایی تغییر دهید.
+        /// </summary>
+        public static string OrderIsNotPayed {
+            get {
+                return ResourceManager.GetString("OrderIsNotPayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to سفارش بصورت کامل پرداخت شده است، لطفا به وضعیت تحوبل ترجمه تغییر وضعیت دهید.
+        /// </summary>
+        public static string OrderIsPayed {
+            get {
+                return ResourceManager.GetString("OrderIsPayed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} شما در وضعیت تسویه نهایی قرار گرفته است. لطفا سفارش خود را از طریق لینک زیر تسویه نمایید.
+        ///{1}.
         /// </summary>
         public static string Pay_All_Factor_Sms {
             get {
@@ -313,6 +331,16 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to کاربر گرامی NAME، پیش نویس سفارش {0} آماده شده است، شما میتوانید از طریق لینک زیر آن را مشاهده نمایید
+        ///{1}.
+        /// </summary>
+        public static string SubmitDraftMessage {
+            get {
+                return ResourceManager.GetString("SubmitDraftMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to عملیات با موفقیت انجام شد.
         /// </summary>
         public static string Success {
@@ -331,7 +359,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام ‘{0}’ پرداختی را به شرح زیر ثبت نموده است :
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام ‘{0}’ پرداختی را به شرح زیر ثبت نموده است :
         ///شماره سفارش : {1}
         ///درگاه بانکی : {2}
         ///مبلغ پرداختی : {3}
@@ -355,7 +383,7 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران با نام {0} در ساعت {1} در رسمی آنلاین ثبت نام کرده است. 
+        ///   Looks up a localized string similar to یکی از کاربران با نام {0} در ساعت {1} در دارالترجمه امیرشاهی ثبت نام کرده است. 
         ///#ثبت_نام.
         /// </summary>
         public static string User_Register {
@@ -392,8 +420,17 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NAME عزیز، سفارش شماره {0} قیمت گذاری گردید. لطفا برای مشاهده فاکتور بر روی لینک زیر کلیک کنید:
-        ///http://panel.rasmiOnline.com.
+        ///   Looks up a localized string similar to کاربر گرامی {0} برای شما با نام کاربری {1} و رمز عبور {2} در وب سایت دارالترجمه امیرشاهی حساب کاربری ایجاد گردید.
+        /// </summary>
+        public static string UserRegisterMessage {
+            get {
+                return ResourceManager.GetString("UserRegisterMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to عزیز، سفارش شماره {0} قیمت گذاری گردید. لطفا برای مشاهده فاکتور بر روی لینک زیر کلیک کنید:
+        ///{1}.
         /// </summary>
         public static string Waiting_For_Payment {
             get {

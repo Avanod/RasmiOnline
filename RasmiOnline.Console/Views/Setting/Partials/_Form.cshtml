@@ -35,14 +35,14 @@
                             <small class="text-danger"> @Html.ValidationMessageFor(x => x.LimitOrderOpenDay) </small>
                         </div>
 
-                        <div class="col-sm-6 m-b-20" dir="rtl">
+                        @*<div class="col-sm-6 m-b-20" dir="rtl">
                             <div class="form-group">
                                 @Html.LabelFor(x => x.OfficialRecordPrice)
                                 @Html.TextBoxFor(x => x.OfficialRecordPrice, null, new { @class = "form-control ltr-dir only-digit" })
                                 <i class="form-group__bar"></i>
                             </div>
                             <small class="text-danger"> @Html.ValidationMessageFor(x => x.OfficialRecordPrice) </small>
-                        </div>
+                        </div>*@
                         <div class="col-sm-6 m-b-20" dir="rtl">
                             <div class="form-group">
                                 @Html.LabelFor(x => x.Tel)
@@ -51,14 +51,14 @@
                             </div>
                             <small class="text-danger"> @Html.ValidationMessageFor(x => x.Tel) </small>
                         </div>
-                        <div class="col-sm-12 m-b-20" dir="rtl">
+                        @*<div class="col-sm-12 m-b-20" dir="rtl">
                             <div class="form-group">
                                 @Html.LabelFor(x => x.ImportantNotice)
                                 @Html.TextAreaFor(x => x.ImportantNotice, 4, 10, new { @class = "form-control" })
                                 <i class="form-group__bar"></i>
                             </div>
                             <small class="text-danger"> @Html.ValidationMessageFor(x => x.ImportantNotice) </small>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="col-sm-12 text-left p-0">
                         <button class="btn-action rtl waves-effect next-panel" type="button" id="btnSubmitChange">

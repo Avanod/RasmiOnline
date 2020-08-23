@@ -1,25 +1,26 @@
 ﻿@model Transaction
 @{
-    ViewBag.Title = "Success";
+    ViewBag.Title = "بازگشت از درگاه";
+    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
 }
 
-@section BeforHeader{
-    @{Html.RenderAction(MVC.Transaction.ActionNames.EcommerceScript, MVC.Transaction.Name, new { OrderId = Model.OrderId, price = Model.Price });}
-}
+@*@section BeforHeader{
+        @{Html.RenderAction(MVC.Transaction.ActionNames.EcommerceScript, MVC.Transaction.Name, new { OrderId = Model.OrderId, price = Model.Price });}
+    }*@
 
-@section Header{
-    <link href="@Url.Content(Links.Content.Styles.Shared.timeline_css)" rel="stylesheet" />
+@section Head{
     <link href="@Url.Content(Links.Content.Styles.Console.order_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.Order.common_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console._03_EndUser.Transaction.success_css)" rel="stylesheet" />
 }
 
 
 <div class="order-row">
-    @{
-        Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, DetailedAddOrderTimeLine.UploadFiles);
-    }
-    <aside class="col-md-9 time-line-content">
-        <div class="card" style="padding:25px 50px">
+    @*@{
+            Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, DetailedAddOrderTimeLine.WaitForDeliverDocument);
+        }*@
+    <aside class="col-12 col-sm-12">
+        <div class="card">
             @Html.Partial(MVC.Order.Views.Partials._SummaryHeader, new SummaryHeader
        {
            Message = LocalMessage.TransactionSuccess,
@@ -29,7 +30,7 @@
            Color = "#fff"
        })
             <div class="row m-0">
-                <ul class="spec-list col-sm-12 p-r-0 p-l-0">
+                <ul class="spec-list col-sm-12 p-r-0 p-l-0 m-b">
                     <li class="d-flex">
                         <span class="technicalspecs-title col-md-4 float-right d-block" data-id="">درگاه بانکی</span>
                         <span class="technicalspecs-value  col-md-8 float-left" data-id="">
@@ -70,15 +71,15 @@
                         <span class="technicalspecs-title col-md-4 float-right" data-id="">مبلغ پرداختی </span>
                         <span class="technicalspecs-value  col-md-8 float-left " data-id="">
                             <span>
-                                @Model.Price.ToString()
+                                @Model.Price.ToString("N0")
                             </span>
                         </span>
                     </li>
                 </ul>
-                <div class="nav-actions col-md-12 m-0 p-0">
-                    <a class="btn-action rtl waves-effect m-b-20 next-panel float-left" href="/Upload/@Model.OrderId">
+                <div class="col-xs-12 col-sm-12 m-0">
+                    <a class="btn-action rtl waves-effect m-b-20 next-panel float-left" href="@Url.Action(MVC.Home.ActionNames.AddOrder,MVC.Home.Name)">
                         <div class="text">
-                            آپلود مدارک
+                            بازگشت
                         </div>
                         <div class="icon">
                             <i class="zmdi zmdi-long-arrow-return"></i>
@@ -90,7 +91,6 @@
     </aside>
 </div>
 
-@section Scripts{
+@section Footer{
     <script src="@Url.Content(Links.Scripts.Console.Order.common_js)"></script>
-
 }

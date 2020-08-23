@@ -97,7 +97,7 @@
 
         public Transaction Find(string authority) => _transaction.FirstOrDefault(X => X.Authority == authority);
 
-        public Transaction Find(int transactionId) => _transaction.FirstOrDefault(X => X.TransactionId == transactionId);
+        public Transaction Find(int transactionId) => _transaction.Include(x=>x.Order).FirstOrDefault(X => X.TransactionId == transactionId);
 
         public IActionResponse<int> Insert(Transaction model)
         {

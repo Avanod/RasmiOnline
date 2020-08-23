@@ -83,7 +83,7 @@
 var getPriceItems = function (templateId, succesFunc, failedFunc) {
     if (templateId > 0) {
         $.ajax({
-            url: 'https://panel.RasmiOnline.com/PricingItem/GetPricingItemTable?templateId=' + templateId,
+            url: 'http://Portal.amirshahigroup.com/PricingItem/GetPricingItemTable?templateId=' + templateId,
             data: JSON.stringify({}),
             type: 'GET',
             contentType: 'text/html'
@@ -104,7 +104,7 @@ var getPriceItemsWithCategoryId = function (categoryId, succesFunc, failedFunc) 
     if (categoryId > 0) {
 
         $.ajax({
-            url: 'https://panel.RasmiOnline.com/PricingItem/GetPricingItemTableWithCategoryId?categoryId=' + categoryId,
+            url: 'http://Portal.amirshahigroup.com/PricingItem/GetPricingItemTableWithCategoryId?categoryId=' + categoryId,
             data: JSON.stringify({}),
             type: 'GET',
             contentType: 'text/html'
@@ -123,7 +123,7 @@ var getPriceItemsWithCategoryId = function (categoryId, succesFunc, failedFunc) 
 
 var getPricingItemAccordion = function (succesFunc, failedFunc) {
     $.ajax({
-        url: 'https://panel.RasmiOnline.com/PricingItem/GetPricingItemAccordion',
+        url: 'http://Portal.amirshahigroup.com/PricingItem/GetPricingItemAccordion',
         data: JSON.stringify({}),
         type: 'GET',
         contentType: 'text/html'
@@ -160,7 +160,7 @@ var getPricingItemAccordion = function (succesFunc, failedFunc) {
 //        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
 //        expires = "; expires=" + date.toUTCString();
 //    }
-//    document.cookie = name + "=" + (value || "") + expires + "; path=/;domain=rasmionline.com";
+//    document.cookie = name + "=" + (value || "") + expires + "; path=/;domain=Portal.amirshahigroup.com";
 //}
 
 //function getCookie(cname) {
@@ -180,7 +180,7 @@ var getPricingItemAccordion = function (succesFunc, failedFunc) {
 //}
 //function uniqueClick(refrence) {
 //    $.ajax({
-//        url: 'https://panel.RasmiOnline.com/Channel/Visit',
+//        url: 'http://Portal.amirshahigroup.com/Channel/Visit',
 //        data: { refrence: refrence },
 //        type: 'POST',
 //        contentType: 'text/html'

@@ -71,11 +71,11 @@
                 }
 
                 fileNumber++;
-                file.SaveAs($"{pathes.Item2}\\{fileNumber.ToString()}{ext}");
+                file.SaveAs($"{pathes.Item2}\\{fileNumber}{ext}");
+
                 #region Save File Record To Db
                 var attachment = new Attachment
                 {
-
                     #region Init Attachment
                     OrderId = order.OrderId,
                     AttachmentType = type,
@@ -91,16 +91,17 @@
             }
 
             var saveResult = _uow.SaveChanges();
-            if (saveResult.ToSaveChangeResult())
-            {
-                _observerManager.Value.Notify(ConcreteKey.Attachment_Add, new ObserverMessage
-                {
-                    BotContent = string.Format(BusinessMessage.Attachment_Add, order.OrderId, order.OrderStatus.GetLocalizeDescription(), type.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                    Key = ConcreteKey.Change_OrderState.ToString(),
-                    RecordId = order.OrderId,
-                    UserId = (HttpContext.Current.User as ICurrentUserPrincipal).UserId,
-                });
-            }
+            //if (saveResult.ToSaveChangeResult())
+            //{
+            //    _observerManager.Value.Notify(ConcreteKey.Attachment_Add, new ObserverMessage
+            //    {
+            //        BotContent = string.Format(BusinessMessage.Attachment_Add, order.OrderId, order.OrderStatus.GetLocalizeDescription(), type.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+            //        SmsContent = string.Format(BusinessMessage.Attachment_Add, order.OrderId, order.OrderStatus.GetLocalizeDescription(), type.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+            //        Key = ConcreteKey.Change_OrderState.ToString(),
+            //        RecordId = order.OrderId,
+            //        UserId = order.UserId == Guid.Empty ? (HttpContext.Current.User as ICurrentUserPrincipal).UserId : order.UserId,
+            //    });
+            //}
             result.Result = saveResult;
             result.IsSuccessful = saveResult.ToSaveChangeResult();
             result.Message = saveResult.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error);

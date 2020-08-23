@@ -4,7 +4,6 @@
     var transactionObject = new Transaction { InsertDateSh = PersianDateTime.Now.ToString(PersianDateTimeFormat.Date).ToString(), };
 }
 
-
 <div class="row">
 
     @Html.Hidden("OrderId", Model.OrderId)
@@ -107,7 +106,7 @@
                     <tr class="transaction_@(item.TransactionId)_@(item.OrderId) f-s-11">
                         <td class="sorting_1">@count</td>
                         <td>
-                            <img src="~/Content/Images/BankName/@(item.PaymentGatewayId).png" class="w-48-px" />
+                            <img src="~/Content/Images/BankName/@(BankNames.Pasargad).png" class="w-48-px" />
                         </td>
                         <td>
                             @item.BankCard
@@ -149,7 +148,7 @@
                     </div>
                     <div class="standard-item">
                         <i class="zmdi zmdi-money f-s-20 m-l-5"></i>
-                        مبلغ پرداختی : @item.Price.ToString("0,0") تومان
+                        مبلغ پرداختی : @item.Price.ToString("0,0") ریال
                     </div>
                     <div class="standard-item">
                         <i class="zmdi zmdi-code-setting f-s-20 m-l-5"></i>

@@ -9,15 +9,17 @@
 
     public interface IOrderBusiness
     {
-        IActionResponse<Order> Update(Order model);
-        IActionResponse<Order> BriefUpdate(Order model);
+        IActionResponse<Order> Update(Order model, string baseDomain = "");
+        IActionResponse<Order> BriefUpdate(Order model, string baseDomain = "");
         IActionResponse<Order> Update(int orderId, LangType newLangType, IEnumerable<OrderItem> items);
         IActionResponse<Order> UpdateStatus(int orderId);
+        IActionResponse<Order> UpdateStatus(int orderId, OrderStatus status);
         IActionResponse<Order> UpdateOrderDeliverFiles(int orderId);
-        void StatusNotifier(Order order);
+        void StatusNotifier(Order order, string baseDomain = "");
         IActionResponse<IEnumerable<Order>> GetAllOrder(Guid? userId = null, Guid? officeUserId = null, OrderStatus? orderStatus = null, int count = 100);
         IActionResponse<Order> Insert(Order model);
         IActionResponse<int> InsertBehalfOfUser(Order model, int roleId);
+        //IActionResponse<Order> QuickInsert(AddOrderModel model);
         Order Find(int orderId, string relatedEntities = "none");
         Order Find(int orderId, Guid officeUserId, string relatedEntities = "none");
         IActionResponse<List<OrderDetailsModel>> Search(FilterOrderModel filterModel);
@@ -32,5 +34,8 @@
         int OlderOrderCount(Guid? officeUserId = null);
 
         IEnumerable<Order> GetReport(Guid? officeUserId = null, string fromDate = null, string toDate = null);
+
+        IActionResponse<Order> Add(AddOrderModel model);
+        IActionResponse<Tuple<Order, int>> UpdateBeforePayment(CompleteOrderModel model);
     }
 }

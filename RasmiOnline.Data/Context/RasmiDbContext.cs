@@ -5,7 +5,6 @@
     using Gnu.Framework.Core;
     using System.Data.Entity;
     using Gnu.Framework.Core.Log;
-    using RasmiOnline.SharedPreference;
     using System.Data.Entity.Validation;
     using System.Data.Entity.Infrastructure;
     using Gnu.Framework.EntityFramework.DataAccess;
@@ -40,6 +39,11 @@
         public DbSet<DiscountOrder> DiscountOrder { get; set; }
         public DbSet<ShortLink> ShortLink { get; set; }
         public DbSet<BankCard> BankCard { get; set; }
+
+        public DbSet<OfflineStatistics> OfflineStatistics { get; set; }
+        public DbSet<Survey> Survey { get; set; }
+        public DbSet<SurveyOption> SurveyOption { get; set; }
+
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {

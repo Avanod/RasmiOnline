@@ -33,7 +33,7 @@
         public IActionResponse<int> Insert(UserInRole model)
         {
             var currentDate = DateTime.Now.Date;
-            var userInRole = _userInRole.FirstOrDefault(x=> x.RoleId == model.RoleId && x.UserId == model.UserId && x.ExpireDateMi >= currentDate);
+            var userInRole = _userInRole.FirstOrDefault(x => x.RoleId == model.RoleId && x.UserId == model.UserId && x.ExpireDateMi >= currentDate);
 
             if (userInRole.IsNotNull())
                 return new ActionResponse<int>
@@ -79,7 +79,7 @@
             var user = _lazyUserBusiness.Value.Find(mobileNumebr: mobileNumber);
 
             if (user.IsNull())
-            { 
+            {
                 response.Message = BusinessMessage.UserNotFound;
                 return response;
             }
@@ -122,5 +122,7 @@
 
             return response;
         }
+
+        public bool CheckExist(UserInRole model) => _userInRole.Any(x => x.UserId == model.UserId && x.RoleId == model.RoleId);
     }
 }

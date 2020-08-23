@@ -30,34 +30,37 @@ $(document).on('ready', function () {
 
     $(".btnRemoveTransaction").click(function () {
         $this = $(this);
-        console.log($this.attr('data-transactionid'))
-        ajaxBtn.inProgress($this);
+        swalConfirm(function () {
+            console.log($this.attr('data-transactionid'))
+            ajaxBtn.inProgress($this);
 
-        $.ajax({
-            url: "/Transaction/RemoveTransaction",
-            type: 'POST',
-            data: {
-                transactionId: $this.attr('data-transactionId'),
-                orderId: $this.attr('data-orderId')
-            },
-            cache: false,
-            dataType: 'json',
-            success: function (rep) {
-                ajaxBtn.normal($this);
-                if (rep.IsSuccessful) {
-                    $(".transaction_" + $this.attr('data-transactionId') + "_" + $this.attr('data-orderId')).fadeOut();
-                }
-                else {
+            $.ajax({
+                url: "/Transaction/RemoveTransaction",
+                type: 'POST',
+                data: {
+                    transactionId: $this.attr('data-transactionId'),
+                    orderId: $this.attr('data-orderId')
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (rep) {
+                    ajaxBtn.normal($this);
+                    if (rep.IsSuccessful) {
+                        $(".transaction_" + $this.attr('data-transactionId') + "_" + $this.attr('data-orderId')).fadeOut();
+                    }
+                    else {
 
-                    notify(false, rep.Message);
+                        notify(false, rep.Message);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    ajaxBtn.normal($this);
+                    notify(false, errorMsg);
+                    console.log(jqXHR.responseText);
                 }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                ajaxBtn.normal($this);
-                notify(false, errorMsg);
-                console.log(jqXHR.responseText);
-            }
+            });
         });
+
     });
 
     orderItem.inEnglish = ($('#LangType').val() === 'Fa_En');
@@ -81,35 +84,41 @@ $(document).on('ready', function () {
     fireDropZone($('#upload-attachments'), function (rep, dz) {
         if (rep.IsSuccessful) {
             dz.removeAllFiles();
-            let $wrapper = $('#upload-attachments').closest('.tab-pane').find('.attchs-wrapper').html(threeDotLoader);
-            $.get($wrapper.data('url'), function (rep) { $wrapper.html(rep); });
-        }
-    });
-
-    fireDropZone($('#upload-translation-attachments'), function (rep, dz) {
-        if (rep.IsSuccessful) {
-            dz.removeAllFiles();
-            let $wrapper = $('#upload-translation-attachments').closest('.tab-pane').find('.attchs-wrapper').html(threeDotLoader);
-            $.get($wrapper.data('url'), function (rep) { $wrapper.html(rep); });
+            let $wrapper = $('#upload-attachments').closest('.tab-pane').find('.attchs-wrapper');
+            $('#target-OrderFiles').html('<div class="text-center p-4">' + threeDotLoader + '</div>');
+            $.get($wrapper.data('url'), { attachmentType: "OrderFiles" }, function (rep) { $('#target-OrderFiles').html(rep); });
         }
     });
 
     fireDropZone($('#upload-identity-attachments'), function (rep, dz) {
         if (rep.IsSuccessful) {
             dz.removeAllFiles();
-            let $wrapper = $('#upload-identity-attachments').closest('.tab-pane').find('.attchs-wrapper').html(threeDotLoader);
-            $.get($wrapper.data('url'), function (rep) { $wrapper.html(rep); });
+            let $wrapper = $('#upload-identity-attachments').closest('.tab-pane').find('.attchs-wrapper');
+            $('#target-Identity').html('<div class="text-center p-4">' + threeDotLoader + '</div>');
+            $.get($wrapper.data('url'), { attachmentType: "Identity" }, function (rep) { $('#target-Identity').html(rep); });
         }
     });
+
+    fireDropZone($('#upload-translation-attachments'), function (rep, dz) {
+        if (rep.IsSuccessful) {
+            dz.removeAllFiles();
+            let $wrapper = $('#upload-translation-attachments').closest('.tab-pane').find('.attchs-wrapper');
+            $('#target-Translation').html('<div class="text-center p-4">' + threeDotLoader + '</div>');
+            $.get($wrapper.data('url'), { attachmentType: "Translation" }, function (rep) { console.log(rep); $('#target-Translation').html(rep); });
+        }
+    });
+
 
     fireGoogleMap();
 
     //send added or changed order items to server
     $(document).on('click', ".btn-submit-order-items", function () {
         let items = [];
+        console.log('fired');
         $('.order-items .pricing-item').each(function (idx, elm) {
             console.log($(this).find('input[name="price"]').val());
             let info = $(this).data('info');
+
             let item = {
                 OrderId: parseInt($('#OrderId').val()),
                 Price: $(this).find('input[name="price"]').val(),
@@ -118,7 +127,7 @@ $(document).on('ready', function () {
                 Count: $(elm).find('.doc-count').val(),
                 PricingItemId: $(elm).data('id'),
                 Description: $(elm).find('.description').text(),
-
+                IsFullPayed: $('#IsFullPayed').val()
             };
             if ($(elm).data('added')) {
                 items.push(item);
@@ -131,15 +140,19 @@ $(document).on('ready', function () {
         });
         //official record
         let $officialRecordItem = $('.order-items .official-record-item');
-        let info = $officialRecordItem.data('info');
-        items.push({
-            OrderId: parseInt($('#OrderId').val()),
-            OrderItemId: info.orderItemId,
-            OrderItemType: "OfficialRecordItem",
-            Price: $officialRecordItem.find('input[name="price"]').val(),
-            Copy: $officialRecordItem.find('.copy-count').val(),
-            Count: $officialRecordItem.find('.doc-count').val()
-        });
+        if ($officialRecordItem.length > 0) {
+            let info = $officialRecordItem.data('info');
+            console.log(info);
+            items.push({
+                OrderId: parseInt($('#OrderId').val()),
+                OrderItemId: info.orderItemId,
+                OrderItemType: "OfficialRecordItem",
+                Price: $officialRecordItem.find('input[name="price"]').val(),
+                Copy: $officialRecordItem.find('.copy-count').val(),
+                Count: $officialRecordItem.find('.doc-count').val()
+            });
+        }
+
 
         if (items.length === 0) {
             notify(false, "هیچ آیتمی وجود ندارد");
@@ -162,6 +175,7 @@ $(document).on('ready', function () {
                 ajaxBtn.normal();
 
                 if (rep.IsSuccessful) {
+                    $('#Order.tab-pane .total-sum').text(orderItem.toalSumOfItems.toString().cThSeperator());
                     notify(true, rep.Message);
                     $('.order-items .item').each(function () {
                         let info = $(this).data('info');

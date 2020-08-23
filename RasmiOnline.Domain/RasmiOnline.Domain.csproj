@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,6 +16,9 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,25 +39,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Gnu.Framework.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gnu.Framework.Core.2.4.1\lib\Gnu.Framework.Core.dll</HintPath>
+      <HintPath>..\packages\Gnu.Framework.Core.3.0.2\lib\Gnu.Framework.Core.dll</HintPath>
     </Reference>
     <Reference Include="Gnu.Framework.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gnu.Framework.EntityFramework.2.2.1\lib\Gnu.Framework.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\Gnu.Framework.EntityFramework.3.0.2\lib\Gnu.Framework.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -84,9 +86,13 @@
   <ItemGroup>
     <Compile Include="Dto\AddButtonModel.cs" />
     <Compile Include="Dto\AddDiscountModel.cs" />
+    <Compile Include="Dto\AddOrderModel.cs" />
     <Compile Include="Dto\AddTransactionModel.cs" />
+    <Compile Include="Dto\Base\SurveyResult.cs" />
+    <Compile Include="Dto\Base\SurveyResultSPModel.cs" />
     <Compile Include="Dto\CustomUserAction.cs" />
     <Compile Include="Dto\DiscountCheckModel.cs" />
+    <Compile Include="Dto\Gateway\PasargadGatewayModel.cs" />
     <Compile Include="Dto\GetTransactionModel.cs" />
     <Compile Include="Dto\AddUserInRoleModel.cs" />
     <Compile Include="Dto\AddUserModel.cs" />
@@ -113,6 +119,9 @@
     <Compile Include="Dto\ReferralModel.cs" />
     <Compile Include="Dto\SearchPartialModel.cs" />
     <Compile Include="Dto\SendMessageModel.cs" />
+    <Compile Include="Dto\StatisticExtraData.cs" />
+    <Compile Include="Dto\StatisticModel.cs" />
+    <Compile Include="Dto\Base\SurveySearchFilter.cs" />
     <Compile Include="Dto\TransactionModel.cs" />
     <Compile Include="Dto\UserDetailsModel.cs" />
     <Compile Include="Dto\ViewsFullPathModel.cs" />
@@ -121,9 +130,12 @@
     <Compile Include="Entity\Base\DiscountOrder.cs" />
     <Compile Include="Entity\Base\OfficeAddress.cs" />
     <Compile Include="Entity\Base\PricingItemTemplate.cs" />
+    <Compile Include="Entity\Base\Survey.cs" />
+    <Compile Include="Entity\Base\SurveyOption.cs" />
     <Compile Include="Entity\Order\OrderComment.cs" />
     <Compile Include="Entity\Order\OrderDetail.cs" />
     <Compile Include="Entity\Order\ShortLink.cs" />
+    <Compile Include="Entity\Statistics\OfflineStatistics.cs" />
     <Compile Include="Enum\DeliveryType.cs" />
     <Compile Include="Enum\PaymentGatewayType.cs" />
     <Compile Include="Enum\PaymentType.cs" />
@@ -149,6 +161,8 @@
     <Compile Include="Enum\CalculatorTemplate.cs" />
     <Compile Include="Enum\PricingItemUnit.cs" />
     <Compile Include="Enum\StateType.cs" />
+    <Compile Include="Enum\StaticticsKey.cs" />
+    <Compile Include="Enum\TrnanslateType.cs" />
     <Compile Include="VisibleAttribute.cs" />
     <Compile Include="Properties\DisplayName.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -188,13 +202,15 @@
       <LastGenOutput>ErrorMessage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RasmiOnline.SharedPreference\RasmiOnline.SharedPreference.csproj">
-      <Project>{C5C3F3F4-3D29-4A4C-B7B3-A53620C3ABB0}</Project>
-      <Name>RasmiOnline.SharedPreference</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

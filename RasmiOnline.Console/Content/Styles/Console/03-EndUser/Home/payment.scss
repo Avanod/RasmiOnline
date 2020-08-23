@@ -1,0 +1,121 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    background-color: #eee;
+    margin-top: 30px;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+#order-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    [class^='col-'] {
+        float: right;
+    }
+
+    .card {
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        background-color: #fff;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        border-radius: 3px;
+
+        .hx {
+            margin: 0;
+
+            label {
+                display: inline-block;
+                border-bottom: solid 2px #666;
+                padding: 8px 0;
+            }
+        }
+
+        .order li {
+            padding: 10px;
+
+            &.heading {
+                padding: 5px 10px;
+            }
+        }
+
+        #delivery-types {
+            .radio-wrapper {
+                padding: 10px 0;
+
+                input {
+                    vertical-align: middle;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    #NeedDraft {
+        transform: scale(1.2);
+        vertical-align:middle;
+        margin-top:0;
+    }
+
+    .draft {
+        display: flex;
+        align-items: center;
+        padding-top: 10px;
+        margin-bottom: 15px;
+
+        .checkbox-group {
+            cursor: pointer;
+
+            input {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    body {
+        background-color: #fff;
+    }
+
+    .card {
+        box-shadow: none !important;
+        padding: 10px 0 !important;
+    }
+
+    .address_list {
+        overflow: hidden !important;
+
+        .add-address-button {
+            width: 50px;
+            margin: 0 15px;
+        }
+
+        &:after, &:before {
+            display: none !important;
+        }
+    }
+
+    .address_list .address_item:not(.add-address-button) {
+        width: 280px;
+    }
+}
+
+#modal {
+    button.close {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+    }
+}

@@ -152,7 +152,7 @@
         /// <returns></returns>
         public IActionResponse<User> CheckUserCredentials(string email, string password)
         {
-             password = HashGenerator.Hash(password.Trim(), HashAlgorithms.SHA1);
+            password = HashGenerator.Hash(password.Trim(), HashAlgorithms.SHA1);
             var user = _user.FirstOrDefault(x => x.Email == email && x.Password == password);
             if (user == null) return new ActionResponse<User> { Message = BusinessMessage.WrongUsernameOrPassword, IsSuccessful = false };
             else if (!user.IsActive) return new ActionResponse<User> { Message = BusinessMessage.InActiveUser, IsSuccessful = false };
@@ -186,20 +186,33 @@
 
             #region Find Default View
             var defaultAction = new CustomUserAction();
-            foreach (var menuItem in spResult)
-            {
-                var views = menuItem.ViewsList;
-                if (views.Any(x => x.IsDefault))
+            var defUserAction = spResult.Where(x => x.IsView).FirstOrDefault(x => x.IsDefault);
+            if (defUserAction != null)
+                defaultAction = new CustomUserAction
                 {
-                    defaultAction = new CustomUserAction
+                    Action = defUserAction.ActionName,
+                    Controller = defUserAction.Controller,
+                    RoleId = defUserAction.RoleId
+                };
+
+            if (defaultAction == null && !spResult.Where(x => x.Views != null).Any())
+            {
+                foreach (var menuItem in spResult.Where(x => x.Views != null).ToList())
+                {
+                    var views = menuItem.ViewsList;
+                    if (views.Any(x => x.IsDefault))
                     {
-                        Action = views.FirstOrDefault(x => x.IsDefault).ActionName,
-                        Controller = views.FirstOrDefault(x => x.IsDefault).Controller,
-                        RoleId = views.FirstOrDefault(x => x.IsDefault).RoleId
-                    };
-                    break;
+                        defaultAction = new CustomUserAction
+                        {
+                            Action = views.FirstOrDefault(x => x.IsDefault).ActionName,
+                            Controller = views.FirstOrDefault(x => x.IsDefault).Controller,
+                            RoleId = views.FirstOrDefault(x => x.IsDefault).RoleId
+                        };
+                        break;
+                    }
                 }
             }
+
             if (defaultAction.Controller.IsNull()) return null;
             #endregion
 
@@ -427,5 +440,60 @@
             return restul;
         }
 
+        public IActionResponse<Guid> Insert(AddOrderModel model)
+        {
+            var userExist = false;
+            var mobNum = long.Parse(model.MobileNumber);
+            var user = _user.FirstOrDefault(x => x.Email == model.Email);
+            if (user != null)
+            {
+                userExist = true;
+                if (!user.IsActive)
+                    return new ActionResponse<Guid> { Message = BusinessMessage.InActiveUser };
+                else
+                {
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Email = model.Email;
+                    _uow.Entry(user).State = EntityState.Modified;
+                    var update = _uow.SaveChanges();
+                    return new ActionResponse<Guid> { IsSuccessful = true, Result = user.UserId };
+                }
+            }
+            var cdt = DateTime.Now;
+            user = new User
+            {
+                Email = model.Email,
+                MobileNumber = mobNum,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                IsActive = true,
+                LastLoginDateMi = cdt,
+                LastLoginDateSh = PersianDateTime.Parse(cdt).ToString(PersianDateTimeFormat.Date),
+                Password = HashGenerator.Hash(model.MobileNumber.Trim(), HashAlgorithms.SHA1),
+                RegisterDateMi = cdt,
+                RegisterDateSh = PersianDateTime.Parse(cdt).ToString(PersianDateTimeFormat.Date)
+            };
+            _user.Add(user);
+            var save = _uow.SaveChanges();
+            var rep = _uow.SaveChanges();
+            if (rep.ToSaveChangeResult() && !userExist)
+            {
+                _observerManager.Value.Notify(ConcreteKey.User_Register, new ObserverMessage
+                {
+                    SmsContent = string.Format(BusinessMessage.UserRegisterMessage, user.FullName, user.Email, user.MobileNumber),
+                    BotContent = string.Format(BusinessMessage.UserRegisterMessage, user.FullName, user.Email, user.MobileNumber),
+                    Key = ConcreteKey.User_Register.ToString(),
+                    RecordId = 0,
+                    UserId = model.UserId
+                });
+            }
+            return new ActionResponse<Guid>
+            {
+                IsSuccessful = save.ToSaveChangeResult(),
+                Message = save.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                Result = user.UserId
+            };
+        }
     }
 }

@@ -47,7 +47,7 @@ ul.order li {
         background-color: #e6e4e4;
         padding: 8px 5px;
         margin: 0;
-        min-width:170px;
+        min-width:220px;
     }
 
     .order .order-status .select-value {
@@ -55,7 +55,7 @@ ul.order li {
         margin-right: 10px;
         position: absolute;
         left: 15px;
-        right: 170px;
+        right: 220px;
     }
 
         .order .order-status .select-value .border-none {
@@ -197,14 +197,20 @@ select.radio-wrapper {
     border-radius: 3px;
     padding: 10px;
     color: white;
+    display: flex;
+    align-items: center;
 }
-
     .summary-success .icon {
         padding: 0;
         text-align: center;
         border-left: 1px dashed;
     }
-
+    @media (max-width:576px){
+        .summary-success .icon{
+            border-left:none;
+            padding-left:5px;
+        }
+    }
 .f-s-45 {
     font-size: 45px !important;
 }
@@ -442,9 +448,7 @@ table.order-items .description{
 table.order-items tr:last-child{
     background-color:transparent!important;
 }
-table.order-items > tbody > tr{
-    border-bottom:solid 1px #ccc;
-}
+ 
 table.order-items > tbody > tr:last-child{
      border-bottom:none;
 }

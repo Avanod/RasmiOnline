@@ -21,7 +21,8 @@
             {
                 x.For<ICacheProvider>().Use<HttpRuntimeCache>();
                 x.For<Lazy<ICacheProvider>>().Use(c => new Lazy<ICacheProvider>(c.GetInstance<ICacheProvider>));
-                x.For<IUnitOfWork>().Use(() => new RasmiDbContext());
+                //x.For<IUnitOfWork>().Use(() => new RasmiDbContext());
+                x.For<IUnitOfWork>().Use<RasmiDbContext>();
                 x.For<ICurrentUserPrincipal>().Use<CurrentUserPrincipal>();
                 x.For<IMessagingQueue>().Use<MSMQ>();
                 x.For<IObserverManager>().Use<ObserverManager>();
@@ -35,6 +36,8 @@
                 #endregion
 
                 #region Base
+                x.For<ISurveyBusiness>().Use<SurveyBusiness>();
+                x.For<ISurveyOptionBusiness>().Use<SurveyOptionBusiness>();
                 x.For<IAddressBusiness>().Use<AddressBusiness>();
                 x.For<Lazy<IAddressBusiness>>().Use(c => new Lazy<IAddressBusiness>(c.GetInstance<IAddressBusiness>)); 
                 x.For<IBankCardBusiness>().Use<BankCardBusiness>();
@@ -49,6 +52,7 @@
                 x.For<IUserBusiness>().Use<UserBusiness>();
                 x.For<Lazy<IUserBusiness>>().Use(c => new Lazy<IUserBusiness>(c.GetInstance<IUserBusiness>));
                 x.For<IVerificationCodeBusiness>().Use<VerificationCodeBusiness>();
+                x.For<IOfflineStatisticsBusiness>().Use<OfflineStatisticsBusiness>();
                 #endregion
 
                 #region Order

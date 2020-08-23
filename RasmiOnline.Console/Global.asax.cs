@@ -1,22 +1,30 @@
 ﻿namespace RasmiOnline.Console
 {
-    using Gnu.Framework.Core.Log;
-    using Business.Protocol;
-    using DependencyResolver.Ioc;
-    using SharedPreference;
     using System;
-    using System.Linq;
     using System.Web;
+    using System.Linq;
     using System.Web.Mvc;
-    using System.Web.Optimization;
+    using Business.Protocol;
     using System.Web.Routing;
-    using System.Web.Script.Serialization;
     using System.Web.Security;
+    using Gnu.Framework.Core.Log;
+    using DependencyResolver.Ioc;
+    using System.Web.Optimization;
+    using System.Web.Script.Serialization;
     using Gnu.Framework.Core.Authentication;
+    using RasmiOnline.Console.QuartzService;
 
     public class MvcApplication : HttpApplication
     {
         private IUserBusiness _userBiz;
+
+        private void RedirectToAuthentication()
+        {
+            FormsAuthentication.SignOut();
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            Response.Redirect(urlHelper.Action(MVC.OAuth.ActionNames.Index, MVC.OAuth.Name));
+        }
+
         protected void Application_Start()
         {
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -25,10 +33,12 @@
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
             IocInitializer.Initialize();
+            JobScheduler.Start();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new IocControllerFactory());
         }
+
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             HttpContext.Current.Response.AddHeader("x-frame-option", "DENY");
@@ -61,13 +71,6 @@
                 RedirectToAuthentication();
             }
 
-        }
-
-        private void RedirectToAuthentication()
-        {
-            FormsAuthentication.SignOut();
-            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            Response.Redirect(urlHelper.Action(MVC.OAuth.ActionNames.Index, MVC.OAuth.Name));
         }
     }
 }

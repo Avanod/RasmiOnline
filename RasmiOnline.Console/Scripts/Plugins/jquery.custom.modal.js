@@ -63,6 +63,7 @@ var modalManagment = {
             })
                 //
                 .done(function (result) {
+                    
                     $('DIV[data-modal-name="' + entityName + '_Modal"] DIV.modal-body').html(result);
                     $('DIV[data-modal-name="' + entityName + '_Modal"] H5.modal-title').html(modalTitle);
                     $('DIV[data-modal-name="' + entityName + '_Modal"]').modal();

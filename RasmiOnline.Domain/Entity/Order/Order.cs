@@ -18,6 +18,12 @@
         [Display(Name = nameof(DisplayName.OrderNumber), ResourceType = typeof(DisplayName))]
         public int OrderId { get; set; }
 
+        [Display(Name = nameof(DisplayName.IsFullPayed), ResourceType = typeof(DisplayName))]
+        public bool IsFullPayed { get; set; }
+
+        [Display(Name = nameof(DisplayName.NeedDraft), ResourceType = typeof(DisplayName))]
+        public bool NeedDraft { get; set; }
+
         [ForeignKey(nameof(AddressId))]
         public Address Address { get; set; }
         public int? AddressId { get; set; }
@@ -80,10 +86,15 @@
         [StringLength(300, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         public string ConfirmComment { get; set; }
 
-        [Display(Name = nameof(DisplayName.ConfirmComment), ResourceType = typeof(DisplayName))]
+        [Display(Name = nameof(DisplayName.Description), ResourceType = typeof(DisplayName))]
         [MaxLength(500, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         [StringLength(500, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         public string OrderDescription { get; set; }
+
+        [Display(Name = nameof(DisplayName.PassportIsAttached), ResourceType = typeof(DisplayName))]
+        public bool WithPassport { get; set; }
+
+        public TranslateType TranslateType { get; set; }
 
         [NotMapped]
         public int PayedValue { get { return Transactions.IsNull() ? 0 : Transactions.Where(x => x.IsSuccess).Sum(x => x.Price); } set { this.PayedValue = value; } }

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.Net.Compilers.3.1.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.1.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.3.6.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.3.6.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -51,39 +52,87 @@
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Gnu.Framework.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gnu.Framework.AspNet.2.3.2\lib\Gnu.Framework.AspNet.dll</HintPath>
+      <HintPath>..\packages\Gnu.Framework.AspNet.3.0.2\lib\Gnu.Framework.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="Gnu.Framework.AspNet.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gnu.Framework.AspNet.Mvc.2.3.0\lib\Gnu.Framework.AspNet.Mvc.dll</HintPath>
+      <HintPath>..\packages\Gnu.Framework.AspNet.Mvc.3.0.2\lib\Gnu.Framework.AspNet.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Gnu.Framework.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gnu.Framework.Core.2.4.1\lib\Gnu.Framework.Core.dll</HintPath>
+      <HintPath>..\packages\Gnu.Framework.Core.3.0.2\lib\Gnu.Framework.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Gnu.Framework.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gnu.Framework.EntityFramework.2.2.1\lib\Gnu.Framework.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\Gnu.Framework.EntityFramework.3.0.2\lib\Gnu.Framework.EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
+    <Reference Include="Gnu.Framework.EntityFramework.DataAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.SqlClient, Version=2.0.20168.4, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.SqlClient.2.0.0\lib\net46\Microsoft.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.3.1.6\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client, Version=4.16.1.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Identity.Client.4.16.1\lib\net45\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.7.1\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.7.1\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols, Version=6.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.6.7.1\lib\net461\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect, Version=6.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect.6.7.1\lib\net461\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.7.1\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Quartz, Version=3.1.0.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.3.1.0\lib\net461\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.7.1\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
@@ -99,18 +148,30 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -119,9 +180,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -143,16 +204,19 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
-      <HintPath>..\packages\T4MVCExtensions.4.2.2\lib\net45\T4MVCExtensions.dll</HintPath>
+      <HintPath>..\packages\T4MVCExtensions.4.2.4\lib\net45\T4MVCExtensions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -160,8 +224,8 @@
     <Content Include="Content\Fonts\fontawasome\fa-regular-400.svg" />
     <Content Include="Content\Fonts\fontawasome\fa-solid-900.svg" />
     <Content Include="Content\Images\Attachments\archive.png" />
-    <Content Include="Content\Images\Attachments\music.png" />
     <Content Include="Content\Images\Attachments\pdf.png" />
+    <Content Include="Content\Images\Attachments\music.png" />
     <Content Include="Content\Images\Attachments\image.png" />
     <Content Include="Content\Images\Attachments\ppt.png" />
     <Content Include="Content\Images\Attachments\rar.png" />
@@ -169,7 +233,7 @@
     <Content Include="Content\Images\Attachments\video.png" />
     <Content Include="Content\Images\Attachments\word.png" />
     <Content Include="Content\Images\avatar64.jpg" />
-    <Content Include="Content\Images\BankName\2.png" />
+    <Content Include="Content\Images\BankName\2222.png" />
     <Content Include="Content\Images\BankName\3.png" />
     <Content Include="Content\Images\BankName\4.png" />
     <Content Include="Content\Images\BankName\Ansar.png" />
@@ -186,6 +250,7 @@
     <Content Include="Content\Images\BankName\5.png" />
     <Content Include="Content\Images\BankName\Melli.png" />
     <Content Include="Content\Images\BankName\Parsian.png" />
+    <Content Include="Content\Images\BankName\2.png" />
     <Content Include="Content\Images\BankName\Pasargad.png" />
     <Content Include="Content\Images\BankName\Pay.png" />
     <Content Include="Content\Images\BankName\1.png" />
@@ -201,6 +266,7 @@
     <Content Include="Content\Images\BankName\Tose_eSaderat.png" />
     <Content Include="Content\Images\BankName\Tose_eTaavon.png" />
     <Content Include="Content\Images\BankName\ZarinPal.png" />
+    <Content Include="Content\Images\bg-pattern.svg" />
     <Content Include="Content\Images\Ext\avi.png" />
     <Content Include="Content\Images\Ext\docx.png" />
     <Content Include="Content\Images\Ext\mp3.png" />
@@ -208,6 +274,11 @@
     <Content Include="Content\Images\Ext\pptx.png" />
     <Content Include="Content\Images\Ext\rar.png" />
     <Content Include="Content\Images\Ext\xlsx.png" />
+    <Content Include="Content\Images\FileTypes\archive.png" />
+    <Content Include="Content\Images\FileTypes\audio.png" />
+    <Content Include="Content\Images\FileTypes\document.png" />
+    <Content Include="Content\Images\FileTypes\unknown.png" />
+    <Content Include="Content\Images\FileTypes\video.png" />
     <Content Include="Content\Images\Icon\MyLocationMarkerIcon.png" />
     <Content Include="Content\Images\Landing\btn-register.png" />
     <Content Include="Content\Images\Landing\detail-active.png" />
@@ -217,6 +288,7 @@
     <Content Include="Content\Images\Landing\running-active.png" />
     <Content Include="Content\Images\Landing\running.png" />
     <Content Include="Content\Images\Landing\tick.png" />
+    <Content Include="Content\Images\Logo\logo-square.png" />
     <Content Include="Content\Images\Logo\Logo-Transparent.png" />
     <Content Include="Content\Images\Logo\Logo.png" />
     <Content Include="Content\Images\oauth-bg.jpg" />
@@ -237,6 +309,45 @@
     <Content Include="Content\Images\PricingItems\tick-services.png" />
     <Content Include="Content\Images\PricingItems\tourist.png" />
     <Content Include="Content\Images\stamp.png" />
+    <Content Include="Content\key.txt" />
+    <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.css">
+      <DependentUpon>statistic.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.min.css">
+      <DependentUpon>statistic.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\01-Admin\Survey\search.css" />
+    <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.css">
+      <DependentUpon>add-order.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.min.css">
+      <DependentUpon>add-order.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\index.css">
+      <DependentUpon>payment.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\index.min.css">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\payment.css">
+      <DependentUpon>payment.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Home\payment.min.css">
+      <DependentUpon>payment.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Survey\index.css">
+      <DependentUpon>index.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Survey\index.min.css">
+      <DependentUpon>index.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\03-EndUser\Transaction\success.css" />
+    <Content Include="Content\Styles\Console\Attachment\uploader.css">
+      <DependentUpon>uploader.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Console\Attachment\uploader.min.css">
+      <DependentUpon>uploader.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Console\common.css" />
     <Content Include="Content\Styles\Console\Address\common.css" />
     <Content Include="Content\Styles\Console\Attachment\common.css" />
@@ -300,8 +411,13 @@
     <Content Include="Content\Fonts\fontawasome\fa-solid-900.woff2" />
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Console\01-Admin\Dashboard\statistic.js" />
+    <Content Include="Scripts\Console\01-Admin\Survey\Search.js" />
+    <Content Include="Scripts\Console\03-EndUser\Home\add-order.js" />
+    <Content Include="Scripts\Console\03-EndUser\Home\payment.js" />
     <Content Include="Scripts\Console\address.js" />
     <Content Include="Scripts\Console\Attachment\upload-after-transaction.js" />
+    <Content Include="Scripts\Console\Attachment\uploader.js" />
     <Content Include="Scripts\Console\BankCard\manage.js" />
     <Content Include="Scripts\Console\common.js" />
     <Content Include="Scripts\Console\OAuth\index.js" />
@@ -346,7 +462,9 @@
     <Content Include="Scripts\Own\UserController.js" />
     <Content Include="Scripts\Own\UserSearchController.js" />
     <Content Include="Scripts\Own\ViewController.js" />
+    <Content Include="Scripts\pace.min.js" />
     <Content Include="Scripts\Plugins\bootstrap-notify.min.js" />
+    <Content Include="Scripts\Plugins\chart.min.js" />
     <Content Include="Scripts\Plugins\dropzone\dropzone.css" />
     <Content Include="Scripts\Plugins\dropzone\dropzone.js" />
     <Content Include="Scripts\Plugins\dropzone\fire-dropzone.js" />
@@ -371,8 +489,18 @@
     <Content Include="Scripts\validation.js" />
     <Content Include="Scripts\waves.min.js" />
     <Content Include="ObserverConfig.json" />
+    <Content Include="Content\Styles\Console\03-EndUser\Home\add-order.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Content\Styles\Console\Attachment\uploader.scss" />
+    <Content Include="Content\Styles\Console\01-Admin\Dashboard\statistic.scss" />
+    <Content Include="Content\Styles\Console\03-EndUser\Survey\index.scss" />
+    <Content Include="Content\Styles\Console\03-EndUser\Home\payment.scss" />
     <None Include="packages.config" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\amirshahi.pubxml" />
+    <None Include="Properties\PublishProfiles\Mehran.pubxml" />
     <None Include="Service References\ZarinPal\PaymentGatewayImplementationService.wsdl" />
     <None Include="Service References\ZarinPal\configuration91.svcinfo" />
     <None Include="Service References\ZarinPal\configuration.svcinfo" />
@@ -412,10 +540,22 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AuthBaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SurveyController.cs" />
+    <Compile Include="GlobalMethod.cs" />
+    <Compile Include="GlobalVariable.cs" />
+    <Compile Include="PaymentStrategy\FakeStrategy.cs" />
+    <Compile Include="PaymentStrategy\PasargadStrategy.cs" />
+    <Compile Include="QuartzService\JobScheduler.cs" />
+    <Compile Include="QuartzService\MainJob.cs" />
     <Compile Include="T4\AddressController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4\AttachmentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4\AuthBaseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4\BankCardController.generated.cs">
@@ -457,8 +597,10 @@
     <Compile Include="T4\ExportController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helper\ExportToExcelFactory.cs" />
+    <Compile Include="T4\HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4\MessageController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -542,6 +684,9 @@
     <Compile Include="T4\SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4\SurveyController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4\T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -569,7 +714,6 @@
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_PortalLayout.cshtml" />
     <Content Include="Views\Shared\Partials\_PortalHeader.cshtml" />
     <Content Include="Views\Shared\Partials\_PortalFooter.cshtml" />
     <Content Include="Views\Address\Partial\_ListAddress.cshtml" />
@@ -672,7 +816,7 @@
     <Content Include="Views\Transaction\Partials\_AddableList.cshtml" />
     <Content Include="Views\Order\Partials\_SelectPaymentType.cshtml" />
     <Content Include="Views\Order\Pay.Mobile.cshtml" />
-    <Content Include="Views\OrderAdmin\Edit.Mobile.cshtml" />
+    <Content Include="Views\OrderAdmin\disabled-Edit.Mobile.cshtml" />
     <Content Include="Views\User\Partials\_ResetUserPassword.cshtml" />
     <Content Include="Views\OrderItem\Partials\_EditableList.Mobile.cshtml" />
     <Content Include="Views\Order\Detail.Mobile.cshtml" />
@@ -717,6 +861,21 @@
     <Content Include="Views\OrderAdmin\Partials\_Factor.cshtml" />
     <Content Include="Views\Report\Partials\_Orders.cshtml" />
     <None Include="T4\T4MVC.tt.hooks.t4" />
+    <Content Include="Views\Shared\_WebsiteLayout.cshtml" />
+    <Content Include="Views\Home\AddOrder.cshtml" />
+    <Content Include="Views\Attachment\Partials\_Uploader.cshtml" />
+    <Content Include="Views\Dashboard\Statistic.cshtml" />
+    <Content Include="Views\Survey\Search.cshtml" />
+    <Content Include="Views\Survey\Partials\_Form.cshtml" />
+    <Content Include="Views\Survey\Partials\_SearchList.cshtml" />
+    <Content Include="Views\Survey\Partials\_SearchSurvey.cshtml" />
+    <Content Include="Views\Survey\Index.cshtml" />
+    <Content Include="Views\Survey\Submit.cshtml" />
+    <Content Include="Views\Survey\Partials\_ShowResult.cshtml" />
+    <Content Include="Views\Home\Payment.cshtml" />
+    <Content Include="Views\OrderAdmin\Partials\_OrderPaymentInfo.cshtml" />
+    <Content Include="Views\Home\Partials\_AfterAdd.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -726,6 +885,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AuthBase\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -748,6 +908,10 @@
       <Project>{99e097bb-a9ed-4775-8265-1c817022b0c8}</Project>
       <Name>RasmiOnline.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RasmiOnline.Data\RasmiOnline.Data.csproj">
+      <Project>{261D2408-3F55-46D2-A404-3D2F560FC6D2}</Project>
+      <Name>RasmiOnline.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RasmiOnline.DependencyResolver\RasmiOnline.DependencyResolver.csproj">
       <Project>{a1d22858-ed19-4b4f-b0fc-8fe5ae7f38e4}</Project>
       <Name>RasmiOnline.DependencyResolver</Name>
@@ -755,10 +919,6 @@
     <ProjectReference Include="..\RasmiOnline.Domain\RasmiOnline.Domain.csproj">
       <Project>{fb6ccbf6-0ccb-4a8f-bfef-44a6d480c653}</Project>
       <Name>RasmiOnline.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RasmiOnline.SharedPreference\RasmiOnline.SharedPreference.csproj">
-      <Project>{c5c3f3f4-3d29-4a4c-b7b3-a53620c3abb0}</Project>
-      <Name>RasmiOnline.SharedPreference</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -794,9 +954,14 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.3.6.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.3.6.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.3.1.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.3.1.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.2.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

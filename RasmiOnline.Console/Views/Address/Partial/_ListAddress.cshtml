@@ -22,33 +22,56 @@
                     </a>
                 </div>
                 <div class="address_item__detail row m-0">
-                    <div class="map-wrapper clearfix col-md-4">
+                    <div class="map-wrapper clearfix col-xs-12">
                         <div id="map_@item.AddressId" class="google-map" data-type="static" data-location="@item.Location"></div>
                     </div>
-                    <div class="row location col-md-8">
-                        <div class="col-md-12 p-r-5">
-                            <span class="_1st"><i class="zmdi zmdi-phone v-a-m"></i></span>
-                            <span class="_2nd tel p-r-5">@item.Tel</span>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6">
+                            <div class="info">
+                                <i class="zmdi zmdi-phone v-a-m"></i>
+                                @item.Tel
+                            </div>
+
                         </div>
-                        <div class="col-md-12 p-r-5">
-                            <span class="_1st"><i class="zmdi zmdi-smartphone v-a-m"></i></span>
-                            <span class="_2nd mobile p-r-5">@item.MobileNumber</span>
+                        <div class="col-xs-6 col-sm-6">
+                            <div class="info">
+                                <i class="zmdi zmdi-smartphone v-a-m"></i>
+                                @item.MobileNumber
+                            </div>
+    
                         </div>
-                        <div class="address col-md-12 p-r-5">
-                            <div class="compelete">
-                                <span class="_1st"><i class="zmdi zmdi-map v-a-m"></i></span>
-                                <span class="_2nd address p-r-5">@item.FullAddress</span>
+                        <div class="col-xs-12 mb-50">
+                            <div class="info">
+                                @item.FullAddress
+
                             </div>
                         </div>
                     </div>
+
+                    @*<div class="row location col-md-8">
+                            <div class="col-md-12 p-r-5">
+                                <span class="_1st"><i class="zmdi zmdi-phone v-a-m"></i></span>
+                                <span class="_2nd tel p-r-5">@item.Tel</span>
+                            </div>
+                            <div class="col-md-12 p-r-5">
+                                <span class="_1st"><i class="zmdi zmdi-smartphone v-a-m"></i></span>
+                                <span class="_2nd mobile p-r-5">@item.MobileNumber</span>
+                            </div>
+                            <div class="address col-md-12 p-r-5">
+                                <div class="compelete">
+                                    <span class="_1st"><i class="zmdi zmdi-map v-a-m"></i></span>
+                                    <span class="_2nd address p-r-5">@item.FullAddress</span>
+                                </div>
+                            </div>
+                        </div>*@
                 </div>
                 <div class="address_item__radio" data-addressId="@item.AddressId">
-                    @if (count == 1)
+                    @*@if (count == 1)
                     {
                         @Html.Hidden("AddressId", item.AddressId)
-                    }
+                    }*@
                     <div class="radio-control">
-                        <input class="rdb-address-box" name="Address" type="radio" @(count == 1 ? "checked" : "")>
+                        <input class="rdb-address-box" name="AddressId" type="radio" @(count == 1 ? "checked" : "") value="@item.AddressId">
                         <label></label>
                     </div>
                     <span>مدارک از این آدرس تحویل گرفته می شود</span>

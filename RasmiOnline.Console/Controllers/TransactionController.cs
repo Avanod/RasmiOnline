@@ -10,10 +10,9 @@
     using Gnu.Framework.Core;
     using RasmiOnline.Business.Protocol;
     using System.Collections.Generic;
-    using SharedPreference;
-    using Gnu.Framework.Core.Log;
-    using Newtonsoft.Json;
     using Gnu.Framework.Core.Authentication;
+    using RasmiOnline.Console.Enum;
+    using Gnu.Framework.Core.Log;
 
     public partial class TransactionController : Controller
     {
@@ -78,6 +77,8 @@
             }).ToList());
             ViewBag.BankCard = result;
         }
+
+
         #endregion
 
         [HttpPost]
@@ -171,13 +172,62 @@
                 var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction);
                 if (result.IsSuccessful)
                     return View(viewName: MVC.Transaction.Views.Success, model: transaction);
-
                 ViewBag.ErrorMessage = result.Message;
                 return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
             }
             ViewBag.ErrorMessage = LocalMessage.RedirectException;
 
             return View(viewName: MVC.Transaction.Views.Failed, model: new Transaction());
+        }
+
+        [HttpGet]
+        public virtual ViewResult PasargadVerify(int IN, string tref, string id)
+        {
+            ViewBag.PaymentGateway = BankNames.Pasargad;
+            var transaction = _transactionBusiness.Find(IN);
+            ViewBag.ReturnUrl = Url.Action(MVC.Home.ActionNames.AddOrder, MVC.Home.Name);
+            if (transaction.IsNull())
+            {
+                ViewBag.ErrorMessage = LocalMessage.PaymentException;
+                return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
+            }
+           
+            var gateWay = _paymentGatewayBusiness.Find(transaction.PaymentGatewayId);
+            if (gateWay.IsNull())
+            {
+                ViewBag.ReturnUrl = $"/Home/{transaction.OrderId}/{transaction.Order.UserId}";
+                ViewBag.ErrorMessage = LocalMessage.OperationFailed;
+                return View(viewName: MVC.Transaction.Views.Failed, transaction);
+            }
+
+            var result = PaymentFactory.GetInstance(gateWay.BankName).Verify(gateWay, transaction, tref);
+            if (!result.IsSuccessful)
+            {
+                ViewBag.ReturnUrl = $"/Home/{transaction.OrderId}/{transaction.Order.UserId}";
+                transaction.TrackingId = "0";
+                ViewBag.ErrorMessage = result.Message;
+                return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
+            }
+            return View(viewName: MVC.Transaction.Views.Success, model: transaction);
+        }
+
+        public virtual ViewResult FakeVerify(string IN)
+        {
+            ViewBag.PaymentGateway = BankNames.Pasargad;
+            var transaction = _transactionBusiness.Find(int.Parse(IN));
+            if (transaction.IsNull())
+            {
+                ViewBag.ErrorMessage = LocalMessage.PaymentException;
+                return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
+            }
+            var gateWay = _paymentGatewayBusiness.Find(transaction.PaymentGatewayId);
+            if (gateWay.IsNull())
+            {
+                ViewBag.ErrorMessage = LocalMessage.OperationFailed;
+                return View(viewName: MVC.Transaction.Views.Failed, transaction);
+            }
+            var verify = new FakeStrategy().Verify(gateWay, transaction);
+            return View(viewName: MVC.Transaction.Views.Success, model: transaction);
         }
 
         [HttpGet, AllowAnonymous]

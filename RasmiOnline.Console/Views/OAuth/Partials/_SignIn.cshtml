@@ -3,8 +3,13 @@
     Layout = null;
 }
 
-<div class="form-block sign-in-form @(ViewBag.ActiveBlock=="signin"?"active":"")" id="signin-form">
-    <form class="oauth-form " action="@Url.Action(MVC.OAuth.ActionNames.SignIn)" >
+<div class="form-block sign-in-form @(ViewBag.ActiveBlock=="signin"?"active":"") " id="signin-form">
+    <form class="oauth-form p-b-20" action="@Url.Action(MVC.OAuth.ActionNames.SignIn)">
+        <div class="text-center w-100 m-b">
+            <br />
+            <img src="@Url.Content(Links.Content.Images.Logo.Logo_png)" />
+            <br />
+        </div>
         <div class="group alert w-full" dir="rtl">
             <small></small>
         </div>
@@ -38,7 +43,7 @@
                 <a class="inner-nav txt1" dir="rtl" href="#recovery-form">@LocalMessage.ForgotPassword</a>
             </div>
         </div>
-                                       
+
         <div class="container-login100-form-btn">
             <button class="btn-action rtl waves-effect btn-sign-in" id="btn-sign-in" type="button">
                 <div class="text">
@@ -48,13 +53,13 @@
                     <i class="zmdi zmdi-sign-in"></i>
                 </div>
             </button>
-           
+
         </div>
     </form>
-    <div class="footer">
+    <div class="footer hidden">
         حساب کاربری ندارید؟ همین حالا
         <a href="#signup-form" class="inner-nav goto-sign-up">ثبت نام کنید</a>
-        
+
     </div>
 </div>
 

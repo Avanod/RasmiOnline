@@ -1,0 +1,112 @@
+﻿@model AddOrderModel
+
+@{
+    ViewBag.Title = LocalMessage.AddOrder;
+    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+}
+@section Head{
+    @*<link href="@Url.Content(Links.Content.Styles.Shared.timeline_css)" rel="stylesheet" />*@
+    <link href="@Url.Content(Links.Content.Styles.Console.Order.common_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console._03_EndUser.Home.add_order_min_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console.order_item_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console.Attachment.uploader_min_css)" rel="stylesheet" />
+}
+<form id="add-order-page" action="@Url.Action(MVC.Home.ActionNames.AddOrder,MVC.Home.Name)">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="form-group">
+                <label for="@nameof(Model.FirstName)">
+                    @Html.DisplayNameFor(x=>x.FirstName)<span class="red">*</span>
+                </label>
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.FirstName)
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="form-group">
+                <label for="@nameof(Model.LastName)">
+                    @Html.DisplayNameFor(x => x.LastName)<span class="red">*</span>
+                </label>
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.LastName)
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(x => x.TranslateType)
+                @Html.DropDownListFor(x => x.TranslateType, (IEnumerable<SelectListItem>)ViewBag.TranslateTypes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.TranslateType)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <label for="@nameof(Model.Email)">
+                    @Html.DisplayNameFor(x => x.Email)<span class="red">*</span>
+                </label>
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control ltr-elm" })
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <label for="@nameof(Model.MobileNumber)">
+                    @Html.DisplayNameFor(x => x.MobileNumber)<span class="red">*</span>
+                </label>
+                @Html.TextBoxFor(x => x.MobileNumber, new { @class = "form-control ltr-elm" })
+                @Html.ValidationMessageFor(x => x.MobileNumber)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Description)
+                @Html.TextAreaFor(x => x.Description, new { @class = "form-control",@rows="4" })
+                @Html.ValidationMessageFor(x => x.Description)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <p class="alert alert-warning text-center">
+                <span class="txt-1">لطفا مدارک خود را جهت ترجمه الصاق نمایید</span>
+                <br/>
+                <small class="txt-2"> حداکثر حجم هر عکس 5MB می باشد</small>
+            </p>
+        </div>
+    </div>
+    @{ Html.RenderPartial(MVC.Attachment.Views.Partials._Uploader, new List<Attachment>());}
+    <div class="row btn-row">
+        <div class="col-xs-12 col-sm-6">
+            <input id="@nameof(Model.WithPassport)" type="checkbox" name="@nameof(Model.WithPassport)" @(Model.WithPassport ? "checked" : "") value="@Model.WithPassport.ToString()" />
+            <label for="@nameof(Model.WithPassport)">
+                @Html.DisplayNameFor(x => x.WithPassport)
+            </label>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <span id="progress"></span>
+            <button class="btn-action rtl waves-effect" id="btn-submit" type="button">
+                <div class="text">
+                    @LocalMessage.AddOrder
+                </div>
+                <div class="icon">
+                    <i class="fa fa-save"></i>
+                </div>
+            </button>
+        </div>
+    </div>
+</form>
+
+
+@section footer{
+    <script>
+        var successMessage = '@Html.Raw(LocalMessage.AddOrderSuccessMessage)';
+    </script>
+    <script src="@Url.Content(Links.Scripts.Console.Order.common_js)"></script>
+    <script src="@Url.Content(Links.Scripts.Console._03_EndUser.Home.add_order_js)"></script>
+    <script src="@Url.Content(Links.Scripts.pace_min_js)"></script>
+    <script src="@Url.Content(Links.Scripts.Console.Attachment.uploader_js)"></script>
+    <script src="@Url.Content(Links.Scripts.Console.order_item_js)"></script>
+}

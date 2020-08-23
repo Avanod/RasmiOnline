@@ -19,19 +19,25 @@
         [LocalizeDescription(nameof(LocalMessage.Pricing), typeof(LocalMessage))]
         Pricing,
 
+
         [LocalizeDescription(nameof(LocalMessage.ConfirmFactor), typeof(LocalMessage))]
         ConfirmFactor,
 
         //[LocalizeDescription(nameof(LocalMessage.UseDiscount), typeof(LocalMessage))]
         //UseDiscount,
-        [LocalizeDescription(nameof(LocalMessage.SelectAddress), typeof(LocalMessage))]
-        SelectAddress,
+        //[LocalizeDescription(nameof(LocalMessage.SelectAddress), typeof(LocalMessage))]
+        //SelectAddress,
+
+        [LocalizeDescription(nameof(LocalMessage.WaitForDeliverDocument), typeof(LocalMessage))]
+        WaitForDeliverDocument,
+
+        [LocalizeDescription(nameof(LocalMessage.BeginTranslation), typeof(LocalMessage))]
+        BeginTranslation,
+        //[LocalizeDescription(nameof(LocalMessage.UploadFiles), typeof(LocalMessage))]
+        //UploadFiles,
 
         [LocalizeDescription(nameof(LocalMessage.PaymentAllFactor), typeof(LocalMessage))]
         PaymentAllFactor,
-
-        [LocalizeDescription(nameof(LocalMessage.UploadFiles), typeof(LocalMessage))]
-        UploadFiles,
 
         [LocalizeDescription(nameof(LocalMessage.ConfirmDraft), typeof(LocalMessage))]
         ConfirmDraft,

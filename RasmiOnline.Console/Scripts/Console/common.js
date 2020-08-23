@@ -24,6 +24,36 @@ $(document).on('ready', function () {
         }
     });
 
+    //Copy 'data-copy-value' attribute value to clipboard
+    $(document).on('click', '.copy-value', function (e) {
+        e.preventDefault();
+
+        let $this = $(this);
+        let value = $this.data('copy-value');
+        let elm = document.createElement('textarea');
+
+        elm.value = value;
+        document.body.appendChild(elm);
+        elm.select();
+        document.execCommand('copy');
+        document.body.removeChild(elm);
+        $this.addClass('animated fadeIn').bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function () {
+            $this.removeClass('animated fadeIn');
+        });
+
+        //$this.hide('fast')
+        //    .removeClass('zmdi-copy copy-value')
+        //    .addClass('zmdi-check-all copied-value')
+        //    .show('fast')
+        //    .delay(3000)
+        //    .hide('fast', function () {
+        //        $this.removeClass('zmdi-check-all copied-value')
+        //            .addClass('zmdi-copy copy-value')
+        //            .show('fast');
+        //    });
+
+    });
+
     if (getCookie("_.ASPXAUTH") != '' && getCookie("_.ASPXAUTH") != null) {
         $(".signInPanel").removeClass("hide");
     } else {
@@ -370,3 +400,125 @@ $(document).on('click', '.setting .send-sms, .setting .send-email', function () 
         notify(true, rep.Message);
     });
 });
+
+var customSerialize = function ($wrapper, checkNumbers) {
+    var model = {};
+    let checkNumberValue = function (v) {
+        if (checkNumbers && !isNaN(v) && v !== '') return parseInt(v);
+        else return v;
+    };
+    function valueSetter(obj, name, v) {
+        let arr = name.split('.');
+        if (arr.length > 1)
+            valueSetter(obj[arr[0]], arr.splice(1, arr.length - 1).join('.'), v);
+        if (typeof obj[name] !== 'undefined') {
+            if (Array.isArray(obj[name])) obj[name].push(v);
+            else obj[name] = [obj[name], v];
+        }
+        else obj[name] = v;
+    };
+    $wrapper.find('input:not([type="checkbox"]):not([type="radio"]),select,textarea').each(function () {
+        let name = $(this).attr('name');
+        if (typeof name !== 'undefined') {
+            let v = checkNumberValue($(this).val());
+            valueSetter(model, name, v);
+        }
+
+    });
+
+    $wrapper.find('input[type="checkbox"],input[type="radio"]:Checked').each(function () {
+        let name = $(this).attr('name');
+        if (typeof name !== 'undefined') {
+            let val = $(this).attr('value');
+            if (!val || val === 'true' || val === 'false') val = $(this).prop('checked');
+            valueSetter(model, name, val);
+        }
+    });
+    return model;
+};
+
+
+const fileTypes = {
+    Unknown: { id: 0, type: 'application/octet-stream' },
+    Image: { id: 1, type: 'image/png' },
+    Document: { id: 2, type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' },
+    Archive: { id: 3, type: 'application/zip' },
+    Audio: { id: 4, type: 'audio/mpeg' },
+    Video: { id: 5, type: 'video/mp4' }
+};
+
+var getFileType = function (fileName) {
+    let ext = fileName.toLowerCase().split('.').reverse()[0];
+    switch (ext) {
+        case "png":
+        case "jpg":
+        case "jpeg":
+        case "gif":
+        case "tiff":
+            return fileTypes.Image;
+        case "mp3":
+        case "wav":
+        case "flm":
+        case "fsm":
+        case "ogg":
+        case "m4a":
+        case "m4b":
+        case "m4p":
+        case "m4r":
+            return fileTypes.Audio;
+        case "mp4":
+        case "mkv":
+        case "avi":
+        case "ts":
+        case "m4v":
+        case "flv":
+            return fileTypes.Video;
+        case "zip":
+        case "rar":
+        case "iso":
+        case "tar":
+        case "jar":
+            return fileTypes.Archive;
+        case "pdf":
+        case "doc":
+        case "docx":
+        case "txt":
+        case "xls":
+        case "xlsx":
+        case "josn":
+        case "pptx":
+            return fileTypes.Document;
+        default:
+            return fileTypes.Unknown;
+    }
+};
+
+var getDefaultImageUrl = function (fileName) {
+    let ext = fileName.toLowerCase().split('.').reverse()[0];
+    switch (ext) {
+        case "png":
+        case "gif":
+        case "jpeg":
+        case "jpg":
+            return fileName;
+        case "pdf":
+            return "/Content/Images/Attachments/pdf.png";
+        case "zip":
+            return "/Content/Images/Attachments/archive.png";
+        case "rar":
+            return "/Content/Images/Attachments/rar.png";
+        case "txt":
+        case "doc":
+        case "docx":
+            return "/Content/Images/Attachments/archive.png";
+        case "mp3":
+        case "wav":
+            return "/Content/Images/Attachments/music.png";
+        case "mp4":
+        case "mkv":
+            return "/Content/Images/Attachments/archive.png";
+        default:
+            return "/Content/Images/Attachments/unknown.png";
+    }
+
+};

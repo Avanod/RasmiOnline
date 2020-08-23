@@ -149,3 +149,21 @@ button.Zebra_DatePicker_Icon {
         background-color: #989898!important;
         color: #fff!important;
     }
+
+    .payment-link .wrapper {
+        white-space: nowrap;
+        overflow: hidden;
+        direction: ltr;
+        overflow: hidden;
+    }
+    @media(max-width:576px){
+        .payment-link .wrapper {
+            white-space: normal;
+        }
+        .order .order-status .lbl {
+            min-width: 160px !important;
+        }
+        .order .order-status .select-value{
+            right:160px!important;
+        }
+    }

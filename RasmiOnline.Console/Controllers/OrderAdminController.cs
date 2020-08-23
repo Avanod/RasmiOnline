@@ -11,7 +11,10 @@
     using Domain.Entity;
     using Domain;
     using RasmiOnline.Domain.Dto;
+    using Gnu.Framework.AspNet.Mvc;
 
+    //[ActionAuthorizationFilter]
+    //[AuthorizationFilter("/OAuth/Index", "Home/Error")]
     public partial class OrderAdminController : Controller
     {
         readonly ISettingBusiness _settingBusiness;
@@ -57,12 +60,12 @@
             var office = _officeAddressBusiness.GetAll();
             var lstOffice = new List<SelectListItem>();
 
-            lstOffice.Add(new SelectListItem { Value = Guid.Empty.ToString(), Text = LocalMessage.PleaseSelect });
+            //lstOffice.Add(new SelectListItem { Value = Guid.Empty.ToString(), Text = LocalMessage.PleaseSelect });
             lstOffice.AddRange(office.Result.Select(x => new SelectListItem
             {
                 Text = $"{x.DeliveryName} :: {x.LangType.GetDescription()}",
                 Value = x.UserId.ToString(),
-                Selected = (officeUserId!=null && x.UserId == officeUserId)
+                Selected = (officeUserId != null && x.UserId == officeUserId)
             }));
             return lstOffice;
 
@@ -150,7 +153,7 @@
         [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
         public virtual JsonResult Update(Order model)
         {
-            var updateRep = _orderBusiness.BriefUpdate(model);
+            var updateRep = _orderBusiness.BriefUpdate(model, AppSettings.BaseDomain);
             return Json(updateRep);
         }
 
@@ -171,7 +174,7 @@
 
 
         [ChildActionOnly]
-        public virtual PartialViewResult GetOrderPaymentInfo(int orderId) => PartialView(MVC.Order.Views.Partials._GetOrderPaymentInfo, _orderBusiness.GetOrderPaymentInfo(orderId));
+        public virtual PartialViewResult GetOrderPaymentInfo(int orderId) => PartialView(MVC.OrderAdmin.Views.Partials._OrderPaymentInfo, _orderBusiness.GetOrderPaymentInfo(orderId));
 
 
         [HttpGet]

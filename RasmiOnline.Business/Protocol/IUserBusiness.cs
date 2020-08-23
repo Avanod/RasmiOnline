@@ -23,5 +23,6 @@
         IActionResponse<string> ChangeCurrentPassword(Guid userId, string currentPassword, string newPassword);
         IActionResponse<string> ChangeUserPassword(Guid userId, string newPassword);
         IEnumerable<ReferralModel> GetReferralUser(Guid userId);
+        IActionResponse<Guid> Insert(AddOrderModel model);
     }
 }

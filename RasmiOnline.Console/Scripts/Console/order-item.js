@@ -128,7 +128,7 @@
         $elm.find('.total-price').text(info.totalPrice.toString().cThSeperator());
         this.sum();
     },
-
+    toalSumOfItems:0,
     changeLang: function () {
         let oi = this;
         let $items = oi.$wrapper.find('.pricing-item');
@@ -147,8 +147,11 @@
         $items.each(function (idx, elm) {
             let info = $(elm).data('info');
             totalSum += parseInt(info.totalPrice);
-            if (idx === $items.length - 1)
-                orderItem.$wrapper.find('.total-sum').data('total-sum', totalSum).text(" تومان " + totalSum.toString().cThSeperator());
+            console.log(totalSum);
+            if (idx === $items.length - 1) {
+                orderItem.toalSumOfItems = totalSum;
+                orderItem.$wrapper.find('.total-sum').data('total-sum', totalSum).text(" ریال " + totalSum.toString().cThSeperator());
+            }
         });
     },
     initAutoComplete: function () {
@@ -207,7 +210,7 @@ $(document).ready(function () {
         $items.each(function (idx, elm) {
             totalSum += parseInt($(this).find('.total-price input').val());
             if (idx == $items.length - 1)
-                orderItem.$wrapper.find('.total-sum').data('total-sum', totalSum).text(" تومان " + totalSum.toString().cThSeperator());
+                orderItem.$wrapper.find('.total-sum').data('total-sum', totalSum).text(" ریال " + totalSum.toString().cThSeperator());
         });
 
     });

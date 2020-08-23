@@ -14,6 +14,8 @@
                     return new PayStrategy();
                 case BankNames.Melli:
                     return new SadadStrategy();
+                case BankNames.Pasargad:
+                    return new PasargadStrategy();
             }
             return new ZarinPalStrategy();
         }

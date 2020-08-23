@@ -7,7 +7,14 @@ $(document).on('ready', function () {
 
     $(document).on('click', '#btn-confirm-draft', function () {
         let $btn = $(this);
-        submitAjaxForm($btn);
+        submitAjaxForm($btn, function (rep) {
+            if (rep.IsSuccessful) {
+                $('.confirm-draft').html('<div style="width:100%;" clas="w-100 p-4"><p class="text-center alert alert-success p-4">' + 'عملیات با موفقیت انجام شد' + '</p></div>');
+            }
+            else {
+                notify(false, rep.Message);
+            }
+        });
     });
 
 });

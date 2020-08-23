@@ -8,30 +8,23 @@ namespace RasmiOnline.Console
     /// </summary>
     public static class AppSettings
     {
+        public static string webpages_Version { get { return GetConfigSettingItem("webpages:Version"); } }
+        public static string webpages_Enabled { get { return GetConfigSettingItem("webpages:Enabled"); } }
+        public static string ClientValidationEnabled { get { return GetConfigSettingItem("ClientValidationEnabled"); } }
+        public static string UnobtrusiveJavaScriptEnabled { get { return GetConfigSettingItem("UnobtrusiveJavaScriptEnabled"); } }
+        public static string BaseDomain { get { return GetConfigSettingItem("BaseDomain"); } }
+        public static string UserRoleId { get { return GetConfigSettingItem("UserRoleId"); } }
+        public static string DefaultDayToDeliver { get { return GetConfigSettingItem("DefaultDayToDeliver"); } }
+        public static string EndUserRoleId { get { return GetConfigSettingItem("EndUserRoleId"); } }
+        public static string DefaultPaymentGatewayId { get { return GetConfigSettingItem("DefaultPaymentGatewayId"); } }
+        public static string AuthTimeoutInMiutes { get { return GetConfigSettingItem("AuthTimeoutInMiutes"); } }
+        public static string AuthTimeoutWithRemeberMeInHours { get { return GetConfigSettingItem("AuthTimeoutWithRemeberMeInHours"); } }
+        public static string TransactionRedirectUrl_Pasargad { get { return GetConfigSettingItem("TransactionRedirectUrl_Pasargad"); } }
+        public static string TransactionRedirectUrl_Pay { get { return GetConfigSettingItem("TransactionRedirectUrl_Pay"); } }
+        public static string TransactionRedirectUrl_ZarinPal { get { return GetConfigSettingItem("TransactionRedirectUrl_ZarinPal"); } }
+        public static string TransactionRedirectUrl_Sadad { get { return GetConfigSettingItem("TransactionRedirectUrl_Sadad"); } }
+        public static string TelegramToken { get { return GetConfigSettingItem("TelegramToken"); } }
     
-    public static string webpages_Version { get { return GetConfigSettingItem("webpages:Version"); } }
-    
-    public static string webpages_Enabled { get { return GetConfigSettingItem("webpages:Enabled"); } }
-    
-    public static string ClientValidationEnabled { get { return GetConfigSettingItem("ClientValidationEnabled"); } }
-    
-    public static string UnobtrusiveJavaScriptEnabled { get { return GetConfigSettingItem("UnobtrusiveJavaScriptEnabled"); } }
-    
-    public static string UserRoleId { get { return GetConfigSettingItem("UserRoleId"); } }
-    
-    public static string AuthTimeoutInMiutes { get { return GetConfigSettingItem("AuthTimeoutInMiutes"); } }
-    
-    public static string AuthTimeoutWithRemeberMeInHours { get { return GetConfigSettingItem("AuthTimeoutWithRemeberMeInHours"); } }
-    
-    public static string TransactionRedirectUrl_Pay { get { return GetConfigSettingItem("TransactionRedirectUrl_Pay"); } }
-    
-    public static string TransactionRedirectUrl_ZarinPal { get { return GetConfigSettingItem("TransactionRedirectUrl_ZarinPal"); } }
-    
-    public static string TransactionRedirectUrl_Sadad { get { return GetConfigSettingItem("TransactionRedirectUrl_Sadad"); } }
-    
-    public static string TelegramToken { get { return GetConfigSettingItem("TelegramToken"); } }
-    
-
         private const string MISSING_CONFIG = "Invalid configuration. Required AppSettings section is missing";
         private const string INVALID_CONFIG_SETTING = "Invalid configuration setting name: {0}";
 

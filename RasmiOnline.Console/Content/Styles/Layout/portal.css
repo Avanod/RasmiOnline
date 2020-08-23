@@ -1713,14 +1713,14 @@ select {
         -webkit-transform: rotate(-45deg);
     }
 
-input {
+/*input {
     font-size: 14px;
     padding: 10px 3px 5px 3px;
     display: block;
     width: 100%;
     border: none;
     border-bottom: 1px solid #BDBDBD;
-}
+}*/
 
     input[type="text"]:focus, input[type="password"]:focus {
         outline: none;
@@ -1745,14 +1745,14 @@ input {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label {
+/*input:focus ~ label, input:valid ~ label {
     top: -10px;
     font-size: 13px;
     color: #999;
-}
+}*/
 
 /* BOTTOM BARS ================================= */
-.bar {
+/*.bar {
     position: relative;
     display: block;
     width: 100%;
@@ -1776,12 +1776,12 @@ input:focus ~ label, input:valid ~ label {
 
     .bar:after {
         right: 50%;
-    }
+    }*/
 
 /* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
+/*input:focus ~ .bar:before, input:focus ~ .bar:after {
     width: 50%;
-}
+}*/
 
 /* HIGHLIGHTER ================================== */
 .highlight {
@@ -2395,12 +2395,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
 /*-------------------------------
          input expandable bar
 ----------------------------------*/
-.bar {
-    /*position: absolute;
-    left: 0;
-    bottom: -1px;
-    z-index: 1;
-    width: 100%;*/
+/*.bar {
     position: relative;
     display: block;
     width: 100%;
@@ -2434,10 +2429,9 @@ input.input-validation-error ~ .bar:before, input.input-validation-error ~ .bar:
     right: 50%;
 }
 
-/* active state */
 input:focus ~ .bar:before, input:focus ~ .bar:after {
     width: 50%;
-}
+}*/
 
 /*--- 3 dot loader ---*/
 @-webkit-keyframes crisp-1xj4c0z {
@@ -2574,7 +2568,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
     }
 
 input[type="text"].input-validation-error, input[type="password"].input-validation-error {
-    border-bottom-color: red;
+    border:solid 1px red;
 }
 
 .line-seperator {

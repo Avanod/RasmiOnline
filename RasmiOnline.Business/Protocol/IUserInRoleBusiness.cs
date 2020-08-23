@@ -10,5 +10,6 @@
         IActionResponse<bool> Delete(int userInRoleId);
         IActionResponse<IEnumerable<UserInRole>> GetUserInRole(long mobileNumber);
         IActionResponse<string> GetUserInRoleChecked(int roleId, long mobileNumber);
+        bool CheckExist(UserInRole model);
     }
 }

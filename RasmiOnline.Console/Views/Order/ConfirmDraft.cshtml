@@ -1,21 +1,19 @@
 ﻿@model Order
 @{
-    /**/
-
+    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
     ViewBag.Title = LocalMessage.ConfirmDraft;
 }
 
-@section Header{
-    <link href="@Url.Content(Links.Content.Styles.Shared.timeline_css)" rel="stylesheet" />
+@section Head{
     <link href="@Url.Content(Links.Content.Styles.Console.common_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.Order.common_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.Attachment.common_css)" rel="stylesheet" />
     <link href="@Url.Content(Links.Content.Styles.Console.Order.confirm_draft_css)" rel="stylesheet" />
+    <link href="@Url.Content(Links.Content.Styles.Console._03_EndUser.Transaction.success_css)" rel="stylesheet" />
 }
 
 <div class="order-row confirm-draft">
-    @{Html.RenderPartial(MVC.Order.Views.Partials._DetailedAddTimeLine, DetailedAddOrderTimeLine.ConfirmDraft);}
-    <div class="col-md-9 time-line-content">
+    <div class="col-12 col-s-12">
         @Html.Partial(MVC.Order.Views.Partials._SummaryHeader, new SummaryHeader
         {
             Message = LocalMessage.ConfirmDraftText,
@@ -26,25 +24,25 @@
         })
         @{
             ViewBag.RemoveFromServer = false;
-            Html.RenderPartial(MVC.Attachment.Views.Partials._List, Model.Attachments.Where(x=>x.AttachmentType == AttachmentType.Draft));
+            Html.RenderPartial(MVC.Attachment.Views.Partials._List, Model.Attachments.Where(x => x.AttachmentType == AttachmentType.Translation));
         }
         <hr />
         <form action="/Order/ConfirmDraft" method="post">
             @Html.HiddenFor(x => x.OrderId)
             <div class="form-group">
                 <div class="form-group">
-                    @Html.TextAreaFor(x => x.ConfirmComment, new { @class = "form-control", @rows = "6", @placeholder = Html.DisplayNameFor(x => x.ConfirmComment) })
+                    @Html.TextAreaFor(x => x.ConfirmComment, new { @class = "form-control", @rows = "6", @placeholder = LocalMessage.TypeHere })
                     <i class="form-group__bar"></i>
                 </div>
                 <br>
             </div>
             @*<label for="@nameof(Model.IsConfirmedByClient)">
-                پیش نویس مورد تایید می باشد
-                
-            </label>
-            <input id="@nameof(Model.IsConfirmedByClient)" name="@nameof(Model.IsConfirmedByClient)" type="checkbox" class="" @((Model.IsConfirmedByClient ?? false) ? "checked" : "") />*@
+                    پیش نویس مورد تایید می باشد
+
+                </label>
+                <input id="@nameof(Model.IsConfirmedByClient)" name="@nameof(Model.IsConfirmedByClient)" type="checkbox" class="" @((Model.IsConfirmedByClient ?? false) ? "checked" : "") />*@
             <label class="custom-control custom-checkbox">
-                <input id="@nameof(Model.IsConfirmedByClient)" name="@nameof(Model.IsConfirmedByClient)" type="checkbox" class="custom-control-input" @(Model.IsConfirmedByClient ? "checked" : "") value="@(Model.IsConfirmedByClient.ToString().ToLower())"/>
+                <input id="@nameof(Model.IsConfirmedByClient)" name="@nameof(Model.IsConfirmedByClient)" type="checkbox" class="custom-control-input" @(Model.IsConfirmedByClient ? "checked" : "") value="@(Model.IsConfirmedByClient.ToString().ToLower())" />
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">پیش نویس مورد تایید می باشد</span>
             </label>
@@ -61,9 +59,9 @@
         </form>
     </div>
 </div>
-@section Scripts{
+@section Footer{
     <script src="@Url.Content(Links.Scripts.Console.OrderName.common_js)"></script>
-    <script src="@Url.Content(Links.Scripts.Console.Attachment.upload_after_transaction_js)"></script>
+    @*<script src="@Url.Content(Links.Scripts.Console.Attachment.upload_after_transaction_js)"></script>*@
     <script src="@Url.Content(Links.Scripts.Plugins.dropzone.dropzone_js)"></script>
     <script src="@Url.Content(Links.Scripts.Plugins.dropzone.fire_dropzone_js)"></script>
     <script src="@Url.Content(Links.Scripts.Console.Order.common_js)"></script>

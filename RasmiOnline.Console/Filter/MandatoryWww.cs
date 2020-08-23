@@ -14,7 +14,7 @@
                 {
                     url = url.Replace("http://", "https://www.");
                     url = url.Replace("https://", "https://www.");
-                    filterContext.Result = new RedirectResult("https://panel.rasmionline.com", true);
+                    filterContext.Result = new RedirectResult("https://Portal.amirshahigroup.com", true);
                 }
             }
             base.OnActionExecuting(filterContext);

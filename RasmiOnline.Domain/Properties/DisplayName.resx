@@ -544,7 +544,7 @@
     <value>صفحه (ویو)</value>
   </data>
   <data name="ConfirmComment" xml:space="preserve">
-    <value>توضیحات خود را اینجا بنویسید</value>
+    <value>توضیحات تایید</value>
   </data>
   <data name="IsConfirmedByClient" xml:space="preserve">
     <value>تایید توسط مشتری</value>
@@ -556,7 +556,7 @@
     <value>نوع مدرک</value>
   </data>
   <data name="ByDeliveryMan" xml:space="preserve">
-    <value>به نماینده رسمی آنلاین تحویل میدهم</value>
+    <value>به نماینده دارالترجمه امیرشاهی تحویل میدهم</value>
   </data>
   <data name="ByPost" xml:space="preserve">
     <value>ارسال پستی(ویژه شهرستان)</value>
@@ -635,5 +635,68 @@
   </data>
   <data name="TotalPrice" xml:space="preserve">
     <value>قیمت نهایی</value>
+  </data>
+  <data name="PassportIsAttached" xml:space="preserve">
+    <value>تصویر گذرنامه ضمیمه گردید</value>
+  </data>
+  <data name="AllOrder" xml:space="preserve">
+    <value>کل سفارشات</value>
+  </data>
+  <data name="AllPayment" xml:space="preserve">
+    <value>کل پرداخت ها</value>
+  </data>
+  <data name="AllStatictics" xml:space="preserve">
+    <value>همه ی آمارها</value>
+  </data>
+  <data name="AllUser" xml:space="preserve">
+    <value>کل کاربران</value>
+  </data>
+  <data name="ExtraData" xml:space="preserve">
+    <value>داده های تکمیلی</value>
+  </data>
+  <data name="NonOfficial" xml:space="preserve">
+    <value>غیر رسمی</value>
+  </data>
+  <data name="Official" xml:space="preserve">
+    <value>رسمی</value>
+  </data>
+  <data name="OfficialWithConfirms" xml:space="preserve">
+    <value>رسمی با تاییدات</value>
+  </data>
+  <data name="OrderLastDays" xml:space="preserve">
+    <value>سفارشات به تفکیک روز</value>
+  </data>
+  <data name="PaymentLastDays" xml:space="preserve">
+    <value>پرداخت ها به تفکیک روز</value>
+  </data>
+  <data name="SelectedOption" xml:space="preserve">
+    <value>گزینه انتخاب شده</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
+  <data name="Survey" xml:space="preserve">
+    <value>نظرسنجی</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>متن</value>
+  </data>
+  <data name="TranslateType" xml:space="preserve">
+    <value>نوع ترجمه</value>
+  </data>
+  <data name="UserLastDays" xml:space="preserve">
+    <value>کاربران به تفکیک روز</value>
+  </data>
+  <data name="AnswerPercent" xml:space="preserve">
+    <value>درصد پاسخگویی</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>گزینه</value>
+  </data>
+  <data name="IsFullPayed" xml:space="preserve">
+    <value>پرداخت یک مرحله ای</value>
+  </data>
+  <data name="NeedDraft" xml:space="preserve">
+    <value>پبش نویش نیاز است</value>
   </data>
 </root>

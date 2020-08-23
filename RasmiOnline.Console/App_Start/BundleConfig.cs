@@ -14,16 +14,20 @@
                 "~" + Links.Content.Styles.Shared.bootstrap_css,
                 "~" + Links.Content.Styles.Shared.fontawesome_all_min_css,
                 "~" + Links.Content.Styles.Shared.PersianCalendar_css,
-                  "~" + Links.Content.Styles.Shared.Zebra_css,
+                "~" + Links.Content.Styles.Shared.Zebra_css,
                 "~" + Links.Content.Styles.Layout.portal_css,
+                "~" + Links.Content.Styles.Shared.material_design_iconic_font_min_css,
+                "~" + Links.Content.Styles.Console.common_css
             };
+            bundles.Add(new StyleBundleOrderer(Links.Bundles.Styles.MainCss, new CssMinify()).Include(mainCss));
+
             bundles.Add(new StyleBundleOrderer(Links.Bundles.Styles.DashboardStyles, new CssMinify()).Include(new string[] {
                 "~" + Links.Content.Styles.Shared.material_design_iconic_font_min_css,
                 "~" + Links.Content.Styles.Shared.material_bootstrap_wizard_css,
                 "~" + Links.Content.Styles.Shared.sweetalert_css,
                 "~" + Links.Content.Styles.Shared.animate_css,
                 "~" + Links.Content.Styles.Shared.PersianCalendar_css,
-                  "~" + Links.Content.Styles.Shared.Zebra_css,
+                "~" + Links.Content.Styles.Shared.Zebra_css,
                 "~" + Links.Content.Styles.Layout.app_min_css,
                 "~" + Links.Content.Styles.Shared.jquery_scrollbar_css,
                 "~" + Links.Content.Styles.Console.common_css,

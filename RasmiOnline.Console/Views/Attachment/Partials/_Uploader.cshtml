@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Attachment>
+
+<input id="input-file" type="file" class="d-none" accept="image/*"/>
+<div class="upload-box">
+    <div class="w-100 files-wraper" id="files">
+        <div class="mb-15" id="add-file">
+            <div id="uploader">
+                <i class="zmdi zmdi-plus"></i>
+                <label>الصاق تصویر</label>
+            </div>
+        </div>
+        @if (Model != null)
+        {
+            foreach (var attch in Model)
+            {
+                <div class="uploader-item uploaded mb-15">
+                    <button type="button" class="btn-remove" data-url="@Url.Action("DeleteAsset", new { assetId = attch.AttachmentId })"><i class="zmdi zmdi-close"></i></button>
+                    @{
+                        var fileType = FileOperation.GetFileType(attch.OriginalFileName);
+                        if (fileType == FileType.Image)
+                        {
+
+                            <img src="@Url.Content(attch.Address)" />
+                        }
+                        else
+                        {
+                            <img src="@Url.Content($"~/Content/Images/FileTypes/{fileType.ToString().ToLower()}.png")" />
+                        }
+                    }
+                    <a target="_blank" href="@Url.Content(attch.Address)">@LocalMessage.Download</a>
+                </div>
+            }
+        }
+    </div>
+</div>

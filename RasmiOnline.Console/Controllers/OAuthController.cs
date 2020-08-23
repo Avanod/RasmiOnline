@@ -4,7 +4,6 @@
     using System.Web;
     using Domain.Entity;
     using System.Web.Mvc;
-    using SharedPreference;
     using Gnu.Framework.Core;
     using System.Web.Security;
     using RasmiOnline.Domain.Enum;
@@ -71,7 +70,9 @@
         public virtual ActionResult Index(string block = "signin")
         {
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction(MVC.Order.ActionNames.History, MVC.Order.Name);
+            {
+                return RedirectToAction("SignOut");
+            }
             ViewBag.ActiveBlock = block;
             return View();
         }
@@ -240,7 +241,7 @@
             return Json(_messageBusiness.Value.Insert(new Message
             {
                 Receiver = user.MobileNumber.ToString(),
-                Content = string.Format(LocalMessage.RecoverPasswordSms, "www.RasmiOnline.com", pw.ToString()),
+                Content = string.Format(LocalMessage.RecoverPasswordSms, "Portal.amirshahigroup.com", pw.ToString()),
                 Type = MessagingType.Sms
             }));
         }

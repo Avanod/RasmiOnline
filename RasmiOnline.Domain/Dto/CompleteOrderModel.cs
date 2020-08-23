@@ -17,5 +17,7 @@
         public PaymentType PaymentType { get; set; }
 
         public int PaymentGatewayId { get; set; }
+
+        public bool NeedDraft { get; set; }
     }
 }

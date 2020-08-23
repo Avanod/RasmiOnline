@@ -1,0 +1,43 @@
+﻿@model ActionResponse<List<Survey>>
+
+@{
+    ViewBag.Title = LocalMessage.SurveyManagement;
+}
+@section Header{
+    <link href="~/Content/Styles/Console/01-Admin/Survey/search.css" rel="stylesheet" />
+}
+@{
+    Html.RenderPartial(MVC.Shared.Views.Partials._AddButton, new AddButtonModel
+    {
+        ModalTitle = LocalMessage.AddSurvey,
+        EntityName = nameof(Survey),
+        FormUrl = Url.Action(MVC.Survey.ActionNames.Add, MVC.Survey.Name),
+        Title = LocalMessage.AddSurvey
+    });
+}
+
+@{
+    Html.RenderPartial(MVC.Shared.Views._SharedSearch, new SearchPartialModel
+    {
+        ActionUrl = Url.Action(MVC.Survey.ActionNames.Search, MVC.Survey.Name),
+        EntityName = nameof(Survey),
+        Model = new SurveySearchFilter(),
+        PartialViewName = MVC.Survey.Views.Partials._SearchSurvey
+    });
+
+    <div id="loadingOver" style="position:relative;">
+        <div id="@(nameof(Survey))_SearchResultContainer">
+            @if (Model.IsNotNull())
+            {
+                Html.RenderPartial(MVC.Survey.Views.Partials._SearchList, Model.Result);
+            }
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="@Links.Scripts.Plugins.jquery_dataTables_min_js"></script>
+    <script src="@Links.Scripts.Plugins.jquery_custom_search_js" type="text/javascript"></script>
+    <script src="@Links.Scripts.Plugins.jquery_custom_modal_js" type="text/javascript"></script>
+    <script src="@Links.Scripts.Console._01_Admin.Survey.Search_js" type="text/javascript"></script>
+}

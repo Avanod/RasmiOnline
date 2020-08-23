@@ -1,0 +1,50 @@
+﻿@model Order
+@{
+    Layout = null;
+}
+<div class="row mb-15">
+    <div class="col-xs-12 col-sm-12">
+        <p class="alert alert-success text-center">@LocalMessage.AddOrderSuccessMessage</p>
+    </div>
+</div>
+<div class="row mb-15">
+    <div class="col-xs-12 col-sm-4 mb-15">
+        <div class="info-wrapper">
+            @Html.LabelFor(x => x.OrderId) <strong>@Model.OrderId</strong>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 mb-15">
+        <div class="info-wrapper">
+            @Html.LabelFor(x => x.InsertDateSh) <strong>@Model.InsertDateSh</strong>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 mb-15">
+        <div class="info-wrapper">
+            @Html.LabelFor(x => x.NeedDraft) <strong>@(Model.NeedDraft ? LocalMessage.Yes : LocalMessage.No)</strong>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-4 mb-15">
+        <div class="info-wrapper">
+            @Html.LabelFor(x => x.User.FullName) <strong>@Model.User.FullName</strong>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 mb-15">
+        <div class="info-wrapper">
+            @Html.LabelFor(x => x.User.Email) <strong>@Model.User.Email</strong>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 mb-15">
+        <div class="info-wrapper">
+            @Html.LabelFor(x => x.User.MobileNumber) <strong>@Model.User.MobileNumber</strong>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="desc-wrapper">
+            @Model.OrderDescription
+        </div>
+    </div>
+</div>

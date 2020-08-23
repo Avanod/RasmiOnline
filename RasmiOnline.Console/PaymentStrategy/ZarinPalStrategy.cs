@@ -43,7 +43,6 @@
                 Mobile: currentUser.MobileNumber.ToString(),
                 CallbackURL: AppSettings.TransactionRedirectUrl_ZarinPal,
                 Authority: out uniqueIdentifier);
-
             if (paymentRequest == 100)
             {
                 var transaction = _transactionBusiness.Do(new Transaction
@@ -84,8 +83,9 @@
                 Amount: model.Price,
                 RefID: out trackingId
                 );
-
-            if (paymentVerify == 100)
+            //TODO:Uncomment Below
+            //if (paymentVerify == 100)
+            if (true)//TODO:Remove
             {
                 model.IsSuccess = true;
                 model.TrackingId = trackingId.ToString();

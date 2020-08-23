@@ -4,31 +4,31 @@
 
     public enum PricingItemCategory : byte
     {
-        [Description("اسناد تحصیلی")]
+        [Description("مدارک تحصیلی")]
         EducationalDocuments = 1,
 
-        [Description("اسناد شخصی")]
+        [Description("مدارک شناسایی")]
         PersonalDocuments = 2,
 
-        [Description("اسناد قراردادی")]
-        ContractDocuments = 3,
+        // [Description("اسناد قراردادی")]
+        // ContractDocuments = 3,
 
-        [Description("اسناد قضایی")]
+        [Description("حکم و جواز")]
         JudicialDocuments = 4,
 
         [Description("اسناد مالکیت")]
         OwnershipDocuments = 5,
 
-        [Description("اسناد معاملاتی")]
+        [Description("سند و وکالتنامه")]
         TradingDocuments = 6,
 
-        [Description("مجوز")]
+        [Description("پروانه")]
         License = 7,
 
         [Description("گواهی")]
         Certification = 8,
 
-        [Description("مدارک شرکتی")]
+        [Description("مدارک اشتغال به کار و شرکت ها")]
         CorporateDocuments = 9,
 
         [Description("متفرقه")]

@@ -63,9 +63,9 @@
             if (showPleaseSelect) list.Add(new ItemTextValueModel<string, int?> { Value = null, Key = LocalMessage.All });
             else list.Add(new ItemTextValueModel<string, int?> { Value = 0, Key = LocalMessage.Parent });
 
-            var result = _viewBusiness.GetParentViews();
-            result.ForEach(item => { list.Add(new ItemTextValueModel<string, int?>() { Key = item.Key, Value = item.Value }); });
-
+            list.AddRange(_viewBusiness.GetAll(true).Select(x=>new ItemTextValueModel<string, int?>() { 
+                Key = x.Key,
+                Value = x.Value }).ToList());
             ViewBag.AllViews = list.Select(s => new SelectListItem
             {
                 Text = s.Key,

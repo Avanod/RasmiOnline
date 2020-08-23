@@ -13,11 +13,11 @@
                             <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending">#</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">نام و نام خانوادگی</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">شماره سفارش</th>
-                            <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">عنوان سفارش</th>
+                            @*<th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">عنوان سفارش</th>*@
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">زبان</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">تاریخ ثبت سفارش</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">تاریخ تحویل</th>
-                            <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">دفتر ترجمه</th>
+                            @*<th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">دفتر ترجمه</th>*@
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@(LocalMessage.Action)</th>
                         </tr>
                     </thead>
@@ -35,18 +35,18 @@
                                     <a target="_blank" href="@Url.Action(MVC.User.ActionNames.UserProfile, MVC.User.Name, new { userId = item.UserId })">@item.User.FullName</a>
                                 </td>
                                 <td dir="ltr" align="right">@($"{item.OrderId}")</td>
-                                <td>@item.OrderTitle.CustomSubstring(15)</td>
+                                @*<td>@item.OrderTitle.CustomSubstring(15)</td>*@
                                 <td>@item.LangType.GetLocalizeDescription()</td>
                                 <td dir="ltr" align="right">@($"{item.InsertDateSh}")</td>
                                 <td dir="rtl" align="right" class="@(item.DeliverFiles_DateSh == null ? "text-danger" : "")">@(item.DeliverFiles_DateSh == null ? $"{item.DayToDelivery} روز کاری" : item.DeliverFiles_DateSh)</td>
-                                <td align="right">
+                                @*<td align="right">
                                     @if (item.OfficeUserId == Guid.Empty)
                                     {
                                         <p class="text-danger">
                                             تخصیص نیافته
                                         </p>
                                     }
-                                </td>
+                                </td>*@
                                 <td>
                                     <a class="btn-action ltr waves-effect detail" href="@(@Url.Action(MVC.OrderAdmin.ActionNames.Edit, MVC.OrderAdmin.Name, new { orderId = item.OrderId }))" style="font-size:10px;">
                                         <div class="text">

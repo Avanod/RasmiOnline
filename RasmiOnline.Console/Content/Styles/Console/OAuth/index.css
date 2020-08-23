@@ -14,11 +14,17 @@
     box-sizing: border-box;
 }
 
+.bg-pattern {
+    background: url(../../../images/bg-pattern.svg) no-repeat center bottom fixed;
+    background-size: cover;
+}
 body, html {
     height: 100%;
     font-family: "iransans";
 }
-
+.p-b-20{
+    padding-bottom:20px !important;
+}
 /*---------------------------------------------*/
 a {
     /*font-family: Poppins-Regular;*/
@@ -185,7 +191,7 @@ iframe {
 }
 
 body {
-    background-color: #fbfcfd !important;
+    background-color: transparent !important;
 }
 
 .container-login100 {
@@ -200,7 +206,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 15px 15px 30px 15px;
-    background: #fbfcfd !important;
+ 
 }
 
 

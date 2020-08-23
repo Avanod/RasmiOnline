@@ -1,26 +1,24 @@
 ﻿namespace RasmiOnline.Business.Observers
 {
-    using Domain.Dto;
-    using Domain.Entity;
-    using Domain.Enum;
-    using Gnu.Framework.Core;
-    using Gnu.Framework.EntityFramework.DataAccess;
     using Protocol;
+    using Domain.Dto;
+    using Domain.Enum;
+    using Domain.Entity;
+    using Gnu.Framework.EntityFramework.DataAccess;
 
     public class AdminRoboTeleObserver : IObserver
     {
         public void Observe(IUnitOfWork uow, IMessageBusiness messageBusiness, ObserverMessage msg, User user)
         {
-            messageBusiness.Insert(new Message
-            {
-                Content = msg.BotContent.Replace("NAME", user.FullName),
-                Receiver = "-1001128896026",
-                State = StateType.Begin,
-                Type = MessagingType.RoboTele,
-                ExtraData = msg.Key,
-                ReplyMessageId = msg.MessageId
-            });
-
+            //messageBusiness.Insert(new Message
+            //{
+            //    Content = msg.BotContent.Replace("NAME", user.FullName),
+            //    Receiver = GlobalVariable.AdminInstanceId,
+            //    State = StateType.Begin,
+            //    Type = MessagingType.RoboTele,
+            //    ExtraData = msg.Key,
+            //    ReplyMessageId = msg.MessageId
+            //});
         }
     }
 }

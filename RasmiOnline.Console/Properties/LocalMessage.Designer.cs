@@ -160,6 +160,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ثبت سفارش با موفقیت انجام شد، بزودی برای هماهنگی بیشتر با شما تماس خواهیم گرفت.
+        /// </summary>
+        public static string AddOrderSuccessMessage {
+            get {
+                return ResourceManager.GetString("AddOrderSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to افزودن درگاه جدید.
         /// </summary>
         public static string AddPaymentGateway {
@@ -205,7 +214,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد&lt;br /&gt; کارشناسان مجموعه رسمی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
+        ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد&lt;br /&gt; کارشناسان مجموعه دارالترجمه امیرشاهی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
         /// </summary>
         public static string AddSummaryHeaderText {
             get {
@@ -214,11 +223,20 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد. کارشناسان مجموعه رسمی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
+        ///   Looks up a localized string similar to سفارش شما با کد &lt;span class=&apos;order-number&apos;&gt;{0}&lt;/span&gt; با موفقیت ثبت شد. کارشناسان مجموعه دارالترجمه امیرشاهی آنلاین به زودی برای هماهنگی های لازم با شما تماس می گیرند.
         /// </summary>
         public static string AddSummaryHeaderTextForMobile {
             get {
                 return ResourceManager.GetString("AddSummaryHeaderTextForMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to افزودن نظر سنجی.
+        /// </summary>
+        public static string AddSurvey {
+            get {
+                return ResourceManager.GetString("AddSurvey", resourceCulture);
             }
         }
         
@@ -295,6 +313,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شروع ترجمه.
+        /// </summary>
+        public static string BeginTranslation {
+            get {
+                return ResourceManager.GetString("BeginTranslation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to توسط کاربر.
         /// </summary>
         public static string ByMyself {
@@ -358,7 +385,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to برای تکمیل سفارش شما بایستی مبلغ {0} تومان پرداخت نمایید..
+        ///   Looks up a localized string similar to برای تکمیل سفارش شما بایستی مبلغ {0} ریال پرداخت نمایید..
         /// </summary>
         public static string CompleteOrderPaymentGatewaysTitle {
             get {
@@ -403,7 +430,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to www.rasmionline.com.
+        ///   Looks up a localized string similar to www.amirshahi.com.
         /// </summary>
         public static string Copyright {
             get {
@@ -493,7 +520,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to به نماینده رسمی آنلاین تحویل میدهم.
+        ///   Looks up a localized string similar to به نماینده دارالترجمه امیرشاهی آنلاین تحویل میدهم.
         /// </summary>
         public static string DeliverByPost {
             get {
@@ -916,7 +943,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تومان.
+        ///   Looks up a localized string similar to ریال.
         /// </summary>
         public static string MoneyCurrency {
             get {
@@ -1258,7 +1285,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to توسط نماینده رسمی آنلاین.
+        ///   Looks up a localized string similar to توسط نماینده دارالترجمه امیرشاهی آنلاین.
         /// </summary>
         public static string PostIt {
             get {
@@ -1348,7 +1375,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to برای ثبت سفارش شما بایستی حداقل مبلغ {0} تومان به عنوان پیش پرداخت واریز نمایید..
+        ///   Looks up a localized string similar to برای ثبت سفارش شما بایستی حداقل مبلغ {0} ریال به عنوان پیش پرداخت واریز نمایید..
         /// </summary>
         public static string QuickAddOrderPaymentGatewaysTitle {
             get {
@@ -1573,7 +1600,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} عزیز ، آدرس دفتر ترجمه رسمی آنلاین به شرح زیر میباشد:
+        ///   Looks up a localized string similar to {0} عزیز ، آدرس دفتر ترجمه دارالترجمه امیرشاهی آنلاین به شرح زیر میباشد:
         ///{1}
         ///لوکیشن :
         ///https://goo.gl/maps/nWfrH3Kccqm.
@@ -1711,7 +1738,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to رسمی آنلاین.
+        ///   Looks up a localized string similar to دارالترجمه امیر شاهی.
         /// </summary>
         public static string SiteName {
             get {
@@ -1734,6 +1761,33 @@ namespace RasmiOnline.Console.Properties {
         public static string Success {
             get {
                 return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نظرسنجی.
+        /// </summary>
+        public static string Survey {
+            get {
+                return ResourceManager.GetString("Survey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مدیریت نظرسنجی.
+        /// </summary>
+        public static string SurveyManagement {
+            get {
+                return ResourceManager.GetString("SurveyManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نتیجه نظر سنجی.
+        /// </summary>
+        public static string SurveyResult {
+            get {
+                return ResourceManager.GetString("SurveyResult", resourceCulture);
             }
         }
         
@@ -1855,7 +1909,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to یکی از کاربران رسمی آنلاین با نام ‘{0}’ سفارش خود را به شرح زیر پرداخت نموده است :
+        ///   Looks up a localized string similar to یکی از کاربران دارالترجمه امیرشاهی با نام ‘{0}’ سفارش خود را به شرح زیر پرداخت نموده است :
         ///شماره سفارش : {1}
         ///درگاه بانکی : {2}
         ///مبلغ پرداختی : {3}
@@ -1892,6 +1946,15 @@ namespace RasmiOnline.Console.Properties {
         public static string TransactionSuccess {
             get {
                 return ResourceManager.GetString("TransactionSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to توضیحات خود را اینجا بنویسید.
+        /// </summary>
+        public static string TypeHere {
+            get {
+                return ResourceManager.GetString("TypeHere", resourceCulture);
             }
         }
         
@@ -1941,11 +2004,20 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to با توجه به حساسیت درج صحیح اسامی در مدارک رسمی تاکید می شود که تصویر مطلوب با اسکن پاسپورت خود را در این قسمت آپلود نمایید و یا اسپل صحیح اسامی موجود در مدارک سفارش خود را در قسمت مربوطه تایپ نمایید ..
+        ///   Looks up a localized string similar to با توجه به حساسیت درج صحیح اسامی در مدارک دارالترجمه امیرشاهی تاکید می شود که تصویر مطلوب با اسکن پاسپورت خود را در این قسمت آپلود نمایید و یا اسپل صحیح اسامی موجود در مدارک سفارش خود را در قسمت مربوطه تایپ نمایید ..
         /// </summary>
         public static string UploadIdentityFilesText {
             get {
                 return ResourceManager.GetString("UploadIdentityFilesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to آپلود تصویر.
+        /// </summary>
+        public static string UploadImage {
+            get {
+                return ResourceManager.GetString("UploadImage", resourceCulture);
             }
         }
         
@@ -2085,7 +2157,7 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to لطفا برای تایید عضویت کد {0} را در سایت رسمی‌آنلاین وارد کنید..
+        ///   Looks up a localized string similar to لطفا برای تایید عضویت کد {0} را در سایت دارالترجمه امیرشاهی‌آنلاین وارد کنید..
         /// </summary>
         public static string VerificationCodeSms {
             get {
@@ -2117,6 +2189,15 @@ namespace RasmiOnline.Console.Properties {
         public static string ViewSearch {
             get {
                 return ResourceManager.GetString("ViewSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to در انتظار تحویل مدارک.
+        /// </summary>
+        public static string WaitForDeliverDocument {
+            get {
+                return ResourceManager.GetString("WaitForDeliverDocument", resourceCulture);
             }
         }
         

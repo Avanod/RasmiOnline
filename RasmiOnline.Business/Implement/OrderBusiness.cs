@@ -2,20 +2,19 @@
 {
     using System;
     using Protocol;
+    using Observers;
+    using Domain.Dto;
     using System.Linq;
+    using Domain.Enum;
     using Domain.Entity;
     using Gnu.Framework.Core;
     using System.Data.Entity;
-    using Domain.Dto;
-    using Domain.Enum;
-    using System.Collections.Generic;
     using Business.Properties;
-    using Gnu.Framework.EntityFramework;
-    using Gnu.Framework.EntityFramework.DataAccess;
-    using SharedPreference;
-    using Observers;
-    using System.Text.RegularExpressions;
+    using System.Collections.Generic;
     using Gnu.Framework.Core.Security;
+    using Gnu.Framework.EntityFramework;
+    using System.Text.RegularExpressions;
+    using Gnu.Framework.EntityFramework.DataAccess;
 
     public class OrderBusiness : IOrderBusiness, IExportTableBusiness
     {
@@ -24,18 +23,20 @@
         readonly IDbSet<Order> _order;
         readonly IDbSet<OrderItem> _orderItem;
         readonly IDbSet<DiscountOrder> _discountOrder;
+        readonly Lazy<ITransactionBusiness> _transBusiness;
         readonly Lazy<ISettingBusiness> _settingBusiness;
         readonly Lazy<IDiscountBusiness> _discountBusiness;
         readonly Lazy<IPricingItemBusiness> _pricingItemBusiness;
         readonly Lazy<IOrderItemBusiness> _orderItemBusiness;
         readonly Lazy<IObserverManager> _observerManager;
         readonly Lazy<IUserBusiness> _userBusiness;
-        public OrderBusiness(IUnitOfWork uow, Lazy<IUserBusiness> userBusiness, Lazy<IObserverManager> observerManager, Lazy<ISettingBusiness> settingBusiness, Lazy<IDiscountBusiness> discountBusiness, Lazy<IPricingItemBusiness> pricingItemBusiness, Lazy<IOrderItemBusiness> orderItemBusiness)
+        public OrderBusiness(IUnitOfWork uow, Lazy<IUserBusiness> userBusiness, Lazy<ITransactionBusiness> transBusiness, Lazy<IObserverManager> observerManager, Lazy<ISettingBusiness> settingBusiness, Lazy<IDiscountBusiness> discountBusiness, Lazy<IPricingItemBusiness> pricingItemBusiness, Lazy<IOrderItemBusiness> orderItemBusiness)
         {
             _uow = uow;
             _order = uow.Set<Order>();
             _orderItem = uow.Set<OrderItem>();
             _discountOrder = uow.Set<DiscountOrder>();
+            _transBusiness = transBusiness;
             _discountBusiness = discountBusiness;
             _pricingItemBusiness = pricingItemBusiness;
             _orderItemBusiness = orderItemBusiness;
@@ -50,13 +51,13 @@
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IActionResponse<Order> Update(Order model)
+        public IActionResponse<Order> Update(Order model, string baseDomain = "")
         {
             _order.Attach(model);
             _uow.Entry(model).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
             if (rep.ToSaveChangeResult())
-                StatusNotifier(model);
+                StatusNotifier(model, baseDomain);
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
@@ -71,31 +72,48 @@
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IActionResponse<Order> BriefUpdate(Order model)
+        public IActionResponse<Order> BriefUpdate(Order model, string baseDomain = "")
         {
             var notifOffice = false;
-            var order = _order.Find(model.OrderId);
+            var order = Find(model.OrderId, "OrderItems");
             if (order == null)
                 return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
+            var statusChanged = model.OrderStatus != order.OrderStatus;
+            var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
+            #region validate status change
+            if (statusChanged && model.OrderStatus == OrderStatus.Done && order.TotalPrice() > payedPrice)
+                return new ActionResponse<Order>
+                {
+                    IsSuccessful = false,
+                    Message = BusinessMessage.OrderIsNotPayed
+                };
+            if (statusChanged && model.OrderStatus == OrderStatus.PayAllFactor && order.TotalPrice() <= payedPrice)
+                return new ActionResponse<Order>
+                {
+                    IsSuccessful = false,
+                    Message = BusinessMessage.OrderIsPayed
+                };
+            #endregion
             order.OrderStatus = model.OrderStatus;
             order.DayToDelivery = model.DayToDelivery;
             order.DocsBeenRecieved = model.DocsBeenRecieved;
+            order.IsFullPayed = model.IsFullPayed;
             if (!string.IsNullOrEmpty(model.DeliverFiles_DateSh) && new Regex(RegexPattern.PersianDateTime).IsMatch(model.DeliverFiles_DateSh))
             {
                 order.DeliverFiles_DateSh = model.DeliverFiles_DateSh;
                 order.DeliverFiles_DateMi = PersianDateTime.Parse(model.DeliverFiles_DateSh).ToDateTime();
             }
-
-            order.OrderDescription = model.OrderDescription;
+            if (!string.IsNullOrWhiteSpace(model.OrderDescription))
+                order.OrderDescription = model.OrderDescription;
             order.LangType = model.LangType;
 
             if (order.OfficeUserId == Guid.Empty && model.OfficeUserId != Guid.Empty)
                 notifOffice = true;
             order.OfficeUserId = model.OfficeUserId;
-
+            _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
-            if (rep.ToSaveChangeResult())
-                StatusNotifier(order);
+            if (rep.ToSaveChangeResult() && statusChanged)
+                StatusNotifier(order, baseDomain);
 
             //Notif office once
             if (notifOffice)
@@ -127,7 +145,7 @@
         /// <returns></returns>
         public IActionResponse<Order> Update(int orderId, LangType newLangType, IEnumerable<OrderItem> items)
         {
-            var orderItem =new OrderItem();
+            var orderItem = new OrderItem();
             PricingItem pricingItem;
             var order = Find(orderId, "OrderItems");
             order.LangType = newLangType;
@@ -173,16 +191,22 @@
             }
             #region update official record item 
             orderItem = order.OrderItems.FirstOrDefault(x => x.OrderItemType == OrderItemType.OfficialRecordItem);
-            var modelOfficialRecordItem = items.FirstOrDefault(x => x.OrderItemType == OrderItemType.OfficialRecordItem);
-            orderItem.Copy = modelOfficialRecordItem.Copy;
-            orderItem.Count = modelOfficialRecordItem.Count;
-            if (newLangType != LangType.Fa_En) orderItem.Price_OthersLang = modelOfficialRecordItem.Price;
-            else orderItem.Price = modelOfficialRecordItem.Price;
-            _uow.Entry(orderItem).State = EntityState.Modified;
+            if (orderItem != null)
+            {
+                var modelOfficialRecordItem = items.FirstOrDefault(x => x.OrderItemType == OrderItemType.OfficialRecordItem);
+                if (modelOfficialRecordItem == null)
+                {
+                    orderItem.Copy = modelOfficialRecordItem.Copy;
+                    orderItem.Count = modelOfficialRecordItem.Count;
+                }
+                if (newLangType != LangType.Fa_En) orderItem.Price_OthersLang = modelOfficialRecordItem.Price;
+                else orderItem.Price = modelOfficialRecordItem.Price;
+                _uow.Entry(orderItem).State = EntityState.Modified;
+            }
+
             #endregion
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
-
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
@@ -191,7 +215,7 @@
             };
         }
 
-        public void StatusNotifier(Order order)
+        public void StatusNotifier(Order order, string baseDomain = "")
         {
             var user = _userBusiness.Value.Find(order.UserId);
 
@@ -202,7 +226,7 @@
                     case OrderStatus.WaitForPayment:
                         _observerManager.Value.Notify(ConcreteKey.Waiting_For_Payment, new ObserverMessage
                         {
-                            SmsContent = string.Format(BusinessMessage.Waiting_For_Payment, order.OrderId),
+                            SmsContent = string.Format(BusinessMessage.Waiting_For_Payment, order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
                             BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             Key = ConcreteKey.Waiting_For_Payment.ToString(),
                             RecordId = order.OrderId,
@@ -212,11 +236,21 @@
                     case OrderStatus.PayAllFactor:
                         _observerManager.Value.Notify(ConcreteKey.Pay_All_Factor, new ObserverMessage
                         {
-                            SmsContent = string.Format(BusinessMessage.Pay_All_Factor_Sms, order.OrderId),
+                            SmsContent = string.Format(BusinessMessage.Pay_All_Factor_Sms, order.OrderId, $"{baseDomain}/home/{order.OrderId}/{order.UserId}"),
                             BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             Key = ConcreteKey.Waiting_For_Payment.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId,
+                        });
+                        break;
+                    case OrderStatus.SubmitDraft:
+                        _observerManager.Value.Notify(ConcreteKey.Submit_Draft, new ObserverMessage
+                        {
+                            SmsContent = string.Format(BusinessMessage.SubmitDraftMessage, order.OrderId, $"{baseDomain}/Order/ConfirmDraft/{order.OrderId}/{order.UserId}"),
+                            BotContent = string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            Key = ConcreteKey.Submit_Draft.ToString(),
+                            RecordId = order.OrderId,
+                            UserId = user.UserId
                         });
                         break;
                     case OrderStatus.Cancel:
@@ -319,7 +353,7 @@
             if (user == null)
             {
                 #region Set New User Ptops
-                if(string.IsNullOrWhiteSpace(model.User.FirstName))  model.User.FirstName = BusinessMessage.User;
+                if (string.IsNullOrWhiteSpace(model.User.FirstName)) model.User.FirstName = BusinessMessage.User;
                 if (string.IsNullOrWhiteSpace(model.User.LastName)) model.User.LastName = BusinessMessage.New;
                 model.User.RegisterDateMi = model.User.LastLoginDateMi = DateTime.Now;
                 model.User.RegisterDateSh = model.User.LastLoginDateSh = PersianDateTime.Now.ToString(PersianDateTimeFormat.Date);
@@ -411,10 +445,26 @@
             var newOrderStatus = order.GetNextStatus();
             if ((order.OrderStatus == OrderStatus.WaitForPayment) && order.DeliverFiles_DateMi == null)
             {
-                order.DeliverFiles_DateMi = GlobalMethod.GetWorkDate(order.DayToDelivery);
+                order.DeliverFiles_DateMi = GetWorkDate(order.DayToDelivery);
                 order.DeliverFiles_DateSh = PersianDateTime.Parse((DateTime)order.DeliverFiles_DateMi).ToString(PersianDateTimeFormat.Date);
             }
             order.OrderStatus = newOrderStatus;
+            _uow.Entry(order).State = EntityState.Modified;
+            var rep = _uow.SaveChanges();
+
+            return new ActionResponse<Order>
+            {
+                IsSuccessful = rep.ToSaveChangeResult(),
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                Result = order
+            };
+        }
+
+        public IActionResponse<Order> UpdateStatus(int orderId, OrderStatus status)
+        {
+            var order = _order.Find(orderId);
+            if (order == null) return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
+            order.OrderStatus = status;
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
 
@@ -438,7 +488,7 @@
             if (order == null) return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
             if (order.DeliverFiles_DateMi == null)
             {
-                order.DeliverFiles_DateMi = GlobalMethod.GetWorkDate(order.DayToDelivery);
+                order.DeliverFiles_DateMi = GetWorkDate(order.DayToDelivery);
                 order.DeliverFiles_DateSh = PersianDateTime.Parse((DateTime)order.DeliverFiles_DateMi).ToString(PersianDateTimeFormat.Date);
             }
             _uow.Entry(order).State = EntityState.Modified;
@@ -774,5 +824,116 @@
             return q.OrderByDescending(x => x.InsertDateMi).ToList();
         }
 
+        private DateTime GetWorkDate(int dayCount)
+        {
+            if (dayCount <= 0)
+                return DateTime.Now;
+
+            for (int i = 1; i <= dayCount; i++)
+            {
+                var day = DateTime.Now.AddDays(i);
+                if (day.DayOfWeek == DayOfWeek.Friday || day.DayOfWeek == DayOfWeek.Thursday)
+                    dayCount++;
+            }
+            return DateTime.Now.AddDays(dayCount);
+        }
+
+        //public IActionResponse<Order> QuickInsert(AddOrderModel model)
+        //{
+        //    var order = new Order();
+        //    var _setting = _settingBusiness.Value.Get();
+        //    order.DayToDelivery = _setting.DayToDelivery;
+        //    order.UserId = model.UserId;
+        //    order.OrderStatus = OrderStatus.UploadFiles;
+        //    order.OrderDescription = model.Description;
+        //    order.TranslateType = model.TranslateType;
+        //    order.WithPassport = model.WithPassport;
+        //    order.OrderTitle = "بدون عنوان";
+        //    order.LangType = LangType.Fa_En;
+        //    _order.Add(order);
+        //    var rep = _uow.SaveChanges();
+        //    if (rep.ToSaveChangeResult())
+        //    {
+        //        _observerManager.Value.Notify(ConcreteKey.Order_Add, new ObserverMessage
+        //        {
+        //            SmsContent = string.Format(BusinessMessage.Order_Add_Sms, order.OrderId),
+        //            BotContent = string.Format(BusinessMessage.Order_Add_Bot, order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+        //            Key = ConcreteKey.Order_Add.ToString(),
+        //            RecordId = order.OrderId,
+        //            UserId = model.UserId
+        //        });
+        //    }
+        //    return new ActionResponse<Order>
+        //    {
+        //        IsSuccessful = rep.ToSaveChangeResult(),
+        //        Result = order,
+        //        Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
+        //    };
+        //}
+
+        public IActionResponse<Order> Add(AddOrderModel model)
+        {
+            var order = new Order
+            {
+                DayToDelivery = model.DayToDeliver,
+                DeliverFiles_DateMi = DateTime.Now.AddDays(model.DayToDeliver),
+                DeliverFiles_DateSh = PersianDateTime.Now.AddDays(model.DayToDeliver).ToString(PersianDateTimeFormat.Date),
+                UserId = model.UserId,
+                OrderStatus = model.Status,
+                OrderDescription = model.Description,
+                TranslateType = model.TranslateType,
+                WithPassport = model.WithPassport,
+                OrderTitle = "بدون عنوان",
+                LangType = LangType.Fa_En,
+                IsFullPayed = true
+            };
+
+            _order.Add(order);
+            var rep = _uow.SaveChanges();
+            if (rep.ToSaveChangeResult())
+            {
+                _observerManager.Value.Notify(ConcreteKey.Order_Add, new ObserverMessage
+                {
+                    SmsContent = string.Format(BusinessMessage.Order_Add_Sms, order.OrderId),
+                    BotContent = string.Format(BusinessMessage.Order_Add_Bot, order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                    Key = ConcreteKey.Order_Add.ToString(),
+                    RecordId = order.OrderId,
+                    UserId = model.UserId
+                });
+            }
+
+            return new ActionResponse<Order>
+            {
+                IsSuccessful = rep.ToSaveChangeResult(),
+                Result = order,
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
+            };
+        }
+
+        public IActionResponse<Tuple<Order, int>> UpdateBeforePayment(CompleteOrderModel model)
+        {
+            var order = Find(model.OrderId, "OrderItems");
+            if (order == null)
+                return new ActionResponse<Tuple<Order, int>> { Message = BusinessMessage.RecordNotFound };
+            var payedPrice = _transBusiness.Value.GetTotalPayedPrice(model.OrderId);
+            if (payedPrice > 0)
+                return new ActionResponse<Tuple<Order, int>> { IsSuccessful = true, Result = new Tuple<Order, int>(order, order.TotalPrice() - payedPrice) };
+            order.NeedDraft = model.NeedDraft;
+            order.DeliveryType = model.DeliveryType;
+            order.PaymentType = model.PaymentType;
+            if (model.AddressId != null && model.AddressId != 0)
+                order.AddressId = model.AddressId;
+            //if (model.PaymentType == PaymentType.InPerson)
+            //    order.OrderStatus = order.GetNextStatus();
+            _uow.Entry(order).State = EntityState.Modified;
+
+            var rep = _uow.SaveChanges();
+            return new ActionResponse<Tuple<Order, int>>
+            {
+                IsSuccessful = rep.ToSaveChangeResult(),
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                Result = new Tuple<Order, int>(order, order.IsFullPayed ? (order.TotalPrice() - payedPrice) : (order.TotalPrice() / 2))
+            };
+        }
     }
 }
