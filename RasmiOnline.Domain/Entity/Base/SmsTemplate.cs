@@ -14,8 +14,8 @@
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SmsTemplateId { get; set; }
 
-        //[NotMapped]
         [Display(Name = nameof(DisplayName.MessageType), ResourceType = typeof(DisplayName))]
+        [Required(ErrorMessageResourceName = nameof(ErrorMessage.Required), ErrorMessageResourceType = typeof(ErrorMessage))]
         public MessagingType MessagingType { get; set; }
 
         [Display(Name = nameof(DisplayName.IsDeleted), ResourceType = typeof(DisplayName))]

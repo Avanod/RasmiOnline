@@ -118,6 +118,10 @@
     <Compile Include="Migrations\202008161743482_AddSmsTemplateEntity.designer.cs">
       <DependentUpon>202008161743482_AddSmsTemplateEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008230656005_FinalTest.cs" />
+    <Compile Include="Migrations\202008230656005_FinalTest.designer.cs">
+      <DependentUpon>202008230656005_FinalTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -145,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008161743482_AddSmsTemplateEntity.resx">
       <DependentUpon>202008161743482_AddSmsTemplateEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008230656005_FinalTest.resx">
+      <DependentUpon>202008230656005_FinalTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
