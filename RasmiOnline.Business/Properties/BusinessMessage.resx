@@ -271,4 +271,7 @@ Portal.amirshahigroup.com</value>
     <value>NAME عزیز، ترجمه فایلهای سفارش شماره {0} شما به پایان رسیده است. شما میتوانید فایل های ترجمه شده را از طریق لینک زیر دانلود نمایید
 {1}</value>
   </data>
+  <data name="MoneyCurrency" xml:space="preserve">
+    <value>ریال</value>
+  </data>
 </root>

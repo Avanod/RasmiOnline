@@ -16,7 +16,7 @@
                         <div class="form-group">
                             @Html.LabelFor(x => x.Result.MessagingType)
                             <div class="select">
-                                @Html.DropDownListFor(x => x.Result.MessagingType, (List<SelectListItem>)ViewBag.MessageTypes, new { @class = "form-control  type-fa", @disabled = "disabled" })
+                                @Html.DropDownListFor(x => x.Result.MessagingType, (List<SelectListItem>)ViewBag.Types, new { @class = "form-control  type-fa", @disabled = "disabled" })
                                 <i class="form-group__bar"></i>
                                 <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.MessagingType) </small>
                             </div>

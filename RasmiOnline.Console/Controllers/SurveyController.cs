@@ -21,6 +21,7 @@ namespace RasmiOnline.Console.Controllers
         #region Admin Actions
         public virtual ActionResult Search(SurveySearchFilter filter)
         {
+            ViewBag.ShowSurveyLink = true;
             ViewBag.AutoSubmit = false;
             var result = _surveyBusiness.Get(filter);
             if (!Request.IsAjaxRequest()) return View(result);

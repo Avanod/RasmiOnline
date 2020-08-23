@@ -1,6 +1,7 @@
 ﻿@model AddButtonModel
 @{
     Layout = null;
+    var showSurveyLink = (bool)(ViewBag.ShowSurveyLink ?? false);
 }
 
 @if (!Model.IsDisableAddButton)
@@ -20,6 +21,15 @@
                     @Model.Title
                 </div>
             </a>*@
+        @if (showSurveyLink)
+        {
+            <div style="width: 170px; text-align: revert; float: left; margin-left: 10px;">
+                <h6 class="copy-value" data-copy-value="@(AppSettings.BaseDomain+"/Survey/Index")" style="padding: 8px; border: solid 1px #ccc; border-radius: 3px; text-align: right; background-color: #ccc;">
+                    <i style="font-size: 20px; vertical-align: middle; margin-left: 5px;" class="zmdi zmdi-copy"></i>کپی لینک نظر سنجی
+                </h6>
+            </div>
+        }
+
     </div>
 }
 

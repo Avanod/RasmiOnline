@@ -12,6 +12,7 @@
                     <thead class="thead-default">
                         <tr role="row">
                             <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending">#</th>
+                            <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().MessagingType)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().Key)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().Title)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().Text)</th>
@@ -26,6 +27,7 @@
                             {
                                 <tr role="row">
                                     <td class="sorting_1">@count</td>
+                                    <td>@item.MessagingType.GetDescription()</td>
                                     <td style="white-space:nowrap;">@(((ConcreteKey)Enum.Parse(typeof(ConcreteKey),item.Key)).GetDescription()) </td>
                                     <td>@item.Title</td>
                                     <td>@item.Text</td>

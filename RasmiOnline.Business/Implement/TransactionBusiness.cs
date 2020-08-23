@@ -103,7 +103,7 @@
 
         public Transaction Find(string authority) => _transaction.FirstOrDefault(X => X.Authority == authority);
 
-        public Transaction Find(int transactionId) => _transaction.Include(x=>x.Order).FirstOrDefault(X => X.TransactionId == transactionId);
+        public Transaction Find(int transactionId) => _transaction.Include(x => x.Order).FirstOrDefault(X => X.TransactionId == transactionId);
 
         public IActionResponse<int> Insert(Transaction model)
         {
@@ -121,7 +121,8 @@
 
                 _observerManager.Value.Notify(ConcreteKey.Offline_Payment, new ObserverMessage
                 {
-                    BotContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.RoboTele,ConcreteKey.Offline_Payment), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
+                    SmsContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.Sms, ConcreteKey.Offline_Payment), model.OrderId, model.Price.ToString("N0") + BusinessMessage.MoneyCurrency),
+                    BotContent = string.Format(_smsTemplateBusiness.Value.GetText(MessagingType.RoboTele, ConcreteKey.Offline_Payment), (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
                                                model.OrderId, pg.PaymentGatewayType.GetLocalizeDescription(),
                                                model.Price.ToString("0,0"),
                                                model.TrackingId.ToString(),
@@ -200,6 +201,6 @@
             };
         }
 
-        public int GetTotalPayedPrice(int orderId) => _transaction.Where(x => x.OrderId == orderId && x.IsSuccess).Select(x=>x.Price).ToList().Sum();
+        public int GetTotalPayedPrice(int orderId) => _transaction.Where(x => x.OrderId == orderId && x.IsSuccess).Select(x => x.Price).ToList().Sum();
     }
 }

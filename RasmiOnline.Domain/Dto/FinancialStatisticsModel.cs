@@ -29,7 +29,7 @@ namespace RasmiOnline.Domain.Dto
         [Display(Name = nameof(DisplayName.PaymentLastMonths), ResourceType = typeof(DisplayName))]
         public IDictionary<string, int> PaymentLastMonths { get; set; } = new Dictionary<string, int>();//11
 
-        [Display(Name = nameof(DisplayName.OtherItemPaymentLastMonths), ResourceType = typeof(DisplayName))]
+        [Display(Name = nameof(DisplayName.LicenseItemPaymentLastMonths), ResourceType = typeof(DisplayName))]
         public IDictionary<string, int> LicenseItemPaymentLastMonths { get; set; } = new Dictionary<string, int>();//12
 
         [Display(Name = nameof(DisplayName.OtherItemPaymentLastMonths), ResourceType = typeof(DisplayName))]

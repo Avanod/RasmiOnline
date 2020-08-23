@@ -70,6 +70,8 @@
         public virtual JsonResult FormSubmited(SmsTemplate model)
         {
             var response = new ActionResponse<bool>();
+            ModelState.Remove(nameof(model.Key));
+            ModelState.Remove(nameof(model.MessagingType));
             if (model.IsNull() || !ModelState.IsValid)
             {
                 response.Message = LocalMessage.InvalidFormData;

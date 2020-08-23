@@ -224,6 +224,15 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ریال.
+        /// </summary>
+        public static string MoneyCurrency {
+            get {
+                return ResourceManager.GetString("MoneyCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to جدید.
         /// </summary>
         public static string New {
