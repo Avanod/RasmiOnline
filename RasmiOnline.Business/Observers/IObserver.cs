@@ -1,10 +1,9 @@
 ﻿namespace RasmiOnline.Business.Observers
 {
+    using Protocol;
     using Domain.Dto;
     using Domain.Entity;
-    using Gnu.Framework.Core;
     using Gnu.Framework.EntityFramework.DataAccess;
-    using Protocol;
 
     public interface IObserver
     {

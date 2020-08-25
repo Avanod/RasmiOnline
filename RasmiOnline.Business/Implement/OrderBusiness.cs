@@ -910,7 +910,7 @@
             {
                 _observerManager.Value.Notify(ConcreteKey.Order_Add, new ObserverMessage
                 {
-                    SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms,ConcreteKey.Order_Add), order.OrderId),
+                    SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms, ConcreteKey.Order_Add), order.OrderId),
                     //string.Format(BusinessMessage.Order_Add_Sms, order.OrderId),
                     BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Add), order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                     //string.Format(BusinessMessage.Order_Add_Bot, order.OrderId, order.OrderTitle, order.LangType.GetLocalizeDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
