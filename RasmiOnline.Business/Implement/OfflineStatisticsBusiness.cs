@@ -103,7 +103,7 @@ namespace RasmiOnline.Business.Implement
                                             || x.Type == StaticticsType.OtherItemPaymentLastMonths
                                             || x.Type == StaticticsType.LicenseItemPaymentLastMonths)
                                             .OrderByDescending(x => x.InsertDateMi)
-                                            .Take(getCount).ToList();
+                                            .Take(42).ToList();
             foreach (var item in items.Where(x => x.Type == StaticticsType.LicenseItemPaymentLastDays).Select(x => new
             {
                 Key = (string)(x.ExtraData.DeSerializeJson<List<StatisticExtraData>>()[0].InsertDateSh),

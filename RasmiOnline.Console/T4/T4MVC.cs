@@ -184,6 +184,9 @@ namespace Links
                     public const string UrlPath = "~/Scripts/Console/01-Admin/Dashboard";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(UrlPath); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(UrlPath + "/" + fileName); }
+                    public static readonly string common_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/common.min.js") ? Url("common.min.js") : Url("common.js");
+                    public static readonly string financial_statistics_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/financial-statistics.min.js") ? Url("financial-statistics.min.js") : Url("financial-statistics.js");
+                    public static readonly string financial_statistics_min_js = Url("financial-statistics.min.js");
                     public static readonly string statistic_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(UrlPath + "/statistic.min.js") ? Url("statistic.min.js") : Url("statistic.js");
                 }
             
@@ -847,6 +850,8 @@ namespace Links
                     {
                         public static class Assets
                         {
+                            public static readonly string common_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/01-Admin/Dashboard/common.js"); 
+                            public static readonly string financial_statistics_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/01-Admin/Dashboard/financial-statistics.js"); 
                             public static readonly string statistic_js = T4MVCHelpers.ProcessAssetPath("~/Scripts/Console/01-Admin/Dashboard/statistic.js"); 
                         }
                     }

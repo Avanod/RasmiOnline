@@ -22,7 +22,9 @@
         public int BankCardId { get; set; }
  
         [ForeignKey(nameof(OrderId))]
+        [Display(Name = nameof(DisplayName.OrderId), ResourceType = typeof(DisplayName))]
         public Order Order { get; set; }
+        [Display(Name = nameof(DisplayName.OrderId), ResourceType = typeof(DisplayName))]
         public int OrderId { get; set; }
 
         [Display(Name = nameof(DisplayName.Price), ResourceType = typeof(DisplayName))]

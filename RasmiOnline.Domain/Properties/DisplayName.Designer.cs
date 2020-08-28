@@ -709,6 +709,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to از تاریخ.
+        /// </summary>
+        public static string FromDate {
+            get {
+                return ResourceManager.GetString("FromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to آدرس کامل.
         /// </summary>
         public static string FullAddress {
@@ -1204,6 +1213,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to شماره سفارش.
+        /// </summary>
+        public static string OrderId {
+            get {
+                return ResourceManager.GetString("OrderId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نوع مدرک.
         /// </summary>
         public static string OrderItemType {
@@ -1654,6 +1672,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تا تاریخ.
+        /// </summary>
+        public static string ToDate {
+            get {
+                return ResourceManager.GetString("ToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to قیمت نهایی.
         /// </summary>
         public static string TotalPrice {
@@ -1672,7 +1699,7 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TransactionStatus.
+        ///   Looks up a localized string similar to وضعیت تراکنش.
         /// </summary>
         public static string TransactionStatus {
             get {

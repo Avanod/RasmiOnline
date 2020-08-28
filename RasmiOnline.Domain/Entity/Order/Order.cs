@@ -68,6 +68,7 @@
         public string InsertDateSh { get; set; }
 
         [ForeignKey(nameof(UserId))]
+        [Display(Name = nameof(DisplayName.User), ResourceType = typeof(DisplayName))]
         public User User { get; set; }
 
         [Required(ErrorMessageResourceName = nameof(ErrorMessage.Required), ErrorMessageResourceType = typeof(ErrorMessage))]

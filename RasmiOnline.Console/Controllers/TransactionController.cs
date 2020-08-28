@@ -189,7 +189,7 @@
                 ViewBag.ErrorMessage = LocalMessage.PaymentException;
                 return View(viewName: MVC.Transaction.Views.Failed, model: transaction);
             }
-           
+
             var gateWay = _paymentGatewayBusiness.Find(transaction.PaymentGatewayId);
             if (gateWay.IsNull())
             {
@@ -296,5 +296,36 @@
         }
         [HttpPost]
         public virtual JsonResult Read(int transactionId, bool isOffice) => Json(_transactionBusiness.Read(transactionId, isOffice));
+
+        #region Admin Actions
+        public virtual ActionResult Search(TransactionSearchFilter filter)
+        {
+            ViewBag.ShowTransactionLink = true;
+            ViewBag.AutoSubmit = false;
+            ViewBag.BankCards = _bankCardBusiness.GetAll().Select(x => new SelectListItem
+            {
+                Text = x.BankName + "(" + x.AccountNumber + ")",
+                Value = x.BankCardId.ToString()
+            }).ToList();
+            var result = _transactionBusiness.Get(filter);
+            if (!Request.IsAjaxRequest()) return View(result);
+
+            return PartialView(MVC.Transaction.Views.Partials._SearchList, result.Result);
+        }
+
+        [HttpGet]
+        public virtual PartialViewResult Details(int id)
+        {
+
+            var Transaction = _transactionBusiness.FindDetails(id);
+            //if (Transaction == null)
+            //    return View(MVC.Shared.Views.Error);
+            return PartialView(MVC.Transaction.Views.Partials._Form, new ActionResponse<Transaction>
+            {
+                IsSuccessful = Transaction != null,
+                Result = Transaction
+            });
+        }
+        #endregion
     }
 }

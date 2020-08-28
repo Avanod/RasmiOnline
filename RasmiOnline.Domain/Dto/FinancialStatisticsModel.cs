@@ -1,7 +1,5 @@
-﻿using Gnu.Framework.Core;
-using RasmiOnline.Domain.Properties;
+﻿using RasmiOnline.Domain.Properties;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace RasmiOnline.Domain.Dto

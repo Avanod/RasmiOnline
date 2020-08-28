@@ -93,7 +93,6 @@ namespace RasmiOnline.Business.Implement
             if (!string.IsNullOrWhiteSpace(filterModel.Subject))
                 q = q.Where(x => x.Subject.Contains(filterModel.Subject));
             response.Result = q.OrderByDescending(x => x.SurveyId)
-                         .Select(s => s)
                          .Take(filterModel.ItemsCount)
                          .ToList();
             return response;

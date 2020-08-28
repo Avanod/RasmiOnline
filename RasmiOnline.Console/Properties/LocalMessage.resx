@@ -851,4 +851,13 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
   <data name="SmsTemplate" xml:space="preserve">
     <value>قالب پیامک</value>
   </data>
+  <data name="TransactionManagement" xml:space="preserve">
+    <value>جستجوی تراکنش</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>جزییات</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>ناموفق</value>
+  </data>
 </root>
