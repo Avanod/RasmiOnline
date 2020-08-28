@@ -1,0 +1,65 @@
+﻿@model TransactionSearchFilter
+
+@{
+    <div class="row">
+        <div class="col-sm-12 col-md-3 m-b-20">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Status)
+                <div class="select">
+                    @Html.DropDownListFor(x => x.Status, new List<SelectListItem> {
+                        new SelectListItem{ Value="",Text=LocalMessage.PleaseSelect },
+                        new SelectListItem{ Value="100",Text="ناموفق" },
+                        new SelectListItem{ Value="1",Text="موفق" }
+                    }, new { @class = "form-control" })
+                    <i class="form-group__bar"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 m-b-20" dir="rtl">
+            <div class="form-group">
+                @Html.LabelFor(x => x.OrderId)
+                @Html.TextBoxFor(x => x.OrderId, null, new { @class = "form-control type-fa" })
+                <i class="form-group__bar"></i>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 m-b-20" dir="rtl">
+            <div class="form-group">
+                @Html.LabelFor(x => x.TrackingId)
+                @Html.TextBoxFor(x => x.TrackingId, null, new { @class = "form-control type-fa" })
+                <i class="form-group__bar"></i>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 m-b-20">
+            <div class="form-group">
+                @Html.LabelFor(x => x.BankCardId)
+                <div class="select">
+                    @Html.DropDownListFor(x => x.BankCardId, (List<SelectListItem>)ViewBag.BankCards, new { @class = "form-control" })
+                    <i class="form-group__bar"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 m-b-20" dir="rtl">
+            <div class="form-group">
+                @Html.LabelFor(x => x.MobileNumber)
+                @Html.TextBoxFor(x => x.MobileNumber, null, new { @class = "form-control type-fa" })
+                <i class="form-group__bar"></i>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 m-b-20" dir="rtl">
+            <div class="form-group">
+                @Html.LabelFor(x => x.FromDateSh)
+                @Html.TextBoxFor(x => x.FromDateSh, null, new { @class = "form-control pdate" })
+                <i class="form-group__bar"></i>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 m-b-20" dir="rtl">
+            <div class="form-group">
+                @Html.LabelFor(x => x.ToDateSh)
+                @Html.TextBoxFor(x => x.ToDateSh, null, new { @class = "form-control pdate" })
+                <i class="form-group__bar"></i>
+            </div>
+        </div>
+    </div>
+}

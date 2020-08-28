@@ -899,6 +899,10 @@
     <Content Include="Views\SmsTemplate\Partials\_SearchView.cshtml" />
     <Content Include="Views\SmsTemplate\Search.cshtml" />
     <Content Include="Views\Dashboard\FinancialStatistic.cshtml" />
+    <Content Include="Views\Transaction\Search.cshtml" />
+    <Content Include="Views\Transaction\Partials\_Form.cshtml" />
+    <Content Include="Views\Transaction\Partials\_SearchList.cshtml" />
+    <Content Include="Views\Transaction\Partials\_Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

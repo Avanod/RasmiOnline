@@ -13,6 +13,7 @@
         IActionResponse<int> Update(Transaction model);
         Transaction Find(string authority);
         Transaction Find(int transactionId);
+        Transaction FindDetails(int transactionId);
         IActionResponse<int> Insert(Transaction model);
         int AllUnReadPaymentCount();
         IEnumerable<Transaction> AllUnReadPayment();
@@ -20,7 +21,7 @@
         int AllUnReadOfficePaymentCount(Guid officeUserId);
         IEnumerable<Transaction> AllUnReadOfficePayment(Guid officeUserId);
         IActionResponse<int> Remove(int orderId, int transactionId);
-
         int GetTotalPayedPrice(int orderId);
+        IActionResponse<List<Transaction>> Get(TransactionSearchFilter filterModel);
     }
 }

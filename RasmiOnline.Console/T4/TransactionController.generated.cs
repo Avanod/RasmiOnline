@@ -122,6 +122,18 @@ namespace RasmiOnline.Console.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Read);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Search()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.PartialViewResult Details()
+        {
+            return new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Details);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public TransactionController Actions { get { return MVC.Transaction; } }
@@ -151,6 +163,8 @@ namespace RasmiOnline.Console.Controllers
             public readonly string GetAllUnReadPayment = "GetAllUnReadPayment";
             public readonly string GetAllUnReadOfficePayment = "GetAllUnReadOfficePayment";
             public readonly string Read = "Read";
+            public readonly string Search = "Search";
+            public readonly string Details = "Details";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -169,6 +183,8 @@ namespace RasmiOnline.Console.Controllers
             public const string GetAllUnReadPayment = "GetAllUnReadPayment";
             public const string GetAllUnReadOfficePayment = "GetAllUnReadOfficePayment";
             public const string Read = "Read";
+            public const string Search = "Search";
+            public const string Details = "Details";
         }
 
 
@@ -267,6 +283,22 @@ namespace RasmiOnline.Console.Controllers
             public readonly string transactionId = "transactionId";
             public readonly string isOffice = "isOffice";
         }
+        static readonly ActionParamsClass_Search s_params_Search = new ActionParamsClass_Search();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Search SearchParams { get { return s_params_Search; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Search
+        {
+            public readonly string filter = "filter";
+        }
+        static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Details
+        {
+            public readonly string id = "id";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -278,9 +310,11 @@ namespace RasmiOnline.Console.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Failed = "Failed";
+                public readonly string Search = "Search";
                 public readonly string Success = "Success";
             }
             public readonly string Failed = "~/Views/Transaction/Failed.cshtml";
+            public readonly string Search = "~/Views/Transaction/Search.cshtml";
             public readonly string Success = "~/Views/Transaction/Success.cshtml";
             static readonly _PartialsClass s_Partials = new _PartialsClass();
             public _PartialsClass Partials { get { return s_Partials; } }
@@ -294,12 +328,18 @@ namespace RasmiOnline.Console.Controllers
                     public readonly string _AddableList = "_AddableList";
                     public readonly string _AllUnReadPayment = "_AllUnReadPayment";
                     public readonly string _EcommerceScript = "_EcommerceScript";
+                    public readonly string _Form = "_Form";
                     public readonly string _List = "_List";
+                    public readonly string _Search = "_Search";
+                    public readonly string _SearchList = "_SearchList";
                 }
                 public readonly string _AddableList = "~/Views/Transaction/Partials/_AddableList.cshtml";
                 public readonly string _AllUnReadPayment = "~/Views/Transaction/Partials/_AllUnReadPayment.cshtml";
                 public readonly string _EcommerceScript = "~/Views/Transaction/Partials/_EcommerceScript.cshtml";
+                public readonly string _Form = "~/Views/Transaction/Partials/_Form.cshtml";
                 public readonly string _List = "~/Views/Transaction/Partials/_List.cshtml";
+                public readonly string _Search = "~/Views/Transaction/Partials/_Search.cshtml";
+                public readonly string _SearchList = "~/Views/Transaction/Partials/_SearchList.cshtml";
             }
         }
     }
@@ -467,6 +507,30 @@ namespace RasmiOnline.Console.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "transactionId", transactionId);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "isOffice", isOffice);
             ReadOverride(callInfo, transactionId, isOffice);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SearchOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, RasmiOnline.Domain.Dto.TransactionSearchFilter filter);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Search(RasmiOnline.Domain.Dto.TransactionSearchFilter filter)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Search);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "filter", filter);
+            SearchOverride(callInfo, filter);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_PartialViewResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.PartialViewResult Details(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.Details);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DetailsOverride(callInfo, id);
             return callInfo;
         }
 

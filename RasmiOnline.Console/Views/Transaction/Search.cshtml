@@ -1,0 +1,45 @@
+﻿@model ActionResponse<List<Transaction>>
+
+@{
+    ViewBag.Title = LocalMessage.TransactionManagement;
+}
+@section Header{
+    <style>
+        #addNewItem {
+            display: none;
+        }
+    </style>
+}
+@{
+    Html.RenderPartial(MVC.Shared.Views.Partials._AddButton, new AddButtonModel
+    {
+        ModalTitle = "",
+        EntityName = nameof(Transaction),
+        FormUrl = "",
+        Title = ""
+    });
+}
+@{
+    Html.RenderPartial(MVC.Shared.Views._SharedSearch, new SearchPartialModel
+    {
+        ActionUrl = Url.Action(MVC.Transaction.ActionNames.Search, MVC.Transaction.Name),
+        EntityName = nameof(Transaction),
+        Model = new TransactionSearchFilter(),
+        PartialViewName = MVC.Transaction.Views.Partials._Search 
+    });
+
+    <div id="loadingOver" style="position:relative;">
+        <div id="@(nameof(Transaction))_SearchResultContainer">
+            @if (Model.IsNotNull())
+            {
+                Html.RenderPartial(MVC.Transaction.Views.Partials._SearchList, Model.Result);
+            }
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="@Links.Scripts.Plugins.jquery_dataTables_min_js"></script>
+    <script src="@Links.Scripts.Plugins.jquery_custom_search_js" type="text/javascript"></script>
+    <script src="@Links.Scripts.Plugins.jquery_custom_modal_js" type="text/javascript"></script>
+}

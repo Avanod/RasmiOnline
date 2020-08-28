@@ -547,6 +547,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to جزییات.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تخفیف.
         /// </summary>
         public static string Discount {
@@ -714,6 +723,15 @@ namespace RasmiOnline.Console.Properties {
         public static string ExportAndDownloadExcelFileDescription {
             get {
                 return ResourceManager.GetString("ExportAndDownloadExcelFileDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ناموفق.
+        /// </summary>
+        public static string Failed {
+            get {
+                return ResourceManager.GetString("Failed", resourceCulture);
             }
         }
         
@@ -1955,6 +1973,15 @@ namespace RasmiOnline.Console.Properties {
         public static string TransactionFailed {
             get {
                 return ResourceManager.GetString("TransactionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to جستجوی تراکنش.
+        /// </summary>
+        public static string TransactionManagement {
+            get {
+                return ResourceManager.GetString("TransactionManagement", resourceCulture);
             }
         }
         

@@ -358,7 +358,7 @@
     <value>کد رهگیری</value>
   </data>
   <data name="TransactionStatus" xml:space="preserve">
-    <value>TransactionStatus</value>
+    <value>وضعیت تراکنش</value>
   </data>
   <data name="Translation" xml:space="preserve">
     <value>ترجمه</value>
@@ -725,5 +725,14 @@
   </data>
   <data name="PaymentLastMonths" xml:space="preserve">
     <value>کل پرداخت ها به تفکیک ماه</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>از تاریخ</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>تا تاریخ</value>
+  </data>
+  <data name="OrderId" xml:space="preserve">
+    <value>شماره سفارش</value>
   </data>
 </root>

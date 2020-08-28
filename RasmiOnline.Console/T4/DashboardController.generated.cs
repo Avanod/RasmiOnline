@@ -74,6 +74,7 @@ namespace RasmiOnline.Console.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Statistic = "Statistic";
+            public readonly string FinancialStatistic = "FinancialStatistic";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,6 +82,7 @@ namespace RasmiOnline.Console.Controllers
         {
             public const string Index = "Index";
             public const string Statistic = "Statistic";
+            public const string FinancialStatistic = "FinancialStatistic";
         }
 
 
@@ -94,9 +96,11 @@ namespace RasmiOnline.Console.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string FinancialStatistic = "FinancialStatistic";
                 public readonly string Index = "Index";
                 public readonly string Statistic = "Statistic";
             }
+            public readonly string FinancialStatistic = "~/Views/Dashboard/FinancialStatistic.cshtml";
             public readonly string Index = "~/Views/Dashboard/Index.cshtml";
             public readonly string Statistic = "~/Views/Dashboard/Statistic.cshtml";
         }
@@ -126,6 +130,17 @@ namespace RasmiOnline.Console.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Statistic);
             StatisticOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FinancialStatisticOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult FinancialStatistic()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FinancialStatistic);
+            FinancialStatisticOverride(callInfo);
             return callInfo;
         }
 

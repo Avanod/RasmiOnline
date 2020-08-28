@@ -105,6 +105,8 @@
 
         public Transaction Find(int transactionId) => _transaction.Include(x => x.Order).FirstOrDefault(X => X.TransactionId == transactionId);
 
+        public Transaction FindDetails(int transactionId) => _transaction.Include(x => x.Order).Include(x => x.Order.User).FirstOrDefault(X => X.TransactionId == transactionId);
+
         public IActionResponse<int> Insert(Transaction model)
         {
             var result = new ActionResponse<int>();
@@ -127,11 +129,6 @@
                                                model.Price.ToString("0,0"),
                                                model.TrackingId.ToString(),
                                                PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                    //string.Format(BusinessMessage.Transaction_Add_Bot, (HttpContext.Current.User as ICurrentUserPrincipal).FullName,
-                    //               model.OrderId, pg.PaymentGatewayType.GetLocalizeDescription(),
-                    //               model.Price.ToString("0,0"),
-                    //               model.TrackingId.ToString(),
-                    //               PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                     Key = nameof(Transaction),
                     UserId = (HttpContext.Current.User as ICurrentUserPrincipal).UserId,
                 });
@@ -202,5 +199,33 @@
         }
 
         public int GetTotalPayedPrice(int orderId) => _transaction.Where(x => x.OrderId == orderId && x.IsSuccess).Select(x => x.Price).ToList().Sum();
+
+        public IActionResponse<List<Transaction>> Get(TransactionSearchFilter filterModel)
+        {
+            var response = new ActionResponse<List<Transaction>>();
+            var q = _transaction.AsNoTracking().AsQueryable();
+            if (filterModel.OrderId != null)
+                q = q.Where(x => x.OrderId == filterModel.OrderId);
+            if (!string.IsNullOrWhiteSpace(filterModel.MobileNumber))
+            {
+                long mobNum = 0;
+                if (long.TryParse(filterModel.MobileNumber, out mobNum))
+                    q = q.Where(x => x.Order.User.MobileNumber == mobNum);
+            }
+            if (filterModel.PaymentGatewayId != null)
+                q = q.Where(x => x.PaymentGatewayId == filterModel.PaymentGatewayId);
+            if (filterModel.Status != null)
+                q = q.Where(x => x.Status == filterModel.Status);
+            if (!string.IsNullOrWhiteSpace(filterModel.TrackingId))
+                q = q.Where(x => x.TrackingId.Contains(filterModel.TrackingId));
+            if (!string.IsNullOrWhiteSpace(filterModel.FromDateSh))
+                q = q.Where(x => x.InsertDateSh.CompareTo(filterModel.FromDateSh) >= 0);
+            if (!string.IsNullOrWhiteSpace(filterModel.FromDateSh))
+                q = q.Where(x => x.InsertDateSh.CompareTo(filterModel.ToDateSh) <= 0);
+            response.Result = q.OrderByDescending(x => x.TransactionId)
+                         .Take(filterModel.ItemsCount)
+                         .ToList();
+            return response;
+        }
     }
 }

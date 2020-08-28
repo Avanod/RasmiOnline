@@ -125,6 +125,7 @@
     <Compile Include="Dto\StatisticModel.cs" />
     <Compile Include="Dto\Base\SurveySearchFilter.cs" />
     <Compile Include="Dto\TransactionModel.cs" />
+    <Compile Include="Dto\TransactionSearchFilter.cs" />
     <Compile Include="Dto\UserDetailsModel.cs" />
     <Compile Include="Dto\ViewsFullPathModel.cs" />
     <Compile Include="Entity\Base\BankCard.cs" />
