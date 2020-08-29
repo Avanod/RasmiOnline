@@ -27,7 +27,6 @@
         public IActionResponse<bool> Send(Message message)
         {
             var result = new ActionResponse<bool>();
-            var roboResponse = new Telegram.Bot.Types.Message();
             try
             {
                 ServicePointManager.Expect100Continue = true;
@@ -38,7 +37,7 @@
 
                 //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
 
-                roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content).Result;
+                var roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content).Result;
                 message.SendStatus = roboResponse.MessageId.ToString();
                 message.State = StateType.Accepted;
                 _uow.Entry(message).State = EntityState.Modified;

@@ -1,6 +1,5 @@
 ﻿namespace RasmiOnline.Domain.Dto
 {
-    using Enum;
     using System;
     using System.Collections.Generic;
 
@@ -14,6 +13,7 @@
     {
         public string Key { get; set; }
         public Guid UserId { get; set; }
+        public Guid OfficeUserId { get; set; }
         public string SmsContent { get; set; }
         public string BotContent { get; set; }
         public int RecordId { get; set; }

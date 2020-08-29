@@ -30,6 +30,7 @@
         public void Notify(ConcreteKey concrete, ObserverMessage msg)
         {
             var user = _uow.Set<User>().Find(msg.UserId);
+            var officeUser = _uow.Set<User>().Find(msg.OfficeUserId);
             if (user == null) return;
 
             var observers = JsonConvert.DeserializeObject<IEnumerable<Concrete>>(File.ReadAllText(GlobalVariable.ObserverConfig));
@@ -44,7 +45,12 @@
                     }
 
                     foreach (IObserver o in _observers)
-                        o.Observe(_uow, _messageBusiness, msg, user);
+                    {
+                        if (o.ToString().ToLower().Contains("robotele"))
+                            o.Observe(_uow, _messageBusiness, msg, officeUser);
+                        else
+                            o.Observe(_uow, _messageBusiness, msg, user);
+                    }
                     break;
                 }
             }
