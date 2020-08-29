@@ -10,6 +10,7 @@
     using Gnu.Framework.Core.Log;
     using RasmiOnline.Business.Properties;
     using Gnu.Framework.EntityFramework.DataAccess;
+    using System.Net;
 
     public class RoboTeleStrategy : IMessagingStrategy
     {
@@ -26,10 +27,19 @@
         public IActionResponse<bool> Send(Message message)
         {
             var result = new ActionResponse<bool>();
+            var roboResponse = new Telegram.Bot.Types.Message();
             try
             {
-                var roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content);
-                message.SendStatus = roboResponse.Result.MessageId.ToString();
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
+                       | SecurityProtocolType.Tls11
+                       | SecurityProtocolType.Tls12
+                       | SecurityProtocolType.Ssl3;
+
+                //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
+                roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content).Result;
+                message.SendStatus = roboResponse.MessageId.ToString();
                 message.State = StateType.Accepted;
                 _uow.Entry(message).State = EntityState.Modified;
                 _uow.SaveChanges();
