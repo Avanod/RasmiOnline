@@ -29,7 +29,7 @@
             try
             {
                 //FileLoger.Info($"Send Sms Message = Receiver:{message.Receiver}, Content:{message.Content}", GlobalVariable.LogPath);
-                var sendResult = _smsAdapter.SendMessage("tarjomano1", "11360655", "9830008638000067", message.Content, new ArrayOfString() { message.Receiver }, 1, null);
+                var sendResult = _smsAdapter.SendMessage("mamirshahi", "jobTyw-5paqwi-byjciw", "50002210004039", message.Content, new ArrayOfString() { message.Receiver }, 1, null);
                 if (sendResult[0] > 1000)
                 {
                     message.State = StateType.Accepted;
