@@ -212,6 +212,7 @@
         public void StatusNotifier(Order order, string baseDomain = "")
         {
             var user = _userBusiness.Value.Find(order.UserId);
+            var officeUser = _userBusiness.Value.Find(order.OfficeUserId);
 
             if (user != null)
             {
@@ -226,7 +227,8 @@
                             //string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             Key = ConcreteKey.Order_Wait_For_Payment.ToString(),
                             RecordId = order.OrderId,
-                            UserId = user.UserId
+                            UserId = user.UserId,
+                            OfficeUserId = officeUser.UserId
                         });
                         break;
                     case OrderStatus.PayAllFactor:
@@ -239,6 +241,7 @@
                             Key = ConcreteKey.Order_Pay_All_Factor.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId,
+                            OfficeUserId = officeUser.UserId
                         });
                         break;
                     case OrderStatus.SubmitDraft:
@@ -250,7 +253,8 @@
                             //string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
                             Key = ConcreteKey.Order_Submit_Draft.ToString(),
                             RecordId = order.OrderId,
-                            UserId = user.UserId
+                            UserId = user.UserId,
+                            OfficeUserId = officeUser.UserId
                         });
                         break;
                     case OrderStatus.Cancel:
@@ -262,6 +266,7 @@
                             Key = ConcreteKey.Order_Cancel.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId,
+                            OfficeUserId = officeUser.UserId
                         });
                         break;
                     case OrderStatus.Done:
@@ -273,27 +278,22 @@
                             Key = ConcreteKey.Order_Done.ToString(),
                             RecordId = order.OrderId,
                             UserId = user.UserId,
+                            OfficeUserId = officeUser.UserId
                         });
                         break;
                     default:
+                        _observerManager.Value.Notify(ConcreteKey.Order_Status_Changed, new ObserverMessage
                         {
-                            _observerManager.Value.Notify(ConcreteKey.Order_Status_Changed, new ObserverMessage
-                            {
-                                BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                                //string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
-                                Key = ConcreteKey.Order_Status_Changed.ToString(),
-                                RecordId = order.OrderId,
-                                UserId = user.UserId,
-                            });
-                            break;
-                        }
-
+                            BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            //string.Format(BusinessMessage.Change_OrderState_Bot, order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            Key = ConcreteKey.Order_Status_Changed.ToString(),
+                            RecordId = order.OrderId,
+                            UserId = user.UserId,
+                            OfficeUserId = officeUser.UserId
+                        });
+                        break;
                 }
-
-                //insert ShortLink 
-
             }
-
         }
 
         /// <summary>

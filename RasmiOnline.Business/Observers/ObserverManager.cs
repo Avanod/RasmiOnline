@@ -9,6 +9,8 @@
     using System.Reflection;
     using System.Collections.Generic;
     using Gnu.Framework.EntityFramework.DataAccess;
+    using System;
+    using Gnu.Framework.Core;
 
     public class ObserverManager : IObserverManager
     {
@@ -29,14 +31,20 @@
 
         public void Notify(ConcreteKey concrete, ObserverMessage msg)
         {
-            var user = _uow.Set<User>().Find(msg.UserId);
-            if (user == null) return;
+            var user = new User();
+            var officeUser = new User();
+            if (msg.UserId.IsNotNullGuid()) user = _uow.Set<User>().Find(msg.UserId);
+            if (msg.OfficeUserId.IsNotNullGuid()) officeUser = _uow.Set<User>().Find(msg.OfficeUserId);
 
             var observers = JsonConvert.DeserializeObject<IEnumerable<Concrete>>(File.ReadAllText(GlobalVariable.ObserverConfig));
+            var officeUsername = false;
             foreach (var item in observers)
             {
                 if (item.Key == concrete.ToString())
                 {
+                    if (item.Key == "Order_Status_Changed" ||
+                    item.Key == "Offline_Payment") officeUsername = true;
+
                     foreach (var obs in item.Observers)
                     {
                         Assembly assembly = Assembly.GetExecutingAssembly();
@@ -44,7 +52,12 @@
                     }
 
                     foreach (IObserver o in _observers)
-                        o.Observe(_uow, _messageBusiness, msg, user);
+                    {
+                        if (officeUsername)
+                            o.Observe(_uow, _messageBusiness, msg, officeUser.UserId.IsNotNullGuid() ? officeUser : user);
+                        else
+                            o.Observe(_uow, _messageBusiness, msg, user);
+                    }
                     break;
                 }
             }
