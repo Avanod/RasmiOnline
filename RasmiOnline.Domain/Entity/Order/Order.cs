@@ -95,6 +95,7 @@
         [Display(Name = nameof(DisplayName.PassportIsAttached), ResourceType = typeof(DisplayName))]
         public bool WithPassport { get; set; }
 
+        [Display(Name = nameof(DisplayName.TranslateType), ResourceType = typeof(DisplayName))]
         public TranslateType TranslateType { get; set; }
 
         [NotMapped]

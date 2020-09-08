@@ -596,6 +596,7 @@
                              InsertDateSh = s.InsertDateSh,
                              MobileNumber = s.User.MobileNumber,
                              OrderId = s.OrderId,
+                             TranslateType = s.TranslateType,
                              UserFullName = s.User.FirstName + " " + s.User.LastName
                          })
                          .Take(filterModel.ItemsCount)

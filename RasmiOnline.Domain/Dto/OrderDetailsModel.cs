@@ -9,6 +9,9 @@
     {
         public int OrderId { get; set; }
 
+        [Display(Name = nameof(DisplayName.TranslateType), ResourceType = typeof(DisplayName))]
+        public TranslateType TranslateType { get; set; }
+
         [Display(Name = nameof(DisplayName.OrderNumber), ResourceType = typeof(DisplayName))]
         public int OrderNumber { get; set; }
 

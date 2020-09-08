@@ -37,6 +37,10 @@
                     </li>
                     <li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+                        <span>@Html.DisplayNameFor(x => x.TranslateType) : <span>@Model.TranslateType.GetDescription()</span></span>
+                    </li>
+                    <li>
+                        <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.InsertDateSh) : @Model.InsertDateSh ساعت :: @Model.InsertDateMi.Hour:@Model.InsertDateMi.Minute</span>
                     </li>
                     <li>
@@ -48,9 +52,9 @@
                         <span>@Html.DisplayNameFor(x => x.NeedDraft) : @(Model.NeedDraft ? LocalMessage.Yes : LocalMessage.No)</span>
                     </li>
                     @*<li>
-                            <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
-                            <span>@Html.DisplayNameFor(x => x.OrderTitle) : @Model.OrderTitle</span>
-                        </li>*@
+            <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+            <span>@Html.DisplayNameFor(x => x.OrderTitle) : @Model.OrderTitle</span>
+        </li>*@
                     <li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.OrderDescription) : @Model.OrderDescription</span>

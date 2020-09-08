@@ -14,6 +14,7 @@
                             <th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending">#</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().OrderNumber)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().UserFullName)</th>
+                            <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().TranslateType)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().MobileNumber)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().OrderStatus)</th>
                             <th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1">@Html.DisplayNameFor(item => item.FirstOrDefault().InsertDateMi)</th>
@@ -30,6 +31,7 @@
                                     <td class="sorting_1">@count</td>
                                     <td>@item.OrderNumber</td>
                                     <td>@item.UserFullName</td>
+                                    <td>@item.TranslateType.GetDescription()</td>
                                     <td dir="ltr">@($"{item.MobileNumber}")</td>
                                     <td>
                                         @if ((byte)item.OrderStatus == 0)
