@@ -281,6 +281,18 @@
                             OfficeUserId = officeUser.UserId
                         });
                         break;
+                    case OrderStatus.DeliveryFiles:
+                        _observerManager.Value.Notify(ConcreteKey.Order_Done, new ObserverMessage
+                        {
+                            SmsContent = string.Format(_smsTempalte.GetText(MessagingType.Sms, ConcreteKey.DeliveryFiles), order.OrderId),
+                            BotContent = string.Format(_smsTempalte.GetText(MessagingType.RoboTele, ConcreteKey.Order_Status_Changed), order.OrderId, order.OrderStatus.GetDescription(), PersianDateTime.Now.ToString(PersianDateTimeFormat.FullDateFullTime)),
+                            //string.Format(BusinessMessage.Order_Is_Done_Sms, order.OrderId, $"{baseDomain}/home/Download/{order.OrderId}/{order.UserId}"),
+                            Key = ConcreteKey.DeliveryFiles.ToString(),
+                            RecordId = order.OrderId,
+                            UserId = user.UserId,
+                            OfficeUserId = officeUser.UserId
+                        });
+                        break;
                     default:
                         _observerManager.Value.Notify(ConcreteKey.Order_Status_Changed, new ObserverMessage
                         {

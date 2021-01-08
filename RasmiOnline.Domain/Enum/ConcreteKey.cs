@@ -23,8 +23,10 @@ namespace RasmiOnline.Domain.Enum
         [Description("پرداخت موفق سفارش")]
         Success_Payment,
         [Description("تراکنش غیر آنلاین")]
-        Offline_Payment
+        Offline_Payment,
 
+        [Description("تحویل ترجمه")]
+        DeliveryFiles,
 
         //[Description("افزودن تراکنش")]
         //Transaction_Add,
