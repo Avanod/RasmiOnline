@@ -13,6 +13,8 @@
                     return new RoboTeleStrategy(unitOfWork);
                 case MessagingType.Sms:
                     return new SmsStrategy(unitOfWork);
+                case MessagingType.Email:
+                    return new EmailStrategy(unitOfWork);
                 default:
                     return new NullObjectStrategy(unitOfWork);
             }

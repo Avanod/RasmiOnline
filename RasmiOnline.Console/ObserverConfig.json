@@ -64,7 +64,8 @@
   {
     "Key": "Order_Status_Changed",
     "Observers": [
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   }
 ]

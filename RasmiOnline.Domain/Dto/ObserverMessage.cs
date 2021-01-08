@@ -16,6 +16,7 @@
         public Guid OfficeUserId { get; set; }
         public string SmsContent { get; set; }
         public string BotContent { get; set; }
+        public string Subject { get; set; }
         public int RecordId { get; set; }
         public int MessageId { get; set; }
     }

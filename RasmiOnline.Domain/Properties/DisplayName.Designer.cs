@@ -349,7 +349,7 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to توضیحات تایید.
+        ///   Looks up a localized string similar to توضیحات پیش نویس.
         /// </summary>
         public static string ConfirmComment {
             get {

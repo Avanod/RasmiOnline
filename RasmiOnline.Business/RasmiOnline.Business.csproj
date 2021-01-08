@@ -138,6 +138,8 @@
     <Compile Include="Implement\BankCardBusiness.cs" />
     <Compile Include="Implement\ChannelBusiness.cs" />
     <Compile Include="Implement\DiscountBusiness.cs" />
+    <Compile Include="Implement\MessagingStrategy\EmailStrategy.cs" />
+    <Compile Include="Observers\AdminEmailObserver.cs" />
     <Compile Include="Protocol\ISmsTemplateBusiness.cs" />
     <Compile Include="Implement\SmsTemplateBusiness.cs" />
     <Compile Include="Protocol\ISurveyOptionBusiness.cs" />

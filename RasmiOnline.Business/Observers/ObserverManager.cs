@@ -50,7 +50,7 @@
                         Assembly assembly = Assembly.GetExecutingAssembly();
                         _observers.Add(assembly.CreateInstance(obs) as IObserver);
                     }
-
+                    msg.Subject = item.Key;
                     foreach (IObserver o in _observers)
                     {
                         if (officeUsername)

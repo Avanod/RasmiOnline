@@ -12,6 +12,9 @@ html, body {
     min-height: 100%;
     direction: rtl;
 }
+.header__logo img {
+    width: 120px;
+}
 
 .p-r-15 {
     padding-right: 15px;

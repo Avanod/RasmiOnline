@@ -1722,9 +1722,9 @@ select {
     border-bottom: 1px solid #BDBDBD;
 }*/
 
-    input[type="text"]:focus, input[type="password"]:focus {
-        outline: none;
-    }
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+}
 
 .remove {
     margin-left: 5px;
@@ -2239,9 +2239,10 @@ select {
     direction: ltr;
 }
 
-.dir-rtl{
- direction: rtl;
+.dir-rtl {
+    direction: rtl;
 }
+
 .field-validation-error {
     color: red;
     font-size: 10px;
@@ -2568,7 +2569,7 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
     }
 
 input[type="text"].input-validation-error, input[type="password"].input-validation-error {
-    border:solid 1px red;
+    border: solid 1px red;
 }
 
 .line-seperator {
@@ -2649,4 +2650,8 @@ input[type="text"].input-validation-error, input[type="password"].input-validati
 
 footer .menu-main-container .sub-menu {
     display: none !important;
+}
+
+.header__logo img {
+    width: 120px;
 }
