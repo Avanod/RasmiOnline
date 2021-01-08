@@ -160,7 +160,7 @@
             ajaxAutoComplete($(this), function (items) {
                 return items.map(x => ('<li title="افزودن"><div>' + x.DocumentType + '<span>قیمت پایه/' + x.PricingItemUnitText + ':            ' + (orderItem.inEnglish ? x.Price.toString().cThSeperator() : x.Price_OthersLang.toString().cThSeperator()) + '</span></div></li>'))
             }, function (item) {
-                if (orderItem.$wrapper.find('.item[data-id=' + item.PricingItemId + ']').length === 0) {
+                //if (orderItem.$wrapper.find('.item[data-id=' + item.PricingItemId + ']').length === 0) {
                     orderItem.add(item);
                     orderItem.sum();
                     $.each($(".mustly-used-item"), function (idx, itm) {
@@ -168,7 +168,7 @@
                             $(itm).addClass('activate');
                         }
                     });
-                }
+                //}
             });
         });
     }

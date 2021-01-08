@@ -19,32 +19,32 @@ var orderBoardManage = {
         });
 
         $(document).off("click", orderStatusMobile).on("click", orderStatusMobile,
-               function (evt) {
-                   evt.preventDefault();
-                   let $this = $(this);
-                   $(orderAccordionTitle).html($this.attr('data-desc'));
-                   orderBoardManage.actions.showListMobile($this.attr('data-url'), $this.attr('data-type'));
-               });
+            function (evt) {
+                evt.preventDefault();
+                let $this = $(this);
+                $(orderAccordionTitle).html($this.attr('data-desc'));
+                orderBoardManage.actions.showListMobile($this.attr('data-url'), $this.attr('data-type'));
+            });
 
         $(document).off("click", orderBoardMobile).on("click", orderBoardMobile,
-         function (evt) {
-             evt.preventDefault();
-             if ($(orderBoardMobile).attr('data-collapse-state') === 'close') {
-                 $(orderBoardMobile).attr('data-collapse-state', 'open')
-                 $(showOrderBoardList + ' i').removeClass('zmdi-chevron-down').addClass('zmdi-chevron-up');
-                 $(orderBoardMobile).animate({ 'max-height': '300px', 'height': '300px' }, 300);
-                 setTimeout(function () {
-                     $(orderBoardMobile + ' DIV.menu-item').css('display', 'block');
-                 }, 200);
-             } else {
-                 $(orderBoardMobile).attr('data-collapse-state', 'close')
-                 $(showOrderBoardList + ' i').removeClass('zmdi-chevron-up').addClass('zmdi-chevron-down');
-                 $(orderBoardMobile).animate({ 'height': '50px' }, 300);
-                 setTimeout(function () {
-                     $(orderBoardMobile + ' Div.menu-item').css('display', 'none');
-                 }, 200);
-             }
-         });
+            function (evt) {
+                evt.preventDefault();
+                if ($(orderBoardMobile).attr('data-collapse-state') === 'close') {
+                    $(orderBoardMobile).attr('data-collapse-state', 'open')
+                    $(showOrderBoardList + ' i').removeClass('zmdi-chevron-down').addClass('zmdi-chevron-up');
+                    $(orderBoardMobile).animate({ 'max-height': '300px', 'height': '300px' }, 300);
+                    setTimeout(function () {
+                        $(orderBoardMobile + ' DIV.menu-item').css('display', 'block');
+                    }, 200);
+                } else {
+                    $(orderBoardMobile).attr('data-collapse-state', 'close')
+                    $(showOrderBoardList + ' i').removeClass('zmdi-chevron-up').addClass('zmdi-chevron-down');
+                    $(orderBoardMobile).animate({ 'height': '50px' }, 300);
+                    setTimeout(function () {
+                        $(orderBoardMobile + ' Div.menu-item').css('display', 'none');
+                    }, 200);
+                }
+            });
     },
     actions: {
         showList: function (url, status) {
@@ -141,4 +141,24 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on("click", ".delete-order", function () {
+        let $elm = $(this);
+        let url = $elm.data('url');
+        let $html = $elm.html();
+        $elm.html(threeDotLoader);
+        $.post(url)
+            .done(function (data) {
+                $elm.html($html);
+                if (data.IsSuccessful) {
+                    $elm.closest('tr').remove();
+                }
+                else notify(false, data.Message);
+            })
+            .fail(function () {
+                notify(false, 'خطایی رخ داده است، دوباره سعی نمایید.');
+                $elm.html($html);
+            });
+        console.log(url);
+    })
 });

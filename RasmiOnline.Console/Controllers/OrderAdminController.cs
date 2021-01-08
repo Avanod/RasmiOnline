@@ -185,5 +185,11 @@
 
         [HttpGet]
         public virtual PartialViewResult GetMobileOrderType() => PartialView(MVC.OrderAdmin.Views.Partials._OrderBoardMobile, _orderBusiness.GetOrderDetails());
+
+        [HttpPost]
+        public virtual JsonResult Delete(int id)
+        {
+            return Json(_orderBusiness.Delete(id));
+        }
     }
 }
