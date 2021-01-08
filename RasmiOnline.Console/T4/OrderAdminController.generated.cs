@@ -74,6 +74,12 @@ namespace RasmiOnline.Console.Controllers
         {
             return new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetOrderPaymentInfo);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult Delete()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Delete);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public OrderAdminController Actions { get { return MVC.OrderAdmin; } }
@@ -100,6 +106,7 @@ namespace RasmiOnline.Console.Controllers
             public readonly string GetOrderList = "GetOrderList";
             public readonly string GetOrderListMobile = "GetOrderListMobile";
             public readonly string GetMobileOrderType = "GetMobileOrderType";
+            public readonly string Delete = "Delete";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -115,6 +122,7 @@ namespace RasmiOnline.Console.Controllers
             public const string GetOrderList = "GetOrderList";
             public const string GetOrderListMobile = "GetOrderListMobile";
             public const string GetMobileOrderType = "GetMobileOrderType";
+            public const string Delete = "Delete";
         }
 
 
@@ -167,6 +175,14 @@ namespace RasmiOnline.Console.Controllers
         public class ActionParamsClass_GetOrderListMobile
         {
             public readonly string orderStatus = "orderStatus";
+        }
+        static readonly ActionParamsClass_Delete s_params_Delete = new ActionParamsClass_Delete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Delete DeleteParams { get { return s_params_Delete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Delete
+        {
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -364,6 +380,18 @@ namespace RasmiOnline.Console.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_PartialViewResult(Area, Name, ActionNames.GetMobileOrderType);
             GetMobileOrderTypeOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult Delete(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Delete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DeleteOverride(callInfo, id);
             return callInfo;
         }
 

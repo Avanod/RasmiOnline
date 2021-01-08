@@ -520,7 +520,7 @@
 
         public Order Find(int orderId, string relatedEntities = "none")
         {
-            var query = _order.Where(x => x.OrderId == orderId);
+            var query = _order.Where(x => x.OrderId == orderId && !x.IsDeleted);
             switch (relatedEntities)
             {
                 case "none":
@@ -547,7 +547,7 @@
         }
         public Order Find(int orderId, Guid officeUserId, string relatedEntities = "none")
         {
-            var query = _order.Where(x => x.OrderId == orderId && x.OfficeUserId == officeUserId);
+            var query = _order.Where(x => x.OrderId == orderId && x.OfficeUserId == officeUserId && !x.IsDeleted);
             switch (relatedEntities)
             {
                 case "none":
@@ -577,6 +577,7 @@
             var response = new ActionResponse<List<OrderDetailsModel>>();
             var result = _order.Include(i => i.User)
                                .Where(x =>
+                                !x.IsDeleted &&
                                (!string.IsNullOrEmpty(filterModel.FirstName) ? x.User.FirstName.Contains(filterModel.FirstName) : true) &&
                                (!string.IsNullOrEmpty(filterModel.LastName) ? x.User.LastName.Contains(filterModel.LastName) : true) &&
                                (!string.IsNullOrEmpty(filterModel.Email) ? x.User.Email == filterModel.Email : true) &&
@@ -617,7 +618,7 @@
             var result = (from order in _order.AsNoTracking()
                           join address in _uow.Set<Address>() on order.AddressId equals address.AddressId
                           join user in _uow.Set<User>() on order.UserId equals user.UserId
-                          where order.InsertDateMi >= filterModel.DateTimeFrom && order.InsertDateMi <= filterModel.DateTimeTo
+                          where order.InsertDateMi >= filterModel.DateTimeFrom && order.InsertDateMi <= filterModel.DateTimeTo && !order.IsDeleted
                           orderby order.InsertDateMi descending
                           select new ExportOrderToExcelModel
                           {
@@ -651,7 +652,8 @@
             var response = new ActionResponse<IEnumerable<Order>>();
             var result = _order.Include(x => x.User)
                                .Where(x => (userId != null ? x.UserId == userId : true)
-                                  && (officeUserId != null ? x.OfficeUserId == officeUserId : true)
+                                && !x.IsDeleted
+                                && (officeUserId != null ? x.OfficeUserId == officeUserId : true)
                                 && (orderStatus != null && userId == null ? x.OrderStatus == orderStatus : true))
                                .OrderByDescending(x => x.OrderId).Take(count).ToList();
             if (officeUserId == null)
@@ -676,7 +678,7 @@
         public IActionResponse<List<ItemTextValueModel<OrderStatus, int>>> GetOrderDetails()
         {
             var response = new ActionResponse<List<ItemTextValueModel<OrderStatus, int>>>();
-            var orders = (from o in _order
+            var orders = (from o in _order.Where(x => !x.IsDeleted)
                           group 0 by o.OrderStatus into g
                           select new ItemTextValueModel<OrderStatus, int>
                           {
@@ -761,14 +763,14 @@
 
         }
 
-        public bool HasOrder(Guid userId) => _order.Count(X => X.UserId == userId) > 0;
+        public bool HasOrder(Guid userId) => _order.Count(X => !X.IsDeleted && X.UserId == userId) > 0;
 
 
         public IActionResponse<List<ItemTextValueModel<OrderStatus, int>>> GetOrderDetails(Guid officeUserId)
         {
             var response = new ActionResponse<List<ItemTextValueModel<OrderStatus, int>>>();
             var orders = (from o in _order
-                          where o.OfficeUserId == officeUserId
+                          where o.OfficeUserId == officeUserId && !o.IsDeleted
                           group 0 by o.OrderStatus into g
                           select new ItemTextValueModel<OrderStatus, int>
                           {
@@ -787,8 +789,9 @@
         {
             var date = DateTime.Now.Date;
             var tomorrow = DateTime.Now.AddDays(1).Date;
-            return _order.Count(X => (officeUserId != null ? X.OfficeUserId == officeUserId : true) &&
-                           X.DeliverFiles_DateMi >= date && X.DeliverFiles_DateMi < tomorrow
+            return _order.Count(X => (officeUserId != null ? X.OfficeUserId == officeUserId : true)
+                           && !X.IsDeleted
+                           && X.DeliverFiles_DateMi >= date && X.DeliverFiles_DateMi < tomorrow
                            && X.OrderStatus != OrderStatus.Done && X.OrderStatus != OrderStatus.Cancel);
 
         }
@@ -799,6 +802,7 @@
             var tomorrow = DateTime.Now.AddDays(1).Date;
             return _order.Include(x => x.User)
                          .Where(X => (officeUserId != null ? X.OfficeUserId == officeUserId : true)
+                                     && !X.IsDeleted
                                      && X.DeliverFiles_DateMi >= date && X.DeliverFiles_DateMi < tomorrow
                                      && X.OrderStatus != OrderStatus.Done && X.OrderStatus != OrderStatus.Cancel)
                          .OrderByDescending(x => x.OrderId).AsNoTracking().ToList();
@@ -818,6 +822,7 @@
             var tomorrow = DateTime.Now.AddDays(1).Date;
             return _order.Include(x => x.User)
                          .Where(X => (officeUserId != null ? X.OfficeUserId == officeUserId : true)
+                                     && !X.IsDeleted
                                      && X.DeliverFiles_DateMi < date
                                      && X.OrderStatus != OrderStatus.Done && X.OrderStatus != OrderStatus.Cancel)
                          .OrderByDescending(x => x.OrderId).AsNoTracking().ToList();
@@ -827,14 +832,15 @@
         {
             var date = DateTime.Now.Date;
             var tomorrow = DateTime.Now.AddDays(1).Date;
-            return _order.Count(X => (officeUserId != null ? X.OfficeUserId == officeUserId : true) &&
-                           X.DeliverFiles_DateMi < date
+            return _order.Count(X => (officeUserId != null ? X.OfficeUserId == officeUserId : true)
+                           && !X.IsDeleted
+                           && X.DeliverFiles_DateMi < date
                            && X.OrderStatus != OrderStatus.Done && X.OrderStatus != OrderStatus.Cancel);
         }
 
         public IEnumerable<Order> GetReport(Guid? officeUserId = null, string fromDate = null, string toDate = null)
         {
-            var q = _order.Include(x => x.OrderItems).AsQueryable();
+            var q = _order.Where(x => !x.IsDeleted).Include(x => x.OrderItems).AsQueryable();
             if (officeUserId != null) q = q.Where(x => x.OfficeUserId == officeUserId);
             if (!string.IsNullOrWhiteSpace(fromDate)) q = q.Where(x => x.InsertDateSh.CompareTo(fromDate) > 0);
             if (!string.IsNullOrWhiteSpace(fromDate)) q = q.Where(x => x.InsertDateSh.CompareTo(toDate) < 0);
@@ -952,6 +958,21 @@
                 IsSuccessful = rep.ToSaveChangeResult(),
                 Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
                 Result = new Tuple<Order, int>(order, order.IsFullPayed ? (order.TotalPrice() - payedPrice) : (order.TotalPrice() / 2))
+            };
+        }
+
+        public IActionResponse<int> Delete(int id)
+        {
+            var order = _order.Find(id);
+            if (order == null) return new ActionResponse<int> { Message = BusinessMessage.RecordNotFound };
+            order.IsDeleted = true;
+            _uow.Entry(order).State = EntityState.Modified;
+            var update = _uow.SaveChanges();
+            return new ActionResponse<int>
+            {
+                IsSuccessful = update.ToSaveChangeResult(),
+                Result = id,
+                Message = update.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error)
             };
         }
     }

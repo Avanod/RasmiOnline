@@ -37,5 +37,6 @@
 
         IActionResponse<Order> Add(AddOrderModel model);
         IActionResponse<Tuple<Order, int>> UpdateBeforePayment(CompleteOrderModel model);
+        IActionResponse<int> Delete(int id);
     }
 }

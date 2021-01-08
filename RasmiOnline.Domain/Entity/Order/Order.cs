@@ -18,6 +18,9 @@
         [Display(Name = nameof(DisplayName.OrderNumber), ResourceType = typeof(DisplayName))]
         public int OrderId { get; set; }
 
+        //[NotMapped]
+        public bool IsDeleted { get; set; }
+
         [Display(Name = nameof(DisplayName.IsFullPayed), ResourceType = typeof(DisplayName))]
         public bool IsFullPayed { get; set; }
 
