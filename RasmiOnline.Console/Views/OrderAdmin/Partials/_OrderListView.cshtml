@@ -47,7 +47,7 @@
                             <td dir="rtl" align="right" class="@(item.DeliverFiles_DateSh == null ? "text-danger" : "")">@(item.DeliverFiles_DateSh == null ? $"{item.DayToDelivery} روز کاری" : item.DeliverFiles_DateSh)</td>
                             @if (item.OrderStatus == OrderStatus.Cancel)
                             {
-                                <td class="delete-order cursor-pointer" align="right" data-url="@Url.Action(MVC.OrderAdmin.ActionNames.Delete,MVC.OrderAdmin.Name,new {id=item.OrderId })">
+                                <td class="delete-order" style="cursor:pointer;text-align:center;font-size:20px;" align="right" data-url="@Url.Action(MVC.OrderAdmin.ActionNames.Delete,MVC.OrderAdmin.Name,new {id=item.OrderId })">
                                     <i class="zmdi zmdi-delete default-i"></i>
                                 </td>
                             }
