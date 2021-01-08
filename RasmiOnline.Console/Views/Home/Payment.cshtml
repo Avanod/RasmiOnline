@@ -133,6 +133,8 @@
                             <tr>
                                 <th class="text-right">#</th>
                                 <th class="text-right">عنوان</th>
+                                <th class="text-right">واحد</th>
+                                <th class="text-right">قیمت واحد</th>
                                 <th class="text-right">تعداد</th>
                                 <th class="text-right">قیمت(@LocalMessage.MoneyCurrency)</th>
                             </tr>
@@ -143,16 +145,12 @@
                                 <tr>
                                     <td>@(Model.OrderItems.ToList().IndexOf(item) + 1)</td>
                                     <td>@item.Name</td>
+                                    <td>@(item.PricingItemUnitText ?? PricingItemUnit.Page.GetLocalizeDescription())</td>
+                                    <td>@(Model.LangType == LangType.Fa_En ? item.Price : item.Price_OthersLang)</td>
                                     <td>@item.Count</td>
                                     <td>@item.CalculateTotalPrice(Model.LangType)</td>
                                 </tr>
                             }
-                            @*<tr>
-                                    <td></td>
-                                    <td>جمع کل</td>
-                                    <td>@Model.OrderItems.Sum(x => x.Count)</td>
-                                    <td>@Model.OrderItems.Sum(x => x.CalculateTotalPrice(Model.LangType)).ToString("N0")</td>
-                                </tr>*@
                         </tbody>
                     </table>
                 </div>

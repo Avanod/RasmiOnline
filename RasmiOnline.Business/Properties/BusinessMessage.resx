@@ -274,4 +274,7 @@ Portal.amirshahigroup.com</value>
   <data name="MoneyCurrency" xml:space="preserve">
     <value>ریال</value>
   </data>
+  <data name="SuccessfulConfirmDratMessage" xml:space="preserve">
+    <value>پیام شما در مورد پیش نویس با موفقیت ارسال شد. در صورت نیاز، همکاران ما برای هماهنگی بیشتر با شما تماس خواهند گرفت</value>
+  </data>
 </root>

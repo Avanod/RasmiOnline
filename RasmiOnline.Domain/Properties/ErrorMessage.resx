@@ -127,7 +127,7 @@
     <value>ایمیل وارد شده صحیح نمیباشد</value>
   </data>
   <data name="InvalidMobileNumber" xml:space="preserve">
-    <value>شماره مشترک نا معتبر می باشد</value>
+    <value>شماره موبایل نامعتبر است. دقت فرمایید که اعداد به انگلیسی تایپ شوند</value>
   </data>
   <data name="InvalidUrl" xml:space="preserve">
     <value>قالب ورودی باید آدرس استاندارد اینترنتی باشد</value>

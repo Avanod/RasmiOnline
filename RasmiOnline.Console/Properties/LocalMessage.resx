@@ -860,4 +860,7 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
   <data name="Failed" xml:space="preserve">
     <value>ناموفق</value>
   </data>
+  <data name="PassportWarningText" xml:space="preserve">
+    <value>ارسال پاسپورت برای درج صحیح مشخصات صاحب مدارک الزامی است</value>
+  </data>
 </root>

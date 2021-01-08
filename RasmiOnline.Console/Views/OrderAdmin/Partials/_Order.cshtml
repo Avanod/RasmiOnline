@@ -43,29 +43,26 @@
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.InsertDateSh) : @Model.InsertDateSh ساعت :: @Model.InsertDateMi.Hour:@Model.InsertDateMi.Minute</span>
                     </li>
-                    <li>
+                    @*<li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.DeliverFiles_DateSh) : @(Model.DeliverFiles_DateSh == null ? $"{Model.DayToDelivery} روز کاری" : Model.DeliverFiles_DateSh)</span>
-                    </li>
+                    </li>*@
                     <li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.NeedDraft) : @(Model.NeedDraft ? LocalMessage.Yes : LocalMessage.No)</span>
                     </li>
-                    @*<li>
-            <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
-            <span>@Html.DisplayNameFor(x => x.OrderTitle) : @Model.OrderTitle</span>
-        </li>*@
+                    <li>
+                        <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+                        <span>@Html.DisplayNameFor(x => x.User.Email) : @Model.User.Email </span>
+                    </li>
                     <li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.OrderDescription) : @Model.OrderDescription</span>
                     </li>
-                    @if (Model.IsConfirmedByClient)
-                    {
-                        <li>
-                            <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
-                            <span>@Html.DisplayNameFor(x => x.ConfirmComment) : @Model.ConfirmComment</span>
-                        </li>
-                    }
+                    <li>
+                        <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+                        <span>@Html.DisplayNameFor(x => x.ConfirmComment) : @Model.ConfirmComment</span>
+                    </li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-6 orderPaymentInfo ">

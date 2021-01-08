@@ -88,7 +88,7 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to شماره مشترک نا معتبر می باشد.
+        ///   Looks up a localized string similar to شماره موبایل نامعتبر است. دقت فرمایید که اعداد به انگلیسی تایپ شوند.
         /// </summary>
         public static string InvalidMobileNumber {
             get {

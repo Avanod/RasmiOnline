@@ -1195,6 +1195,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ارسال پاسپورت برای درج صحیح مشخصات صاحب مدارک الزامی است.
+        /// </summary>
+        public static string PassportWarningText {
+            get {
+                return ResourceManager.GetString("PassportWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to مسیر.
         /// </summary>
         public static string Path {

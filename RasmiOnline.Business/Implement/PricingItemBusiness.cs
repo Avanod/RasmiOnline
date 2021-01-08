@@ -197,6 +197,8 @@
         }
 
         public IEnumerable<string> GetDescriptions(List<int> ids)
-            => _pricingItem.AsNoTracking().Where(x => !x.IsDeleted && ids.Contains(x.PricingItemId)).Select(x => x.Description).ToList();
+            => _pricingItem.AsNoTracking().Where(x => !x.IsDeleted && ids.Contains(x.PricingItemId))
+            .Select(x => x.Description)
+            .Where(x => x != null && x != "").ToList();
     }
 }

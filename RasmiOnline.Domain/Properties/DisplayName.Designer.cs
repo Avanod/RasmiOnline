@@ -1123,7 +1123,7 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پبش نویش نیاز است.
+        ///   Looks up a localized string similar to پیش نویس نیاز است.
         /// </summary>
         public static string NeedDraft {
             get {

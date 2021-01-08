@@ -369,6 +369,15 @@ namespace RasmiOnline.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to پیام شما در مورد پیش نویس با موفقیت ارسال شد. در صورت نیاز، همکاران ما برای هماهنگی بیشتر با شما تماس خواهند گرفت.
+        /// </summary>
+        public static string SuccessfulConfirmDratMessage {
+            get {
+                return ResourceManager.GetString("SuccessfulConfirmDratMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to حداقل تعداد کاراکتر 8 است.
         /// </summary>
         public static string TheMinimumNumberOfCharactersIs8 {

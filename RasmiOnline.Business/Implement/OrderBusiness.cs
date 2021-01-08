@@ -71,7 +71,7 @@
             return new ActionResponse<Order>
             {
                 IsSuccessful = rep.ToSaveChangeResult(),
-                Message = rep.ToSaveChangeMessageResult(BusinessMessage.Success, BusinessMessage.Error),
+                Message = rep.ToSaveChangeMessageResult(BusinessMessage.SuccessfulConfirmDratMessage, BusinessMessage.Error),
                 Result = model
             };
         }
