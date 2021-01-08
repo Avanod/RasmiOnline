@@ -27,29 +27,6 @@ namespace RasmiOnline.Business.Implement
             var result = new ActionResponse<bool>();
             try
             {
-                //var fromAddress = new MailAddress("Portal.amirshahi@gmail.com", "سامانه ثبت سفارشات");
-                //var toAddress = new MailAddress(message.Receiver, "دارالترجمه امیرشاهی");
-                //const string fromPassword = "pOrtal@2020";
-                //string subject = message.ExtraData;
-                //string body = message.Content;
-
-                //var smtp = new SmtpClient
-                //{
-                //    Host = "smtp.gmail.com",
-                //    Port = 587,
-                //    EnableSsl = true,
-                //    DeliveryMethod = SmtpDeliveryMethod.Network,
-                //    UseDefaultCredentials = false,
-                //    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                //};
-                //using (var emailMessage = new MailMessage(fromAddress, toAddress)
-                //{
-                //    Subject = subject,
-                //    Body = body
-                //})
-                //{
-                //    smtp.Send(emailMessage);
-                //}
 
                 // Configure mail client (may need additional
                 // code for authenticated SMTP servers)
@@ -59,7 +36,7 @@ namespace RasmiOnline.Business.Implement
                 mailClient.Credentials = new NetworkCredential("Portal.amirshahi@gmail.com", "pOrtal@2020");
 
                 //enable ssl
-               // mailClient.EnableSsl = true;
+                mailClient.EnableSsl = true;
 
                 // Create the mail message (from, to, subject, body)
                 MailMessage mailMessage = new MailMessage();
