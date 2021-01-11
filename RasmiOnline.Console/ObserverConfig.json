@@ -2,42 +2,48 @@
   {
     "Key": "User_Register",
     "Observers": [
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   },
   {
     "Key": "Order_Add",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver",
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   },
   {
     "Key": "Order_Wait_For_Payment",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver",
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   },
   {
     "Key": "Order_Pay_All_Factor",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver",
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   },
   {
     "Key": "Order_Submit_Draft",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver",
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   },
   {
     "Key": "Order_Cancel",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver",
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   },
   {
@@ -56,14 +62,16 @@
     "Key": "Success_Payment",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver",
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   },
   {
     "Key": "Offline_Payment",
     "Observers": [
       "RasmiOnline.Business.Observers.SmsObserver",
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.AdminRoboTeleObserver",
+      "RasmiOnline.Business.Observers.AdminEmailObserver"
     ]
   },
   {
