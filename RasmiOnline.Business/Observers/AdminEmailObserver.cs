@@ -17,7 +17,7 @@
                 Type = MessagingType.Email,
                 ExtraData = msg.Subject,
                 ReplyMessageId = msg.MessageId,
-                Receiver ="mha.karimi@gmail.com"// "naati_najit@yahoo.com",
+                Receiver = "naati_najit@yahoo.com"// "naati_najit@yahoo.com",
             });
         }
     }

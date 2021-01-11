@@ -7,6 +7,7 @@ using RasmiOnline.Domain.Entity;
 using System;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 
 namespace RasmiOnline.Business.Implement
 {
@@ -25,32 +26,26 @@ namespace RasmiOnline.Business.Implement
         public IActionResponse<bool> Send(Message message)
         {
             var result = new ActionResponse<bool>();
+
             try
             {
+                MailMessage messageM = new MailMessage();
+                messageM.To.Add(message.Receiver);
+                messageM.From = new MailAddress("portal.amirshahi@gmail.com");
+                messageM.Subject = message.ExtraData;
+                messageM.Body = message.Content.Replace(Environment.NewLine,"<br>");
+                messageM.IsBodyHtml = true;
+                messageM.BodyEncoding = Encoding.UTF8;
+                SmtpClient smtp = new SmtpClient();
+                smtp.EnableSsl = true;
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Host = "smtp.gmail.com";
 
-                // Configure mail client (may need additional
-                // code for authenticated SMTP servers)
-                SmtpClient mailClient = new SmtpClient("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential("portal.amirshahi@gmail.com", "pOrtal@2020");
 
-                // set the network credentials
-                mailClient.Credentials = new NetworkCredential("Portal.amirshahi@gmail.com", "pOrtal@2020");
-
-                //enable ssl
-                mailClient.EnableSsl = true;
-
-                // Create the mail message (from, to, subject, body)
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("Portal.amirshahi@gmail.com");
-                mailMessage.To.Add(message.Receiver);
-                mailClient.UseDefaultCredentials = true;
-                mailMessage.Subject = message.ExtraData;
-                mailMessage.Body = message.Content;
-                mailMessage.IsBodyHtml = false;
-                mailMessage.Priority = MailPriority.High;
-
-                // send the mail
-                mailClient.Send(mailMessage);
-
+                smtp.Send(messageM);
                 return result;
             }
             catch (Exception e)
@@ -59,6 +54,7 @@ namespace RasmiOnline.Business.Implement
                 result.Message = BusinessMessage.Error;
                 return result;
             }
+
         }
     }
 }

@@ -50,7 +50,7 @@
                         Assembly assembly = Assembly.GetExecutingAssembly();
                         _observers.Add(assembly.CreateInstance(obs) as IObserver);
                     }
-                    msg.Subject = item.Key;
+                    msg.Subject = item.Key.Replace("_",string.Empty);
                     foreach (IObserver o in _observers)
                     {
                         if (officeUsername)
