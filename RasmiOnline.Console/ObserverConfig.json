@@ -41,10 +41,15 @@
     ]
   },
   {
+    "Key": "DeliveryFiles",
+    "Observers": [
+      "RasmiOnline.Business.Observers.SmsObserver"
+    ]
+  },
+  {
     "Key": "Order_Done",
     "Observers": [
-      "RasmiOnline.Business.Observers.SmsObserver",
-      "RasmiOnline.Business.Observers.AdminRoboTeleObserver"
+      "RasmiOnline.Business.Observers.SmsObserver"
     ]
   },
   {
