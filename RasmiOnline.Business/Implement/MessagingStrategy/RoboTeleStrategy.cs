@@ -37,7 +37,7 @@
                        | SecurityProtocolType.Ssl3;
 
                 //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
-
+                //Something went wrong, please try again.
                 var roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content).Result;
                 message.SendStatus = roboResponse.MessageId.ToString();
                 message.State = StateType.Accepted;

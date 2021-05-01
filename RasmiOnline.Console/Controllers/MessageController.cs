@@ -30,7 +30,7 @@
             var result = EnumConvertor.GetEnumElements<MessagingType>().ToList();
             result.ForEach(item =>
             {
-                if (item.Name != nameof(MessagingType. RoboTele))
+                if (item.Name != nameof(MessagingType.RoboTele))
                     list.Add(new ItemTextValueModel<string, string>()
                     {
                         Key = item.Description,
