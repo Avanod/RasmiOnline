@@ -556,13 +556,13 @@
     <value>نوع مدرک</value>
   </data>
   <data name="ByDeliveryMan" xml:space="preserve">
-    <value>به نماینده دارالترجمه امیرشاهی تحویل میدهم</value>
+    <value>ارسال از طریق پیک(منطقه شهری تهران)</value>
   </data>
   <data name="ByPost" xml:space="preserve">
-    <value>ارسال پستی(ویژه شهرستان)</value>
+    <value>ارسال پستی(شهرستان)</value>
   </data>
-  <data name="DeliverNyMySelf" xml:space="preserve">
-    <value>خودم تحویل میدهم</value>
+  <data name="DeliverByMySelf" xml:space="preserve">
+    <value>خودم تحویل میگیرم</value>
   </data>
   <data name="WaitForDeliverDocumentByPost" xml:space="preserve">
     <value>در انتظار ارسال مدارک از طریق پست</value>
@@ -697,7 +697,7 @@
     <value>پرداخت یک مرحله ای</value>
   </data>
   <data name="NeedDraft" xml:space="preserve">
-    <value>پیش نویس نیاز است</value>
+    <value>تمایل دارم پیش نویس ترجمه ها را قبل از تحویل چک کنم</value>
   </data>
   <data name="Key" xml:space="preserve">
     <value>کلید</value>
@@ -734,5 +734,8 @@
   </data>
   <data name="OrderId" xml:space="preserve">
     <value>شماره سفارش</value>
+  </data>
+  <data name="NeedTranslationScan" xml:space="preserve">
+    <value>نیاز به اسکن ترجمه دارم</value>
   </data>
 </root>

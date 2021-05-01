@@ -32,17 +32,17 @@
                     <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                     <span>@Html.DisplayNameFor(x => x.User.MobileNumber) : <span>@Model.User.MobileNumber</span></span>
                 </li>
-                <li class="col-xs-12  col-sm-6">
-                    <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
-                    <span>آدرس : @(Model.AddressId == null ? "---" : Model.Address.FullAddress)</span>
-                </li>
+                @*<li class="col-xs-12  col-sm-6">
+                        <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+                        <span>آدرس : @(Model.AddressId == null ? "---" : Model.Address.FullAddress)</span>
+                    </li>*@
                 <li class="col-xs-12 col-sm-6">
                     <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                     <span>@Html.DisplayNameFor(x => x.OrderId) : <span>@Model.OrderId</span></span>
                 </li>
                 <li class="col-xs-12  col-sm-6">
                     <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
-                    <span>@Html.DisplayNameFor(x => x.InsertDateSh) : @Model.InsertDateSh ساعت :: @Model.InsertDateMi.Hour:@Model.InsertDateMi.Minute</span>
+                    <span>@Html.DisplayNameFor(x => x.InsertDateSh) : @Model.InsertDateSh ساعت: @Model.InsertDateMi.Hour:@Model.InsertDateMi.Minute</span>
                 </li>
                 <li class="col-xs-12  col-sm-6">
                     <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
@@ -50,7 +50,7 @@
                 </li>
                 <li class="col-xs-12 col-sm-6">
                     <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
-                    <span>@Html.DisplayNameFor(x => x.OrderTitle) : @Model.OrderTitle</span>
+                    <span>@Html.DisplayNameFor(x => x.OrderTitle) : @Model.TranslateType.GetDescription()</span>
                 </li>
             </ul>
             @if (!completePayment)
@@ -62,12 +62,18 @@
                         </h5>
                     </div>
                     <div class="col-xs-12">
+                        <br />
+                        <div class="alert alert-warning">
+                            <small>@LocalMessage.DeliveryHint</small>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
                         <div class="row">
                             @foreach (var item in EnumConvertor.GetEnumElements<DeliveryType>().ToList())
                             {
                                 <div class="col-xs-12 col-sm-4 p-r-0 wrapper">
                                     <div class="radio-wrapper @(item.Name == nameof(DeliveryType.ByDeliveryMan) ? "activate" : "")  ">
-                                        <label class="custom-control custom-radio">
+                                        <label class="custom-control custom-radio" style="font-weight:normal">
                                             <input type="radio" name="DeliveryType" value="@item.Name" class="custom-control-input" @(item.Name == nameof(DeliveryType.ByDeliveryMan) ? "checked" : "") />
                                             <span class="custom-control-indicator"></span>
                                             <span class="custom-control-description">@item.Description</span>
@@ -76,7 +82,6 @@
                                 </div>
                             }
                         </div>
-
                     </div>
                 </div>
 
@@ -96,13 +101,22 @@
                     <dov class="col-xs-12">
                         <div class="checkbox-group">
                             <input class="input-checkbox100" id="@nameof(Model.NeedDraft)" type="checkbox" name="@nameof(Model.NeedDraft)" @(Model.NeedDraft ? "checked" : "") />
-                            <label class="label-checkbox100" for="@nameof(Model.NeedDraft)">
+                            <label class="label-checkbox100" for="@nameof(Model.NeedDraft)" style="font-weight:normal">
                                 @Html.DisplayNameFor(x => x.NeedDraft)
                             </label>
                         </div>
-
                     </dov>
 
+                </div>
+                <div class="row mb-15">
+                    <dov class="col-xs-12">
+                        <div class="checkbox-group">
+                            <input class="input-checkbox100" id="@nameof(Model.NeedTranslationScan)" type="checkbox" name="@nameof(Model.NeedTranslationScan)" @(Model.NeedTranslationScan ? "checked" : "") />
+                            <label class="label-checkbox100" for="@nameof(Model.NeedTranslationScan)" style="font-weight:normal">
+                                @Html.DisplayNameFor(x => x.NeedTranslationScan)
+                            </label>
+                        </div>
+                    </dov>
                 </div>
             }
 
@@ -133,7 +147,7 @@
                             <tr>
                                 <th class="text-right">#</th>
                                 <th class="text-right">عنوان</th>
-                                <th class="text-right">واحد</th>
+                                <th class="text-right">واحد قیمت گذاری</th>
                                 <th class="text-right">قیمت واحد</th>
                                 <th class="text-right">تعداد</th>
                                 <th class="text-right">قیمت(@LocalMessage.MoneyCurrency)</th>

@@ -329,12 +329,6 @@
     <Content Include="Content\Styles\Console\03-EndUser\Home\download.min.css">
       <DependentUpon>download.css</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\Console\03-EndUser\Home\index.css">
-      <DependentUpon>payment.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\Styles\Console\03-EndUser\Home\index.min.css">
-      <DependentUpon>index.css</DependentUpon>
-    </Content>
     <Content Include="Content\Styles\Console\03-EndUser\Home\payment.css">
       <DependentUpon>payment.scss</DependentUpon>
     </Content>

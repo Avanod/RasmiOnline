@@ -40,7 +40,7 @@ body {
       #order-payment .card #delivery-types .radio-wrapper input {
         vertical-align: middle;
         margin-top: 0; }
-  #order-payment #NeedDraft {
+  #order-payment #NeedDraft, #order-payment #NeedTranslationScan {
     transform: scale(1.2);
     vertical-align: middle;
     margin-top: 0; }

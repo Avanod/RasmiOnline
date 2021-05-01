@@ -538,6 +538,15 @@ namespace RasmiOnline.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to سفارش های ترجه بالای 500 هزار تومان مشمول پیک یا پست رایگان می شوند.
+        /// </summary>
+        public static string DeliveryHint {
+            get {
+                return ResourceManager.GetString("DeliveryHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to توضیحات.
         /// </summary>
         public static string Description {

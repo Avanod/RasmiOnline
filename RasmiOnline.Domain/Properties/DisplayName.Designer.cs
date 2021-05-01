@@ -250,7 +250,7 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to به نماینده دارالترجمه امیرشاهی تحویل میدهم.
+        ///   Looks up a localized string similar to ارسال از طریق پیک(منطقه شهری تهران).
         /// </summary>
         public static string ByDeliveryMan {
             get {
@@ -268,7 +268,7 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ارسال پستی(ویژه شهرستان).
+        ///   Looks up a localized string similar to ارسال پستی(شهرستان).
         /// </summary>
         public static string ByPost {
             get {
@@ -439,20 +439,20 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to خودم تحویل میگیرم.
+        /// </summary>
+        public static string DeliverByMySelf {
+            get {
+                return ResourceManager.GetString("DeliverByMySelf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تاریخ تحویل ترجمه.
         /// </summary>
         public static string DeliverFiles_DateSh {
             get {
                 return ResourceManager.GetString("DeliverFiles_DateSh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to خودم تحویل میدهم.
-        /// </summary>
-        public static string DeliverNyMySelf {
-            get {
-                return ResourceManager.GetString("DeliverNyMySelf", resourceCulture);
             }
         }
         
@@ -1123,11 +1123,20 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to پیش نویس نیاز است.
+        ///   Looks up a localized string similar to تمایل دارم پیش نویس ترجمه ها را قبل از تحویل چک کنم.
         /// </summary>
         public static string NeedDraft {
             get {
                 return ResourceManager.GetString("NeedDraft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نیاز به اسکن ترجمه دارم.
+        /// </summary>
+        public static string NeedTranslationScan {
+            get {
+                return ResourceManager.GetString("NeedTranslationScan", resourceCulture);
             }
         }
         

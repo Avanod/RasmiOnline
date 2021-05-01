@@ -9,10 +9,10 @@
         [LocalizeDescription(nameof(DisplayName.ByDeliveryMan), typeof(DisplayName))]
         ByDeliveryMan = 0,
 
-        [LocalizeDescription(nameof(DisplayName.DeliverNyMySelf), typeof(DisplayName))]
-        ByMySelf = 1,
-
         [LocalizeDescription(nameof(DisplayName.ByPost), typeof(DisplayName))]
-        ByPost = 2
+        ByPost = 2,
+
+        [LocalizeDescription(nameof(DisplayName.DeliverByMySelf), typeof(DisplayName))]
+        ByMySelf = 1,
     }
 }

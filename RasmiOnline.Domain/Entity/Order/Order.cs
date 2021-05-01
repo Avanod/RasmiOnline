@@ -27,6 +27,10 @@
         [Display(Name = nameof(DisplayName.NeedDraft), ResourceType = typeof(DisplayName))]
         public bool NeedDraft { get; set; }
 
+        [NotMapped]
+        [Display(Name = nameof(DisplayName.NeedTranslationScan), ResourceType = typeof(DisplayName))]
+        public bool NeedTranslationScan { get; set; }
+
         [ForeignKey(nameof(AddressId))]
         public Address Address { get; set; }
         public int? AddressId { get; set; }

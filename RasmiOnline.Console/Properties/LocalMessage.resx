@@ -863,4 +863,7 @@ https://goo.gl/maps/nWfrH3Kccqm</value>
   <data name="PassportWarningText" xml:space="preserve">
     <value>ارسال پاسپورت برای درج صحیح مشخصات صاحب مدارک الزامی است</value>
   </data>
+  <data name="DeliveryHint" xml:space="preserve">
+    <value>سفارش های ترجه بالای 500 هزار تومان مشمول پیک یا پست رایگان می شوند</value>
+  </data>
 </root>

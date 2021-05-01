@@ -62,10 +62,10 @@ body {
         }
     }
 
-    #NeedDraft {
+    #NeedDraft, #NeedTranslationScan {
         transform: scale(1.2);
-        vertical-align:middle;
-        margin-top:0;
+        vertical-align: middle;
+        margin-top: 0;
     }
 
     .draft {
