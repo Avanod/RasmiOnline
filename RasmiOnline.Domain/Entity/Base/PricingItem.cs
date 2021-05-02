@@ -67,9 +67,24 @@
         [MaxLength(600, ErrorMessageResourceName = nameof(ErrorMessage.MaxLength), ErrorMessageResourceType = typeof(ErrorMessage))]
         public string Description { get; set; }
 
+        #region Variable Unit Price
+        [NotMapped]
+        [Display(Name = nameof(DisplayName.HasVariablePrice), ResourceType = typeof(DisplayName))]
+        public bool HasVariablePrice { get; set; }
+
+        [NotMapped]
+        [Display(Name = nameof(DisplayName.VariablePriceUnit), ResourceType = typeof(DisplayName))]
+        public VariablePriceUnit VariablePriceUnit { get; set; }
+
+        [NotMapped]
+        [Display(Name = nameof(DisplayName.VariablePrice), ResourceType = typeof(DisplayName))]
+        public int VariablePrice { get; set; }
+        #endregion
+
         [NotMapped]
         public string PricingItemUnitText { get { return PricingItemUnit > 0 ? PricingItemUnit.GetLocalizeDescription() : Enum.PricingItemUnit.Page.GetLocalizeDescription(); } }
 
+        public string VaribalePriceUnitText { get { return HasVariablePrice ? VariablePriceUnit.GetLocalizeDescription() : "-"; } }
         public ICollection<PricingItemTemplate> PricingItemTemplate { get; set; }
     }
 }

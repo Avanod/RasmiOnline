@@ -69,6 +69,35 @@
                         <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.CopyPrice_OthersLang) </small>
                     </div>
 
+                    <div class="col-sm-4 m-b-20">
+                        <div class="form-group" dir="rtl">
+                            @Html.LabelFor(x => x.Result.HasVariablePrice)
+                            <div class="select">
+                                @Html.DropDownListFor(x => x.Result.HasVariablePrice, (List<SelectListItem>)ViewBag.IsDiscountableItems, new { @class = "form-control" })
+                                <i class="form-group__bar"></i>
+                                <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.HasVariablePrice) </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 m-b-20 variable-price">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Result.VariablePriceUnit)
+                            <div class="select">
+                                @Html.DropDownListFor(x => x.Result.VariablePriceUnit, (List<SelectListItem>)ViewBag.VariablePriceUnitItems, new { @class = "form-control" })
+                                <i class="form-group__bar"></i>
+                                <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.VariablePriceUnit) </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 m-b-20 variable-price" dir="rtl">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Result.VariablePrice)
+                            @Html.TextBoxFor(x => x.Result.VariablePrice, null, new { @class = "form-control ltr-dir only-digit" })
+                            <i class="form-group__bar"></i>
+                        </div>
+                        <small class="text-danger"> @Html.ValidationMessageFor(x => x.Result.VariablePrice) </small>
+                    </div>
+
                     <div class="col-sm-6 m-b-20">
                         <div class="form-group" dir="rtl">
                             @Html.LabelFor(x => x.Result.AboveReference)
@@ -141,4 +170,4 @@
             <div class="text-center text-danger">@LocalMessage.BadRequest</div>
         }
     </div>
-}
+}<script>checkVariablePrice();</script>

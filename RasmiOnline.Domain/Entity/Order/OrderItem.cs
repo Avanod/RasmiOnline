@@ -42,6 +42,23 @@
         [Display(Name = nameof(DisplayName.Price_OthersLang), ResourceType = typeof(DisplayName))]
         public int Price_OthersLang { get; set; }
 
+        #region Variable Unit Price
+        [NotMapped]
+        [Display(Name = nameof(DisplayName.HasVariablePrice), ResourceType = typeof(DisplayName))]
+        public bool HasVariablePrice { get; set; }
+
+        [NotMapped]
+        [Display(Name = nameof(DisplayName.VariablePriceUnit), ResourceType = typeof(DisplayName))]
+        public VariablePriceUnit VariablePriceUnit { get; set; }
+
+        [NotMapped]
+        [Display(Name = nameof(DisplayName.VariablePrice), ResourceType = typeof(DisplayName))]
+        public int VariablePrice { get; set; }
+        [NotMapped]
+        [Display(Name = nameof(DisplayName.VariablePriceCount), ResourceType = typeof(DisplayName))]
+        public int VariablePriceCount { get; set; }
+        #endregion
+
         [Display(Name = nameof(DisplayName.OrderItemType), ResourceType = typeof(DisplayName))]
         public OrderItemType OrderItemType { get; set; }
 

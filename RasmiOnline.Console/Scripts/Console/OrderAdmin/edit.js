@@ -122,6 +122,7 @@ $(document).on('ready', function () {
             let item = {
                 OrderId: parseInt($('#OrderId').val()),
                 Price: $(this).find('input[name="price"]').val(),
+                variablePriceCount: $(this).find('input[name="variablePriceCount"]').val(),
                 OrderItemType: "PricingItem",
                 Copy: $(elm).find('.copy-count').val(),
                 Count: $(elm).find('.doc-count').val(),

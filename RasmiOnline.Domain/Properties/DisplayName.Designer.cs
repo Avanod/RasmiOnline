@@ -754,6 +754,15 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to قیمت متغیر دارد.
+        /// </summary>
+        public static string HasVariablePrice {
+            get {
+                return ResourceManager.GetString("HasVariablePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to نمایه (آیکن).
         /// </summary>
         public static string Icon {
@@ -1839,6 +1848,33 @@ namespace RasmiOnline.Domain.Properties {
         public static string Value {
             get {
                 return ResourceManager.GetString("Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to قیمت متغیر به ازای واحد.
+        /// </summary>
+        public static string VariablePrice {
+            get {
+                return ResourceManager.GetString("VariablePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تعداد قیمت متغیر.
+        /// </summary>
+        public static string VariablePriceCount {
+            get {
+                return ResourceManager.GetString("VariablePriceCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to واحد قیمت متغیر.
+        /// </summary>
+        public static string VariablePriceUnit {
+            get {
+                return ResourceManager.GetString("VariablePriceUnit", resourceCulture);
             }
         }
         

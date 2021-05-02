@@ -20,11 +20,17 @@
             copyPrice: item.CopyPrice,
             copyPriceInOtherLangs: item.CopyPrice_OthersLang,
             totalPrice: (orderItem.inEnglish ? item.Price : item.Price_OthersLang),
+            hasVariablePrice: item.HasVariablePrice,
+            varibalePriceUnitText: item.VaribalePriceUnitText,
+            variablePrice: item.VariablePrice,
             serverSideRemove: false
         };
         let $tr = $('<tr class="item pricing-item" data-IsPricingItem="' + item.IsPricingItem + '" data-id="' + item.PricingItemId + '" data-added="true">' +
             '<td class="remove"><i class="zmdi zmdi-close-circle"></i></td>' +
             '<td >' + item.DocumentType + '</td>' +
+            '<td >' + item.VaribalePriceUnitText + '</td>' +
+            '<td >' + item.VariablePrice + '</td>' +
+            '<td><input class="padding-3" type="number" name="variablePriceCount" value="0" style="width:60px" /></td>' +
             '<td>' + item.PricingItemUnitText + '</td>' +
             '<td class="price">' +
             (this.userIsAdmin ? ('<input dir="ltr" type="numbe" name="price" value="' + (orderItem.inEnglish ? item.Price : item.Price_OthersLang) + '"/>') : (orderItem.inEnglish ? item.Price : item.Price_OthersLang)) +
@@ -120,15 +126,16 @@
         let $copy = $elm.find('.copy-count');
         let copy = parseInt($copy.is('select') ? $copy.val() : $copy.text());
         let totalCopyPrice = info.copyPrice ? ((orderItem.inEnglish ? info.copyPrice : info.copyPriceInOtherLangs) * count * copy) : 0;
-        if ($elm.hasClass('official-record-item')) info.totalPrice = Math.floor(price * (count + copy));
-        else info.totalPrice = Math.floor(price * count + totalCopyPrice);
+        let variablePrice = info.variablePrice;
+        let variablePriceCount = parseInt($elm.find('[name="variablePriceCount"]').val());
+        if ($elm.hasClass('official-record-item')) info.totalPrice = Math.floor(price * (count + copy)) + (variablePrice * variablePriceCount);
+        else info.totalPrice = Math.floor(price * count + totalCopyPrice) + (variablePrice * variablePriceCount);
         //================ Update UI
         $elm.find('.total-copy-price').text(totalCopyPrice.toString().cThSeperator());
-        console.log(info.totalPrice);
         $elm.find('.total-price').text(info.totalPrice.toString().cThSeperator());
         this.sum();
     },
-    toalSumOfItems:0,
+    toalSumOfItems: 0,
     changeLang: function () {
         let oi = this;
         let $items = oi.$wrapper.find('.pricing-item');
@@ -161,13 +168,13 @@
                 return items.map(x => ('<li title="افزودن"><div>' + x.DocumentType + '<span>قیمت پایه/' + x.PricingItemUnitText + ':            ' + (orderItem.inEnglish ? x.Price.toString().cThSeperator() : x.Price_OthersLang.toString().cThSeperator()) + '</span></div></li>'))
             }, function (item) {
                 //if (orderItem.$wrapper.find('.item[data-id=' + item.PricingItemId + ']').length === 0) {
-                    orderItem.add(item);
-                    orderItem.sum();
-                    $.each($(".mustly-used-item"), function (idx, itm) {
-                        if ($(itm).attr('data-PricingItemId') == item.PricingItemId) {
-                            $(itm).addClass('activate');
-                        }
-                    });
+                orderItem.add(item);
+                orderItem.sum();
+                $.each($(".mustly-used-item"), function (idx, itm) {
+                    if ($(itm).attr('data-PricingItemId') == item.PricingItemId) {
+                        $(itm).addClass('activate');
+                    }
+                });
                 //}
             });
         });
@@ -198,7 +205,7 @@ $(document).ready(function () {
     });
 
     //change count event
-    $(document).on('change', '.copy-count,.doc-count,input[name="price"]', function () {
+    $(document).on('change', '.copy-count,.doc-count,input[name="price"],input[name="variablePriceCount"]', function () {
         orderItem.update($(this).closest('tr'));
     });
 

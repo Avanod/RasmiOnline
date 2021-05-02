@@ -167,6 +167,7 @@
     <Compile Include="Enum\StateType.cs" />
     <Compile Include="Enum\StaticticsKey.cs" />
     <Compile Include="Enum\TrnanslateType.cs" />
+    <Compile Include="Enum\VariablePriceUnit.cs" />
     <Compile Include="VisibleAttribute.cs" />
     <Compile Include="Properties\DisplayName.Designer.cs">
       <AutoGen>True</AutoGen>

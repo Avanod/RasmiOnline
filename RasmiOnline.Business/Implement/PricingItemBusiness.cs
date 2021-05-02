@@ -47,6 +47,7 @@
 
         public IActionResponse<int> Insert(PricingItem model)
         {
+            model.VariablePrice = model.HasVariablePrice ? model.VariablePrice : 0;
             _uow.Entry(model).State = EntityState.Added;
             var res = _uow.SaveChanges();
             return new ActionResponse<int>
@@ -80,7 +81,10 @@
                     model.Price_OthersLang,
                     model.Description,
                     model.IsMustlyUse,
-                    model.IsDiscountable
+                    model.IsDiscountable,
+                    model.HasVariablePrice,
+                    model.VariablePriceUnit,
+                    VariablePrice = (model.HasVariablePrice ? model.VariablePrice : 0)
                 });
 
                 _uow.Entry(findedPricingItem.Result).State = EntityState.Modified;

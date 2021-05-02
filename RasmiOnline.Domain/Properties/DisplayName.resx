@@ -738,4 +738,16 @@
   <data name="NeedTranslationScan" xml:space="preserve">
     <value>نیاز به اسکن ترجمه دارم</value>
   </data>
+  <data name="HasVariablePrice" xml:space="preserve">
+    <value>قیمت متغیر دارد</value>
+  </data>
+  <data name="VariablePrice" xml:space="preserve">
+    <value>قیمت متغیر به ازای واحد</value>
+  </data>
+  <data name="VariablePriceCount" xml:space="preserve">
+    <value>تعداد قیمت متغیر</value>
+  </data>
+  <data name="VariablePriceUnit" xml:space="preserve">
+    <value>واحد قیمت متغیر</value>
+  </data>
 </root>

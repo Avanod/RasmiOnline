@@ -55,7 +55,10 @@
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.NeedDraft) : @(Model.NeedDraft ? LocalMessage.Yes : LocalMessage.No)</span>
                     </li>
-
+                    <li>
+                        <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
+                        <span>@Html.DisplayNameFor(x => x.NeedTranslationScan) : @(Model.NeedTranslationScan ? LocalMessage.Yes : LocalMessage.No)</span>
+                    </li>
                     <li>
                         <i class="zmdi zmdi-chevron-left f-s-20 color-blue v-a-m"></i>
                         <span>@Html.DisplayNameFor(x => x.OrderDescription) : @Model.OrderDescription</span>

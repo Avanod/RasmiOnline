@@ -89,7 +89,7 @@ namespace RasmiOnline.Business.Implement
         public IActionResponse<List<Survey>> Get(SurveySearchFilter filterModel)
         {
             var response = new ActionResponse<List<Survey>>();
-            var q = _survey.AsNoTracking().AsQueryable();
+            var q = _survey.AsNoTracking().AsQueryable().Where(x => !x.IsDeleted);
             if (!string.IsNullOrWhiteSpace(filterModel.Subject))
                 q = q.Where(x => x.Subject.Contains(filterModel.Subject));
             response.Result = q.OrderByDescending(x => x.SurveyId)

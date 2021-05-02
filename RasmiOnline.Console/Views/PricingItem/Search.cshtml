@@ -6,16 +6,16 @@
     ViewBag.Description = LocalMessage.PricingItemSearch;
 }
 
-    @{
-        Html.RenderPartial(MVC.Shared.Views.Partials._AddButton, new AddButtonModel
-        {
-            ModalTitle = LocalMessage.AddPricingItem,
-            EntityName = nameof(PricingItem),
-            FormUrl = Url.Action(MVC.PricingItem.ActionNames.GetForm, MVC.PricingItem.Name, new { id = 0 }),
-            Title = LocalMessage.AddPricingItem
-        });
-    }
- 
+@{
+    Html.RenderPartial(MVC.Shared.Views.Partials._AddButton, new AddButtonModel
+    {
+        ModalTitle = LocalMessage.AddPricingItem,
+        EntityName = nameof(PricingItem),
+        FormUrl = Url.Action(MVC.PricingItem.ActionNames.GetForm, MVC.PricingItem.Name, new { id = 0 }),
+        Title = LocalMessage.AddPricingItem
+    });
+}
+
 @{
     Html.RenderPartial(MVC.Shared.Views._SharedSearch, new SearchPartialModel
     {
@@ -41,4 +41,20 @@
     <script src="@Links.Scripts.Plugins.jquery_dataTables_min_js"></script>
     <script src="@Links.Scripts.Plugins.jquery_custom_search_js" type="text/javascript"></script>
     <script src="@Links.Scripts.Plugins.jquery_custom_modal_js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function checkVariablePrice() {
+            if ($("#Result_HasVariablePrice").val() === "True") $(".variable-price").css({"visibility":"visible"});
+            else $(".variable-price").css({ "visibility": "hidden" });
+
+        }
+        $(document).ready(function () {
+            console.log("ready");
+
+            $(document).on("change", "#Result_HasVariablePrice", function () {
+                console.log("chk");
+                checkVariablePrice();
+            });
+        });
+    </script>
+
 }

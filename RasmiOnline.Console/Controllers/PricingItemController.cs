@@ -38,7 +38,30 @@
                 Selected = (s.Value == isPricingItem)
             }).ToList();
         }
+        [NonAction]
+        private void GetVariablePriceUnitItems() {
+            ViewBag.VariablePriceUnitItems = EnumConvertor.GetEnumElements<VariablePriceUnit>().Select(x => new SelectListItem
+            {
+                Text = x.DisplayName,
+                Value = x.Name
+            }).ToList();
+        } 
+        //{
+        //    var list = new List<ItemTextValueModel<string, bool?>>();
+        //    if (showPleaseSelect)
+        //        list.Add(new ItemTextValueModel<string, bool?> { Value = null, Key = LocalMessage.PleaseSelect });
 
+        //    list.Add(new ItemTextValueModel<string, bool?> { Value = true, Key = LocalMessage.Yes });
+        //    list.Add(new ItemTextValueModel<string, bool?> { Value = false, Key = LocalMessage.No });
+
+        //    ViewBag.IsPricingItems = list.Select(s => new SelectListItem
+        //    {
+        //        Text = s.Key,
+        //        Value = s.Value.ToString(),
+        //        Selected = (s.Value == isPricingItem)
+        //    }).ToList();
+        //}
+        //}
 
         [NonAction]
         private void GetIsDiscountable(bool? isDiscountable = null, bool showPleaseSelect = true)
@@ -151,6 +174,7 @@
             GetIsDiscountable(showPleaseSelect: false);
             GetPricingItemCategories();
             GetPricingItemUnits();
+            GetVariablePriceUnitItems();
             return PartialView(MVC.PricingItem.Views.Partials._Form, new ActionResponse<PricingItem> { IsSuccessful = true, Result = new PricingItem { Price = 0 } });
         }
 
