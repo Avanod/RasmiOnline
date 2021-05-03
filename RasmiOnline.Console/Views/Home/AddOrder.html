@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0036)http://localhost:26797/Home/AddOrder -->
+<html lang="fa" dir="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="http://portal.amirshahigroup.com/wp-content/uploads/2018/05/cropped-favicon-32x32.png" sizes="32x32">
+    <link rel="icon" href="http://portal.amirshahigroup.com/wp-content/uploads/2018/05/cropped-favicon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="http://portal.amirshahigroup.com/wp-content/uploads/2018/05/cropped-favicon-180x180.png">
+
+    <title>ثبت سفارش</title>
+    <link href="../../Content/Styles/Shared/bootstrap.css" rel="stylesheet">
+    <link href="../../Content/Styles/Shared/fontawesome-all.min.css" rel="stylesheet">
+    <link href="../../Content/Styles/Shared/PersianCalendar.css" rel="stylesheet">
+    <link href="../../Content/Styles/Shared/Zebra.css" rel="stylesheet">
+    <link href="../../Content/Styles/Layout/portal-static.css" rel="stylesheet">
+    <link href="../../Content/Styles/Shared/material-design-iconic-font-static.min.css" rel="stylesheet">
+    <link href="../../Content//Styles//Console/common.css" rel="stylesheet">
+
+    <link href="../../Content/Styles/Console/03-EndUser/Home/add-order.min.css" rel="stylesheet">
+    <link href="../../Content/Styles/Console/order-item.css" rel="stylesheet">
+    <link href="../../Content//Styles/Console/Attachment/uploader.min.css" rel="stylesheet">
+</head>
+<body class="loaded" style="">
+
+    <main>
+        <section class="container contents">
+
+
+
+            <form id="add-order-page" action="http://localhost:26797/Home/AddOrder" novalidate="novalidate">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a class="btn-action rtl waves-effect mb-15" id="a-return" onclick="goBack()">
+                            <div class="text">
+                                بازگشت
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-home"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label for="FirstName">
+                                نام<span class="red">*</span>
+                            </label>
+                            <input class="form-control" data-val="true" data-val-length="لطفا بیشتر از 25 کاراکتر وارد ننمایید" data-val-length-max="25" data-val-maxlength="لطفا بیشتر از 25 کاراکتر وارد ننمایید" data-val-maxlength-max="25" data-val-required="این فیلد اجباری می باشد" id="FirstName" name="FirstName" type="text" value="" _vkenabled="true">
+                            <span class="field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label for="LastName">
+                                نام خانوادگی<span class="red">*</span>
+                            </label>
+                            <input class="form-control" data-val="true" data-val-length="لطفا بیشتر از 30 کاراکتر وارد ننمایید" data-val-length-max="30" data-val-maxlength="لطفا بیشتر از 30 کاراکتر وارد ننمایید" data-val-maxlength-max="30" data-val-required="این فیلد اجباری می باشد" id="LastName" name="LastName" type="text" value="" _vkenabled="true">
+                            <span class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="TranslateType">نوع ترجمه</label>
+                            <select class="form-control" data-val="true" data-val-required="The نوع ترجمه field is required." id="TranslateType" name="TranslateType">
+                                <option selected="selected" value="OfficialWithTranslatorSign">رسمی با مهر مترجم</option>
+                                <option value="OfficialWithConfirms">رسمی همراه با تاییدات دادگستری و وزارت امور خارجه</option>
+                                <option value="Nati">ناتی(استرالیا و نیوزلند)</option>
+                                <option value="Nagit">ناجیت(آمریکا و کانادا)</option>
+                                <option value="Others">غیر رسمی</option>
+                            </select>
+                            <span class="field-validation-valid" data-valmsg-for="TranslateType" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="Email">
+                                ایمیل
+                            </label>
+                            <input class="form-control ltr-elm" data-val="true" data-val-email=" لطفا ایمیل خودرا به صورت صحیح وارد نمایید" data-val-length="لطفا بیشتر از 50 کاراکتر وارد ننمایید" data-val-length-max="50" data-val-maxlength="لطفا بیشتر از 50 کاراکتر وارد ننمایید" data-val-maxlength-max="50" id="Email" name="Email" type="text" value="" _vkenabled="true">
+                            <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="MobileNumber">
+                                شماره موبایل<span class="red">*</span>
+                            </label>
+                            <input class="form-control ltr-elm" data-val="true" data-val-regex="شماره موبایل نامعتبر است. دقت فرمایید که اعداد به انگلیسی تایپ شوند" data-val-regex-pattern="^0?9\d{9}$" data-val-required="این فیلد اجباری می باشد" id="MobileNumber" name="MobileNumber" type="text" value="" _vkenabled="true">
+                            <span class="field-validation-valid" data-valmsg-for="MobileNumber" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="Description">توضیحات</label>
+                            <textarea class="form-control" cols="20" data-val="true" data-val-length="لطفا بیشتر از 500 کاراکتر وارد ننمایید" data-val-length-max="500" data-val-maxlength="لطفا بیشتر از 500 کاراکتر وارد ننمایید" data-val-maxlength-max="500" id="Description" name="Description" rows="4" _vkenabled="true"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <p class="alert alert-info text-center">
+                            <span class="txt-1">لطفا مدارک خود را جهت ترجمه الصاق نمایید</span>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <p class="alert alert-warning text-right">
+                            موراد مهم:
+                            <br>
+                            <small class="txt-2">
+                                - حداکثر حجم هر عکس 5MB و فرمت مورد قبول jpg,jpeg,png,pdf می باشد
+                                <br>
+                                - برای امور ترجمه رسمی، رویت اصل مدارک در زمان تحویل مدارک ترجمه شده ضروری خواهد بود
+                                <br>
+                                - تصویر پاسپورت متقاضی برای درج اسپل صحیح نام در ترجمه نیاز خواهد بود
+                            </small>
+                        </p>
+                    </div>
+                </div>
+
+                <input id="input-file" type="file" class="d-none" accept=".png,.jpeg,.pdf,.jpg">
+                <div class="upload-box">
+                    <div class="w-100 files-wraper" id="files">
+                        <div class="mb-15" id="add-file">
+                            <div id="uploader">
+                                <i class="zmdi zmdi-plus"></i>
+                                <label>الصاق تصویر</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row btn-row">
+                    <div class="col-xs-12 col-sm-6">
+                        <input id="WithPassport" type="checkbox" name="WithPassport" value="False">
+                        <label for="WithPassport">
+                            تصویر گذرنامه ضمیمه گردید <span style="color:red;">(ارسال پاسپورت برای درج صحیح مشخصات صاحب مدارک الزامی است)</span>
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <span id="progress"></span>
+                        <button class="btn-action rtl waves-effect" id="btn-submit" type="button">
+                            <div class="text">
+                                ثبت سفارش
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-save"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+
+        </section>
+    </main>
+    <div class="modal" id="modal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../../Scripts/tether.min.js"></script>
+    <script src="../../Scripts/bootstrap.min.js"></script>
+    <script src="../../Scripts/jquery.validate.js"></script>
+    <script src="../../Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="../../Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="../../Scripts/Plugins/validator.js"></script>
+    <script src="../../Scripts/Plugins/bootstrap-notify.min.js"></script>
+    <script src="../../Scripts/Plugins/jquery.farsiInput.js"></script>
+    <script src="../../Scripts/Plugins/PersianCalendar/PersianCalendar.js"></script>
+    <script src="../../Scripts/Plugins/Zebra/zebra_datepicker.min.js"></script>
+    <script src="../../Scripts/Console/common.js"></script>
+
+
+    <script>function goBack() {
+            if (history.length !== undefined) {
+                if (history.length == 0) window.location.href = "https://amirshahigroup.com/";
+                else history.back();
+            }
+            else window.location.href = "https://amirshahigroup.com/";
+
+        }</script>
+    <script>var successMessage = 'ثبت سفارش با موفقیت انجام شد! سفارش شما ظرف یک روز کاری قیمت گذاری میشود و نتیجه از طریق پیامک به شما اعلام خواهد شد.';</script>
+    <script src="../../Scripts/Console/common.js"></script>
+    <script src="../../Scripts/Console/03-EndUser/Home/add-order.js"></script>
+    <script src="../../Scripts/app.min.js"></script>
+    <script src="../../Scripts/Console/Attachment/uploader.js"></script>
+    <script src="../../Scripts/Console/order-item.js"></script>
+</body>
+</html>

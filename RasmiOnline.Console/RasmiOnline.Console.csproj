@@ -377,12 +377,14 @@
     <Content Include="Content\Styles\Console\Setting\common.css" />
     <Content Include="Content\Styles\Console\user.profile.css" />
     <Content Include="Content\Styles\Console\User\profile.css" />
+    <Content Include="Content\Styles\Layout\portal-static.css" />
     <Content Include="Content\Styles\Shared\bootstrap.css" />
     <Content Include="Content\Styles\Shared\flickity.min.css" />
     <Content Include="Content\Styles\Shared\fontawesome-all.min.css" />
     <Content Include="Content\Styles\Console\OAuth\common.css" />
     <Content Include="Content\Styles\Layout\portal.css" />
     <Content Include="Content\Styles\Console\order.css" />
+    <Content Include="Content\Styles\Shared\material-design-iconic-font-static.min.css" />
     <Content Include="Content\Styles\Shared\select2.min.css" />
     <Content Include="Content\Styles\Shared\timeline.css" />
     <Content Include="Content\Styles\Shared\animate.css" />
@@ -542,6 +544,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AppSettings.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\Home\AddOrder.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
