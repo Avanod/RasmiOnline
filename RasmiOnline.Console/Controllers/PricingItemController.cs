@@ -163,7 +163,7 @@
                 GetIsPricingItem(findedPricingItem.Result.IsPricingItem, false);
                 GetIsMustlyUse(findedPricingItem.Result.IsMustlyUse, false);
                 GetIsDiscountable(findedPricingItem.Result.IsDiscountable, false);
-
+                GetVariablePriceUnitItems();
                 GetPricingItemCategories(findedPricingItem.Result.CategoryId.ToString());
                 GetPricingItemUnits(findedPricingItem.Result.PricingItemUnit.ToString());
                 return PartialView(MVC.PricingItem.Views.Partials._Form, findedPricingItem);

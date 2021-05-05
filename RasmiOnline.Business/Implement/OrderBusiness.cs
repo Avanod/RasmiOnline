@@ -155,6 +155,7 @@
                     else orderItem.Price_OthersLang = item.Price;
                     orderItem.Copy = item.Copy;
                     orderItem.Count = item.Count;
+                    orderItem.VariablePriceCount = item.VariablePriceCount;
                     #endregion
                     _uow.Entry(orderItem).State = EntityState.Modified;
                 }
@@ -177,6 +178,9 @@
                     }
                     item.OrderItemType = OrderItemType.PricingItem;
                     item.PricingItemUnitText = pricingItem.PricingItemUnitText;
+                    item.HasVariablePrice = pricingItem.HasVariablePrice;
+                    item.VariablePrice = pricingItem.VariablePrice;
+                    item.VariablePriceUnit = pricingItem.VariablePriceUnit;
                     #endregion
                     order.OrderItems.Add(item);
                     _uow.Entry(item).State = EntityState.Added;

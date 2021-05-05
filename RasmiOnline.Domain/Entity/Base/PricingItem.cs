@@ -68,15 +68,12 @@
         public string Description { get; set; }
 
         #region Variable Unit Price
-        [NotMapped]
         [Display(Name = nameof(DisplayName.HasVariablePrice), ResourceType = typeof(DisplayName))]
         public bool HasVariablePrice { get; set; }
 
-        [NotMapped]
         [Display(Name = nameof(DisplayName.VariablePriceUnit), ResourceType = typeof(DisplayName))]
         public VariablePriceUnit VariablePriceUnit { get; set; }
 
-        [NotMapped]
         [Display(Name = nameof(DisplayName.VariablePrice), ResourceType = typeof(DisplayName))]
         public int VariablePrice { get; set; }
         #endregion
