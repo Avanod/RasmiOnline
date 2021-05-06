@@ -51,7 +51,7 @@
 
         [Display(Name = nameof(DisplayName.VariablePrice), ResourceType = typeof(DisplayName))]
         public int VariablePrice { get; set; }
-        [NotMapped]
+
         [Display(Name = nameof(DisplayName.VariablePriceCount), ResourceType = typeof(DisplayName))]
         public int VariablePriceCount { get; set; }
         #endregion
@@ -84,7 +84,7 @@
                 case OrderItemType.DiscountItem:
                     return Price;
                 default://PricingItems
-                    return Count * (langType == LangType.Fa_En ? Price : Price_OthersLang) + CalculateTotalCopyPrice(langType);
+                    return Count * (langType == LangType.Fa_En ? Price : Price_OthersLang) + CalculateTotalCopyPrice(langType) + (HasVariablePrice ? (VariablePrice * VariablePriceCount) : 0);
             }
         }
 
