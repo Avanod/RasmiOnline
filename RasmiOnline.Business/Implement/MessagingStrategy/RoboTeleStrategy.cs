@@ -29,7 +29,7 @@
             var result = new ActionResponse<bool>();
             try
             {
-              
+
                 ServicePointManager.Expect100Continue = true;
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls
                        | SecurityProtocolType.Tls11
@@ -38,11 +38,18 @@
 
                 //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
                 //Something went wrong, please try again.
-                var roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content).Result;
-                message.SendStatus = roboResponse.MessageId.ToString();
-                message.State = StateType.Accepted;
-                _uow.Entry(message).State = EntityState.Modified;
-                _uow.SaveChanges();
+                if (message.Content != "Something went wrong, please try again.")
+                {
+                    var roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content).Result;
+                    message.SendStatus = roboResponse.MessageId.ToString();
+                    message.State = StateType.Accepted;
+                    _uow.Entry(message).State = EntityState.Modified;
+                    _uow.SaveChanges();
+                }
+                else
+                {
+                    FileLoger.Info(message.SerializeToJson(), GlobalVariable.LogPath);
+                }
 
                 result.Result = true;
                 result.IsSuccessful = true;

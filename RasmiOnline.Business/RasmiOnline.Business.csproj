@@ -210,6 +210,7 @@
     <Compile Include="Protocol\IVerificationCodeBusiness.cs" />
     <Compile Include="Protocol\IViewBusiness.cs" />
     <Compile Include="Protocol\IViewInRoleBusiness.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RasmiOnline.Domain\RasmiOnline.Domain.csproj">

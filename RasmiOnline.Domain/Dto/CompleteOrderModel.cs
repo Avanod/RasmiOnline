@@ -19,5 +19,7 @@
         public int PaymentGatewayId { get; set; }
 
         public bool NeedDraft { get; set; }
+
+        public bool NeedTranslationScan { get; set; }
     }
 }
