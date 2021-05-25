@@ -542,3 +542,7 @@
 .f-s-11 td {
     font-size: 11px;
 }
+.tbl-scroller {
+    width: 100%;
+    overflow-x: auto;
+}
