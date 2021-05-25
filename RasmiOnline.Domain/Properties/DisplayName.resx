@@ -750,4 +750,55 @@
   <data name="VariablePriceUnit" xml:space="preserve">
     <value>واحد قیمت متغیر</value>
   </data>
+  <data name="Vrb_Asasname" xml:space="preserve">
+    <value>هر سطر متن اساسنامه</value>
+  </data>
+  <data name="Vrb_Dars" xml:space="preserve">
+    <value>هر درس</value>
+  </data>
+  <data name="Vrb_Description" xml:space="preserve">
+    <value>هر سطر توضيح</value>
+  </data>
+  <data name="Vrb_Descriptions" xml:space="preserve">
+    <value>هر سطر توضیحات</value>
+  </data>
+  <data name="Vrb_Employee" xml:space="preserve">
+    <value>هر نفر کارمند</value>
+  </data>
+  <data name="Vrb_Gharardad" xml:space="preserve">
+    <value>هر سطر متن قرارداد</value>
+  </data>
+  <data name="Vrb_Govahi" xml:space="preserve">
+    <value>هر سطر متن گواهی</value>
+  </data>
+  <data name="Vrb_HalfDescriptions" xml:space="preserve">
+    <value>هر نیم سطر توضیحات</value>
+  </data>
+  <data name="Vrb_Item" xml:space="preserve">
+    <value>هر آیتم</value>
+  </data>
+  <data name="Vrb_Matn" xml:space="preserve">
+    <value>هر سطر متن</value>
+  </data>
+  <data name="Vrb_Mehrie" xml:space="preserve">
+    <value>هر سطر مهریه</value>
+  </data>
+  <data name="Vrb_Perferazh" xml:space="preserve">
+    <value>هر پرفراژ</value>
+  </data>
+  <data name="Vrb_RialiItem" xml:space="preserve">
+    <value>هر آیتم ریالی</value>
+  </data>
+  <data name="Vrb_TaghirMahal" xml:space="preserve">
+    <value>هر تغییر محل اشتغال</value>
+  </data>
+  <data name="Vrb_Tazrigh" xml:space="preserve">
+    <value>هر نوبت تزریق</value>
+  </data>
+  <data name="Vrb_Transaction" xml:space="preserve">
+    <value>هر تراکنش بانکی</value>
+  </data>
+  <data name="Vrb_Vekalat" xml:space="preserve">
+    <value>هر سطر متن مورد وکالت</value>
+  </data>
 </root>

@@ -40,9 +40,17 @@
         }
         [NonAction]
         private void GetVariablePriceUnitItems() {
-            ViewBag.VariablePriceUnitItems = EnumConvertor.GetEnumElements<VariablePriceUnit>().Select(x => new SelectListItem
+
+            var list = new List<ItemTextValueModel<string, string>>();
+            var result = EnumConvertor.GetEnumElements<VariablePriceUnit>().ToList();
+            result.ForEach(item =>
             {
-                Text = x.DisplayName,
+                list.Add(new ItemTextValueModel<string, string>() { Key = item.Description, Value = item.Name });
+            });
+
+            ViewBag.VariablePriceUnitItems = result.Select(x => new SelectListItem
+            {
+                Text = x.Description,
                 Value = x.Name
             }).ToList();
         } 

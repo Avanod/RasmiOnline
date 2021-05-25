@@ -1897,6 +1897,159 @@ namespace RasmiOnline.Domain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to هر سطر متن اساسنامه.
+        /// </summary>
+        public static string Vrb_Asasname {
+            get {
+                return ResourceManager.GetString("Vrb_Asasname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر درس.
+        /// </summary>
+        public static string Vrb_Dars {
+            get {
+                return ResourceManager.GetString("Vrb_Dars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر سطر توضيح.
+        /// </summary>
+        public static string Vrb_Description {
+            get {
+                return ResourceManager.GetString("Vrb_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر سطر توضیحات.
+        /// </summary>
+        public static string Vrb_Descriptions {
+            get {
+                return ResourceManager.GetString("Vrb_Descriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر نفر کارمند.
+        /// </summary>
+        public static string Vrb_Employee {
+            get {
+                return ResourceManager.GetString("Vrb_Employee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر سطر متن قرارداد.
+        /// </summary>
+        public static string Vrb_Gharardad {
+            get {
+                return ResourceManager.GetString("Vrb_Gharardad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر سطر متن گواهی.
+        /// </summary>
+        public static string Vrb_Govahi {
+            get {
+                return ResourceManager.GetString("Vrb_Govahi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر نیم سطر توضیحات.
+        /// </summary>
+        public static string Vrb_HalfDescriptions {
+            get {
+                return ResourceManager.GetString("Vrb_HalfDescriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر آیتم.
+        /// </summary>
+        public static string Vrb_Item {
+            get {
+                return ResourceManager.GetString("Vrb_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر سطر متن.
+        /// </summary>
+        public static string Vrb_Matn {
+            get {
+                return ResourceManager.GetString("Vrb_Matn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر سطر مهریه.
+        /// </summary>
+        public static string Vrb_Mehrie {
+            get {
+                return ResourceManager.GetString("Vrb_Mehrie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر پرفراژ.
+        /// </summary>
+        public static string Vrb_Perferazh {
+            get {
+                return ResourceManager.GetString("Vrb_Perferazh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر آیتم ریالی.
+        /// </summary>
+        public static string Vrb_RialiItem {
+            get {
+                return ResourceManager.GetString("Vrb_RialiItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر تغییر محل اشتغال.
+        /// </summary>
+        public static string Vrb_TaghirMahal {
+            get {
+                return ResourceManager.GetString("Vrb_TaghirMahal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر نوبت تزریق.
+        /// </summary>
+        public static string Vrb_Tazrigh {
+            get {
+                return ResourceManager.GetString("Vrb_Tazrigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر تراکنش بانکی.
+        /// </summary>
+        public static string Vrb_Transaction {
+            get {
+                return ResourceManager.GetString("Vrb_Transaction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to هر سطر متن مورد وکالت.
+        /// </summary>
+        public static string Vrb_Vekalat {
+            get {
+                return ResourceManager.GetString("Vrb_Vekalat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to درانتظار دریافت مدارک توسط نماینده.
         /// </summary>
         public static string WaitForDeliverDocumentByPeyk {
