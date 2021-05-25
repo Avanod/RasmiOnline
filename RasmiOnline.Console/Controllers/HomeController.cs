@@ -14,6 +14,7 @@ using RasmiOnline.Console.Properties;
 using Gnu.Framework.Core.Authentication;
 using RasmiOnline.Console.PaymentStrategy;
 using Gnu.Framework.Core.Log;
+using RasmiOnline.Business.Implement;
 
 namespace RasmiOnline.Console.Controllers
 {
@@ -199,5 +200,18 @@ namespace RasmiOnline.Console.Controllers
             ViewBag.Items = _attachmentSrv.Get(orderId, AttachmentType.Translation);
             return View(order);
         }
+
+        //[HttpGet]
+        //public virtual ContentResult EmailTest()
+        //{
+        //    EmailStrategy ins = new EmailStrategy(null);
+        //    ins.Send(new Message
+        //    {
+        //        Content = "تست",
+        //        ExtraData = "موضوع تست",
+        //        Receiver = "translation@amirshahigroup.com"
+        //    });
+        //    return Content("OK");
+        //}
     }
 }

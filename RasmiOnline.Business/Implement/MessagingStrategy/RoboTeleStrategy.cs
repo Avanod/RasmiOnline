@@ -38,6 +38,7 @@
 
                 //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
                 //Something went wrong, please try again.
+                FileLoger.Info(message.Content, GlobalVariable.LogPath);
                 if (message.Content != "Something went wrong, please try again.")
                 {
                     var roboResponse = Bot.SendTextMessageAsync(message.Receiver, message.Content).Result;

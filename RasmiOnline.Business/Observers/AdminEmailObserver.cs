@@ -17,7 +17,7 @@
                 Type = MessagingType.Email,
                 ExtraData = msg.Subject,
                 ReplyMessageId = msg.MessageId,
-                Receiver = "naati_najit@yahoo.com",
+                Receiver = "translation@amirshahigroup.com",
             });
         }
     }

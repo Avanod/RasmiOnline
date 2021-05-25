@@ -29,23 +29,21 @@ namespace RasmiOnline.Business.Implement
 
             try
             {
-                MailMessage messageM = new MailMessage();
-                messageM.To.Add(message.Receiver);
-                messageM.From = new MailAddress("portal.amirshahi@gmail.com");
-                messageM.Subject = message.ExtraData;
-                messageM.Body = message.Content.Replace(Environment.NewLine,"<br>");
-                messageM.IsBodyHtml = true;
-                messageM.BodyEncoding = Encoding.UTF8;
-                SmtpClient smtp = new SmtpClient();
-                smtp.EnableSsl = true;
-                smtp.Port = 587;
-                smtp.UseDefaultCredentials = false;
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Host = "smtp.gmail.com";
+                const string fromEmail = "portal@amirshahigroup.com";
+                var emailMessage = new MailMessage
+                {
+                    From = new MailAddress(fromEmail),
+                    To = { message.Receiver },
+                    Subject = message.ExtraData,
+                    Body = message.Content,//.Replace(Environment.NewLine, "<br>"),
+                    DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure
+                };
+                using (SmtpClient smtpClient = new SmtpClient("207.176.218.157"))
+                {
+                    smtpClient.Credentials = new NetworkCredential("portal@amirshahigroup.com", "969k?kTz");
 
-                smtp.Credentials = new NetworkCredential("portal.amirshahi@gmail.com", "pOrtal@2020");
-
-                smtp.Send(messageM);
+                    smtpClient.Send(emailMessage);
+                }
                 return result;
             }
             catch (Exception e)
