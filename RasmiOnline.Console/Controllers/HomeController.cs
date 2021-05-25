@@ -199,5 +199,8 @@ namespace RasmiOnline.Console.Controllers
             ViewBag.Items = _attachmentSrv.Get(orderId, AttachmentType.Translation);
             return View(order);
         }
+
+        public ActionResult AddOrderHtml() => new FilePathResult("~/Views/Home/AddOrder.html", "text/html");
+
     }
 }

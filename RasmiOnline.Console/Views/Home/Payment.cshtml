@@ -58,14 +58,8 @@
                 <div class="row mb-15" id="delivery-types">
                     <div class="col-xs-12 heading">
                         <h5 class="hx">
-                            <label>نحوه تحویل</label>
+                            <label>نحوه دریافت ترجمه مدارک از دارالترجمه</label>
                         </h5>
-                    </div>
-                    <div class="col-xs-12">
-                        <br />
-                        <div class="alert alert-warning">
-                            <small>@LocalMessage.DeliveryHint</small>
-                        </div>
                     </div>
                     <div class="col-xs-12">
                         <div class="row">
@@ -81,6 +75,12 @@
                                     </div>
                                 </div>
                             }
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <br />
+                        <div class="alert alert-warning">
+                            <small>@LocalMessage.DeliveryHint</small>
                         </div>
                     </div>
                 </div>
@@ -142,37 +142,40 @@
                 }
 
                 <div class="col-xs-12 mb-15">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th class="text-right">#</th>
-                                <th class="text-right">عنوان</th>
-                                <th class="text-right">واحد قیمت متغیر</th>
-                                <th class="text-right">قیمت متغیر به ازای هر واحد</th>
-                                <th class="text-right">تعداد قیمت متغیر</th>
-                                <th class="text-right">واحد قیمت گذاری</th>
-                                <th class="text-right">قیمت واحد</th>
-                                <th class="text-right">تعداد</th>
-                                <th class="text-right">قیمت(@LocalMessage.MoneyCurrency)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.OrderItems)
-                            {
+                    <div class="tbl-scroller">
+                        <table class="table table-striped tbl-pricing-items">
+                            <thead>
                                 <tr>
-                                    <td>@(Model.OrderItems.ToList().IndexOf(item) + 1)</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.VariablePriceUnit.GetLocalizeDescription()</td>
-                                    <td>@item.VariablePrice.ToString("N0")</td>
-                                    <td>@item.VariablePriceCount</td>
-                                    <td>@(item.PricingItemUnitText ?? PricingItemUnit.Page.GetLocalizeDescription())</td>
-                                    <td>@(Model.LangType == LangType.Fa_En ? item.Price : item.Price_OthersLang)</td>
-                                    <td>@item.Count</td>
-                                    <td>@item.CalculateTotalPrice(Model.LangType)</td>
+                                    <th class="text-right">#</th>
+                                    <th class="text-right mw150">عنوان</th>
+                                    <th class="text-right mw150">واحد قیمت متغیر</th>
+                                    <th class="text-right mw200">قیمت متغیر به ازای هر واحد</th>
+                                    <th class="text-right mw100">تعداد قیمت متغیر</th>
+                                    <th class="text-right mw100">واحد قیمت گذاری</th>
+                                    <th class="text-right mw100">قیمت واحد</th>
+                                    <th class="text-right">تعداد</th>
+                                    <th class="text-right mw100">قیمت(@LocalMessage.MoneyCurrency)</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderItems)
+                                {
+                                    <tr>
+                                        <td>@(Model.OrderItems.ToList().IndexOf(item) + 1)</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.VariablePriceUnit.GetLocalizeDescription()</td>
+                                        <td>@item.VariablePrice.ToString("N0")</td>
+                                        <td>@item.VariablePriceCount</td>
+                                        <td>@(item.PricingItemUnitText ?? PricingItemUnit.Page.GetLocalizeDescription())</td>
+                                        <td>@(Model.LangType == LangType.Fa_En ? item.Price : item.Price_OthersLang)</td>
+                                        <td>@item.Count</td>
+                                        <td>@item.CalculateTotalPrice(Model.LangType)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
             <div class="alert alert-success">

@@ -54,6 +54,15 @@ body {
       #order-payment .draft .checkbox-group input {
         vertical-align: middle; }
 
+.mw100 {
+  min-width: 100px; }
+
+.mw150 {
+  min-width: 150px; }
+
+.mw200 {
+  min-width: 200px; }
+
 @media (max-width: 576px) {
   body {
     background-color: #fff; }
