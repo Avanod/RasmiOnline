@@ -11,7 +11,7 @@
 .header .logo{
     width:60px;
     height:50px;
-    background:url(/Content/Images/Logo/Logo.png) -108px center no-repeat;
+    background:url(/Content/Images/Logo/Logo.jpg) -108px center no-repeat;
 }
 .header p{
     float:left;

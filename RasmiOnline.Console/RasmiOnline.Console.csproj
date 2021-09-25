@@ -291,6 +291,7 @@
     <Content Include="Content\Images\Landing\tick.png" />
     <Content Include="Content\Images\Logo\logo-square.png" />
     <Content Include="Content\Images\Logo\Logo-Transparent.png" />
+    <Content Include="Content\Images\Logo\Logo.jpg" />
     <Content Include="Content\Images\Logo\Logo.png" />
     <Content Include="Content\Images\oauth-bg.jpg" />
     <Content Include="Content\Images\OrderSteps\step1.png" />
