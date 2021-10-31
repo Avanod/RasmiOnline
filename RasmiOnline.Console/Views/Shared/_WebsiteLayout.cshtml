@@ -11,8 +11,52 @@
     <title>@ViewBag.Title</title>
     @Styles.Render(Links.Bundles.Styles.MainCss)
     @RenderSection("head", false)
+    <style>
+        header {
+            margin-bottom: 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+            header .container {
+                padding: 0 45px;
+            }
+
+        @@media screen and (max-width: 640px) {
+            header .container {
+                padding: 0 30px;
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            nav img {
+                width: 144px;
+            }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <nav class="">
+                        <img src="@Url.Content("~/Content/Images/logo.png")" alt="rasmi online logo" />
+                        <a class="btn btn-default" href="https://www.rasmionline.com/">@LocalMessage.Return</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
     @*@{Html.RenderPartial(MVC.Shared.Views.Partials._PortalHeader); }*@
     <main class="w-100">
         <section class="container contents">
