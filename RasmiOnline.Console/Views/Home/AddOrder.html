@@ -22,9 +22,57 @@
     <link href="../../Content/Styles/Console/03-EndUser/Home/add-order.min.css" rel="stylesheet">
     <link href="../../Content/Styles/Console/order-item.css" rel="stylesheet">
     <link href="../../Content//Styles/Console/Attachment/uploader.min.css" rel="stylesheet">
+    <style>
+        body {
+            flex-direction: column;
+            margin-top: 0px !important;
+        }
+
+        header {
+            margin-bottom: 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+            header .container {
+                padding: 0 45px;
+            }
+
+        @@media screen and (max-width: 640px) {
+            header .container {
+                padding: 0 30px;
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            nav img {
+                width: 144px;
+            }
+    </style>
 </head>
 <body class="loaded" style="">
-
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <nav class="">
+                        <img src="~/Content/Images/logo.png" alt="rasmi online logo" />
+                        <a class="btn btn-default" href="https://www.rasmionline.com/">بازگشت</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
     <main>
         <section class="container contents">
 
@@ -192,7 +240,8 @@
     <script src="../../Scripts/Console/common.js"></script>
 
 
-    <script>function goBack() {
+    <script>
+        function goBack() {
             if (history.length !== undefined) {
                 if (history.length == 0) window.location.href = "https://amirshahigroup.com/";
                 else history.back();
