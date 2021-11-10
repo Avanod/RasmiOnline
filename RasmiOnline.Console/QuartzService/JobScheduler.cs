@@ -1,5 +1,6 @@
 ﻿using Quartz;
 using Quartz.Impl;
+using System;
 
 namespace RasmiOnline.Console.QuartzService
 {
@@ -12,11 +13,11 @@ namespace RasmiOnline.Console.QuartzService
             var job = JobBuilder.Create<MainJob>().WithIdentity("MainJob").Build();
 
             var trigger = TriggerBuilder.Create().WithIdentity("MainTrigger")
-            //.StartAt(DateTimeOffset.Parse("00:00:00"))
-            .StartNow()
+            .StartAt(DateTimeOffset.Parse("13:00:00"))
+            //.StartNow()
             .WithSimpleSchedule(x => x
             //.WithIntervalInSeconds(10)
-            .WithIntervalInHours(2)
+            //.WithIntervalInHours(2)
             .RepeatForever())
             .Build();
 

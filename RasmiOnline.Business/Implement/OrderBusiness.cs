@@ -63,6 +63,10 @@
         /// <returns></returns>
         public IActionResponse<Order> Update(Order model, string baseDomain = "")
         {
+            if (model.OrderStatus== OrderStatus.Done)
+            {
+                model.DateOrderDoneMi = DateTime.Now;
+            }
             _order.Attach(model);
             _uow.Entry(model).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
@@ -104,6 +108,9 @@
                 };
             #endregion
             order.OrderStatus = model.OrderStatus;
+            if (model.OrderStatus== OrderStatus.Done)
+                order.DateOrderDoneMi = DateTime.Now;
+
             order.DayToDelivery = model.DayToDelivery;
             order.DocsBeenRecieved = model.DocsBeenRecieved;
             order.IsFullPayed = model.IsFullPayed;
@@ -505,6 +512,10 @@
             var order = _order.Find(orderId);
             if (order == null) return new ActionResponse<Order> { IsSuccessful = false, Message = BusinessMessage.RecordNotFound };
             order.OrderStatus = status;
+            if (status == OrderStatus.Done)
+            {
+                order.DateOrderDoneMi = DateTime.Now;
+            }
             _uow.Entry(order).State = EntityState.Modified;
             var rep = _uow.SaveChanges();
 

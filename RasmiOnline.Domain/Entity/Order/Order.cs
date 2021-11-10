@@ -62,6 +62,8 @@
 
         public DateTime? DeliverFiles_DateMi { get; set; }
 
+        public DateTime? DateOrderDoneMi { get; set; }
+
         [Display(Name = nameof(DisplayName.PaymentDeliveryType), ResourceType = typeof(DisplayName))]
         public DeliveryType DeliveryType { get; set; } //true = by myself, false = post it
 
