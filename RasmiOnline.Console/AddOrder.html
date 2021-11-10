@@ -22,28 +22,75 @@
     <link href="Content/Styles/Console/03-EndUser/Home/add-order.min.css" rel="stylesheet">
     <link href="Content/Styles/Console/order-item.css" rel="stylesheet">
     <link href="Content//Styles/Console/Attachment/uploader.min.css" rel="stylesheet">
+    <style>
+        body {
+            flex-direction: column;
+            margin-top: 0px !important;
+        }
+
+        header {
+            margin-bottom: 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+            header .container {
+                padding: 0 45px;
+            }
+
+        @@media screen and (max-width: 640px) {
+            header .container {
+                padding: 0 30px;
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            nav img {
+                width: 84px;
+            }
+            nav .title {
+                display: flex;
+                align-items: center;
+                float: left;
+                line-height: 50px;
+                font-weight: bold;
+            }
+    </style>
 </head>
 <body class="loaded" style="">
 
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <nav class="">
+                        <div>
+                            <img src="/Content/Images/Logo/LogoOnly.png" alt="logo" />
+                            <div class="title">دارالترجه رسمی امیرشاهی</div>
+                        </div>
+                        <a class="btn btn-default" onclick="goBack()">بازگشت</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
     <main>
         <section class="container contents">
 
 
 
             <form id="add-order-page" action="https://portal.amirshahigroup.com/Home/AddOrder" novalidate="novalidate">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a class="btn-action rtl waves-effect mb-15" id="a-return" onclick="goBack()">
-                            <div class="text">
-                                بازگشت
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-home"></i>
-                            </div>
-                        </a>
-                    </div>
 
-                </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="form-group">
@@ -192,7 +239,8 @@
     <script src="Scripts/Console/common.js"></script>
 
 
-    <script>function goBack() {
+    <script>
+        function goBack() {
             if (history.length !== undefined) {
                 if (history.length == 0) window.location.href = "https://amirshahigroup.com/";
                 else history.back();

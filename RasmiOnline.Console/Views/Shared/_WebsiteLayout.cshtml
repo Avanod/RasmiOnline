@@ -45,7 +45,14 @@
         }
 
             nav img {
-                width: 144px;
+                width: 84px;
+            }
+            nav .title {
+                display: flex;
+                align-items: center;
+                float: left;
+                line-height: 50px;
+                font-weight: bold;
             }
     </style>
 </head>
@@ -55,7 +62,10 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <nav class="">
-                        <img src="@Url.Content("~/Content/Images/logo.png")" alt="rasmi online logo" />
+                        <div>
+                            <img src="@Url.Content("~/Content/Images/logo/logoOnly.png")" alt="logo" />
+                            <div class="title">دارالترجه رسمی امیرشاهی</div>
+                        </div>
                         <a class="btn btn-default" href="https://www.rasmionline.com/">@LocalMessage.Return</a>
                     </nav>
                 </div>
