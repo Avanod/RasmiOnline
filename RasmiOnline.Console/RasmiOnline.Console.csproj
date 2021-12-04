@@ -294,6 +294,7 @@
     <Content Include="Content\Images\Logo\Logo-Transparent.png" />
     <Content Include="Content\Images\Logo\Logo.jpg" />
     <Content Include="Content\Images\Logo\Logo.png" />
+    <Content Include="Content\Images\Logo\LogoOnly.png" />
     <Content Include="Content\Images\oauth-bg.jpg" />
     <Content Include="Content\Images\OrderSteps\step1.png" />
     <Content Include="Content\Images\OrderSteps\step2.png" />
